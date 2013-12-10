@@ -15,16 +15,18 @@
     <script type="text/javascript" src="phonegap.js"></script>
 </head>
 <body>
-<section class="centre" style="height:100%">
-<h1>Univers du cuir</h1>
-<form name="ident" action="#" method="post">
-<p>Veuillez vous identifier</p>
-<p>Nom : <input type="text" name="Nom" id="Nom" size="20" required/></p>
-<p>Mot de passe : <input type="password" name="Psw" id="Psw" size="20" required/></p>
-<p><input type="submit" value="OK"/></p>
+<section class="centre">
+<img src="Images/Logo.png" id="Logo">
+<form name="ident" id="ident" action="#" method="post">
+<h2>Veuillez vous identifier</h2><br/>
+<table id="tcon">
+<tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
+<tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
+<tr><td></td><td align="left"><input type="submit" value="OK"/></td></tr>
+</table>
 </form>
 </section>
-<footer>
+<footer id="footer">
 <p>Business Advices <span id="cnType"></span></p>
 </footer>
 </body>
