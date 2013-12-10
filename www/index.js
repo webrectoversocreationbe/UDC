@@ -7,7 +7,8 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('offline', this.onOffline, false);
         document.addEventListener('online', this.onOnline, false);
-    },
+		document.addEventListener("menubutton", this.onMenuKeyDown, false);
+	},
     onDeviceReady: function() {
 		$.mobile.allowCrossDomainPages = true;
 		$.support.cors = true;
@@ -19,6 +20,9 @@ var app = {
     onOnline: function() {
         app.receivedEvent('online');
     },
+	onMenuKeyDown: function menuKeyDown() {
+		alert('Menu button pressed.');
+	},
     receivedEvent: function(id) {
 		switch(id) {
 		case 'deviceready':
