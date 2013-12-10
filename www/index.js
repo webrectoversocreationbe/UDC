@@ -20,7 +20,7 @@ var app = {
     onOnline: function() {
         app.receivedEvent('online');
     },
-	onMenuKeyDown: function menuKeyDown() {
+	onMenuKeyDown: function() {
 		alert('Menu button pressed.');
 	},
     receivedEvent: function(id) {
