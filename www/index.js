@@ -5,14 +5,14 @@ var app = {
     },
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('offline', this.onOffline, false);
-        document.addEventListener('online', this.onOnline, false);
-		document.addEventListener("menubutton", this.onMenuKeyDown, false);
 	},
     onDeviceReady: function() {
 		$.mobile.allowCrossDomainPages = true;
 		$.support.cors = true;
         app.receivedEvent('deviceready');
+        document.addEventListener('offline', this.onOffline, false);
+        document.addEventListener('online', this.onOnline, false);
+		document.addEventListener("menubutton", this.onMenuKeyDown, false);
     },
     onOffline: function() {
         app.receivedEvent('offline');
@@ -21,7 +21,7 @@ var app = {
         app.receivedEvent('online');
     },
 	onMenuKeyDown: function() {
-		alert('Menu button pressed.');
+		showAlert('Menu','Menu','OK');
 	},
     receivedEvent: function(id) {
 		switch(id) {
@@ -63,6 +63,15 @@ function check_network() {
 		$('#cnType').removeClass('rouge');
 		$('#cnType').addClass('vert');
 	}
+}
+function alertDismissed() {}
+function showAlert(Mes,Titre,Bouton) {
+	navigator.notification.alert(
+		Mes, 
+		alertDismissed,
+		Titre,
+		Bouton
+	);
 }
 function ShowProduits() {
 	$.ajax({
