@@ -39,5 +39,5 @@ window.DB = {
     }
 };
 function log(msg) {
-    $('#log').val($('#log').val() + msg + '\n');
+    $('#log').append('<p>'+msg+'</p>');
 }

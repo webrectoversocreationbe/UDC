@@ -29,7 +29,7 @@
 </section>
 <script>
 function InitDB() {
-	DB.initialize();
+	DB.initialize(function(){showAlert('fini','udc','OK');});
 }
 </script>
 <div id="log">
