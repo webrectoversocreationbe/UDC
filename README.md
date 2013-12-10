@@ -1,4 +1,3 @@
-UDC
-===
+# PhoneGap Build Starter Application
 
-Application Univers du cuir
+
