@@ -191,6 +191,7 @@ body {
     margin:0px;
     padding:0px;
     width:100%;
+	border:4px solid #F00;
 }
 #header {
 	width:100%;
