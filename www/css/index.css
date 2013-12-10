@@ -192,6 +192,7 @@ body {
     padding:0px;
     width:100%;
 	border:4px solid #F00;
+	min-height:100%;
 }
 #header {
 	width:100%;
