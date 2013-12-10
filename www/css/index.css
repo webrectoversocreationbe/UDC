@@ -234,6 +234,8 @@ body {
 	bottom:25px; left:5px; right:5px;
 	background:#EEE;
 	padding-left:10px; padding-top:5px; padding-right:10px;
+	overflow:scroll;
+	overflow-x:hidden;
 }
 #cnType { float:right; margin-right:10px;}
 h1 {

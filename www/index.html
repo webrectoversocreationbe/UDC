@@ -17,7 +17,7 @@
 </head>
 <body>
 <section id="Connexion" class="centre">
-<img src="images/logo.png" id="Logo" onClick="Synchronise()">
+<img src="images/logo.png" id="Logo" onClick="InitDB()">
 <form name="ident" id="ident" action="#" method="post">
 <h2>Veuillez vous identifier</h2><br/>
 <table id="tcon">
@@ -28,10 +28,9 @@
 </form>
 </section>
 <script>
-$('#log').append('<p>test</p>');
 function InitDB() {
 	log('debut');
-//	dao.initialize(function(){showAlert('fini','udc','OK');});
+	dao.initialize(function(){showAlert('fini','udc','OK');});
 }
 </script>
 <div id="log">

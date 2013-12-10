@@ -39,5 +39,5 @@ window.dao = {
     }
 };
 function log(msg) {
-    $('#log').append('<p>'+msg+'</p>');
+    $('#log').prepend('<p>'+msg+'</p>');
 }
