@@ -6,10 +6,10 @@
         id        = "be.rectoversocreation.firstapp"
         version   = "1.0.0">
 
-    <name>Business Advices</name>
+    <name>Univers du cuir</name>
 
     <description>
-        Test d'application.
+        Bon de commande.
     </description>
 
     <author href="http://www.rectoversocreation.be" email="web@rectoversocreation.be">
