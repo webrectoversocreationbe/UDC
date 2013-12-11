@@ -75,7 +75,7 @@ window.dbu = {
 					function(tx) {
 						var l = data.length;
 						var sql =
-							"INSERT OR REPLACE INTO Users (Num, bAdmin, Nom, Psw) " +
+							"INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw) " +
 							"VALUES (?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
