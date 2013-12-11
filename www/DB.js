@@ -6,13 +6,14 @@ var bDoLogin=false;
 */
 function Init() {
 	log('Initialisation');
-	dbu.initialize();
-	if (tableUserOk==true) {bDoLogin=true;}
-	if (bDoLogin==true) {
-		$('#Init').removeClass('current');
-		$('#Connexion').addClass('current');
-		$('#User').focus();
-	}
+	dbu.initialize(function() {
+		if (tableUserOk==true) {bDoLogin=true;}
+		if (bDoLogin==true) {
+			$('#Init').removeClass('current');
+			$('#Connexion').addClass('current');
+			$('#User').focus();
+		}
+	});
 }
 function SynchroAll() {
 	dbu.synchro();
