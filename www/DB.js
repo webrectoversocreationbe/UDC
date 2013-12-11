@@ -1,5 +1,6 @@
 window.dbu = {
 	Etat: false,
+	syncOK: false,
     syncURL: "192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
@@ -50,6 +51,7 @@ window.dbu = {
                         if (results.rows.length == 1) {
 							log('Login ok');
 							$('#Connexion').removeClass('current');
+							
 							$('#Main').addClass('current');
                         } else {
                             log('Utilisateur ou mot de passe inconnu');
@@ -64,9 +66,20 @@ window.dbu = {
 	synchro: function(callback) {
         var self = this;
 		log('La table User à été synchronisée');
-        showAlert('Synchro avec le serveur','Synchronisation','OK');
-		self.Etat=true;
-		callback();
+        $.ajax({
+            url: self.syncURL,
+            data: {Genre: 'USER'},
+            dataType:"json",
+            success:function (data) {
+				alert(data);
+				self.Etat=true;
+				self.syncOK=true;
+				callback();
+            },
+            error: function(request, model, response) {
+                alert(request.responseText + " " +model + " " + response);
+            }
+        });
 	},
     txErrorHandler: function(tx) {
         showAlert(tx.message,'Erreur SQL','OK');

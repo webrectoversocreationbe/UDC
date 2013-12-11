@@ -25,18 +25,24 @@
 	function Init() {
 		log('Initialisation');
 		dbu.initialize(function() {
+			var bDoSynchro=false;
+			var bDoLogin=false;
 			if (dbu.Etat==false) {
 				$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur<br/>');
 				if (bConnected==false) {
 					$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 				} else {
-					dbu.synchro(function() {
-						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
-						$('#User').focus();
-					});
+					bDoSynchro=true;
 				}
 			} else {
+				bDoLogin=true;
+			}
+			if (bDoSynchro==true) {
+				dbu.synchro(function() {
+					if (dbu.syncOK==true) {bDoLogin==true;}
+				});
+			}
+			if (bDoLogin==true) {
 				$('#Init').removeClass('current');
 				$('#Connexion').addClass('current');
 				$('#User').focus();
