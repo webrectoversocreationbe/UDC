@@ -116,6 +116,7 @@ window.dbu = {
 				log('La table User à été synchronisée');
 				self.Etat=true;
 				self.syncOK=true;
+				tableUserOk=true;
 				callback();
             },
             error: function(request, model, response) {
