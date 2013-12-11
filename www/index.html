@@ -21,35 +21,6 @@
     <h2>Initialisation</h2><br/>
     <p><a class="rouge" onClick="Init()">Initialiser</a></p><br/>
     <p id="InitResult"></p>
-    <script>
-	function Init() {
-		log('Initialisation');
-		dbu.initialize(function() {
-			var bDoSynchro=false;
-			var bDoLogin=false;
-			if (dbu.Etat==false) {
-				$('#InitResult').append('Table identification innexistante<br/>Il faut synchroniser avec le serveur<br/>');
-				if (bConnected==false) {
-					$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
-				} else {
-					bDoSynchro=true;
-				}
-			} else {
-				bDoLogin=true;
-			}
-			if (bDoSynchro==true) {
-				dbu.synchro(function() {
-					if (dbu.syncOK==true) {bDoLogin==true;}
-				});
-			}
-			if (bDoLogin==true) {
-				$('#Init').removeClass('current');
-				$('#Connexion').addClass('current');
-				$('#User').focus();
-			}
-		});
-	}
-	</script>
 </div>
 <div id="Connexion" class="Panneau">
     <img src="images/logo.png" class="Logo">
@@ -66,10 +37,10 @@
     <img src="images/logo.png" class="Logo">
     <h2>Sélectionnez votre choix</h2><br/>
     <p><a onClick="">Nouvelle vente</a></p><br/>
-    <p><a onClick="">Consulter l'historique</a></p><br/>
+    <p id="lienconsulthist"><a onClick="">Consulter l'historique</a></p><br/>
     <p><a onClick="">Tarif</a></p><br/>
     <p><a onClick="">Photos</a></p><br/>
-    <script>if(Version==1) {document.writeln('<p><a onClick="">Fiches techniques</a></p><br/>');}</script>
+    <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/>
     <p><a onClick="SynchroAll()">Synchronisation</a></p><br/>
 </div>

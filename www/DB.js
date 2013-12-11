@@ -1,5 +1,27 @@
+var tableUserOk=false;
+var tableSynchroOk=false;
+var bDoLogin=false;
+/* 
+	INIT GENERAL
+*/
+function Init() {
+	log('Initialisation');
+	dbu.initialize();
+	if (bDoLogin==true) {
+		$('#Init').removeClass('current');
+		$('#Connexion').addClass('current');
+		$('#User').focus();
+	}
+}
+function SynchroAll() {
+	dbu.synchro();
+}
+/*
+	TABLE USERS
+*/
 window.dbu = {
 	Etat: false,
+	bDoSynchro: false,
 	syncOK: false,
     syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
@@ -12,6 +34,7 @@ window.dbu = {
                         if (results.rows.length == 1) {
 							self.Etat=true;
                             log('La table User existe');
+							tableUserOk=true;
 			                callback();
                         } else {
                             log('La table User n\'existe pas');
@@ -37,10 +60,24 @@ window.dbu = {
             this.txErrorHandler,
             function() {
                 log('La table User à été créé');
+				tableUserOk=true;
+				self.initOk();
                 callback();
             }
         );
     },
+	initOk: function() {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table identification innexistante<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
+			}
+		}
+		if (self.bDoSynchro==true) {self.synchro();}
+	},
 	login: function() {
 		var User=$('#User').val();
 		var Psw=$('#Psw').val();
@@ -54,6 +91,7 @@ window.dbu = {
 							bAdmin=results.rows.item(0).bAdmin;
 							Version=results.rows.item(0).Version;
 							log('Login ok');
+							$('#lienconsulthist').css('display',Version==1?'none':'block');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
                         } else {
@@ -85,8 +123,7 @@ window.dbu = {
             success:function (data) {
 				self.db.transaction(
 					function(tx) {
-						var sql =
-							"delete from Users";
+						var sql = "delete from Users";
 						tx.executeSql(sql);
 					},
 					self.txErrorHandler,
@@ -96,9 +133,7 @@ window.dbu = {
 				self.db.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql =
-							"INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) " +
-							"VALUES (?, ?, ?, ?, ?)";
+						var sql = "INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) VALUES (?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -127,6 +162,3 @@ window.dbu = {
 		log('Erreur SQL '+tx.message);
     }
 };
-function SynchroAll() {
-	dbu.synchro();
-}
