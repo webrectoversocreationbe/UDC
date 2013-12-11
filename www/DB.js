@@ -67,6 +67,8 @@ window.dbu = {
         var self = this;
         $.ajax({
             url: self.syncURL,
+	        crossDomain: true,
+			type: "POST",
             data: {Genre: 'USER'},
             dataType:"json",
             success:function (data) {
@@ -77,7 +79,7 @@ window.dbu = {
 				callback();
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation '+self.syncURL);
+				log('Erreur durant la synchronisation');
                 alert(request.responseText + " " +model + " " + response);
             }
         });
