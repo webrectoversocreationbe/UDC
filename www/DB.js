@@ -37,6 +37,13 @@ window.dbu = {
             }
         );
     },
+	login: function() {
+		var User=$('#User').val();
+		var Psw=$('#Psw').val();
+		log('login '+User+' : '+Psw);
+		$('#Connexion').removeClass('current');
+		$('#Main').addClass('current');
+	},
     txErrorHandler: function(tx) {
         alert(tx.message);
     }

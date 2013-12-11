@@ -24,9 +24,9 @@
 	function Init() {
 		dbu.initialize();
 		if (dbu.Etat==false) {
-			$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur');
+			$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur<br/>');
 			if (bConnected==false) {
-				$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()">Réessayer</a>');
+				$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			} else {
 			}
 		} else {
@@ -34,7 +34,6 @@
 			$('#Connexion').addClass('current');
 		}
 	}
-	Init();
 	</script>
 </div>
 <div id="Connexion" class="Panneau">
@@ -44,12 +43,9 @@
     <table id="tcon">
     <tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
     <tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
-    <tr><td></td><td align="left"><input type="submit" value="OK"/></td></tr>
+    <tr><td></td><td align="left"><input type="button" value="OK" onClick="dbu.login()"/></td></tr>
     </table>
     </form>
-    <p><a href="#" onclick="showAlert2(); return false;">Show Alert</a></p><br/>
-    <p><a href="#" onclick="playBeep(); return false;">Play Beep</a></p><br/>
-    <p><a href="#" onclick="vibrate(); return false;">Vibrate</a></p><br/>
 </div>
 <div id="Main" class="Panneau">
     <img src="images/logo.png" class="Logo">

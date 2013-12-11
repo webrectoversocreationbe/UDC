@@ -271,11 +271,17 @@ p {
 	display:block;
 }
 #Signature {margin:5px 0px 10px 0px;}
+.Logo {margin-top:-1px;}
+/* INIT
+-------------------------------*/
+#Init {text-align:center;}
 /* CONNEXION
 -------------------------------*/
 #Connexion {text-align:center;}
-.Logo {margin-top:-1px;}
 #ident {margin-top:20px;}
 #tcon {margin:0 auto;}
 #User {width:140px;}
 #Psw {width:140px;}
+/* MAIN
+-------------------------------*/
+#Main {text-align:center;}
