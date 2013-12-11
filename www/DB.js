@@ -1,6 +1,6 @@
 window.dbu = {
 	Etat: false,
-    syncURL: "192.168.0.248/UDC/sync.php",
+    syncURL: "192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
         this.db = window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
@@ -36,6 +36,9 @@ window.dbu = {
             function() {
 				self.Etat=true;
                 log('La table User à été créé');
+				self.synchro(function() {
+	                log('La table User à été synchronisée');
+				});
                 callback();
             }
         );
