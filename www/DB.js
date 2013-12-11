@@ -70,7 +70,6 @@ window.dbu = {
 	        crossDomain: true,
 			type: "POST",
             data: {Genre: 'USER'},
-            dataType:"json",
             success:function (data) {
 				alert(data);
 				self.Etat=true;
