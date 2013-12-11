@@ -20,23 +20,8 @@
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation</h2><br/>
     <p><a class="rouge" onClick="Init()">Initialiser</a></p><br/>
-    <p><a class="rouge" onClick="DoAjax()">synchro</a></p>
     <p id="InitResult"></p>
     <script>
-	function DoAjax() {
-        $.ajax({
-            url: 'http://192.168.0.248/UDC/ajaxSync.php',
-			type: "POST",
-            data: {Genre: 'USER'},
-//            dataType:"json",
-            success:function (data) {
-				alert(data);
-            },
-            error: function(request, model, response) {
-                alert('1='+request.responseText + " 2=" +model + " 3=" + response);
-            }
-        });
-	}
 	function Init() {
 		log('Initialisation');
 		dbu.initialize(function() {

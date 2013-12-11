@@ -71,10 +71,27 @@ window.dbu = {
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
+				this.db.transaction(
+					function(tx) {
+						var l = data.length;
+						var sql =
+							"INSERT OR REPLACE INTO Users (Num, bAdmin, Nom, Psw) " +
+							"VALUES (?, ?, ?, ?)";
+						var e;
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.Num, e.bAdmin, e.Nom, e.Psw];
+							tx.executeSql(sql, params);
+						}
+					},
+					this.txErrorHandler,
+					function(tx) {
+						callback();
+					}
+				);
+				log('La table User à été synchronisée');
 				self.Etat=true;
 				self.syncOK=true;
-				log('La table User à été synchronisée');
-				alert(data.lenght);
 				callback();
             },
             error: function(request, model, response) {
