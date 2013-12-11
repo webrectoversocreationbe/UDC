@@ -11,6 +11,7 @@ window.dbu = {
                         if (results.rows.length == 1) {
 							self.Etat=true;
                             log('La table User existe');
+			                callback();
                         } else {
                             log('La table User n\'existe pas');
                             self.createTable(callback);
@@ -27,7 +28,7 @@ window.dbu = {
 				"Num INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"bAdmin INTEGER, " +
 				"User VARCHAR(50), " +
-				"Psw varchar(50)); insert into Users (bAdmin,User,Psw) values (1,'chris','123')"
+				"Psw varchar(50))"
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -61,6 +62,6 @@ window.dbu = {
         )
 	},
     txErrorHandler: function(tx) {
-        alert(tx.message);
+        showAlert(tx.message,'Erreur SQL','OK');
     }
 };
