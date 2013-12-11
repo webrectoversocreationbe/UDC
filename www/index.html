@@ -16,29 +16,47 @@
     <script type="text/javascript" src="phonegap.js"></script>
 </head>
 <body>
-<section id="Connexion" class="centre">
-<img src="images/logo.png" id="Logo" onClick="InitDB()">
-<form name="ident" id="ident" action="#" method="post">
-<h2>Veuillez vous identifier</h2><br/>
-<table id="tcon">
-<tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
-<tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
-<tr><td></td><td align="left"><input type="submit" value="OK"/></td></tr>
-</table>
-</form>
+<div id="Init" class="Panneau current">
+    <img src="images/logo.png" class="Logo">
+    <h2>Initialisation</h2><br/>
+    <p id="InitResult"></p>
+    <script>
+	function Init() {
+		dbu.initialize();
+		if (dbu.Etat==false) {
+			$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur');
+			if (bConnected==false) {
+				$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()">Réessayer</a>');
+			} else {
+			}
+		} else {
+			$('#Init').removeClass('current');
+			$('#Connexion').addClass('current');
+		}
+	}
+	</script>
+</div>
+<div id="Connexion" class="Panneau">
+    <img src="images/logo.png" class="Logo">
+    <form name="ident" id="ident" action="#" method="post">
+    <h2>Veuillez vous identifier</h2><br/>
+    <table id="tcon">
+    <tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
+    <tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
+    <tr><td></td><td align="left"><input type="submit" value="OK"/></td></tr>
+    </table>
+    </form>
     <p><a href="#" onclick="showAlert2(); return false;">Show Alert</a></p><br/>
     <p><a href="#" onclick="playBeep(); return false;">Play Beep</a></p><br/>
     <p><a href="#" onclick="vibrate(); return false;">Vibrate</a></p><br/>
-</section>
-<script>
-function InitDB() {
-	dbu.initialize(function(){showAlert('fini','udc','OK');});
-}
-</script>
-<div id="log">
 </div>
+<div id="Main" class="Panneau">
+    <img src="images/logo.png" class="Logo">
+    <h2>Sélectionnez votre choix</h2><br/>
+</div>
+<div id="log"></div>
 <footer id="footer">
-<p>Business Advices <span id="cnType"></span></p>
+<p><a onClick="$('#log').toggle()">Business Advices</a> <span id="cnType"></span></p>
 </footer>
 </body>
 </html>

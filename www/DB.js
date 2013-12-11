@@ -1,4 +1,5 @@
 window.dbu = {
+	Etat: false,
     syncURL: "http://www.devba.be/android/sync.php",
     initialize: function(callback) {
         var self = this;
@@ -8,6 +9,7 @@ window.dbu = {
                 tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Users'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
+							this.Etat=true;
                             log('La table User existe');
                         } else {
                             log('La table User n\'existe pas');
@@ -29,6 +31,7 @@ window.dbu = {
             },
             this.txErrorHandler,
             function() {
+				this.Etat=true;
                 log('La table User à été créé');
                 callback();
             }
@@ -38,6 +41,3 @@ window.dbu = {
         alert(tx.message);
     }
 };
-function log(msg) {
-    $('#log').prepend('<p>'+msg+'</p>');
-}

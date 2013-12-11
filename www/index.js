@@ -1,4 +1,5 @@
 var bConnected=false;
+var bAdmin=false;
 var app = {
     initialize: function() {
         this.bindEvents();
@@ -43,6 +44,7 @@ app.initialize();
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
+function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
 function check_network() {
     var networkState = navigator.network.connection.type;
     var states = {};
