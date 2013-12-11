@@ -7,6 +7,7 @@ var bDoLogin=false;
 function Init() {
 	log('Initialisation');
 	dbu.initialize();
+	if (tableUserOk==true) {bDoLogin=true;}
 	if (bDoLogin==true) {
 		$('#Init').removeClass('current');
 		$('#Connexion').addClass('current');
@@ -69,7 +70,7 @@ window.dbu = {
 	initOk: function() {
         var self = this;
 		if (self.Etat==false) {
-			$('#InitResult').append('Table identification innexistante<br/>');
+			$('#InitResult').append('Table d\'identification créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			} else {
@@ -77,40 +78,6 @@ window.dbu = {
 			}
 		}
 		if (self.bDoSynchro==true) {self.synchro();}
-	},
-	login: function() {
-		var User=$('#User').val();
-		var Psw=$('#Psw').val();
-		log('Login '+User+' : '+Psw);
-        this.db.transaction(
-            function(tx) {
-                tx.executeSql("SELECT User,bAdmin,Version FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
-                    function(tx, results) {
-                        if (results.rows.length == 1) {
-							User=results.rows.item(0).User;
-							bAdmin=results.rows.item(0).bAdmin;
-							Version=results.rows.item(0).Version;
-							log('Login ok');
-							$('#lienconsulthist').css('display',Version==1?'none':'block');
-							$('#Connexion').removeClass('current');
-							$('#Main').addClass('current');
-                        } else {
-                            log('Utilisateur ou mot de passe inconnu');
-							$('#Psw').val('');
-							$('#User').val('');
-							$('#User').focus();
-                        }
-                    });
-            }
-        )
-	},
-	logout: function() {
-		log('Logout');
-		$('.Panneau').removeClass('current');
-		$('#Connexion').addClass('current');
-		$('#Psw').val('');
-		$('#User').val('');
-		$('#User').focus();
 	},
 	synchro: function(callback) {
         var self = this;
@@ -156,6 +123,40 @@ window.dbu = {
                 alert(request.responseText + " " +model + " " + response);
             }
         });
+	},
+	login: function() {
+		var User=$('#User').val();
+		var Psw=$('#Psw').val();
+		log('Login '+User+' : '+Psw);
+        this.db.transaction(
+            function(tx) {
+                tx.executeSql("SELECT User,bAdmin,Version FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							User=results.rows.item(0).User;
+							bAdmin=results.rows.item(0).bAdmin;
+							Version=results.rows.item(0).Version;
+							log('Login ok');
+							$('#lienconsulthist').css('display',Version==1?'none':'block');
+							$('#Connexion').removeClass('current');
+							$('#Main').addClass('current');
+                        } else {
+                            log('Utilisateur ou mot de passe inconnu');
+							$('#Psw').val('');
+							$('#User').val('');
+							$('#User').focus();
+                        }
+                    });
+            }
+        )
+	},
+	logout: function() {
+		log('Logout');
+		$('.Panneau').removeClass('current');
+		$('#Connexion').addClass('current');
+		$('#Psw').val('');
+		$('#User').val('');
+		$('#User').focus();
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
