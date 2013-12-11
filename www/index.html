@@ -58,7 +58,7 @@
     <table id="tcon">
     <tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
     <tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
-    <tr><td></td><td align="left"><input type="button" value="OK" onClick="dbu.login()"/></td></tr>
+    <tr><td></td><td align="left"><input type="button" id="btnlog" value="OK" onClick="dbu.login()"/></td></tr>
     </table>
     </form>
 </div>
@@ -71,7 +71,7 @@
     <p><a onClick="">Photos</a></p><br/>
     <script>if(Version==1) {document.writeln('<p><a onClick="">Fiches techniques</a></p><br/>');}</script>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/>
-    <p><a onClick="">Synchronisation</a></p><br/>
+    <p><a onClick="SynchroAll()">Synchronisation</a></p><br/>
 </div>
 <div id="log"></div>
 <footer id="footer">

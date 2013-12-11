@@ -67,6 +67,7 @@ window.dbu = {
         )
 	},
 	logout: function() {
+		log('Logout');
 		$('.Panneau').removeClass('current');
 		$('#Connexion').addClass('current');
 		$('#Psw').val('');
@@ -76,6 +77,7 @@ window.dbu = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
+			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
 			type: "POST",
@@ -85,12 +87,12 @@ window.dbu = {
 					function(tx) {
 						var l = data.length;
 						var sql =
-							"INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw) " +
-							"VALUES (?, ?, ?, ?)";
+							"INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) " +
+							"VALUES (?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.Num, e.bAdmin, e.Nom, e.Psw];
+							var params = [e.Num, e.bAdmin, e.Nom, e.Psw, e.Version];
 							tx.executeSql(sql, params);
 						}
 					},
@@ -115,3 +117,6 @@ window.dbu = {
 		log('Erreur SQL '+tx.message);
     }
 };
+function SynchroAll() {
+	dbu.synchro();
+}
