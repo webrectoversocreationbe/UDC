@@ -1,6 +1,6 @@
 window.dbu = {
 	Etat: false,
-    syncURL: "http://www.devba.be/android/sync.php",
+    syncURL: "192.168.0.248/UDC/sync.php",
     initialize: function(callback) {
         var self = this;
         this.db = window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
@@ -21,6 +21,7 @@ window.dbu = {
         )
     },
     createTable: function(callback) {
+        var self = this;
         this.db.transaction(
             function(tx) {
 				var sql = 
@@ -60,6 +61,10 @@ window.dbu = {
                     });
             }
         )
+	},
+	synchro: function(callback) {
+        var self = this;
+        showAlert('Synchro avec le serveur','Synchronisation','OK');
 	},
     txErrorHandler: function(tx) {
         showAlert(tx.message,'Erreur SQL','OK');
