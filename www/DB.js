@@ -71,10 +71,10 @@ window.dbu = {
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
-				alert(data[1].DateS);
 				self.Etat=true;
 				self.syncOK=true;
 				log('La table User à été synchronisée');
+				alert(data.lenght);
 				callback();
             },
             error: function(request, model, response) {
