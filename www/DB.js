@@ -71,7 +71,7 @@ window.dbu = {
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
-				this.db.transaction(
+				self.db.transaction(
 					function(tx) {
 						var l = data.length;
 						var sql =
@@ -84,7 +84,7 @@ window.dbu = {
 							tx.executeSql(sql, params);
 						}
 					},
-					this.txErrorHandler,
+					self.txErrorHandler,
 					function(tx) {
 						callback();
 					}
