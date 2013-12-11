@@ -1,7 +1,7 @@
 window.dbu = {
 	Etat: false,
 	syncOK: false,
-    syncURL: "192.168.0.248/UDC/ajaxSync.php",
+    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
         this.db = window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
@@ -71,7 +71,7 @@ window.dbu = {
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
-				alert(data);
+				alert(data[1].DateS);
 				self.Etat=true;
 				self.syncOK=true;
 				log('La table User à été synchronisée');
