@@ -77,7 +77,7 @@ window.dbu = {
 				callback();
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
+				log('Erreur durant la synchronisation '+self.syncURL);
                 alert(request.responseText + " " +model + " " + response);
             }
         });
