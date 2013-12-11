@@ -1,4 +1,4 @@
-window.dao = {
+window.dbu = {
     syncURL: "http://www.devba.be/android/sync.php",
     initialize: function(callback) {
         var self = this;
