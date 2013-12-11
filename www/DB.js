@@ -30,7 +30,8 @@ window.dbu = {
 				"Num INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"bAdmin INTEGER, " +
 				"User VARCHAR(50), " +
-				"Psw varchar(50))"
+				"Psw varchar(50), " +
+				"Version INTEGER)"
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -46,12 +47,14 @@ window.dbu = {
 		log('Login '+User+' : '+Psw);
         this.db.transaction(
             function(tx) {
-                tx.executeSql("SELECT User FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
+                tx.executeSql("SELECT User,bAdmin,Version FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
+							User=results.rows.item(0).User;
+							bAdmin=results.rows.item(0).bAdmin;
+							Version=results.rows.item(0).Version;
 							log('Login ok');
 							$('#Connexion').removeClass('current');
-							
 							$('#Main').addClass('current');
                         } else {
                             log('Utilisateur ou mot de passe inconnu');
@@ -62,6 +65,13 @@ window.dbu = {
                     });
             }
         )
+	},
+	logout: function() {
+		$('.Panneau').removeClass('current');
+		$('#Connexion').addClass('current');
+		$('#Psw').val('');
+		$('#User').val('');
+		$('#User').focus();
 	},
 	synchro: function(callback) {
         var self = this;
