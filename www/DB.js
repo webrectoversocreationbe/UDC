@@ -34,7 +34,6 @@ window.dbu = {
             },
             this.txErrorHandler,
             function() {
-				self.Etat=true;
                 log('La table User à été créé');
                 callback();
             }
@@ -66,6 +65,7 @@ window.dbu = {
         var self = this;
 		log('La table User à été synchronisée');
         showAlert('Synchro avec le serveur','Synchronisation','OK');
+		self.Etat=true;
 		callback();
 	},
     txErrorHandler: function(tx) {
