@@ -28,7 +28,7 @@
 			var bDoSynchro=false;
 			var bDoLogin=false;
 			if (dbu.Etat==false) {
-				$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur<br/>');
+				$('#InitResult').append('Table identification innexistante<br/>Il faut synchroniser avec le serveur<br/>');
 				if (bConnected==false) {
 					$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 				} else {
