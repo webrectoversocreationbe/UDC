@@ -19,9 +19,25 @@
 <div id="Init" class="Panneau current">
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation</h2><br/>
-    <p><a class="rouge" onClick="Init()">Initialiser</a></p>
+    <p><a class="rouge" onClick="Init()">Initialiser</a></p><br/>
+    <p><a class="rouge" onClick="DoAjax()">synchro</a></p>
     <p id="InitResult"></p>
     <script>
+	function DoAjax() {
+        $.ajax({
+            url: '192.168.0.248/UDC/ajaxSync.php',
+	        crossDomain: true,
+			type: "POST",
+            data: {Genre: 'USER'},
+            dataType:"json",
+            success:function (data) {
+				alert(data);
+            },
+            error: function(request, model, response) {
+                alert(request.responseText + " " +model + " " + response);
+            }
+        });
+	}
 	function Init() {
 		log('Initialisation');
 		dbu.initialize(function() {
