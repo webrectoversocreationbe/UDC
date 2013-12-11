@@ -14,7 +14,6 @@ var app = {
 		$.mobile.allowCrossDomainPages = true;
 		$.support.cors = true;
         app.receivedEvent('deviceready');
-		Init();
     },
     onOffline: function() {
         app.receivedEvent('offline');
@@ -29,6 +28,8 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
+			log('Initialisation');
+			Init();
 			break;
 		case 'offline':
 			check_network();
