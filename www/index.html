@@ -30,6 +30,11 @@
 				if (bConnected==false) {
 					$('#InitResult').append('Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 				} else {
+					dbu.synchro(function() {
+						$('#Init').removeClass('current');
+						$('#Connexion').addClass('current');
+						$('#User').focus();
+					});
 				}
 			} else {
 				$('#Init').removeClass('current');
