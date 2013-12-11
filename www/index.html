@@ -19,9 +19,11 @@
 <div id="Init" class="Panneau current">
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation</h2><br/>
+    <p><a class="rouge" onClick="Init()">Initialiser</a></p>
     <p id="InitResult"></p>
     <script>
 	function Init() {
+		log('Initialisation');
 		dbu.initialize();
 		if (dbu.Etat==false) {
 			$('#InitResult').append('Tables innexistantes<br/>Il faut synchroniser avec le serveur<br/>');

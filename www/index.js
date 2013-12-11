@@ -28,8 +28,6 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
-			log('Initialisation');
-			Init();
 			break;
 		case 'offline':
 			check_network();
