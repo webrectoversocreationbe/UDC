@@ -85,6 +85,16 @@ window.dbu = {
             success:function (data) {
 				self.db.transaction(
 					function(tx) {
+						var sql =
+							"delete from Users";
+						tx.executeSql(sql);
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				self.db.transaction(
+					function(tx) {
 						var l = data.length;
 						var sql =
 							"INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) " +
