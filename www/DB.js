@@ -65,7 +65,6 @@ window.dbu = {
 	},
 	synchro: function(callback) {
         var self = this;
-		log('La table User à été synchronisée');
         $.ajax({
             url: self.syncURL,
             data: {Genre: 'USER'},
@@ -74,14 +73,17 @@ window.dbu = {
 				alert(data);
 				self.Etat=true;
 				self.syncOK=true;
+				log('La table User à été synchronisée');
 				callback();
             },
             error: function(request, model, response) {
+				log('Erreur durant la synchronisation');
                 alert(request.responseText + " " +model + " " + response);
             }
         });
 	},
     txErrorHandler: function(tx) {
-        showAlert(tx.message,'Erreur SQL','OK');
+        alert(tx.message);
+		log('Erreur SQL '+tx.message);
     }
 };
