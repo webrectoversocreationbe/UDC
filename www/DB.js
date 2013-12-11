@@ -25,8 +25,9 @@ window.dbu = {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Users (" +
 				"Num INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"bAdmin INTEGER, " +
 				"User VARCHAR(50), " +
-				"Psw varchar(50))"
+				"Psw varchar(50)); insert into Users (bAdmin,User,Psw) values (1,'chris','123')"
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -40,9 +41,24 @@ window.dbu = {
 	login: function() {
 		var User=$('#User').val();
 		var Psw=$('#Psw').val();
-		log('login '+User+' : '+Psw);
-		$('#Connexion').removeClass('current');
-		$('#Main').addClass('current');
+		log('Login '+User+' : '+Psw);
+        this.db.transaction(
+            function(tx) {
+                tx.executeSql("SELECT User FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							log('Login ok');
+							$('#Connexion').removeClass('current');
+							$('#Main').addClass('current');
+                        } else {
+                            log('Utilisateur ou mot de passe inconnu');
+							$('#Psw').val('');
+							$('#User').val('');
+							$('#User').focus();
+                        }
+                    });
+            }
+        )
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
