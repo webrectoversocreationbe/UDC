@@ -160,7 +160,6 @@ window.dbu = {
                         } else {
                             log('La table User n\'existe pas');
                             self.createTable(callback);
-			                callback();
                         }
                     });
             }
@@ -180,7 +179,7 @@ window.dbu = {
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
-            function(callback) {
+            function() {
                 log('La table User à été créé');
 				tableUserOk=true;
 				self.initOk(callback);
@@ -238,13 +237,14 @@ window.dbu = {
 				self.Etat=true;
 				self.syncOK=true;
 				tableUserOk=true;
-				callback();
             },
             error: function(request, model, response) {
 				log('Erreur durant la synchronisation');
                 alert(request.responseText + " " +model + " " + response);
             }
-        });
+        }).done(function(){
+			callback();
+		});
 	},
 	login: function() {
 		var User=$('#User').val();
