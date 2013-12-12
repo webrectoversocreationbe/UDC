@@ -267,6 +267,7 @@ window.dbu = {
 							$('#Main').addClass('current');
                         } else {
                             log('Utilisateur ou mot de passe inconnu');
+							alert('Utilisateur ou mot de passe inconnu');
 							$('#Psw').val('');
 							$('#User').val('');
 							$('#User').focus();
@@ -394,6 +395,20 @@ window.dbmod = {
         }).done(function() {
 			callback();
 		});
+	},
+	rechmod: function() {
+		var rech=$('#User').val();
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT * FROM Mods WHERE MODNR like '%"+rech+"%' or MOUC like '%"+rech+"%'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length > 0) {
+							var ret=results.rows.item(0).MODNR+' - '+results.rows.item(0).MOUC;
+							$('#rechmod').html(ret);
+                        }
+                    });
+            }
+        )
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
