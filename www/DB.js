@@ -91,7 +91,6 @@ window.dbsync = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
 			async: false,
@@ -120,13 +119,12 @@ window.dbsync = {
 					},
 					self.txErrorHandler,
 					function(tx) {
-						callback();
 					}
 				);
-				log('La table Synchro à été synchronisée');
 				self.Etat=true;
 				self.syncOK=true;
 				tableUserOk=true;
+				log('La table Synchro à été synchronisée'+tableUserOk);
 				callback();
             },
             error: function(request, model, response) {
