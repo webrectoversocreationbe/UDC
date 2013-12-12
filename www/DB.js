@@ -51,7 +51,6 @@ window.dbsync = {
                         } else {
                             log('La table Synchro n\'existe pas');
                             self.createTable(callback);
-			                callback();
                         }
                     });
             }
@@ -69,11 +68,10 @@ window.dbsync = {
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
-            function(callback) {
+            function() {
                 log('La table Synchro à été créé');
 				tableUserOk=true;
-				self.initOk();
-				callback();
+				self.initOk(callback);
             }
         );
     },
@@ -132,6 +130,7 @@ window.dbsync = {
                 alert(request.responseText + " " +model + " " + response);
             }
         }).done(function() {
+			callback();
 		});
 	},
     txErrorHandler: function(tx) {
