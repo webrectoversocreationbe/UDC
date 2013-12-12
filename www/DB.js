@@ -124,7 +124,7 @@ window.dbsync = {
 				self.Etat=true;
 				self.syncOK=true;
 				tableUserOk=true;
-				callback();
+				self.callback();
             },
             error: function(request, model, response) {
 				log('Erreur durant la synchronisation');
