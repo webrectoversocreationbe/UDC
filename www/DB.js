@@ -133,6 +133,7 @@ window.dbsync = {
         }).done(function() {
 				log('La table Synchro à été synchronisée2');
 			callback();
+				log('La table Synchro à été synchronisée3');
 		});
 	},
     txErrorHandler: function(tx) {
