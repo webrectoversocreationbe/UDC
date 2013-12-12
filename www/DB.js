@@ -8,16 +8,14 @@ var madb;
 function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
-	dbsync.initialize(function() {
-		dbu.initialize(function() {
-			if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
-			if (bDoLogin==true) {
-				$('#Init').removeClass('current');
-				$('#Connexion').addClass('current');
-				$('#User').focus();
-			}
-		});
-	});
+	dbsync.initialize();
+	dbu.initialize();
+	if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
+	if (bDoLogin==true) {
+		$('#Init').removeClass('current');
+		$('#Connexion').addClass('current');
+		$('#User').focus();
+	}
 }
 function SynchroAll() {
 	if (bConnected==false) {
@@ -124,7 +122,7 @@ window.dbsync = {
 				self.Etat=true;
 				self.syncOK=true;
 				tableUserOk=true;
-				self.callback();
+				callback();
             },
             error: function(request, model, response) {
 				log('Erreur durant la synchronisation');
