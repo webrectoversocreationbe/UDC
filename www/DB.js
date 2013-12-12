@@ -7,6 +7,7 @@ var madb;
 */
 function Init() {
 	log('Initialisation');
+	alert('ini');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
 		log('Fin Init S');
@@ -68,15 +69,14 @@ window.dbsync = {
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
-            function() {
+            function(callback) {
                 log('La table Synchro à été créé');
 				tableUserOk=true;
-				self.initOk();
-                callback();
+				self.initOk(callback);
             }
         );
     },
-	initOk: function() {
+	initOk: function(callback) {
         var self = this;
 		if (self.Etat==false) {
 			$('#InitResult').append('Table de synchronisation créée<br/>');
@@ -86,7 +86,7 @@ window.dbsync = {
 				self.bDoSynchro=true;
 			}
 		}
-		if (self.bDoSynchro==true) {self.synchro();}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
 	},
 	synchro: function(callback) {
         var self = this;
@@ -181,15 +181,14 @@ window.dbu = {
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
-            function() {
+            function(callback) {
                 log('La table User à été créé');
 				tableUserOk=true;
-				self.initOk();
-                callback();
+				self.initOk(callback);
             }
         );
     },
-	initOk: function() {
+	initOk: function(callback) {
         var self = this;
 		if (self.Etat==false) {
 			$('#InitResult').append('Table d\'identification créée<br/>');
@@ -199,7 +198,7 @@ window.dbu = {
 				self.bDoSynchro=true;
 			}
 		}
-		if (self.bDoSynchro==true) {self.synchro();}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
 	},
 	synchro: function(callback) {
         var self = this;
