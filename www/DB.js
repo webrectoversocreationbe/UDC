@@ -7,7 +7,6 @@ var madb;
 */
 function Init() {
 	log('Initialisation');
-	alert('ini');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
 		log('Fin Init S');
@@ -72,7 +71,8 @@ window.dbsync = {
             function(callback) {
                 log('La table Synchro à été créé');
 				tableUserOk=true;
-				self.initOk(callback);
+				self.initOk();
+				callback();
             }
         );
     },
@@ -131,9 +131,6 @@ window.dbsync = {
                 alert(request.responseText + " " +model + " " + response);
             }
         }).done(function() {
-				log('La table Synchro à été synchronisée2');
-			callback();
-				log('La table Synchro à été synchronisée3');
 		});
 	},
     txErrorHandler: function(tx) {
