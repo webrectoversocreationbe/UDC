@@ -9,11 +9,8 @@ function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
-		log('Fin Init S');
 		dbu.initialize(function(){
-			log('Fin Init U');
 			if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
-			log('ici '+tableSynchroOk+' '+tableUserOk);
 			if (bDoLogin==true) {
 				$('#Init').removeClass('current');
 				$('#Connexion').addClass('current');
@@ -258,7 +255,7 @@ window.dbu = {
 							User=results.rows.item(0).User;
 							bAdmin=results.rows.item(0).bAdmin;
 							Version=results.rows.item(0).Version;
-							log('Login ok');
+							log('Login ok - Admin '+bAdmin+' Version '+Version);
 							$('#lienconsulthist').css('display',Version==1?'none':'block');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
