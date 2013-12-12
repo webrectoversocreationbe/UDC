@@ -48,6 +48,10 @@ function CloseApp() {
 }
 function Go(Ou) {
 	switch(Ou) {
+	case 'Main':
+		$('.Panneau').removeClass('current');
+		$('#Main').addClass('current');
+		break;
 	case 'Tarif':
 		$('.Panneau').removeClass('current');
 		$('#Tarif').addClass('current');

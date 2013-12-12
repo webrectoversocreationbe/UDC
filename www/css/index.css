@@ -226,8 +226,9 @@ body {
 	margin-top:-2px;
 }
 #log {
+	display:none;
 	width:auto;
-	height:320px;
+	height:120px;
 	position:fixed;
 	bottom:25px; left:5px; right:5px;
 	background:#EEE;
@@ -266,9 +267,15 @@ p {
 }
 .Panneau {
 	display:none;
+	position:relative;
 }
 .current {
 	display:block;
+}
+.bRetour {
+	position:absolute;
+	right:10px;
+	top:10px;
 }
 #Signature {margin:5px 0px 10px 0px;}
 .Logo {margin-top:-1px;}
@@ -290,7 +297,7 @@ p {
 /* TARIF
 -------------------------------*/
 #trfResult {
-	height:400px;
+	margin-left:10px;
 	width:auto;
 	overflow:scroll;
 	overflow-x:hidden;

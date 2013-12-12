@@ -405,7 +405,7 @@ window.dbmod = {
                         if (results.rows.length > 0) {
 							var ret='';
 							for (var i = 0; i < results.rows.length; i++) {
-								ret=ret+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC.replace("''","'")+'<br/>';
+								ret=ret+'<p>'+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC.replace("''","'")+'</p>';
 	                        }
 							$('#trfResult').html(ret);
                         }
