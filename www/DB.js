@@ -11,6 +11,7 @@ function Init() {
 	dbsync.initialize();
 	dbu.initialize();
 	if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
+	alert('ici '+tableSynchroOK+' '+tableUserOk);
 	if (bDoLogin==true) {
 		$('#Init').removeClass('current');
 		$('#Connexion').addClass('current');
