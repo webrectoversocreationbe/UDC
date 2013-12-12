@@ -161,6 +161,7 @@ window.dbu = {
                         } else {
                             log('La table User n\'existe pas');
                             self.createTable(callback);
+			                callback();
                         }
                     });
             }
