@@ -124,14 +124,15 @@ window.dbsync = {
 				self.Etat=true;
 				self.syncOK=true;
 				tableUserOk=true;
-				log('La table Synchro à été synchronisée'+tableUserOk);
-				callback();
+				log('La table Synchro à été synchronisée');
             },
             error: function(request, model, response) {
 				log('Erreur durant la synchronisation');
                 alert(request.responseText + " " +model + " " + response);
             }
-        });
+        }).done(function() {
+			callback();
+		});
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
