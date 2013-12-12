@@ -131,6 +131,7 @@ window.dbsync = {
                 alert(request.responseText + " " +model + " " + response);
             }
         }).done(function() {
+				log('La table Synchro à été synchronisée2');
 			callback();
 		});
 	},
