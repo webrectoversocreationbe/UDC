@@ -249,14 +249,14 @@ window.dbu = {
 		log('Login '+User+' : '+Psw);
         madb.transaction(
             function(tx) {
-                tx.executeSql("SELECT User,bAdmin,Version FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
+                tx.executeSql("SELECT User,bAdmin,Version as UserVersion FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							User=results.rows.item(0).User;
 							bAdmin=results.rows.item(0).bAdmin;
-							Version=results.rows.item(0).Version;
-							log('Login ok - '+User+' Admin '+bAdmin+' Version '+Version);
-							$('#lienconsulthist').css('display',Version==1?'none':'block');
+							UserVersion=results.rows.item(0).UserVersion;
+							log('Login ok - '+User+' Admin '+bAdmin+' Version '+UserVersion);
+							$('#lienconsulthist').css('display',UserVersion==2?'block':'none');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
                         } else {

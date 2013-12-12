@@ -1,7 +1,7 @@
 var bConnected=false;
 var bAdmin=false;
 var User='';
-var Version=2;
+var UserVersion=2;
 var app = {
     initialize: function() {
         this.bindEvents();
