@@ -397,7 +397,7 @@ window.dbmod = {
 		});
 	},
 	rechmod: function() {
-		var rech=$('#User').val();
+		var rech=$('#trfRech').val();
         madb.transaction(
             function(tx) {
                 tx.executeSql("SELECT * FROM Mods WHERE MODNR like '%"+rech+"%' or MOUC like '%"+rech+"%'", this.txErrorHandler,
@@ -405,9 +405,9 @@ window.dbmod = {
                         if (results.rows.length > 0) {
 							var ret='';
 							for (var i = 0; i < results.rows.length; i++) {
-								ret=ret+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC+'<br/>';
+								ret=ret+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC.replace("''","'")+'<br/>';
 	                        }
-							$('#rechmod').html(ret);
+							$('#trfResult').html(ret);
                         }
                     });
             }

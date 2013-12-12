@@ -287,3 +287,11 @@ p {
 -------------------------------*/
 #Main {text-align:center;}
 #lienconsulthist {display:none;}
+/* TARIF
+-------------------------------*/
+#trfResult {
+	height:400px;
+	width:auto;
+	overflow:scroll;
+	overflow-x:hidden;
+}

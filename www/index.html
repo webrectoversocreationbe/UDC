@@ -30,7 +30,6 @@
     <tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
     <tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
     <tr><td></td><td align="left"><input type="button" id="btnlog" value="OK" onClick="dbu.login()"/></td></tr>
-    <tr><td></td><td align="left"><input type="button" id="btnrech" value="Rech" onClick="dbmod.rechmod()"/></td></tr>
     </table>
     </form>
     <p id="rechmod"></p>
@@ -40,11 +39,18 @@
     <h2>Sélectionnez votre choix</h2><br/>
     <p><a onClick="">Nouvelle vente</a></p><br/>
     <p id="lienconsulthist"><a onClick="">Consulter l'historique</a></p><br/>
-    <p><a onClick="">Tarif</a></p><br/>
+    <p><a onClick="Go('Tarif')">Tarif</a></p><br/>
     <p><a onClick="">Photos</a></p><br/>
     <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/>
     <p><a onClick="SynchroAll()">Synchronisation</a></p><br/>
+</div>
+<div id="Tarif" class="Panneau">
+    <table>
+    <tr><td align="left">Rechercher : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Rech" onClick="dbmod.rechmod()"/></td></tr>
+    </table>
+    <div id="trfResult">
+    </div>
 </div>
 <div id="log"></div>
 <footer id="footer">

@@ -46,6 +46,14 @@ app.initialize();
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
+function Go(Ou) {
+	switch(Ou) {
+	case 'Tarif':
+		$('.Panneau').removeClass('current');
+		$('#Tarif').addClass('current');
+		break;
+	}
+}
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
 function check_network() {
     var networkState = navigator.network.connection.type;
