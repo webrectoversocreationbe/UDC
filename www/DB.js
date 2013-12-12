@@ -322,7 +322,7 @@ window.dbmod = {
 				"MOUC VARCHAR(100), " +
 				"MOCOEF REAL, " +
 				"MODELAI INTEGER, " +
-				"FOUR VARCHAR(3), " +
+				"FOUR VARCHAR(3)) " +
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
