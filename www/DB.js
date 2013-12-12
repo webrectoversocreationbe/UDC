@@ -8,15 +8,17 @@ var madb;
 function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
-	dbsync.initialize(function(){alert('1');});
-	dbu.initialize(function(){alert('2');});
-	if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
-	alert('ici '+tableSynchroOK+' '+tableUserOk);
-	if (bDoLogin==true) {
-		$('#Init').removeClass('current');
-		$('#Connexion').addClass('current');
-		$('#User').focus();
-	}
+	dbsync.initialize(function(){
+		dbu.initialize(function(){
+			if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
+			alert('ici '+tableSynchroOK+' '+tableUserOk);
+			if (bDoLogin==true) {
+				$('#Init').removeClass('current');
+				$('#Connexion').addClass('current');
+				$('#User').focus();
+			}
+		});
+	});
 }
 function SynchroAll() {
 	if (bConnected==false) {
