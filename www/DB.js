@@ -9,7 +9,9 @@ function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
+		log('Fin Init S');
 		dbu.initialize(function(){
+			log('Fin Init U');
 			if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
 			alert('ici '+tableSynchroOK+' '+tableUserOk);
 			if (bDoLogin==true) {
