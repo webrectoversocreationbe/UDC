@@ -255,7 +255,7 @@ window.dbu = {
 							User=results.rows.item(0).User;
 							bAdmin=results.rows.item(0).bAdmin;
 							Version=results.rows.item(0).Version;
-							log('Login ok - Admin '+bAdmin+' Version '+Version);
+							log('Login ok - '+User+' Admin '+bAdmin+' Version '+Version);
 							$('#lienconsulthist').css('display',Version==1?'none':'block');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
