@@ -2,6 +2,7 @@ var bConnected=false;
 var bAdmin=false;
 var User='';
 var Version=2;
+var db;
 var app = {
     initialize: function() {
         this.bindEvents();
@@ -30,6 +31,7 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
+			db=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 			break;
 		case 'offline':
 			check_network();

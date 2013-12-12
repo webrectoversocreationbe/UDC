@@ -34,8 +34,7 @@ window.dbsync = {
     syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
-        this.db = window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
-        this.db.transaction(
+        db.transaction(
             function(tx) {
                 tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Synchro'", this.txErrorHandler,
                     function(tx, results) {
@@ -54,7 +53,7 @@ window.dbsync = {
     },
     createTable: function(callback) {
         var self = this;
-        this.db.transaction(
+        db.transaction(
             function(tx) {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Synchro (" +
@@ -93,7 +92,7 @@ window.dbsync = {
 			type: "POST",
             data: {Genre: 'SYNCHRO'},
             success:function (data) {
-				self.db.transaction(
+				db.transaction(
 					function(tx) {
 						var sql = "delete from Synchro";
 						tx.executeSql(sql);
@@ -102,7 +101,7 @@ window.dbsync = {
 					function(tx) {
 					}
 				);
-				self.db.transaction(
+				db.transaction(
 					function(tx) {
 						var l = data.length;
 						var sql = "INSERT OR REPLACE INTO Synchro (Genre,DateS,Nb) VALUES (?, ?, ?)";
@@ -145,8 +144,7 @@ window.dbu = {
     syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
-        this.db = window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
-        this.db.transaction(
+        db.transaction(
             function(tx) {
                 tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Users'", this.txErrorHandler,
                     function(tx, results) {
@@ -165,7 +163,7 @@ window.dbu = {
     },
     createTable: function(callback) {
         var self = this;
-        this.db.transaction(
+        db.transaction(
             function(tx) {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Users (" +
@@ -206,7 +204,7 @@ window.dbu = {
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
-				self.db.transaction(
+				db.transaction(
 					function(tx) {
 						var sql = "delete from Users";
 						tx.executeSql(sql);
@@ -215,7 +213,7 @@ window.dbu = {
 					function(tx) {
 					}
 				);
-				self.db.transaction(
+				db.transaction(
 					function(tx) {
 						var l = data.length;
 						var sql = "INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) VALUES (?, ?, ?, ?, ?)";
@@ -247,7 +245,7 @@ window.dbu = {
 		var User=$('#User').val();
 		var Psw=$('#Psw').val();
 		log('Login '+User+' : '+Psw);
-        this.db.transaction(
+        db.transaction(
             function(tx) {
                 tx.executeSql("SELECT User,bAdmin,Version FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
                     function(tx, results) {
