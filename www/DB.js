@@ -46,7 +46,7 @@ window.dbsync = {
                         if (results.rows.length == 1) {
 							self.Etat=true;
                             log('La table Synchro existe');
-							tableUserOk=true;
+							tableSynchroOk=true;
 			                callback();
                         } else {
                             log('La table Synchro n\'existe pas');
@@ -122,7 +122,7 @@ window.dbsync = {
 				);
 				self.Etat=true;
 				self.syncOK=true;
-				tableUserOk=true;
+				tableSynchroOk=true;
 				log('La table Synchro à été synchronisée');
             },
             error: function(request, model, response) {
