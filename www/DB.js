@@ -13,7 +13,7 @@ function Init() {
 		dbu.initialize(function(){
 			log('Fin Init U');
 			if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
-			alert('ici '+tableSynchroOK+' '+tableUserOk);
+			log('ici '+tableSynchroOK+' '+tableUserOk);
 			if (bDoLogin==true) {
 				$('#Init').removeClass('current');
 				$('#Connexion').addClass('current');
