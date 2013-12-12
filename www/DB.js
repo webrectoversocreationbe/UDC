@@ -10,8 +10,11 @@ function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
+		log('sync fini');
 		dbu.initialize(function(){
+			log('user fini');
 			dbmod.initialize(function(){
+				log('mod fini');
 				if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true) {bDoLogin=true;}
 				if (bDoLogin==true) {
 					$('#Init').removeClass('current');
@@ -294,6 +297,7 @@ window.dbmod = {
 	syncOK: false,
     syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
+		log('debinit');
         var self = this;
         madb.transaction(
             function(tx) {
@@ -393,6 +397,6 @@ window.dbmod = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL Sync '+tx.message);
+		log('Erreur SQL mod '+tx.message);
     }
 };
