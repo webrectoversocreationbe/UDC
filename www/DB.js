@@ -403,7 +403,10 @@ window.dbmod = {
                 tx.executeSql("SELECT * FROM Mods WHERE MODNR like '%"+rech+"%' or MOUC like '%"+rech+"%'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length > 0) {
-							var ret=results.rows.item(0).MODNR+' - '+results.rows.item(0).MOUC;
+							var ret='';
+							for (var i = 0; i < results.rows.length; i++) {
+								ret=ret+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC+'<br/>';
+	                        }
 							$('#rechmod').html(ret);
                         }
                     });
