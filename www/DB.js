@@ -51,6 +51,7 @@ window.dbsync = {
                         } else {
                             log('La table Synchro n\'existe pas');
                             self.createTable(callback);
+			                callback();
                         }
                     });
             }
