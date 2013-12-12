@@ -91,6 +91,7 @@ window.dbsync = {
 			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
+			async: false,
 			type: "POST",
             data: {Genre: 'SYNCHRO'},
             success:function (data) {
@@ -133,7 +134,7 @@ window.dbsync = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL '+tx.message);
+		log('Erreur SQL Sync '+tx.message);
     }
 };
 /*
@@ -203,6 +204,7 @@ window.dbu = {
 			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
+			async: false,
 			type: "POST",
             data: {Genre: 'USER'},
             success:function (data) {
@@ -279,6 +281,6 @@ window.dbu = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL '+tx.message);
+		log('Erreur SQL User '+tx.message);
     }
 };
