@@ -8,8 +8,8 @@ var madb;
 function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
-	dbsync.initialize();
-	dbu.initialize();
+	dbsync.initialize(function(){alert('1');});
+	dbu.initialize(function(){alert('2');});
 	if (tableUserOk==true && tableSynchroOk==true) {bDoLogin=true;}
 	alert('ici '+tableSynchroOK+' '+tableUserOk);
 	if (bDoLogin==true) {
