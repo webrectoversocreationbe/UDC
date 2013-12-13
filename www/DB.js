@@ -35,8 +35,8 @@ function Init() {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
-						$('#User').focus();
+						$('#Tarif').addClass('current');
+						$('#trfRech').focus();
 					}
 					$('.loader').toggle();
 				});	});	});	});	});	}); });	}); });	});
@@ -1164,7 +1164,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MODELAI=0;
 	this.FOUR='';
-	this.Elements=[];
+	this.Elements=[{}];
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
