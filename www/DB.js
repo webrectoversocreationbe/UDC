@@ -1158,6 +1158,7 @@ window.dbprix = {
 	LES OBJETS
 */
 var Modele = function() {
+	this.bLoaded=false;
 	this.MODNR='';
 	this.MOUC='';
 	this.MOCOEF=0;
@@ -1165,7 +1166,7 @@ var Modele = function() {
 	this.FOUR='';
 };
 Modele.prototype = {
-	getModele: function(Id) {
+	getModele: function(Id,callback) {
 		var bOk=false; var self=this;
 		madb.transaction(
 			function(tx) {
@@ -1178,7 +1179,7 @@ Modele.prototype = {
 							self.MOCOEF=results.rows.item(0).MOCOEF;
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
-							bOk=true;
+							self.bLoaded=true;
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
@@ -1186,10 +1187,8 @@ Modele.prototype = {
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
 			}, function() {
-				log('ok');
-				return bOk;
+				callback();
 			}
 		);
-		log('fin getmod');
 	}
 }
