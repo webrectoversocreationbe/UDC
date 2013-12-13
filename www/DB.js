@@ -1167,25 +1167,30 @@ unModele.getModele = function(Id) {
 	log('Recherche modèle '+Id);
 	var bOk=false;
 	var self=this;
-	madb.transaction(function(tx) {
-		log('Transaction');
-		var sql = "SELECT * FROM Mods where MODNR='"+Id+"'";
-		log('SQL '+Id);
-		tx.executeSql(sql, function(tx) {log('Erreur '+tx.message);},
-			function(tx, results) {
-				log('Exécution');
-				if (results.rows.length == 1) {
-					log('Un résultat');
-					self.MODNR=results.rows.item(0).MODNR;
-					self.MOUC=results.rows.item(0).MOUC;
-					self.MOCOEF=results.rows.item(0).MOCOEF;
-					self.MODELAI=results.rows.item(0).MODELAI;
-					self.FOUR=results.rows.item(0).FOUR;
-					bOk=true;
-				}
+	madb.transaction(
+		function(tx) {
+			log('Transaction');
+			var sql = "SELECT * FROM Mods where MODNR='"+Id+"'";
+			log('SQL '+sql);
+			tx.executeSql(sql, 
+				function(tx) {log('Erreur '+tx.message);},
+				function(tx, results) {
+					log('Exécution');
+					if (results.rows.length == 1) {
+						log('Un résultat');
+						self.MODNR=results.rows.item(0).MODNR;
+						self.MOUC=results.rows.item(0).MOUC;
+						self.MOCOEF=results.rows.item(0).MOCOEF;
+						self.MODELAI=results.rows.item(0).MODELAI;
+						self.FOUR=results.rows.item(0).FOUR;
+						bOk=true;
+					}
 			});
+		}, function(err) {
+			log('Erreur '+err.code+' '+err.message);
+		}, function() {
+			log('Retour');
+			return bOk;
 		}
 	);
-	log('Retour');
-	return bOk;
 }
