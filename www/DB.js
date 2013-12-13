@@ -700,7 +700,7 @@ window.dboptimod = {
         madb.transaction(function(tx) {
              tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='OptiMod'", this.txErrorHandler, function(tx, results) {
 				if (results.rows.length == 1) {
-					self.Etat=true;	log('La table OptiMod existe');	tableLOptiModOk=true;
+					self.Etat=true;	log('La table OptiMod existe');	tableOptiModOk=true;
 					callback();
 				} else {
 					log('La table OptiMod n\'existe pas'); self.createTable(callback);
@@ -869,7 +869,7 @@ window.dbelemod = {
         madb.transaction(function(tx) {
              tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='EleMod'", this.txErrorHandler, function(tx, results) {
 				if (results.rows.length == 1) {
-					self.Etat=true;	log('La table EleMod existe');	tableLEleModOk=true;
+					self.Etat=true;	log('La table EleMod existe');	tableEleModOk=true;
 					callback();
 				} else {
 					log('La table EleMod n\'existe pas'); self.createTable(callback);
