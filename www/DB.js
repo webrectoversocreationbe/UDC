@@ -1158,7 +1158,7 @@ window.dbprix = {
 	LES OBJETS
 */
 var Modele = function() {
-	this.bLoaded=false;
+	this.bExist=false;
 	this.MODNR='';
 	this.MOUC='';
 	this.MOCOEF=0;
@@ -1179,7 +1179,7 @@ Modele.prototype = {
 							self.MOCOEF=results.rows.item(0).MOCOEF;
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
-							self.bLoaded=true;
+							self.bExist=true;
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}

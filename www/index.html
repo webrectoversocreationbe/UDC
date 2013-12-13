@@ -57,8 +57,8 @@
 	function InfoModele() {
 		var unModele=new Modele();
 		unModele.getModele($('#trfRech').val(), function() {
-			if (unModele.bLoaded==true) {
-				$('#trfResult').html('<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>');
+			if (unModele.bExist==true) {
+				$('#trfResult').html('<p>'+unModele.MOUC+' - Coef : '+this.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>');
 			} else {
 				$('#trfResult').html('<p>Modèle innexistant</p>');
 			}
