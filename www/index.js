@@ -56,6 +56,10 @@ function Go(Ou) {
 		$('.Panneau').removeClass('current');
 		$('#Tarif').addClass('current');
 		break;
+	case 'SQL':
+		$('.Panneau').removeClass('current');
+		$('#SQL').addClass('current');
+		break;
 	}
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
