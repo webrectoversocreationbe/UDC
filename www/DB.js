@@ -1164,7 +1164,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MODELAI=0;
 	this.FOUR='';
-	this.Elements= new array();
+	this.Elements=[];
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
@@ -1181,8 +1181,8 @@ Modele.prototype = {
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
 							self.bExist=true;
-							self.Element.push('2');
-							self.Element.push('3');
+							self.Elements.push('2');
+							self.Elements.push('3');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
