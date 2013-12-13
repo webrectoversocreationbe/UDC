@@ -63,6 +63,10 @@
 				for(cpt=0;cpt<l;cpt++) {
 					ret=ret+'<p>'+unModele.Elements[cpt].ELCODE+' - '+unModele.Elements[cpt].ELFR+'</p>';
 				}
+				l=unModele.CatCuir.length;
+				for(cpt=0;cpt<l;cpt++) {
+					ret=ret+'<p>'+unModele.CatCuir[cpt].CUCAT+' - '+unModele.CatCuir[cpt].CUIRNR+' - '+unModele.CatCuir[cpt].CUIRUC+'</p>';
+				}
 				$('#trfResult').html(ret);
 			} else {
 				$('#trfResult').html('<p>Modèle innexistant</p>');

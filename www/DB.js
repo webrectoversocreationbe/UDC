@@ -1165,6 +1165,7 @@ var Modele = function() {
 	this.MODELAI=0;
 	this.FOUR='';
 	this.Elements=[];
+	this.CatCuir=[];
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
@@ -1206,7 +1207,27 @@ Modele.prototype = {
 					}, function(err) {
 						log('Erreur '+err.code+' '+err.message);
 					}, function() {
-						callback();
+						// LES CATCUIR
+						madb.transaction(
+							function(tx) {
+								var sql = "select CuirMod.CUCAT, CuirMod.CUIRNR, LiasCuir.CUIRUC from CuirMod inner join LiasCuir on CuirMod.CUIRNR=LiasCuir.CUIRNR "+
+									"where CuirMod.MODNR='"+Id+"' and LiasCuir.FOURN='"+self.FOUR+"'";
+								tx.executeSql(sql,[], 
+									function(tx, results) {
+										if (results.rows.length > 0) {
+											for (cpt=0;cpt<results.rows.length;cpt++) {
+												self.CatCuir[cpt]=results.rows.item(cpt);
+											}
+										}
+									},
+									function(tx) {log('Erreur catcuir'+tx.message);}
+								);
+							}, function(err) {
+								log('Erreur '+err.code+' '+err.message);
+							}, function() {
+								callback();
+							}
+						);
 					}
 				);
 			}
