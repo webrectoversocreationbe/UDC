@@ -56,11 +56,11 @@
     <script>
 	function InfoModele() {
 		var unModele=new Modele();
-		unModele.getModele($('#trfRech').val(),function() {
-			if (this.bLoaded==true) {
-				$('#trfResult').html('<p>'+this.MOUC+' - Coef : '+this.MOCOEF+' - Délai : '+this.MODELAI+'</p>');
+		unModele.getModele($('#trfRech').val(), function() {
+			if (unModele.bLoaded==true) {
+				$('#trfResult').html('<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>');
 			} else {
-				$('#trfResult').html('<p>Modèle innexistant'+unModele.MOUC+'</p>');
+				$('#trfResult').html('<p>Modèle innexistant</p>');
 			}
 		});
 	}
