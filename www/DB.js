@@ -1169,6 +1169,7 @@ var Modele = function() {
 Modele.prototype = {
 	getModele: function(Id,callback) {
 		var bOk=false; var self=this;
+		// FICHE MODS
 		madb.transaction(
 			function(tx) {
 				var sql = "SELECT * FROM Mods where MODNR='"+Id+"'";
@@ -1181,8 +1182,6 @@ Modele.prototype = {
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
 							self.bExist=true;
-							self.Elements[0]='2';
-							self.Elements[1]='3';
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
@@ -1190,7 +1189,26 @@ Modele.prototype = {
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
 			}, function() {
-				callback();
+				// LES ELEMENTS
+				madb.transaction(
+					function(tx) {
+						var sql = "SELECT Element.ELCODE,Element.ELFR FROM Element inner join EleMod on Element.ELCODE=EleMod.ELCODE where EleMod.MODNR='"+Id+"' order by Element.ELCODE";
+						tx.executeSql(sql,[], 
+							function(tx, results) {
+								if (results.rows.length > 0) {
+									for (cpt=0;cpt<results.rows.length;cpt++) {
+										self.Elements[cpt]=results.rows.item(cpt);
+									}
+								}
+							},
+							function(tx) {log('Erreur elem'+tx.message);}
+						);
+					}, function(err) {
+						log('Erreur '+err.code+' '+err.message);
+					}, function() {
+						callback();
+					}
+				);
 			}
 		);
 	}

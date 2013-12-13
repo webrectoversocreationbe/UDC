@@ -59,7 +59,10 @@
 		unModele.getModele($('#trfRech').val(), function() {
 			if (unModele.bExist==true) {
 				var ret='<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>';
-				ret=ret+'<p>'+unModele.Elements.length+' - '+unModele.Elements[1]+'</p>';
+				var l=unModele.Elements.length;
+				for(cpt=0;cpt<l;cpt++) {
+					ret=ret+'<p>'+unModele.Elements[cpt].ELCODE+' - '+unModele.Elements[cpt].ELFR+'</p>';
+				}
 				$('#trfResult').html(ret);
 			} else {
 				$('#trfResult').html('<p>Modèle innexistant</p>');
