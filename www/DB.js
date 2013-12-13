@@ -1164,7 +1164,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MODELAI=0;
 	this.FOUR='';
-	this.Elements=[{}];
+	this.Elements=new Array();
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
