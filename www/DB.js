@@ -1164,6 +1164,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MODELAI=0;
 	this.FOUR='';
+	this.Elements=array();
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
@@ -1180,6 +1181,8 @@ Modele.prototype = {
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
 							self.bExist=true;
+							self.Element.add('2');
+							self.Element.add('3');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
