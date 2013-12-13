@@ -35,8 +35,7 @@ function Init() {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Tarif').addClass('current');
-						$('#trfRech').focus();
+						$('#Connexion').addClass('current');
 					}
 					$('.loader').toggle();
 				});	});	});	});	});	}); });	}); });	});
