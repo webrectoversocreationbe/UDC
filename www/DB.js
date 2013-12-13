@@ -1172,8 +1172,7 @@ unModele.getModele = function(Id) {
 			log('Transaction');
 			var sql = "SELECT * FROM Mods where MODNR='"+Id+"'";
 			log('SQL '+sql);
-			tx.executeSql(sql, 
-				function(tx) {log('Erreur '+tx.message);},
+			tx.executeSql(sql,[], 
 				function(tx, results) {
 					log('Exécution');
 					if (results.rows.length == 1) {
@@ -1185,7 +1184,9 @@ unModele.getModele = function(Id) {
 						self.FOUR=results.rows.item(0).FOUR;
 						bOk=true;
 					}
-			});
+				},
+				function(tx) {log('Erreur '+tx.message);}
+			);
 		}, function(err) {
 			log('Erreur '+err.code+' '+err.message);
 		}, function() {
