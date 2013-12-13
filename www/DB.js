@@ -1,6 +1,7 @@
 var tableUserOk=false;
 var tableSynchroOk=false;
 var tableModeleOk=false;
+var tablePrixOk=false;
 var bDoLogin=false;
 var madb;
 /* 
@@ -15,12 +16,15 @@ function Init() {
 			log('user fini');
 			dbmod.initialize(function(){
 				log('mod fini');
-				if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true) {bDoLogin=true;}
-				if (bDoLogin==true) {
-					$('#Init').removeClass('current');
-					$('#Connexion').addClass('current');
-					$('#User').focus();
-				}
+				dbprix.initialize(function(){
+					log('prix fini');
+					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true) {bDoLogin=true;}
+					if (bDoLogin==true) {
+						$('#Init').removeClass('current');
+						$('#Connexion').addClass('current');
+						$('#User').focus();
+					}
+				});
 			});
 		});
 	});
@@ -204,7 +208,6 @@ window.dbu = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
 			async: false,
@@ -416,5 +419,119 @@ window.dbmod = {
     txErrorHandler: function(tx) {
         alert(tx.message);
 		log('Erreur SQL mod '+tx.message);
+    }
+};
+/*
+	TABLE PRIX
+*/
+window.dbprix = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Prix'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Prix existe');
+							tablePrixOk=true;
+			                callback();
+                        } else {
+                            log('La table Prix n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS Prix (" +
+				"Num INTEGER PRIMARY KEY AUTOINCREMENT, " +
+				"MODNR VARCHAR(6), " +
+				"PXCATEG VARCHAR(2), " +
+				"PXELEM varchar(7), " +
+				"PRIX REAL, " +
+				"PXDATE VARCHAR(10))";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Prix à été créé');
+				tablePrixOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table des prix créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
+			}
+		}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
+	},
+	synchro: function(callback) {
+        var self = this;
+        $.ajax({
+//			callback: callback,
+            url: self.syncURL,
+	        crossDomain: true,
+			async: false,
+			type: "POST",
+            data: {Genre: 'PRIX'},
+            success:function (data) {
+				madb.transaction(
+					function(tx) {
+						var sql = "delete from Prix";
+						tx.executeSql(sql);
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				madb.transaction(
+					function(tx) {
+						var l = data.length;
+						var sql = "INSERT OR REPLACE INTO Prix (Num, MODNR, PXCATEG, PXELEM, PRIX, PXDATE) VALUES (?, ?, ?, ?, ?, ?)";
+						var e;
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.Num, e.MODNR, e.PXCATEG, e.PXELEM, e.PRIX, e.PXDATE];
+							tx.executeSql(sql, params);
+						}
+					},
+					self.txErrorHandler,
+					function(tx) {
+						callback();
+					}
+				);
+				log('La table Prix à été synchronisée');
+				self.Etat=true;
+				self.syncOK=true;
+				tablePrixOk=true;
+            },
+            error: function(request, model, response) {
+				log('Erreur durant la synchronisation');
+                alert(request.responseText + " " +model + " " + response);
+            }
+        }).done(function(){
+			callback();
+		});
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Prix '+tx.message);
     }
 };
