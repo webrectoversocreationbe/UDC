@@ -1231,6 +1231,7 @@ Modele.prototype = {
 									function(tx) {
 										var sql = "SELECT LiasOpti.OPCODE, LiasOpti.OPFR FROM LiasOpti LEFT JOIN OptiMod ON OptiMod.OPCODE = LiasOpti.OPCODE "+
 											"where OptiMod.MODNR='"+Id+"' and LiasOpti.FOUR='"+self.FOUR+"'";
+											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
 												if (results.rows.length > 0) {
