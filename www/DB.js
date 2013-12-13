@@ -1,6 +1,9 @@
+var syncURL="http://192.168.0.248/UDC/ajaxSync.php";
 var tableUserOk=false;
 var tableSynchroOk=false;
 var tableModeleOk=false;
+var tableCuirModOk=false;
+var tableLiasCuirOk=false;
 var tablePrixOk=false;
 var bDoLogin=false;
 var madb;
@@ -11,19 +14,19 @@ function Init() {
 	log('Initialisation');
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
-		log('sync fini');
 		dbu.initialize(function(){
-			log('user fini');
 			dbmod.initialize(function(){
-				log('mod fini');
-				dbprix.initialize(function(){
-					log('prix fini');
-					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tablePrixOk==true) {bDoLogin=true;}
-					if (bDoLogin==true) {
-						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
-						$('#User').focus();
-					}
+				dbcuirmod.initialize(function(){
+					dbliascuir.initialize(function(){
+						dbprix.initialize(function(){
+							if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCuirModOk==true && tableLiasCuirOk==true && tablePrixOk==true) {bDoLogin=true;}
+							if (bDoLogin==true) {
+								$('#Init').removeClass('current');
+								$('#Connexion').addClass('current');
+								$('#User').focus();
+							}
+						});
+					});
 				});
 			});
 		});
@@ -43,7 +46,6 @@ window.dbsync = {
 	Etat: false,
 	bDoSynchro: false,
 	syncOK: false,
-    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
         madb.transaction(
@@ -97,7 +99,7 @@ window.dbsync = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-            url: self.syncURL,
+            url: syncURL,
 	        crossDomain: true,
 			async: false,
 			type: "POST",
@@ -152,7 +154,6 @@ window.dbu = {
 	Etat: false,
 	bDoSynchro: false,
 	syncOK: false,
-    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
         madb.transaction(
@@ -208,7 +209,7 @@ window.dbu = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-            url: self.syncURL,
+            url: syncURL,
 	        crossDomain: true,
 			async: false,
 			type: "POST",
@@ -298,9 +299,7 @@ window.dbmod = {
 	Etat: false,
 	bDoSynchro: false,
 	syncOK: false,
-    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
-		log('debinit');
         var self = this;
         madb.transaction(
             function(tx) {
@@ -355,7 +354,7 @@ window.dbmod = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-            url: self.syncURL,
+            url: syncURL,
 	        crossDomain: true,
 			async: false,
 			type: "POST",
@@ -421,13 +420,197 @@ window.dbmod = {
     }
 };
 /*
+	TABLE CUIRMOD
+*/
+window.dbcuirmod = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='CuirMod'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table CuirMod existe');
+							tableCuirModOk=true;
+			                callback();
+                        } else {
+                            log('La table CuirMod n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS CuirMod (" +
+				"MODNR VARCHAR(6), " +
+				"CUIRNR VARCHAR(4), " +
+				"CUCAT VARCHAR(2))";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table CuirMod à été créé');
+				tableCuirModOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de Cuir créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
+			}
+		}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
+	},
+	synchro: function(callback) {
+        var self = this;
+        $.ajax({
+            url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'CUIRMOD'},
+            success:function (data) {
+				madb.transaction(function(tx) {var sql = "delete from CuirMod";	tx.executeSql(sql);},self.txErrorHandler,function(tx) {});
+				madb.transaction(
+					function(tx) {
+						var l = data.length; var e;
+						var sql = "INSERT OR REPLACE INTO CuirMod (MODNR,CUIRNR,CUCAT) VALUES (?, ?, ?)";
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.MODNR, e.CUIRNR, e.CUCAT];
+							tx.executeSql(sql, params);
+						}
+					},
+					self.txErrorHandler,
+					function(tx) {}
+				);
+				self.Etat=true;	self.syncOK=true;
+				tableCuirModOk=true;
+				log('La table CuirMod à été synchronisée');
+            },
+            error: function(request, model, response) {
+				log('Erreur durant la synchronisation');
+                alert(request.responseText + " " +model + " " + response);
+            }
+        }).done(function() {
+			callback();
+		});
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
+    }
+};
+/*
+	TABLE LIASCUIR
+*/
+window.dbliascuir = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='LiasCuir'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table LiasCuir existe');
+							tableLiasCuirOk=true;
+			                callback();
+                        } else {
+                            log('La table LiasCuir n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS LiasCuir (" +
+				"FOURN VARCHAR(3), " +
+				"CUIRNR VARCHAR(4), " +
+				"CUIRUC VARCHAR(30))"
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table LiasCuir à été créé');
+				tableLiasCuirOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de description cuir créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
+			}
+		}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
+	},
+	synchro: function(callback) {
+        var self = this;
+        $.ajax({
+            url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'LIASCUIR'},
+            success:function (data) {
+				madb.transaction(function(tx) {var sql = "delete from Synchro";	tx.executeSql(sql);}, self.txErrorHandler, function(tx) {});
+				madb.transaction(
+					function(tx) {
+						var l = data.length; var e;
+						var sql = "INSERT OR REPLACE INTO LiasCuir (FOURN,CUIRNR,CUIRUC) VALUES (?, ?, ?)";
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.FOURN, e.CUIRNR, e.CUIRUC];
+							tx.executeSql(sql, params);
+						}
+					},
+					self.txErrorHandler, function(tx) {}
+				);
+				self.Etat=true; self.syncOK=true;
+				tableLiasCuirOk=true;
+				log('La table LiasCuir à été synchronisée');
+            },
+            error: function(request, model, response) {
+				log('Erreur durant la synchronisation');
+                alert(request.responseText + " " +model + " " + response);
+            }
+        }).done(function() {
+			callback();
+		});
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
+    }
+};
+/*
 	TABLE PRIX
 */
 window.dbprix = {
 	Etat: false,
 	bDoSynchro: false,
 	syncOK: false,
-    syncURL: "http://192.168.0.248/UDC/ajaxSync.php",
     initialize: function(callback) {
         var self = this;
         madb.transaction(
@@ -484,7 +667,7 @@ window.dbprix = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-            url: self.syncURL,
+            url: syncURL,
 	        crossDomain: true,
 			async: false,
 			type: "POST",
