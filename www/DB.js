@@ -18,7 +18,7 @@ function Init() {
 				log('mod fini');
 				dbprix.initialize(function(){
 					log('prix fini');
-					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true) {bDoLogin=true;}
+					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tablePrixOk==true) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
 						$('#Connexion').addClass('current');
@@ -236,7 +236,6 @@ window.dbu = {
 					},
 					self.txErrorHandler,
 					function(tx) {
-						callback();
 					}
 				);
 				log('La table User à été synchronisée');
@@ -485,7 +484,6 @@ window.dbprix = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-//			callback: callback,
             url: self.syncURL,
 	        crossDomain: true,
 			async: false,
@@ -514,7 +512,6 @@ window.dbprix = {
 					},
 					self.txErrorHandler,
 					function(tx) {
-						callback();
 					}
 				);
 				log('La table Prix à été synchronisée');
