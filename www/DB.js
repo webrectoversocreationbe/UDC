@@ -1164,8 +1164,10 @@ unModele.MOCOEF=0;
 unModele.MODELAI=0;
 unModele.FOUR='';
 unModele.getModele = function(Id) {
+	log('Recherche modèle '+Id);
+	var bOk=false;
 	madb.transaction(function(tx) {
-		tx.executeSql("SELECT * FROM Mods where MODNR='"+Id+"'", function() {},
+		tx.executeSql("SELECT * FROM Mods where MODNR='"+Id+"'", function(tx) {},
 			function(tx, results) {
 				if (results.rows.length == 1) {
 					this.MODNR=results.rows.item(0).MODNR;
@@ -1173,11 +1175,10 @@ unModele.getModele = function(Id) {
 					this.MOCOEF=results.rows.item(0).MOCOEF;
 					this.MODELAI=results.rows.item(0).MODELAI;
 					this.FOUR=results.rows.item(0).FOUR;
-					return true;
-				} else {
-					return false;
+					bOk=true;
 				}
 			});
 		}
-	);	
+	);
+	return bOk;
 }
