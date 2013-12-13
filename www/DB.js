@@ -1166,6 +1166,7 @@ var Modele = function() {
 	this.FOUR='';
 	this.Elements=[];
 	this.CatCuir=[];
+	this.Options=[];
 };
 Modele.prototype = {
 	getModele: function(Id,callback) {
@@ -1225,7 +1226,27 @@ Modele.prototype = {
 							}, function(err) {
 								log('Erreur '+err.code+' '+err.message);
 							}, function() {
-								callback();
+								// LES OPTIONS
+								madb.transaction(
+									function(tx) {
+										var sql = "SELECT LiasOpti.OPCODE, LiasOpti.OPFR FROM LiasOpti LEFT JOIN OptiMod ON OptiMod.OPCODE = LiasOpti.OPCODE "+
+											"where OptiMod.MODNR='"+Id+"' and LiasOpti.FOUR='"+self.FOUR+"'";
+										tx.executeSql(sql,[], 
+											function(tx, results) {
+												if (results.rows.length > 0) {
+													for (cpt=0;cpt<results.rows.length;cpt++) {
+														self.Options[cpt]=results.rows.item(cpt);
+													}
+												}
+											},
+											function(tx) {log('Erreur options'+tx.message);}
+										);
+									}, function(err) {
+										log('Erreur '+err.code+' '+err.message);
+									}, function() {
+										callback();
+									}
+								);
 							}
 						);
 					}

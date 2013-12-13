@@ -48,8 +48,9 @@
 </div>
 <div id="Tarif" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
+    <h1>Tarif</h1>
     <table>
-    <tr><td align="left">Rechercher : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Rech" onClick="InfoModele()"/></td></tr>
+    <tr><td align="left">Modèle : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Rechercher" onClick="InfoModele()"/></td></tr>
     </table>
     <div id="trfResult">
     </div>
@@ -58,14 +59,21 @@
 		var unModele=new Modele();
 		unModele.getModele($('#trfRech').val(), function() {
 			if (unModele.bExist==true) {
-				var ret='<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>';
+				var ret='<h2>'+unModele.MOUC+' - Délai : '+unModele.MODELAI+' semaines</h2><br/>';
+				ret=ret+'<p>Eléments :</p>';
 				var l=unModele.Elements.length;
 				for(cpt=0;cpt<l;cpt++) {
 					ret=ret+'<p>'+unModele.Elements[cpt].ELCODE+' - '+unModele.Elements[cpt].ELFR+'</p>';
 				}
+				ret=ret+'<br/><p>Cuirs :</p>';
 				l=unModele.CatCuir.length;
 				for(cpt=0;cpt<l;cpt++) {
 					ret=ret+'<p>'+unModele.CatCuir[cpt].CUCAT+' - '+unModele.CatCuir[cpt].CUIRNR+' - '+unModele.CatCuir[cpt].CUIRUC+'</p>';
+				}
+				ret=ret+'<br/><p>Options :</p>';
+				l=unModele.Options.length;
+				for(cpt=0;cpt<l;cpt++) {
+					ret=ret+'<p>'+unModele.Options[cpt].OPCODE+' - '+unModele.Options[cpt].OPFR+'</p>';
 				}
 				$('#trfResult').html(ret);
 			} else {
