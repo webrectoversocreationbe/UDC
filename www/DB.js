@@ -1,3 +1,4 @@
+var madb;
 var syncURL="http://192.168.0.248/UDC/ajaxSync.php";
 var tableUserOk=false;
 var tableSynchroOk=false;
@@ -11,12 +12,12 @@ var tableEleModOk=false;
 var tableElementOk=false;
 var tablePrixOk=false;
 var bDoLogin=false;
-var madb;
 /* 
 	INIT GENERAL
 */
 function Init() {
 	log('Initialisation');
+	$('.loader').toggle();
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
 	 dbu.initialize(function(){
@@ -37,6 +38,7 @@ function Init() {
 						$('#Connexion').addClass('current');
 						$('#User').focus();
 					}
+					$('.loader').toggle();
 				});	});	});	});	});	}); });	}); });	});
 	});
 }
@@ -44,7 +46,21 @@ function SynchroAll() {
 	if (bConnected==false) {
 		alert('Impossible de synchroniser sans connexion WiFi');
 	} else {
-		dbu.synchro();
+		log('Synchronisation');
+		$('.loader').toggle();
+		dbu.synchro(function() {
+		 dbmod.synchro(function(){
+		  dbcuirmod.synchro(function(){
+		   dbliascuir.synchro(function(){
+			dbliascolo.synchro(function(){
+			 dboptimod.synchro(function(){
+			  dbliasopti.synchro(function(){
+			   dbelemod.synchro(function(){
+				dbelement.synchro(function(){
+				 dbprix.synchro(function(){
+						$('.loader').toggle();
+				 }); }); }); }); }); }); }); }); });
+		});
 	}
 }
 /*
@@ -1138,3 +1154,30 @@ window.dbprix = {
 		log('Erreur SQL Prix '+tx.message);
     }
 };
+/*
+	LES OBJETS
+*/
+var unModele = function() {};
+unModele.MODNR='';
+unModele.MOUC='';
+unModele.MOCOEF=0;
+unModele.MODELAI=0;
+unModele.FOUR='';
+unModele.getModele = function(Id) {
+	madb.transaction(function(tx) {
+		tx.executeSql("SELECT * FROM Mods where MODNR='"+Id+"'", function() {},
+			function(tx, results) {
+				if (results.rows.length == 1) {
+					this.MODNR=results.rows.item(0).MODNR;
+					this.MOUC=results.rows.item(0).MOUC;
+					this.MOCOEF=results.rows.item(0).MOCOEF;
+					this.MODELAI=results.rows.item(0).MODELAI;
+					this.FOUR=results.rows.item(0).FOUR;
+					return true;
+				} else {
+					return false;
+				}
+			});
+		}
+	);	
+}

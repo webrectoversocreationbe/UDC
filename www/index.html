@@ -20,6 +20,7 @@
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation</h2><br/>
     <p><a class="rouge" onClick="Init()">Initialiser</a></p><br/>
+    <img src="Images/loader.gif" class="loader">
     <p id="InitResult"></p>
 </div>
 <div id="Connexion" class="Panneau">
@@ -38,7 +39,7 @@
     <img src="images/logo.png" class="Logo">
     <h2>Sélectionnez votre choix</h2><br/>
     <p><a onClick="">Nouvelle vente</a></p><br/>
-    <p id="lienconsulthist"><a onClick="">Consulter l'historique</a></p><br/>
+    <p id="lienconsulthist"><a onClick="">Consulter l'historique</a><br/></p>
     <p><a onClick="Go('Tarif')">Tarif</a></p><br/>
     <p><a onClick="">Photos</a></p><br/>
     <p><a onClick="">Fiches techniques</a></p><br/>
@@ -48,14 +49,23 @@
 <div id="Tarif" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
     <table>
-    <tr><td align="left">Rechercher : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Rech" onClick="dbmod.rechmod()"/></td></tr>
+    <tr><td align="left">Rechercher : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Rech" onClick="InfoModele()"/></td></tr>
     </table>
     <div id="trfResult">
     </div>
+    <script>
+	function InfoModele() {
+		if (unModele.getModele($('#trfRech').val())==true) {
+			$('#trfResult').html('<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>');
+		} else {
+			$('#trfResult').html('<p>Modèle innexistant</p>');
+		}
+	}
+	</script>
 </div>
 <div id="log"></div>
 <footer id="footer">
-<p><a onClick="$('#log').toggle()">Business Advices</a> <span id="cnType"></span></p>
+<p><a onClick="$('#log').toggle()">&copy; Business Advices</a> <span id="cnType"></span></p>
 </footer>
 </body>
 </html>

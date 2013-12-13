@@ -239,8 +239,8 @@ body {
 #cnType { float:right; margin-right:10px;}
 h1 {
 	color:#e2001a;
-    font-size:24px;
-	line-height:30px;
+    font-size:26px;
+	line-height:34px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -248,8 +248,8 @@ h1 {
 }
 h2 {
 	color:#e2001a;
-    font-size:20px;
-	line-height:24px;
+    font-size:22px;
+	line-height:28px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -259,12 +259,13 @@ h2 {
 }
 p {
 	font-family:Verdana, Geneva, sans-serif;
-    font-size:14px;
-	line-height:24px;
+    font-size:16px;
+	line-height:28px;
     font-weight:normal;
     margin:0px;
 	color:#333;
 }
+.loader {display:none;}
 .Panneau {
 	display:none;
 	position:relative;
