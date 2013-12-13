@@ -55,6 +55,7 @@
     </div>
     <script>
 	function InfoModele() {
+		var unModele=new Modele();
 		if (unModele.getModele($('#trfRech').val())==true) {
 			$('#trfResult').html('<p>'+unModele.MOUC+' - Coef : '+unModele.MOCOEF+' - Délai : '+unModele.MODELAI+'</p>');
 		} else {
