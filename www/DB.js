@@ -1155,6 +1155,33 @@ window.dbprix = {
     }
 };
 /*
+	SQL
+*/
+var Requete = function() {
+	this.Nb=0;
+}
+Requete.prototype = {
+	exec: function(sql,callback) {
+		var bOk=false; var self=this;
+		madb.transaction(
+			function(tx) {
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						self.Nb=results.rows.length;
+						if (results.rows.length > 0) {
+						}
+					},
+					function(tx) {log('Erreur '+tx.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+	}
+}
+/*
 	LES OBJETS
 */
 var Modele = function() {

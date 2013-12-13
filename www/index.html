@@ -45,6 +45,7 @@
     <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/>
     <p><a onClick="SynchroAll()">Synchronisation</a></p><br/>
+    <p><a onClick="Go('SQL')">SQL</a></p><br/>
 </div>
 <div id="Tarif" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
@@ -79,6 +80,25 @@
 			} else {
 				$('#trfResult').html('<p>Modèle innexistant</p>');
 			}
+		});
+	}
+	</script>
+</div>
+<div id="SQL" class="Panneau">
+	<a onClick="Go('Main')" class="bRetour">Retour</a>
+    <h1 class="ML10">SQL</h1>
+    <table>
+    <tr><td align="left">Requête : </td><td><textarea name="tsql" id="sqlReq" cols="100" rows="6" /></td><td align="left"><input type="button" id="btnexec" value="Exécuter" onClick="ExecSQL()"/></td></tr>
+    </table>
+    <div id="sqlResult">
+    </div>
+    <script>
+	function ExecSQL() {
+		var sql=$('#sqlReq').val();
+		var uneReq=new Requete();
+		uneReq.exec(sql, function() {
+			var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
+			$('#sqlResult').html(ret);
 		});
 	}
 	</script>
