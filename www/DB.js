@@ -1190,7 +1190,7 @@ unModele.getModele = function(Id) {
 		}, function(err) {
 			log('Erreur '+err.code+' '+err.message);
 		}, function() {
-			log('Retour');
+			log('Retour '+bOk);
 			return bOk;
 		}
 	);
