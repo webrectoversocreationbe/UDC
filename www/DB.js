@@ -726,12 +726,11 @@ window.dbopti = {
         madb.transaction(function(tx) {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Opti (" +
+				"Num INTEGER PRIMARY KEY, " +
 				"MODNR VARCHAR(6), " +
 				"FOUR VARCHAR(3), " +
 				"OPCODE VARCHAR(3), " +
-				"OPFR VARCHAR(30), " +
-				"PRIMARY KEY (MODNR,FOUR,OPCODE)" +
-				")";
+				"OPFR VARCHAR(30)) ";
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -763,12 +762,11 @@ window.dbopti = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT INTO Opti (MODNR,FOUR,OPCODE,OPFR) VALUES (?, ?, ?, ?)";
+						var sql = "INSERT INTO Opti (Num,MODNR,FOUR,OPCODE,OPFR) VALUES (?, ?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.MODNR, e.FOUR, e.OPCODE, e.OPFR];
+							var params = [e.Num, e.MODNR, e.FOUR, e.OPCODE, e.OPFR];
 							tx.executeSql(sql, params);
-							log(i);
 						}
 					},
 					self.txErrorHandler,
