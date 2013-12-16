@@ -1261,6 +1261,7 @@ Modele.prototype = {
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
+												alert(results.rows.length);
 												if (results.rows.length > 0) {
 													for (cpt=0;cpt<results.rows.length;cpt++) {
 														self.Opti[cpt]=results.rows.item(cpt);
@@ -1272,6 +1273,7 @@ Modele.prototype = {
 									}, function(err) {
 										log('Erreur '+err.code+' '+err.message);
 									}, function() {
+										alert('ici');
 										callback();
 									}
 								);
