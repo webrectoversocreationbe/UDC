@@ -1168,8 +1168,8 @@ Requete.prototype = {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						alert('res ok');
-						dump(results.rows,'alert');
-						self.Resu.push(results);
+						dump(results.rows.item,'alert');
+						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
 						}
