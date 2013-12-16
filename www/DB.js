@@ -29,7 +29,7 @@ function Init() {
 		     dbelement.initialize(function(){
 		      dbprix.initialize(function(){
 					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
-						 && tableLiasColoOk==true && tableOptiOk==true && tableLiasOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
+						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
