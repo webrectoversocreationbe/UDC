@@ -228,7 +228,7 @@ body {
 #log {
 	display:none;
 	width:auto;
-	height:120px;
+	height:220px;
 	position:fixed;
 	bottom:25px; left:5px; right:5px;
 	background:#EEE;
