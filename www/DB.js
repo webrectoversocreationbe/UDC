@@ -730,7 +730,8 @@ window.dboptimod = {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS OptiMod (" +
 				"MODNR VARCHAR(6), " +
-				"OPCODE VARCHAR(3))";
+				"OPCODE VARCHAR(3), " +
+				"PRIMARY KEY (MODNR, OPCODE))";
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -815,7 +816,8 @@ window.dbliasopti = {
 				"CREATE TABLE IF NOT EXISTS LiasOpti (" +
 				"FOUR VARCHAR(3), " +
 				"OPCODE VARCHAR(3), " +
-				"OPFR VARCHAR(30))";
+				"OPFR VARCHAR(30), " +
+				"PRIMARY KEY (FOUR, OPCODE))";
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
