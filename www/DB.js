@@ -732,6 +732,7 @@ window.dboptimod = {
 				"MODNR VARCHAR(6), " +
 				"OPCODE VARCHAR(3), " +
 				"PRIMARY KEY (MODNR, OPCODE))";
+				prompt('sql',sql);
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
