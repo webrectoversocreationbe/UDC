@@ -158,8 +158,8 @@ window.dbsync = {
 				log('La table Synchro à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -268,8 +268,8 @@ window.dbu = {
 				tableUserOk=true;
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function(){
 			callback();
@@ -413,8 +413,8 @@ window.dbmod = {
 				log('La table Modèles à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -515,8 +515,8 @@ window.dbcuirmod = {
 				log('La table CuirMod à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -607,8 +607,8 @@ window.dbliascuir = {
 				log('La table LiasCuir à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -693,8 +693,8 @@ window.dbliascolo = {
 				log('La table LiasColo à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -777,8 +777,8 @@ window.dboptimod = {
 				log('La table OptiMod à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -862,8 +862,8 @@ window.dbliasopti = {
 				log('La table LiasOpti à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -946,8 +946,8 @@ window.dbelemod = {
 				log('La table EleMod à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -1030,8 +1030,8 @@ window.dbelement = {
 				log('La table Element à été synchronisée');
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function() {
 			callback();
@@ -1141,8 +1141,8 @@ window.dbprix = {
 				tablePrixOk=true;
             },
             error: function(request, model, response) {
-				log('Erreur durant la synchronisation');
-                alert(request.responseText + " " +model + " " + response);
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
             }
         }).done(function(){
 			callback();
@@ -1184,7 +1184,7 @@ Requete.prototype = {
 	LES OBJETS
 */
 var Modele = function() {
-	this.bExist=false;
+	this.Existe=false;
 	this.MODNR='';
 	this.MOUC='';
 	this.MOCOEF=0;
@@ -1192,10 +1192,10 @@ var Modele = function() {
 	this.FOUR='';
 	this.Elements=[];
 	this.CatCuir=[];
-	this.Options=[];
+	this.Opti=[];
 };
 Modele.prototype = {
-	getModele: function(Id,callback) {
+	init: function(Id,callback) {
 		var bOk=false; var self=this;
 		// FICHE MODS
 		madb.transaction(
@@ -1209,7 +1209,7 @@ Modele.prototype = {
 							self.MOCOEF=results.rows.item(0).MOCOEF;
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
-							self.bExist=true;
+							self.Existe=true;
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
@@ -1262,7 +1262,7 @@ Modele.prototype = {
 											function(tx, results) {
 												if (results.rows.length > 0) {
 													for (cpt=0;cpt<results.rows.length;cpt++) {
-														self.Options[cpt]=results.rows.item(cpt);
+														self.Opti[cpt]=results.rows.item(cpt);
 													}
 												}
 											},
@@ -1282,3 +1282,50 @@ Modele.prototype = {
 		);
 	}
 }
+
+MY = {};
+(function(){ 
+MY.obj = MY.obj || {};
+
+MY.obj.modele = function() {
+    this.ok=false;
+    this.id= '';
+    this.desc='';
+    this.options=[];
+};
+MY.obj.modele.prototype = {
+    init:function(id) {
+        if (id=='123456') {
+            this.ok=true;
+            this.id=id;
+            this.desc='ici';
+            this.getelems(id);
+        }
+    },
+    getelems:function(id) {
+            var d=new ns.obj.elem();
+            d.init('elem'+id);
+            d.setdesc('testé');
+            this.options.push(d);
+    },
+    changepx:function(numelem,prix) {
+        this.options[numelem].prix=prix;
+    }
+}
+
+MY.obj.elem = function() {
+    this.id='';
+    this.desc='';
+    this.prix=0;
+}
+MY.obj.elem.prototype = {
+    init:function(id) {
+        this.id=id;
+        this.desc='cde';
+        this.prix=10;
+    },
+    setdesc: function(txt) {
+        this.desc=txt;
+    }
+}
+})();

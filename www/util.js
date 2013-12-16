@@ -43,7 +43,7 @@ function dump(v, howDisplay, recursionLevel) {
         alert(out);
     } else {
 		if ($('#'+howDisplay)) {
-			$('#'+howDisplay).prepend(out);
+			$('#'+howDisplay).prepend('<pre>'+out+'</pre>');
 		}
 	}
     return out;
