@@ -100,7 +100,9 @@
 	function ExecSQL() {
 		var sql=$('#sqlReq').val();
 		var uneReq=new Requete();
+		alert('instance');
 		uneReq.exec(sql, function() {
+			alert('apres exec');
 			var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
 			dump(uneReq.Resu,'sqlResult');
 			$('#sqlResult').prepend(ret);
