@@ -59,7 +59,7 @@
     <script>
 	function InfoModele() {
 		var unModele=new Modele();
-		unModele.getModele($('#trfRech').val(), function() {
+		unModele.init($('#trfRech').val(), function() {
 			log('fin init mod');
 			if (unModele.Existe==true) {
 				log('mod existe');
