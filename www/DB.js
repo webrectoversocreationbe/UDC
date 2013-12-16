@@ -55,6 +55,7 @@ function SynchroAll() {
 				dbelement.synchro(function(){
 				 dbprix.synchro(function(){
 						$('.loader').toggle();
+						alert('Synchro terminée');
 				 }); }); }); }); }); }); }); });
 		});
 	}
@@ -137,7 +138,7 @@ window.dbsync = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT OR REPLACE INTO Synchro (Genre,DateS,Nb) VALUES (?, ?, ?)";
+						var sql = "INSERT INTO Synchro (Genre,DateS,Nb) VALUES (?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -247,7 +248,7 @@ window.dbu = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT OR REPLACE INTO Users (Num, bAdmin, User, Psw, Version) VALUES (?, ?, ?, ?, ?)";
+						var sql = "INSERT INTO Users (Num, bAdmin, User, Psw, Version) VALUES (?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -392,7 +393,7 @@ window.dbmod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT OR REPLACE INTO Mods (MODNR,MOUC,MOCOEF,MODELAI,FOUR) VALUES (?, ?, ?, ?, ?)";
+						var sql = "INSERT INTO Mods (MODNR,MOUC,MOCOEF,MODELAI,FOUR) VALUES (?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -497,7 +498,7 @@ window.dbcuirmod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO CuirMod (MODNR,CUIRNR,CUCAT) VALUES (?, ?, ?)";
+						var sql = "INSERT INTO CuirMod (MODNR,CUIRNR,CUCAT) VALUES (?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.MODNR, e.CUIRNR, e.CUCAT];
@@ -586,11 +587,11 @@ window.dbliascuir = {
         $.ajax({
             url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'LIASCUIR'},
             success:function (data) {
-				madb.transaction(function(tx) {var sql = "delete from Synchro";	tx.executeSql(sql);}, self.txErrorHandler, function(tx) {});
+				madb.transaction(function(tx) {var sql = "delete from LiasCuir";	tx.executeSql(sql);}, self.txErrorHandler, function(tx) {});
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO LiasCuir (FOURN,CUIRNR,CUIRUC) VALUES (?, ?, ?)";
+						var sql = "INSERT INTO LiasCuir (FOURN,CUIRNR,CUIRUC) VALUES (?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.FOURN, e.CUIRNR, e.CUIRUC];
@@ -675,7 +676,7 @@ window.dbliascolo = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO LiasColo (FOURN,CUIRNR,COLORNR,COLOUC) VALUES (?, ?, ?, ?)";
+						var sql = "INSERT INTO LiasColo (FOURN,CUIRNR,COLORNR,COLOUC) VALUES (?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.FOURN, e.CUIRNR, e.COLORNR, e.COLOUC];
@@ -846,7 +847,7 @@ window.dbelemod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO EleMod (MODNR,ELCODE) VALUES (?, ?)";
+						var sql = "INSERT INTO EleMod (MODNR,ELCODE) VALUES (?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.MODNR, e.ELCODE];
@@ -930,7 +931,7 @@ window.dbelement = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO Element (ELCODE,ELFR) VALUES (?, ?)";
+						var sql = "INSERT INTO Element (ELCODE,ELFR) VALUES (?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.ELCODE, e.ELFR];
@@ -1038,7 +1039,7 @@ window.dbprix = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT OR REPLACE INTO Prix (Num, MODNR, PXCATEG, PXELEM, PRIX, PXDATE) VALUES (?, ?, ?, ?, ?, ?)";
+						var sql = "INSERT INTO Prix (Num, MODNR, PXCATEG, PXELEM, PRIX, PXDATE) VALUES (?, ?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -1110,6 +1111,7 @@ var Modele = function() {
 	this.FOUR='';
 	this.Elements=[];
 	this.CatCuir=[];
+	this.Couleurs=[];
 	this.Opti=[];
 };
 Modele.prototype = {
@@ -1174,7 +1176,7 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT Opti.OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
+										var sql = "SELECT Num,OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
@@ -1184,7 +1186,7 @@ Modele.prototype = {
 													}
 												}
 											},
-											function(tx) {log('Erreur options'+tx.message);}
+											function(tx) {log('Erreur options '+tx.message);}
 										);
 									}, function(err) {
 										log('Erreur '+err.code+' '+err.message);
