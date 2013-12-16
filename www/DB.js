@@ -35,7 +35,7 @@ function Init() {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
+						$('#Tarif').addClass('current');
 					}
 					$('.loader').toggle();
 				});	});	});	});	});	}); });	}); });	});
@@ -1197,6 +1197,7 @@ var Modele = function() {
 Modele.prototype = {
 	init: function(Id,callback) {
 		var bOk=false; var self=this;
+		log('init mod');
 		// FICHE MODS
 		madb.transaction(
 			function(tx) {
@@ -1282,50 +1283,3 @@ Modele.prototype = {
 		);
 	}
 }
-
-MY = {};
-(function(){ 
-MY.obj = MY.obj || {};
-
-MY.obj.modele = function() {
-    this.ok=false;
-    this.id= '';
-    this.desc='';
-    this.options=[];
-};
-MY.obj.modele.prototype = {
-    init:function(id) {
-        if (id=='123456') {
-            this.ok=true;
-            this.id=id;
-            this.desc='ici';
-            this.getelems(id);
-        }
-    },
-    getelems:function(id) {
-            var d=new ns.obj.elem();
-            d.init('elem'+id);
-            d.setdesc('testé');
-            this.options.push(d);
-    },
-    changepx:function(numelem,prix) {
-        this.options[numelem].prix=prix;
-    }
-}
-
-MY.obj.elem = function() {
-    this.id='';
-    this.desc='';
-    this.prix=0;
-}
-MY.obj.elem.prototype = {
-    init:function(id) {
-        this.id=id;
-        this.desc='cde';
-        this.prix=10;
-    },
-    setdesc: function(txt) {
-        this.desc=txt;
-    }
-}
-})();

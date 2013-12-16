@@ -60,7 +60,9 @@
 	function InfoModele() {
 		var unModele=new Modele();
 		unModele.getModele($('#trfRech').val(), function() {
+			log('fin init mod');
 			if (unModele.Existe==true) {
+				log('mod existe');
 				dump(unModele,'log');
 				var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p><br/>';
 				ret=ret+'<p>Eléments :</p>';
