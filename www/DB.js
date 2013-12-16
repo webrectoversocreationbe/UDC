@@ -1256,12 +1256,12 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT LiasOpti.OPCODE, LiasOpti.OPFR FROM LiasOpti LEFT JOIN OptiMod ON OptiMod.OPCODE = LiasOpti.OPCODE "+
-											"where OptiMod.MODNR='"+Id+"' and LiasOpti.FOUR='"+self.FOUR+"'";
+										var sql = "SELECT LiasOpti.OPCODE, LiasOpti.OPFR FROM LiasOpti LEFT JOIN OptiMod ON LiasOpti.OPCODE=OptiMod.OPCODE "+
+											"where LiasOpti.FOUR='"+self.FOUR+"' and OptiMod.MODNR='"+Id+"'";
+											prompt('à copier',sql);
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
-												alert(results.rows.length);
 												if (results.rows.length > 0) {
 													for (cpt=0;cpt<results.rows.length;cpt++) {
 														self.Opti[cpt]=results.rows.item(cpt);
@@ -1273,7 +1273,6 @@ Modele.prototype = {
 									}, function(err) {
 										log('Erreur '+err.code+' '+err.message);
 									}, function() {
-										alert('ici');
 										callback();
 									}
 								);
