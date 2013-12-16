@@ -1158,6 +1158,7 @@ window.dbprix = {
 */
 var Requete = function() {
 	this.Nb=0;
+	this.Res=[];
 }
 Requete.prototype = {
 	exec: function(sql,callback) {
@@ -1166,6 +1167,7 @@ Requete.prototype = {
 			function(tx) {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						self.Res=results;
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
 						}
