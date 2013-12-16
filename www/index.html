@@ -51,21 +51,26 @@
 <div id="Tarif" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
     <h1 class="ML10 MT10">Tarif</h1>
-    <div id="LeModele">
+    <div id="LeModele" class="ML10">
         <div class="floatleft">
             <p>Modèle : <button id="RechMod" onClick="InitRech('Modèles')">Rechercher</button></p>
+            <p id="NomMod"></p>
         </div>
         <div class="floatleft ML15">
             <p>Type de cuir : <button id="RechCuir">Rechercher</button></p>
+            <p id="NomCuir"></p>
         </div>
         <div class="floatleft ML15">
             <p>Couleur : <button id="RechCouleur">Rechercher</button></p>
+            <p id="NomCoul"></p>
         </div>
         <div class="floatleft ML15">
             <p>Options : <button id="RechOptions">Rechercher</button></p>
+            <p id="NomOption"></p>
         </div>
         <div class="clear"></div>
     </div>
+    <div id="trfResult"></div>
     <script>
 	function InfoModele() {
 		var unModele=new Modele();
@@ -128,7 +133,7 @@
 	}
 	function Choix(obj) {
 		$('#ChampRech').val(obj.text());
-		$('#ChampRech').val(obj.attr('id').substr(2));
+		$('#ValRech').val(obj.attr('id').substr(2));
 	}
     </script>
 </div>
