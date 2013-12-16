@@ -1264,9 +1264,8 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT LiasOpti.OPCODE, LiasOpti.OPFR FROM LiasOpti LEFT JOIN OptiMod ON LiasOpti.OPCODE=OptiMod.OPCODE "+
-											"where LiasOpti.FOUR='"+self.FOUR+"' and OptiMod.MODNR='"+Id+"'";
-											prompt('à copier',sql);
+										var sql = "SELECT OptiMod.OPCODE FROM OptiMod "+
+											"where OptiMod.MODNR='"+Id+"'";
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
