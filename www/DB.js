@@ -733,7 +733,6 @@ window.dboptimod = {
 				"MODNR VARCHAR(6), " +
 				"OPCODE VARCHAR(3) " +
 				")";
-				prompt('sql',sql);
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
@@ -765,7 +764,6 @@ window.dboptimod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						alert(l);
 						var sql = "INSERT OR REPLACE INTO OptiMod (Num,MODNR,OPCODE) VALUES (?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
@@ -1264,8 +1262,7 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT OptiMod.OPCODE FROM OptiMod "+
-											"where OptiMod.MODNR='"+Id+"'";
+										var sql = "SELECT LiasOpti.OPCODE,LiasOpti.OPFR FROM LiasOpti where LiasOpti.FOUR='"+self.FOUR+"' and LiasOpti.OPCODE in (select OptiMod.OPCODE from OptiMod where Optimod.MODNR='"+Id+"')";
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
