@@ -763,6 +763,7 @@ window.dboptimod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
+						alert(l);
 						var sql = "INSERT OR REPLACE INTO OptiMod (MODNR,OPCODE) VALUES (?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
