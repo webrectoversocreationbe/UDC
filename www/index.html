@@ -102,7 +102,7 @@
 		var uneReq=new Requete();
 		uneReq.exec(sql, function() {
 			var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
-			dump(uneReq,'sqlResult');
+			dump(uneReq.Resu,'sqlResult');
 			$('#sqlResult').prepend(ret);
 		});
 	}
