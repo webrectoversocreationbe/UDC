@@ -60,7 +60,7 @@
 	function InfoModele() {
 		var unModele=new Modele();
 		unModele.getModele($('#trfRech').val(), function() {
-			if (unModele.bExist==true) {
+			if (unModele.Existe==true) {
 				dump(unModele,'log');
 				var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p><br/>';
 				ret=ret+'<p>Eléments :</p>';
@@ -73,10 +73,10 @@
 				for(cpt=0;cpt<l;cpt++) {
 					ret=ret+'<p>'+unModele.CatCuir[cpt].CUCAT+' - '+unModele.CatCuir[cpt].CUIRNR+' - '+unModele.CatCuir[cpt].CUIRUC+'</p>';
 				}
-				l=unModele.Options.length;
+				l=unModele.Opti.length;
 				ret=ret+'<br/><p>Options : ('+l+')</p>';
 				for(cpt=0;cpt<l;cpt++) {
-					ret=ret+'<p>'+unModele.Options[cpt].OPCODE+' - '+unModele.Options[cpt].OPFR+'</p>';
+					ret=ret+'<p>'+unModele.Opti[cpt].OPCODE+' - '+unModele.Opti[cpt].OPFR+'</p>';
 				}
 				$('#trfResult').html(ret);
 			} else {
