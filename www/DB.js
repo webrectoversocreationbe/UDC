@@ -729,9 +729,10 @@ window.dboptimod = {
         madb.transaction(function(tx) {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS OptiMod (" +
+				"Num INTEGER PRIMARY KEY, " +
 				"MODNR VARCHAR(6), " +
-				"OPCODE VARCHAR(3), " +
-				"PRIMARY KEY (MODNR, OPCODE))";
+				"OPCODE VARCHAR(3) " +
+				")";
 				prompt('sql',sql);
                 tx.executeSql(sql);
             },
@@ -765,10 +766,10 @@ window.dboptimod = {
 					function(tx) {
 						var l = data.length; var e;
 						alert(l);
-						var sql = "INSERT OR REPLACE INTO OptiMod (MODNR,OPCODE) VALUES (?, ?)";
+						var sql = "INSERT OR REPLACE INTO OptiMod (Num,MODNR,OPCODE) VALUES (?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.MODNR, e.OPCODE];
+							var params = [e.Num, e.MODNR, e.OPCODE];
 							tx.executeSql(sql, params);
 						}
 					},
@@ -1171,7 +1172,6 @@ Requete.prototype = {
 			function(tx) {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
-						alert('res ok');
 						dump(results.rows.item,'alert');
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
@@ -1183,7 +1183,6 @@ Requete.prototype = {
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
 			}, function() {
-				alert('av callback');
 				callback();
 			}
 		);
