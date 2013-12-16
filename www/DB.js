@@ -6,8 +6,7 @@ var tableModeleOk=false;
 var tableCuirModOk=false;
 var tableLiasCuirOk=false;
 var tableLiasColoOk=false;
-var tableOptiModOk=false;
-var tableLiasOptiOk=false;
+var tableOptiOk=false;
 var tableEleModOk=false;
 var tableElementOk=false;
 var tablePrixOk=false;
@@ -25,20 +24,19 @@ function Init() {
 	   dbcuirmod.initialize(function(){
 		dbliascuir.initialize(function(){
 		 dbliascolo.initialize(function(){
-		  dboptimod.initialize(function(){
-		   dbliasopti.initialize(function(){
+		  dbopti.initialize(function(){
 		    dbelemod.initialize(function(){
 		     dbelement.initialize(function(){
 		      dbprix.initialize(function(){
 					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
-						 && tableLiasColoOk==true && tableOptiModOk==true && tableLiasOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
+						 && tableLiasColoOk==true && tableOptiOk==true && tableLiasOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
 						$('#Tarif').addClass('current');
 					}
 					$('.loader').toggle();
-				});	});	});	});	});	}); });	}); });	});
+				});	});	});	});	}); });	}); });	});
 	});
 }
 function SynchroAll() {
@@ -52,13 +50,12 @@ function SynchroAll() {
 		  dbcuirmod.synchro(function(){
 		   dbliascuir.synchro(function(){
 			dbliascolo.synchro(function(){
-			 dboptimod.synchro(function(){
-			  dbliasopti.synchro(function(){
+			 dbopti.synchro(function(){
 			   dbelemod.synchro(function(){
 				dbelement.synchro(function(){
 				 dbprix.synchro(function(){
 						$('.loader').toggle();
-				 }); }); }); }); }); }); }); }); });
+				 }); }); }); }); }); }); }); });
 		});
 	}
 }
@@ -706,19 +703,19 @@ window.dbliascolo = {
     }
 };
 /*
-	TABLE OPTIMOD
+	TABLE OPTI
 */
-window.dboptimod = {
+window.dbopti = {
 	Etat: false, bDoSynchro: false,	syncOK: false,
     initialize: function(callback) {
         var self = this;
         madb.transaction(function(tx) {
-             tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='OptiMod'", this.txErrorHandler, function(tx, results) {
+             tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Opti'", this.txErrorHandler, function(tx, results) {
 				if (results.rows.length == 1) {
-					self.Etat=true;	log('La table OptiMod existe');	tableOptiModOk=true;
+					self.Etat=true;	log('La table Opti existe');	tableOptiOk=true;
 					callback();
 				} else {
-					log('La table OptiMod n\'existe pas'); self.createTable(callback);
+					log('La table Opti n\'existe pas'); self.createTable(callback);
 				}
              });
             }
@@ -728,17 +725,19 @@ window.dboptimod = {
         var self = this;
         madb.transaction(function(tx) {
 				var sql = 
-				"CREATE TABLE IF NOT EXISTS OptiMod (" +
-				"Num INTEGER PRIMARY KEY, " +
+				"CREATE TABLE IF NOT EXISTS Opti (" +
 				"MODNR VARCHAR(6), " +
+				"FOUR VARCHAR(3), " +
 				"OPCODE VARCHAR(3) " +
+				"OPFR VARCHAR(30), " +
+				"PRIMARY KEY (MODNR,FOUR,OPCODE)" +
 				")";
                 tx.executeSql(sql);
             },
             this.txErrorHandler,
             function() {
-                log('La table OptiMod à été créé');
-				tableOptiModOk=true;
+                log('La table Opti à été créé');
+				tableOptiOk=true;
 				self.initOk(callback);
             }
         );
@@ -758,16 +757,16 @@ window.dboptimod = {
 	synchro: function(callback) {
         var self = this;
         $.ajax({
-            url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'OPTIMOD'},
+            url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'OPTI'},
             success:function (data) {
-				madb.transaction(function(tx) {var sql = "delete from OptiMod"; tx.executeSql(sql);},self.txErrorHandler,function(tx) {});
+				madb.transaction(function(tx) {var sql = "delete from Opti"; tx.executeSql(sql);},self.txErrorHandler,function(tx) {});
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO OptiMod (Num,MODNR,OPCODE) VALUES (?, ?, ?)";
+						var sql = "INSERT OR REPLACE INTO Opti (MODNR,FOUR,OPCODE,OPFR) VALUES (?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.Num, e.MODNR, e.OPCODE];
+							var params = [e.MODNR, e.FOUR, e.OPCODE, e.OPFR];
 							tx.executeSql(sql, params);
 						}
 					},
@@ -775,8 +774,8 @@ window.dboptimod = {
 					function(tx) {}
 				);
 				self.Etat=true;	self.syncOK=true;
-				tableOptiModOk=true;
-				log('La table OptiMod à été synchronisée');
+				tableOptiOk=true;
+				log('La table Opti à été synchronisée');
             },
             error: function(request, model, response) {
 				log(request.responseText + " " +model + " " + response);
@@ -788,93 +787,7 @@ window.dboptimod = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL OptiMod '+tx.message);
-    }
-};
-/*
-	TABLE LIASOPTI
-*/
-window.dbliasopti = {
-	Etat: false, bDoSynchro: false,	syncOK: false,
-    initialize: function(callback) {
-        var self = this;
-        madb.transaction(function(tx) {
-             tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='LiasOpti'", this.txErrorHandler, function(tx, results) {
-				if (results.rows.length == 1) {
-					self.Etat=true;	log('La table LiasOpti existe');	tableLiasOptiOk=true;
-					callback();
-				} else {
-					log('La table LiasOpti n\'existe pas'); self.createTable(callback);
-				}
-             });
-            }
-        )
-    },
-    createTable: function(callback) {
-        var self = this;
-        madb.transaction(function(tx) {
-				var sql = 
-				"CREATE TABLE IF NOT EXISTS LiasOpti (" +
-				"FOUR VARCHAR(3), " +
-				"OPCODE VARCHAR(3), " +
-				"OPFR VARCHAR(30), " +
-				"PRIMARY KEY (FOUR, OPCODE))";
-                tx.executeSql(sql);
-            },
-            this.txErrorHandler,
-            function() {
-                log('La table LiasOpti à été créé');
-				tableLiasOptiOk=true;
-				self.initOk(callback);
-            }
-        );
-    },
-	initOk: function(callback) {
-        var self = this;
-		if (self.Etat==false) {
-			$('#InitResult').append('Table de description d\'option créée<br/>');
-			if (bConnected==false) {
-				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
-			} else {
-				self.bDoSynchro=true;
-			}
-		}
-		if (self.bDoSynchro==true) {self.synchro(callback);}
-	},
-	synchro: function(callback) {
-        var self = this;
-        $.ajax({
-            url: syncURL, crossDomain: true, async: false, type: "POST", data: {Genre: 'LIASOPTI'},
-            success:function (data) {
-				madb.transaction(function(tx) {var sql = "delete from LiasOpti"; tx.executeSql(sql);},self.txErrorHandler,function(tx) {});
-				madb.transaction(
-					function(tx) {
-						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO LiasOpti (FOUR,OPCODE,OPFR) VALUES (?, ?, ?)";
-						for (var i = 0; i < l; i++) {
-							e = data[i];
-							var params = [e.FOUR, e.OPCODE, e.OPFR];
-							tx.executeSql(sql, params);
-						}
-					},
-					self.txErrorHandler,
-					function(tx) {}
-				);
-				self.Etat=true;	self.syncOK=true;
-				tableLiasOptiOk=true;
-				log('La table LiasOpti à été synchronisée');
-            },
-            error: function(request, model, response) {
-				log(request.responseText + " " +model + " " + response);
-                alert('Erreur durant la synchronisation');
-            }
-        }).done(function() {
-			callback();
-		});
-	},
-    txErrorHandler: function(tx) {
-        alert(tx.message);
-		log('Erreur SQL LiasOpti '+tx.message);
+		log('Erreur SQL Opti '+tx.message);
     }
 };
 /*
@@ -1262,7 +1175,7 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT LiasOpti.OPCODE,LiasOpti.OPFR FROM LiasOpti where LiasOpti.FOUR='"+self.FOUR+"' and LiasOpti.OPCODE in (select OptiMod.OPCODE from OptiMod where Optimod.MODNR='"+Id+"')";
+										var sql = "SELECT Opti.OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"')";
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
