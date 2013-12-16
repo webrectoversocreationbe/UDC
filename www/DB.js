@@ -763,11 +763,12 @@ window.dbopti = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length; var e;
-						var sql = "INSERT OR REPLACE INTO Opti (MODNR,FOUR,OPCODE,OPFR) VALUES (?, ?, ?, ?)";
+						var sql = "INSERT INTO Opti (MODNR,FOUR,OPCODE,OPFR) VALUES (?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							e = data[i];
 							var params = [e.MODNR, e.FOUR, e.OPCODE, e.OPFR];
 							tx.executeSql(sql, params);
+							log(i);
 						}
 					},
 					self.txErrorHandler,
@@ -1175,7 +1176,7 @@ Modele.prototype = {
 								// LES OPTIONS
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT Opti.OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"')";
+										var sql = "SELECT Opti.OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
 											log(sql);
 										tx.executeSql(sql,[], 
 											function(tx, results) {
