@@ -728,7 +728,7 @@ window.dbopti = {
 				"CREATE TABLE IF NOT EXISTS Opti (" +
 				"MODNR VARCHAR(6), " +
 				"FOUR VARCHAR(3), " +
-				"OPCODE VARCHAR(3) " +
+				"OPCODE VARCHAR(3), " +
 				"OPFR VARCHAR(30), " +
 				"PRIMARY KEY (MODNR,FOUR,OPCODE)" +
 				")";
