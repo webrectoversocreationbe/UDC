@@ -50,16 +50,26 @@
 </div>
 <div id="Tarif" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
-    <h1 class="ML10">Tarif</h1>
-    <table>
-    <tr><td align="left">Modèle : </td><td><input type="text" name="tRech" id="trfRech" size="20" /></td><td align="left"><input type="button" id="btnrech" value="Accéder" onClick="InfoModele()"/> <button id="Rech">Rechercher</button></td></tr>
-    </table>
-    <div id="trfResult">
+    <h1 class="ML10 MT10">Tarif</h1>
+    <div id="LeModele">
+        <div class="floatleft">
+            <p>Modèle : <button id="RechMod" onClick="InitRech('Modèles')">Rechercher</button></p>
+        </div>
+        <div class="floatleft ML15">
+            <p>Type de cuir : <button id="RechCuir">Rechercher</button></p>
+        </div>
+        <div class="floatleft ML15">
+            <p>Couleur : <button id="RechCouleur">Rechercher</button></p>
+        </div>
+        <div class="floatleft ML15">
+            <p>Options : <button id="RechOptions">Rechercher</button></p>
+        </div>
+        <div class="clear"></div>
     </div>
     <script>
 	function InfoModele() {
 		var unModele=new Modele();
-		unModele.init($('#trfRech').val(), function() {
+		unModele.init($('#ValRech').val(), function() {
 			if (unModele.Existe==true) {
 				dump(unModele,'log');
 				var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p><br/>';
@@ -86,6 +96,46 @@
 	}
 	</script>
 </div>
+<div class="PanneauRech">
+	<div class="HeaderPanRech">
+    	<p>
+        Rechercher un modèle :<br/>
+        <input type="text" name="Rech" id="ChampRech" size="20" />
+        <input type="hidden" name="ValRech" id="ValRech" />
+        </p>
+    </div>
+    <div class="ContentPanRech">
+    <ul>
+    <li><a id="VR023001" onclick="Choix($(this))">023001 - TABLE OVALE REF 3336</a></li>
+    <li><a id="VR170016" onclick="Choix($(this))">170016 - DEBUSSY</a></li>
+    </ul>
+    </div>
+    <div class="FooterPanRech">
+    	<p><button id="btnOKPanRech">Ok</button><button class="ML15" id="btnAnnulerPanRech">Annuler</button></p>
+    </div>
+	<script>
+	function InitRech(Quoi) {
+		if (Quoi=='Modèles') {
+			$('.PanneauRech').show();
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$('#btnOKPanRech').click(function() {
+				$('.PanneauRech').hide();
+				InfoModele();
+			});
+		}
+	}
+	function Choix(obj) {
+		$('#ChampRech').val(obj.text());
+		$('#ChampRech').val(obj.attr('id').substr(2));
+	}
+    </script>
+</div>
+<div id="log"></div>
+<footer id="footer">
+<p><a onClick="$('#log').toggle()">&copy; Business Advices</a> <span id="cnType"></span></p>
+</footer>
 <div id="SQL" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
     <h1 class="ML10">SQL</h1>
@@ -107,85 +157,5 @@
 	}
 	</script>
 </div>
-<div class="PanneauRech">
-	<div class="HeaderPanRech">
-    	<p>Rechercher un modèle :<br/><input type="text" name="Rech" id="ChampRech" size="20" /></p>
-    </div>
-    <div class="ContentPanRech">
-    <ul>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1346540 - gkdfgsdjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfs sdfg l kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1345650 - gkjhdfsl kjhfdfgsdfgg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujsdfdfsghrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1326150 - gkjhddfgsdfsl kjhfg slkujhrlekdfsgdjgghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kdfsgjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1321450 - gkjhdfsdsfgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsldfsg kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl sfgkjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsdfsgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1346540 - gkdfgsdjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfs sdfg l kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1345650 - gkjhdfsl kjhfdfgsdfgg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujsdfdfsghrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1326150 - gkjhddfgsdfsl kjhfg slkujhrlekdfsgdjgghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kdfsgjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1321450 - gkjhdfsdsfgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsldfsg kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl sfgkjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsdfsgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1346540 - gkdfgsdjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfs sdfg l kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1345650 - gkjhdfsl kjhfdfgsdfgg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujsdfdfsghrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1326150 - gkjhddfgsdfsl kjhfg slkujhrlekdfsgdjgghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kdfsgjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1321450 - gkjhdfsdsfgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsldfsg kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl sfgkjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsdfsgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1346540 - gkdfgsdjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfs sdfg l kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1345650 - gkjhdfsl kjhfdfgsdfgg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujsdfdfsghrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1326150 - gkjhddfgsdfsl kjhfg slkujhrlekdfsgdjgghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kdfsgjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1321450 - gkjhdfsdsfgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsldfsg kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl sfgkjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsdfsgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1346540 - gkdfgsdjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfs sdfg l kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1345650 - gkjhdfsl kjhfdfgsdfgg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujsdfdfsghrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1326150 - gkjhddfgsdfsl kjhfg slkujhrlekdfsgdjgghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kdfsgjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1321450 - gkjhdfsdsfgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsldfsg kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl sfgkjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsdfsgl kjhfg slkujhrlekjghlkjse</a></li>
-    <li><a onclick="choix()">1324650 - gkjhdfsl kjhfg slkujhrlekjghlkjse</a></li>
-    </ul>
-    </div>
-    <div class="FooterPanRech">
-    	<p><button id="btnOKPanRech">Ok</button><button class="ML15" id="btnAnnulerPanRech">Annuler</button></p>
-    </div>
-</div>
-<div id="log"></div>
-<footer id="footer">
-<p><a onClick="$('#log').toggle()">&copy; Business Advices</a> <span id="cnType"></span></p>
-</footer>
-<script>
-$('#Rech').click(function() {$('.PanneauRech').show();});
-$('#btnOKPanRech,#btnAnnulerPanRech').click(function() {$('.PanneauRech').hide();});
-</script>
 </body>
 </html>

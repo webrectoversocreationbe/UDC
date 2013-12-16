@@ -283,13 +283,13 @@ p {
 /* PANNEAU RECHERCHE */
 .PanneauRech {display:none;background:#FFF;border:3px solid #e2001a;border-radius:5px;width:90%;height:90%;position:fixed;left:5%;top:5%;}
 .HeaderPanRech {height:63px; border-bottom:3px solid #e2001a; position:absolute; top:0; left:0; right:0;}
-.HeaderPanRech p {margin-top:0px;line-height:20px; padding-left:15px; padding-right:15px;}
+.HeaderPanRech p {margin-top:5px;line-height:20px; padding-left:15px; padding-right:15px;}
 .HeaderPanRech p input {width:100%;}
 .ContentPanRech {overflow:scroll; overflow-x:hidden; position:absolute; top:63px; left:0; right:0; bottom:40px; margin-top:5px; margin-bottom:5px;}
 .ContentPanRech li {padding-left:15px;line-height:26px; font-size:18px; font-weight:normal; color:#545458; width:100%; cursor:pointer;}
 .ContentPanRech li:hover { background:#e2001a; color:#fff;}
 .FooterPanRech {height:40px; border-top:3px solid #e2001a; position:absolute; bottom:0px; left:0; right:0; display:block;vertical-align:middle; padding-left:15px; }
-.FooterPanRech button {margin-top:0px;}
+.FooterPanRech button {margin-top:5px;}
 /* INIT
 -------------------------------*/
 #Init {text-align:center;}
