@@ -166,7 +166,7 @@
 				var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
-						var px=unModele.Elements[cpt].Prix;
+						var px=unModele.Elements[cpt].Prix*unModele.MOCOEF;
 						$('#trfpx'+elcode).html(px+' €');
 					}
 				});
