@@ -1210,7 +1210,8 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(
 			function(tx) {
-				var sql = "SELECT MODNR, MOUC FROM Mods"+Rech!=''?" where MOUC like '%"+Rech+"'":'';
+				var sql = "SELECT MODNR, MOUC FROM Mods";
+				if (Rech!='') {sql=sql+" where MOUC like '%"+Rech+"' or MODNR like '%"+Rech+"'";}
 				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
