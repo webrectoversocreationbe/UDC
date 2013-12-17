@@ -1202,7 +1202,7 @@ Modele.prototype = {
 		);
 	}
 }
-function PopulateRech(Quoi,callback) {
+function PopulateRech(Quoi,Rech,callback) {
 	$('#ValRech').val('');
 	switch (Quoi) {
 	case 'Modeles':
@@ -1210,7 +1210,7 @@ function PopulateRech(Quoi,callback) {
 		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(
 			function(tx) {
-				var sql = "SELECT MODNR, MOUC FROM Mods";
+				var sql = "SELECT MODNR, MOUC FROM Mods"+Rech!=''?" where MOUC like '%"+Rech+"'":'';
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
