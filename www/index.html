@@ -115,7 +115,8 @@
 	<div class="HeaderPanRech">
     	<p>
         <span id="txtrech">Rechercher</span> :<br/>
-        <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyup="PopulateRech('Modeles',this.value,null)" />
+        <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyup="PopulateRech('',this.value,null)" />
+        <input type="hidden" name="QuelleRech" id="QuelleRech" />
         <input type="hidden" name="ValRech" id="ValRech" />
         </p>
     </div>
@@ -130,6 +131,8 @@
     </div>
 	<script>
 	function InitRech(Quoi) {
+		$('#ChampRech').val('');
+		$('#QuelleRech').val(Quoi);
 		if (Quoi=='Modeles') {
 			PopulateRech('Modeles','',function() {
 				$('.PanneauRech').show();

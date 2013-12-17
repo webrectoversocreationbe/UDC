@@ -1205,6 +1205,7 @@ Modele.prototype = {
 	}
 }
 function PopulateRech(Quoi,Rech,callback) {
+	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
 	switch (Quoi) {
 	case 'Modeles':
