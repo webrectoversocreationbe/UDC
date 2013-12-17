@@ -1244,7 +1244,7 @@ function PopulateRech(Quoi,Rech,callback) {
 			function(tx) {
 				var sql = "select cuirmod.CUIRNR,liascuir.CUIRUC from Mods inner join cuirmod on Mods.MODNR=cuirmod.MODNR inner join liascuir on Mods.FOUR=liascuir.FOURN and cuirmod.CUIRNR=liascuir.CUIRNR"+
 				" where Mods.MODNR='"+modnr+"'";
-				if (Rech!='') {sql=sql+" and CUIRNR like '%"+Rech+"%' or CUIRUC like '%"+Rech+"%'";}
+				if (Rech!='') {sql=sql+" and cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%'";}
 				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {

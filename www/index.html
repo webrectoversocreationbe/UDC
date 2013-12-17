@@ -155,6 +155,7 @@
 			$('#btnAnnulerPanRech').click(function() {
 				$('.PanneauRech').hide();
 			});
+			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
 				if($('#ValRech')=='') {
 					alert('Vous devez sélectionner un type de cuir');
