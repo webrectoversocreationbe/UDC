@@ -71,6 +71,14 @@
         <div class="clear"></div>
     </div>
     <div id="trfResult"></div>
+    <div id="trfElems">
+        <div><table><thead class="fixedHeader"><tr><th align="left">Elément</th><th align="left">Description</th><th align="right">Prix&nbsp;&nbsp;&nbsp;&nbsp;</th></tr></thead></table></div>
+        <div id="trfLesElems">
+        <table id="LesElems" class="scrollContent">
+        <!-- <tr><td>123456</td><td>dffdsfkjhg lkdfjgh ldfskgjhlruhksjhglkdfjhgldfkj</td><td align="right">12.00 €</td></tr> -->
+        </table>
+        </div>
+    </div>
     <script>
 	var unModele={}
 	function InfoModele() {
@@ -82,7 +90,8 @@
 				ret=ret+'<p>Eléments :</p>';
 				var l=unModele.Elements.length;
 				for(cpt=0;cpt<l;cpt++) {
-					ret=ret+'<p>'+unModele.Elements[cpt].ELCODE+' - '+unModele.Elements[cpt].ELFR+'</p>';
+					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right">0.00 €</td></tr>';
+					$('#LesElems').append(el);
 				}
 				ret=ret+'<br/><p>Cuirs :</p>';
 				l=unModele.CatCuir.length;
