@@ -72,8 +72,9 @@
     </div>
     <div id="trfResult"></div>
     <script>
-	var unModele=new Modele();
+	var unModele={}
 	function InfoModele() {
+		unModele=new Modele();
 		unModele.init($('#ValRech').val(), function() {
 			if (unModele.Existe==true) {
 				dump(unModele,'log');
@@ -128,6 +129,10 @@
 				$('.PanneauRech').hide();
 			});
 			$('#btnOKPanRech').click(function() {
+				if($('#ValRech')=='') {
+					alert('Vous devez sélectionner un modèle');
+					return false;
+				}
 				$('.PanneauRech').hide();
 				InfoModele();
 			});

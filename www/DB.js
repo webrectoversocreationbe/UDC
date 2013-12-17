@@ -1139,6 +1139,7 @@ Modele.prototype = {
 				log('Erreur '+err.code+' '+err.message);
 			}, function() {
 				// LES ELEMENTS
+				self.Elements=[];
 				madb.transaction(
 					function(tx) {
 						var sql = "SELECT Element.ELCODE,Element.ELFR FROM Element inner join EleMod on Element.ELCODE=EleMod.ELCODE where EleMod.MODNR='"+Id+"' order by Element.ELCODE";
@@ -1156,6 +1157,7 @@ Modele.prototype = {
 						log('Erreur '+err.code+' '+err.message);
 					}, function() {
 						// LES CATCUIR
+						self.CatCuir=[];
 						madb.transaction(
 							function(tx) {
 								var sql = "select CuirMod.CUCAT, CuirMod.CUIRNR, LiasCuir.CUIRUC from CuirMod inner join LiasCuir on CuirMod.CUIRNR=LiasCuir.CUIRNR "+
