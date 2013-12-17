@@ -1211,6 +1211,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		madb.transaction(
 			function(tx) {
 				var sql = "SELECT MODNR, MOUC FROM Mods"+Rech!=''?" where MOUC like '%"+Rech+"'":'';
+				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
@@ -1221,7 +1222,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							}
 						}
 					},
-					function(tx) {log('Erreur options '+tx.message);}
+					function(tx) {log('Erreur recherche '+this.message);}
 				);
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
