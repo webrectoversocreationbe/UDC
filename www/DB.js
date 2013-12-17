@@ -1226,16 +1226,16 @@ Modele.prototype = {
 
 
 				//Chercher le prix de chaque element
-				for (cpt=0;cpt<self.Elements.length;cpt++) {
+				for (var cpt=0;cpt<self.Elements.length;cpt++) {
 					var elcode=self.Elements[cpt].ELCODE;
 					madb.transaction(
 						function(tx) {
 							var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
-								log(sql);
+								log(sql+' '+cpt);
 							tx.executeSql(sql,[], 
 								function(tx, results) {
 									if (results.rows.length > 0) {
-										self.Elements[cpt]=results.rows.item(0).PRIX;
+										self.Elements[cpt].Prix=results.rows.item(0).PRIX;
 									}
 								},
 								function(tx) {log('Erreur rech prix '+tx.message);}
@@ -1243,7 +1243,7 @@ Modele.prototype = {
 						}, function(err) {
 							log('Erreur sel prix '+err.code+' '+err.message);
 						}, function() {
-							dump(self.Elements[cpt]);
+							dump(self.Elements[cpt],'log');
 						}
 					);					
 				}
