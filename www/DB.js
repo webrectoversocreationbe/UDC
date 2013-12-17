@@ -1221,7 +1221,7 @@ Modele.prototype = {
 					function(tx) {log('Erreur options '+tx.message);}
 				);
 			}, function(err) {
-				log('Erreur '+err.code+' '+err.message);
+				log('Erreur cucat '+err.code+' '+err.message);
 			}, function() {
 				//Chercher le prix de chaque element
 				for (cpt=0;cpt<self.Elements.length;cpt++) {
@@ -1235,11 +1235,12 @@ Modele.prototype = {
 										self.Elements[cpt]=results.rows.item(0).PRIX;
 									}
 								},
-								function(tx) {log('Erreur options '+tx.message);}
+								function(tx) {log('Erreur rech prix '+tx.message);}
 							);
 						}, function(err) {
-							log('Erreur '+err.code+' '+err.message);
+							log('Erreur sel prix '+err.code+' '+err.message);
 						}, function() {
+							dump(self.Elements[cpt]);
 						}
 					);					
 				}
