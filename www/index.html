@@ -88,6 +88,7 @@
 				dump(unModele,'log');
 				var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p><br/>';
 				var l=unModele.Elements.length;
+				$('#LesElems').html('');
 				for(cpt=0;cpt<l;cpt++) {
 					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right">0.00 €</td></tr>';
 					$('#LesElems').append(el);

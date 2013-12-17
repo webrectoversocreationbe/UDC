@@ -310,8 +310,8 @@ p {
 #LeModele {
 	margin-bottom:10px;
 }
-#trfElems {position:fixed; bottom:60px; left:15px; height:60%; width:730px; border:1px solid #e2001a;}
-#trfLesElems {position:absolute; top:25px;bottom:0px; left:0px;  overflow:auto; overflow-x:hidden;}
+#trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:728px; border:1px solid #e2001a;}
+#trfLesElems {position:absolute; top:25px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:550px;}.fixedHeader tr th+th+th {width:100px;}
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:550px;}.scrollContent tr td+td+td {width:100px;}
 #trfResult {
