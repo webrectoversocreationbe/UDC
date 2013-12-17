@@ -162,13 +162,14 @@
 					return false;
 				}
 				$('.PanneauRech').hide();
-				unModele.setcuir($('#ValRech').val(),function(){dump(unModele)})
+				unModele.setcuir($('#ValRech').val(),function(){
 				var l=unModele.Elements.length;
-				for(cpt=0;cpt<l;cpt++) {
-					var elcode=unModele.Elements[cpt].ELCODE;
-					var px=unModele.Elements[cpt].Prix;
-					$('#trfpx'+elcode).html(px+' €');
-				}
+					for(cpt=0;cpt<l;cpt++) {
+						var elcode=unModele.Elements[cpt].ELCODE;
+						var px=unModele.Elements[cpt].Prix;
+						$('#trfpx'+elcode).html(px+' €');
+					}
+				});
 			});
 		}
 	}
