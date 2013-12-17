@@ -1109,6 +1109,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MODELAI=0;
 	this.FOUR='';
+	this.CUIRNR='';
 	this.Elements=[];
 	this.CatCuir=[];
 	this.Couleurs=[];
@@ -1202,6 +1203,48 @@ Modele.prototype = {
 				);
 			}
 		);
+	},
+	setcuir: function(CUIRNR,callback) {
+		var self=this;
+		self.CUIRNR=CUIRNR;
+		// CHERCHER LA CATEGORIE DU TYPECUIR
+		madb.transaction(
+			function(tx) {
+				var sql = "SELECT CUCAT FROM CuirMod where MODNR='"+self.MODNR+"' and CUIRNR='"+CUIRNR+"'";
+					log(sql);
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							self.CUCAT=results.rows.item(0).CUCAT;
+						}
+					},
+					function(tx) {log('Erreur options '+tx.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				//Chercher le prix de chaque element
+				for (cpt=0;cpt<self.Elements.length;cpt++) {
+					madb.transaction(
+						function(tx) {
+							var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
+								log(sql);
+							tx.executeSql(sql,[], 
+								function(tx, results) {
+									if (results.rows.length > 0) {
+										self.Elements[cpt]=results.rows.item(0).PRIX;
+									}
+								},
+								function(tx) {log('Erreur options '+tx.message);}
+							);
+						}, function(err) {
+							log('Erreur '+err.code+' '+err.message);
+						}, function() {
+						}
+					);					
+				}
+			}
+		);
 	}
 }
 function PopulateRech(Quoi,Rech,callback) {
@@ -1244,7 +1287,7 @@ function PopulateRech(Quoi,Rech,callback) {
 			function(tx) {
 				var sql = "select cuirmod.CUIRNR,liascuir.CUIRUC from Mods inner join cuirmod on Mods.MODNR=cuirmod.MODNR inner join liascuir on Mods.FOUR=liascuir.FOURN and cuirmod.CUIRNR=liascuir.CUIRNR"+
 				" where Mods.MODNR='"+modnr+"'";
-				if (Rech!='') {sql=sql+" and cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%'";}
+				if (Rech!='') {sql=sql+" and (cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%')";}
 				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
