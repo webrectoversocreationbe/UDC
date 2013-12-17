@@ -53,7 +53,7 @@
     <h1 class="ML10 MT10">Tarif</h1>
     <div id="LeModele" class="ML10">
         <div class="floatleft">
-            <p>Modèle : <button id="RechMod" onClick="InitRech('Modèles')">Choisir</button></p>
+            <p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p>
             <p id="NomMod"></p>
         </div>
         <div class="floatleft ML15">
@@ -104,8 +104,8 @@
 <div class="PanneauRech">
 	<div class="HeaderPanRech">
     	<p>
-        Rechercher un modèle :<br/>
-        <input type="text" name="Rech" id="ChampRech" size="20" />
+        <span id="txtrech">Rechercher</span> :<br/>
+        <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyDown="Filtre()" />
         <input type="hidden" name="ValRech" id="ValRech" />
         </p>
     </div>
@@ -120,7 +120,7 @@
     </div>
 	<script>
 	function InitRech(Quoi) {
-		if (Quoi=='Modèles') {
+		if (Quoi=='Modeles') {
 			PopulateRech('Modeles',function() {
 				$('.PanneauRech').show();
 			});

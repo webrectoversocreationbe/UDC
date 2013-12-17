@@ -1203,9 +1203,11 @@ Modele.prototype = {
 	}
 }
 function PopulateRech(Quoi,callback) {
+	$('#ValRech').val('');
 	switch (Quoi) {
 	case 'Modeles':
 		$('#lesli').empty();
+		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(
 			function(tx) {
 				var sql = "SELECT MODNR, MOUC FROM Mods";
@@ -1215,7 +1217,7 @@ function PopulateRech(Quoi,callback) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var modnr=results.rows.item(cpt).MODNR;
 								var mouc=results.rows.item(cpt).MOUC;
-							    $('#lesli').append('<li><a id="VR'+modnr+'" onclick="Choix($(this))">'+modnr+' - '+mouc+'</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+modnr+'" onclick="Choix($(this))">'+modnr+' - '+mouc+'</a></li>');
 							}
 						}
 					},
@@ -1229,4 +1231,15 @@ function PopulateRech(Quoi,callback) {
 		);
 		break;
 	}
+}
+function Filtre() {
+	var valeur=$('#ChampRech').val();
+	$('.leschoix').each(function() {
+		var l=$(this);
+		if (l.text.indexOf(valeur)!=-1) {
+			l.show();
+		} else {
+			l.hide();
+		}
+	});
 }
