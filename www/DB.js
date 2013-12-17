@@ -1232,15 +1232,13 @@ function PopulateRech(Quoi,callback) {
 		break;
 	}
 }
-function Filtre() {
-	var valeur=$('#ChampRech').val();
-	log(valeur);
+function Filtre(quoi) {
 	$('.leschoix').each(function() {
 		var l=$(this);
-		if (l.text.indexOf(valeur)!=-1) {
+		if (l.text().indexOf(quoi)>=0) {
 			l.show();
 		} else {
 			l.hide();
 		}
-	})();
+	});
 }
