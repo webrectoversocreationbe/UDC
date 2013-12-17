@@ -1231,12 +1231,13 @@ Modele.prototype = {
 					(function test(value) {
 						madb.transaction(
 							function(tx) {
-								var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
+								var sql = "SELECT top 1 PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"' order by PXDATE desc";
 									log(sql+' '+value);
 								tx.executeSql(sql,[], 
 									function(tx, results) {
 										if (results.rows.length > 0) {
 											self.Elements[value].Prix=results.rows.item(0).PRIX;
+											alert(results.rows.item(0).PRIX);
 										}
 									},
 									function(tx) {log('Erreur rech prix '+tx.message);}
