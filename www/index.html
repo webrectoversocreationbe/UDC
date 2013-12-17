@@ -57,7 +57,7 @@
             <p id="NomMod"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Type de cuir : <button id="RechCuir">Choisir</button></p>
+            <p>Type de cuir : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p>
             <p id="NomCuir"></p>
         </div>
         <div class="floatleft ML15">
@@ -90,7 +90,7 @@
 				var l=unModele.Elements.length;
 				$('#LesElems').html('');
 				for(cpt=0;cpt<l;cpt++) {
-					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right">0.00 €</td></tr>';
+					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right" id="trfpx'+unModele.Elements[cpt].ELCODE+'></td></tr>';
 					$('#LesElems').append(el);
 				}
 /*				ret=ret+'<br/><p>Cuirs :</p>';
@@ -144,6 +144,20 @@
 				}
 				$('.PanneauRech').hide();
 				InfoModele();
+			});
+		} else if (Quoi=='TypeCuir') {
+			PopulateRech('TypeCuir','',function() {
+				$('.PanneauRech').show();
+			});
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$('#btnOKPanRech').click(function() {
+				if($('#ValRech')=='') {
+					alert('Vous devez sélectionner un type de cuir');
+					return false;
+				}
+				$('.PanneauRech').hide();
 			});
 		}
 	}
