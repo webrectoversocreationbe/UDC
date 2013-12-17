@@ -1234,6 +1234,7 @@ function PopulateRech(Quoi,callback) {
 }
 function Filtre() {
 	var valeur=$('#ChampRech').val();
+	log(valeur);
 	$('.leschoix').each(function() {
 		var l=$(this);
 		if (l.text.indexOf(valeur)!=-1) {
