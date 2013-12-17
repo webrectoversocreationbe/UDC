@@ -53,19 +53,19 @@
     <h1 class="ML10 MT10">Tarif</h1>
     <div id="LeModele" class="ML10">
         <div class="floatleft">
-            <p>Modèle : <button id="RechMod" onClick="InitRech('Modèles')">Rechercher</button></p>
+            <p>Modèle : <button id="RechMod" onClick="InitRech('Modèles')">Choisir</button></p>
             <p id="NomMod"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Type de cuir : <button id="RechCuir">Rechercher</button></p>
+            <p>Type de cuir : <button id="RechCuir">Choisir</button></p>
             <p id="NomCuir"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Couleur : <button id="RechCouleur">Rechercher</button></p>
+            <p>Couleur : <button id="RechCouleur">Choisir</button></p>
             <p id="NomCoul"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Options : <button id="RechOptions">Rechercher</button></p>
+            <p>Options : <button id="RechOptions">Choisir</button></p>
             <p id="NomOption"></p>
         </div>
         <div class="clear"></div>
@@ -110,7 +110,7 @@
         </p>
     </div>
     <div class="ContentPanRech">
-    <ul>
+    <ul id="lesli">
     <li><a id="VR023001" onclick="Choix($(this))">023001 - TABLE OVALE REF 3336</a></li>
     <li><a id="VR170016" onclick="Choix($(this))">170016 - DEBUSSY</a></li>
     </ul>
@@ -121,7 +121,9 @@
 	<script>
 	function InitRech(Quoi) {
 		if (Quoi=='Modèles') {
-			$('.PanneauRech').show();
+			PopulateRech('Modeles',function() {
+				$('.PanneauRech').show();
+			});
 			$('#btnAnnulerPanRech').click(function() {
 				$('.PanneauRech').hide();
 			});

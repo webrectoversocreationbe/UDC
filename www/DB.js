@@ -1202,3 +1202,31 @@ Modele.prototype = {
 		);
 	}
 }
+function PopulateRech(Quoi,callback) {
+	switch (Quoi) {
+	case 'Modeles':
+		$('#lesli').empty();
+		madb.transaction(
+			function(tx) {
+				var sql = "SELECT MODNR, MOUC FROM Mods";
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var modnr=results.rows.item(cpt).MODNR;
+								var mouc=results.rows.item(cpt).MOUC;
+							    $('#lesli').append('<li><a id="VR'+modnr+'" onclick="Choix($(this))">'+modnr+' - '+mouc+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur options '+tx.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
+	}
+}

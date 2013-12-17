@@ -288,8 +288,9 @@ p {
 .ContentPanRech {overflow:scroll; overflow-x:hidden; position:absolute; top:63px; left:0; right:0; bottom:40px; margin-top:5px; margin-bottom:5px;}
 .ContentPanRech li {padding-left:15px;line-height:26px; font-size:18px; font-weight:normal; color:#545458; width:100%; cursor:pointer;}
 .ContentPanRech li:hover { background:#e2001a; color:#fff;}
+.ContentPanRech li a {width:100%}
 .FooterPanRech {height:40px; border-top:3px solid #e2001a; position:absolute; bottom:0px; left:0; right:0; display:block;vertical-align:middle; padding-left:15px; }
-.FooterPanRech button {margin-top:5px;}
+.FooterPanRech button {margin-top:4px;}
 /* INIT
 -------------------------------*/
 #Init {text-align:center;}
@@ -307,6 +308,9 @@ p {
 #lienconsulthist {display:none;}
 /* TARIF
 -------------------------------*/
+#LeModele {
+	margin-bottom:10px;
+}
 #trfResult {
 	margin-left:10px;
 	width:auto;
