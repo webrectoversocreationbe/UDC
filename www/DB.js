@@ -1211,7 +1211,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		madb.transaction(
 			function(tx) {
 				var sql = "SELECT MODNR, MOUC FROM Mods";
-				if (Rech!='') {sql=sql+" where MOUC like '%"+Rech+"' or MODNR like '%"+Rech+"'";}
+				if (Rech!='') {sql=sql+" where MOUC like '%"+Rech+"%' or MODNR like '%"+Rech+"%'";}
 				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
@@ -1233,14 +1233,4 @@ function PopulateRech(Quoi,Rech,callback) {
 		);
 		break;
 	}
-}
-function Filtre(quoi) {
-	$('.leschoix').each(function() {
-		var l=$(this);
-		if (l.text().indexOf(quoi)>=0) {
-			l.show();
-		} else {
-			l.hide();
-		}
-	});
 }

@@ -72,8 +72,8 @@
     </div>
     <div id="trfResult"></div>
     <script>
+	var unModele=new Modele();
 	function InfoModele() {
-		var unModele=new Modele();
 		unModele.init($('#ValRech').val(), function() {
 			if (unModele.Existe==true) {
 				dump(unModele,'log');
