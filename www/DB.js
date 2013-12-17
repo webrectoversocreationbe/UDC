@@ -1228,7 +1228,7 @@ Modele.prototype = {
 				//Chercher le prix de chaque element
 				for (var cpt=0;cpt<self.Elements.length;cpt++) {
 					var elcode=self.Elements[cpt].ELCODE;
-					function test(value) {
+					(function test(value) {
 						madb.transaction(
 							function(tx) {
 								var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
@@ -1247,7 +1247,7 @@ Modele.prototype = {
 								dump(self.Elements[value],'log');
 							}
 						);
-					}(cpt);
+					})(cpt);
 				}
 
 

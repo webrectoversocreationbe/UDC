@@ -9,14 +9,12 @@
 
 <body>
 <script>
-alert(1);
 				for (var cpt=0;cpt<5;cpt++) {
 					var elcode='123';
-					function test(value) {
+					(function test(value) {
 						alert(value);
-					}(cpt);
+					})(cpt);
 				}
-alert(2);
 </script>
 <style>
 #trfElems {position:absolute; bottom:60px; left:15px; height:60%; width:730px; border:1px solid #e2001a;}
