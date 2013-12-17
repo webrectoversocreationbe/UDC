@@ -1228,24 +1228,26 @@ Modele.prototype = {
 				//Chercher le prix de chaque element
 				for (var cpt=0;cpt<self.Elements.length;cpt++) {
 					var elcode=self.Elements[cpt].ELCODE;
-					madb.transaction(
-						function(tx) {
-							var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
-								log(sql+' '+cpt);
-							tx.executeSql(sql,[], 
-								function(tx, results) {
-									if (results.rows.length > 0) {
-										self.Elements[cpt].Prix=results.rows.item(0).PRIX;
-									}
-								},
-								function(tx) {log('Erreur rech prix '+tx.message);}
-							);
-						}, function(err) {
-							log('Erreur sel prix '+err.code+' '+err.message);
-						}, function() {
-							dump(self.Elements[cpt],'log');
-						}
-					);					
+					function (value) {
+						madb.transaction(
+							function(tx) {
+								var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"'";
+									log(sql+' '+value);
+								tx.executeSql(sql,[], 
+									function(tx, results) {
+										if (results.rows.length > 0) {
+											self.Elements[value].Prix=results.rows.item(0).PRIX;
+										}
+									},
+									function(tx) {log('Erreur rech prix '+tx.message);}
+								);
+							}, function(err) {
+								log('Erreur sel prix '+err.code+' '+err.message);
+							}, function() {
+								dump(self.Elements[value],'log');
+							}
+						);
+					}(cpt);
 				}
 
 
