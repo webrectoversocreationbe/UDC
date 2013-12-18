@@ -274,8 +274,8 @@ p {
 }
 .bRetour {
 	position:absolute;
-	right:10px;
-	top:10px;
+	right:5px;
+	top:2px;
 	cursor:pointer;
 }
 #Signature {margin:5px 0px 10px 0px;}
@@ -305,6 +305,7 @@ p {
 /* MAIN
 -------------------------------*/
 #Main {text-align:center;}
+#Main p {font-size:20px; line-height:34px;}
 .lienconsulthist {display:none;}
 /* TARIF
 -------------------------------*/
