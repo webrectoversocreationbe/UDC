@@ -61,11 +61,11 @@
             <p id="NomCuir"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Couleur : <button id="RechCouleur">Choisir</button></p>
+            <p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p>
             <p id="NomCoul"></p>
         </div>
         <div class="floatleft ML15">
-            <p>Options : <button id="RechOptions">Choisir</button></p>
+            <p>Options : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p>
             <p id="NomOption"></p>
         </div>
         <div class="clear"></div>
@@ -160,7 +160,7 @@
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
-					$('#infotypcuir').html(valrech);
+					$('#infotypcuir').html(unModele.CUIRNR+' '+unModele.CUIRUC);
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
