@@ -211,8 +211,8 @@
         <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic">Particulier</label>&nbsp;&nbsp;
         <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label></p>
         <div id="rubrsoc">
-        <p class="floatleft"><label for="Societe">Société :</label><br/><input type="text" id="Societe"></p>
-        <p class="floatleft ML20"><label for="NumTva">N° TVA :</label><br/><input type="text" id="NumTva"></p><div class="clear"></div>
+        <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
+        <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA"-></p><div class="clear"></div>
         </div>
         <p>
         <input type="radio" name="civil1" id="Civil1Mr" checked="checked" /><label for="Civil1Mr">Mr</label>
@@ -226,6 +226,11 @@
         <input type="text" name="prenom2" id="Prenom2" placeholder="Prénom" class="ML15" />
         <input type="text" name="nom2" id="Nom2" placeholder="Nom" class="ML15" />
         </p>
+        <p><input type="text" name="adress" id="Adresse" placeholder="Rue, N°, Etage" /></p>
+        <p><input type="email" name="email" id="Email" placeholder="Email" /></p>
+        <p><input type="tel" name="tel1" id="Tel1" placeholder="Téléphone" /><input type="tel" name="tel2" id="Tel2" placeholder="Téléphone" class="ML15" /></p>
+        <p><input type="tel" name="gsm1" id="Gsm1" placeholder="Gsm" /><input type="tel" name="gsm2" id="Gsm2" placeholder="Gsm" class="ML15" /></p>
+        <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
     </div>
     <div class="cdeFooter">
     <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15">Ecran suivant</button>

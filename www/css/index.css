@@ -156,7 +156,7 @@ input[type="text"],input[type="password"],input[type="email"],input[type="file"]
 }
 select {
 	border:1px solid #999;
-	padding:3px;
+	padding:4px;
 	border-radius:4px;
 	font-family:Verdana, Geneva, sans-serif;
 	font-size:12px;
@@ -328,4 +328,10 @@ p {
 .cdeContent {padding:15px;}
 .cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
 #rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:5px;}
-#Societe {width:302px;}
+#Societe {width:307px;}
+#NumTva {width:170px;}
+#Prenom1, #Prenom2 {width:170px;} #Nom1, #Nom2 {width:170px;margin-bottom:5px;}
+#Adresse,#Email {width:497px;margin-bottom:5px;}
+#Tel1,#Tel2 {width:241px; margin-bottom:5px;}
+#Gsm1,#Gsm2 {width:241px; margin-bottom:5px;}
+#Remarque1 {width:497px; height:150px; margin-bottom:5px;}
