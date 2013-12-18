@@ -1355,12 +1355,13 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher une option');
 		var modnr=unModele.MODNR;
+		var four=unModele.FOUR;
 		log('rech option '+modnr);
 		madb.transaction(
 			function(tx) {
-				var sql = "select liasopti.OPCODE,liasopti.OPFR from Mods inner join optimod on Mods.MODNR=optimod.MODNR inner join liasopti on Mods.FOUR=liasopti.FOUR and optimod.OPCODE=liasopti.OPCODE"+
-				" where Mods.MODNR='"+modnr+"'";
-				if (Rech!='') {sql=sql+" and (optimod.OPCODE like '%"+Rech+"%' or liasopti.OPFR like '%"+Rech+"%')";}
+				var sql = "select OPCODE,OPFR from Opti"+
+				" where MODNR='"+modnr+"' and FOUR='"+four+"'";
+				if (Rech!='') {sql=sql+" and (OPCODE like '%"+Rech+"%' or OPFR like '%"+Rech+"%')";}
 				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {

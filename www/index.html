@@ -164,7 +164,7 @@
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
-						var px=unModele.Elements[cpt].Prix*unModele.MOCOEF;
+						var px=Nombre(unModele.Elements[cpt].Prix*unModele.MOCOEF);
 						$('#trfpx'+elcode).html(px+' €');
 					}
 				});
@@ -179,7 +179,7 @@
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
-				$('#infocouleur').html(valrech);
+				$('#infocouleur').html(unModele.COULNR+' '+unModele.COLOUC);
 			});
 		} else if (Quoi=='Option') {
 			PopulateRech('Option','',function() {
@@ -191,7 +191,7 @@
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
-				$('#infooption').html(valrech);
+				$('#infooption').html(unModele.OPCODE+' '+unModele.OPFR);
 			});
 		}
 	}
