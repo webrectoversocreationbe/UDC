@@ -60,6 +60,10 @@ function Go(Ou) {
 		$('.Panneau').removeClass('current');
 		$('#SQL').addClass('current');
 		break;
+	case 'Commande':
+		$('.Panneau').removeClass('current');
+		$('#Commande').addClass('current');
+		break;
 	}
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
