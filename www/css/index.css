@@ -309,16 +309,13 @@ p {
 .lienconsulthist {display:none;}
 /* TARIF
 -------------------------------*/
-#LeModele {
-	margin-bottom:10px;
-}
+#LeModele {margin-bottom:10px;}
 #trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:727px; border:1px solid #e2001a;}
 #trfLesElems {position:absolute; top:25px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:550px;}.fixedHeader tr th+th+th {width:100px;}
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:550px;}.scrollContent tr td+td+td {width:100px;}
-#trfResult {
-	margin-left:10px;
-	width:auto;
-	overflow:scroll;
-	overflow-x:hidden;
-}
+#trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
+/* COMMANDES
+-------------------------------*/
+.cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
+.cdeFooter {border-top:1px solid #000; position:absolute; bottom:30px; left:5px; right:5px; height:30px; line-height:30px; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
