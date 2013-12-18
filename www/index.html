@@ -146,10 +146,6 @@
 			});
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
-				if(valrech=='') {
-					alert('Vous devez sélectionner un modèle');
-					return false;
-				}
 				$('.PanneauRech').hide();
 				InfoModele();
 			});
@@ -162,10 +158,6 @@
 			});
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
-				if(valrech=='') {
-					alert('Vous devez sélectionner un type de cuir');
-					return false;
-				}
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
 					$('#infotypcuir').html(valrech);
@@ -186,10 +178,6 @@
 			});
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
-				if(valrech=='') {
-					alert('Vous devez sélectionner une couleur');
-					return false;
-				}
 				$('.PanneauRech').hide();
 				$('#infocouleur').html(valrech);
 			});
