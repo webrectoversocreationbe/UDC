@@ -288,7 +288,7 @@ p {
 #Signature {margin:5px 0px 10px 0px;}
 .Logo {margin-top:-1px;}
 /* PANNEAU RECHERCHE */
-.PanneauRech {display:none;background:#FFF;border:3px solid #e2001a;border-radius:5px;width:90%;height:90%;position:fixed;left:5%;top:5%;}
+.PanneauRech {display:none;background:#FFF;border:3px solid #e2001a;border-radius:5px;width:90%;height:90%;position:fixed;left:5%;top:5%; z-index:10;}
 .HeaderPanRech {height:63px; border-bottom:3px solid #e2001a; position:absolute; top:0; left:0; right:0;}
 .HeaderPanRech p {margin-top:5px;line-height:20px; padding-left:15px; padding-right:15px;}
 .HeaderPanRech p input {width:100%;}
@@ -324,7 +324,7 @@ p {
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
 /* COMMANDES
 -------------------------------*/
-.EcranCde {display:none;}
+.EcranCde {display:none; position:relative;}
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
 .cdeContent {padding:15px;}
