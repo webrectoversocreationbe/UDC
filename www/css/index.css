@@ -318,5 +318,5 @@ p {
 /* COMMANDES
 -------------------------------*/
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
-.cdeContent {padding:15px;}
-.cdeFooter {position:absolute; bottom:30px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
+.cdeContent {padding:15px;height:100%;}
+.cdeFooter {position:fixed; bottom:30px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
