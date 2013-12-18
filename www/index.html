@@ -53,9 +53,9 @@
     <h1 class="ML10 MT10">Tarif</h1>
     <div id="LeModele" class="ML10">
         <div class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
-        <div class="floatleft ML15"><p>Type de cuir : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
+        <div class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
         <div class="floatleft ML15"><p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p></div>
-        <div class="floatleft ML15"><p>Options : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
+        <div class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
         <div class="clear"></div>
     </div>
     <div id="trfResult"></div>
@@ -140,7 +140,7 @@
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
 					unModele.CUIRUC=$('#DescRech').val();
-					$('#infotypcuir').html('Type de cuir : '+unModele.CUIRNR+' '+unModele.CUIRUC);
+					$('#infotypcuir').html('Revêtement : '+unModele.CUIRNR+' '+unModele.CUIRUC);
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
@@ -191,7 +191,7 @@
     </script>
 </div>
 <div id="Commande" class="Panneau">
-	<div id="Ecran1" class="EcranCde current">
+	<div id="Ecran1" class="EcranCde current2">
         <div class="cdeEntete">
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
@@ -250,7 +250,17 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
-        <p>Délai de livraison : <input type="text" id="Delai"/> semaines</p>
+        <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
+        <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
+        </p>
+        <div id="cdeChoix">
+            <div class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
+            <div class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
+            <div class="floatleft ML15"><p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p></div>
+            <div class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
+            <div class="clear"></div>
+        </div>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
@@ -265,9 +275,9 @@
 		$('#rubrsoc').css('display',$('#Partic').is(':checked')==true?'none':'block');
 	}
 	function prevEcran() {
-		$('#Ecran'+EcranActif).removeClass('current');
+		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif-=1;
-		$('#Ecran'+EcranActif).addClass('current');
+		$('#Ecran'+EcranActif).addClass('current2');
 	}
 	function chkEcran() {
 		switch (EcranActif) {
@@ -290,9 +300,9 @@
 			if ($('#Tel1').val()=='') {
 				alert('Le téléphone est obligatoire'); return false;
 			}
-			$('#Ecran'+EcranActif).removeClass('current');
+			$('#Ecran'+EcranActif).removeClass('current2');
 			EcranActif+=1;
-			$('#Ecran'+EcranActif).addClass('current');
+			$('#Ecran'+EcranActif).addClass('current2');
 			break;
 		}
 	}
