@@ -30,7 +30,6 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
-			Init();
 			break;
 		case 'offline':
 			check_network();
