@@ -93,9 +93,9 @@
 					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right" id="trfpx'+unModele.Elements[cpt].ELCODE+'"></td></tr>';
 					$('#LesElems').append(el);
 				}
-				ret=ret+'<p>Type de cuir : <span id="infotypcuir"></span></p>';
-				ret=ret+'<p>Couleur : <span id="infocoul"></span></p>';
-				ret=ret+'<p>Option : <span id="infoopti"></span></p>';
+				ret=ret+'<p id="infotypcuir"></p>';
+				ret=ret+'<p id="infocouleur"></p>';
+				ret=ret+'<p id="infooption"></p>';
 /*				ret=ret+'<br/><p>Cuirs :</p>';
 				l=unModele.CatCuir.length;
 				for(cpt=0;cpt<l;cpt++) {
@@ -162,7 +162,7 @@
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
 					unModele.CUIRUC=$('#DescRech').val();
-					$('#infotypcuir').html(unModele.CUIRNR+' '+unModele.CUIRUC);
+					$('#infotypcuir').html('Type de cuir : '+unModele.CUIRNR+' '+unModele.CUIRUC);
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
@@ -182,7 +182,7 @@
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
 				unModele.COLOUC=$('#DescRech').val();
-				$('#infocouleur').html(unModele.COULNR+' '+unModele.COLOUC);
+				$('#infocouleur').html('Couleur : '+unModele.COULNR+' '+unModele.COLOUC);
 			});
 		} else if (Quoi=='Option') {
 			PopulateRech('Option','',function() {
@@ -195,7 +195,7 @@
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
 				unModele.OPFR=$('#DescRech').val();
-				$('#infooption').html(unModele.OPCODE+' '+unModele.OPFR);
+				$('#infooption').html('Option : '+unModele.OPCODE+' '+unModele.OPFR);
 			});
 		}
 	}

@@ -1338,7 +1338,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var colornr=results.rows.item(cpt).COLORNR;
 								var colouc=results.rows.item(cpt).COLOUC;
-							    $('#lesli').append('<li><a class="leschoix" id="VR'+colornr+'" onclick="Choix($(this))">'+colornr+' - '+colouc+'</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+colornr+'|'+colouc+'" onclick="Choix($(this))">'+colornr+' - '+colouc+'</a></li>');
 							}
 						}
 					},
@@ -1369,7 +1369,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var opcode=results.rows.item(cpt).OPCODE;
 								var opfr=results.rows.item(cpt).OPFR;
-							    $('#lesli').append('<li><a class="leschoix" id="VR'+opcode+'" onclick="Choix($(this))">'+opcode+' - '+opfr+'</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+opcode+'|'+opfr+'" onclick="Choix($(this))">'+opcode+' - '+opfr+'</a></li>');
 							}
 						}
 					},
