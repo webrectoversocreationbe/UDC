@@ -154,6 +154,13 @@ input[type="text"],input[type="password"],input[type="email"],input[type="file"]
 	font-family:Verdana, Geneva, sans-serif;
 	font-size:12px;
 }
+select {
+	border:1px solid #999;
+	padding:3px;
+	border-radius:4px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
 input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus,input[type="file"]:focus,input[type="tel"]:focus,textarea:focus {
 	border:1px solid #222;
 	background:#FFFDFB;
@@ -318,5 +325,7 @@ p {
 /* COMMANDES
 -------------------------------*/
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
-.cdeContent {padding:15px;height:100%;}
-.cdeFooter {position:fixed; bottom:30px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
+.cdeContent {padding:15px;}
+.cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
+#rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:5px;}
+#Societe {width:302px;}

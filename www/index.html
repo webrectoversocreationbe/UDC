@@ -195,13 +195,49 @@
     <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
     </div>
     <div class="cdeContent">
-    <p>Facturation fractionnée&nbsp;&nbsp;&nbsp;<input type="radio" name="fract" id="fracoui"><label for="fracoui">Oui</label>&nbsp;&nbsp;<input type="radio" name="fract" id="fracnon"><label for="fracnon">Non</label></p>
+    	<p>Facturation fractionnée&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="fract" id="fracoui" onChange="chkFrac()"><label for="fracoui">Oui</label>&nbsp;&nbsp;<input type="radio" name="fract" id="fracnon" onChange="chkFrac()" checked="checked"><label for="fracnon">Non</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="rubrfrac">Nombre : <select id="NbFrac"><option value=""></option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option></select></span>
+        </p>
+        <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic">Particulier</label>&nbsp;&nbsp;
+        <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label></p>
+        <div id="rubrsoc">
+        <p class="floatleft"><label for="Societe">Société :</label><br/><input type="text" id="Societe"></p>
+        <p class="floatleft ML20"><label for="NumTva">N° TVA :</label><br/><input type="text" id="NumTva"></p><div class="clear"></div>
+        </div>
+        <p>
+        <input type="radio" name="civil1" id="Civil1Mr" checked="checked" /><label for="Civil1Mr">Mr</label>
+        <input type="radio" name="civil1" id="Civil1Mme" class="ML15" /><label for="Civil1Mme">Mme</label>
+        <input type="text" name="prenom1" id="Prenom1" placeholder="Prénom" class="ML15" />
+        <input type="text" name="nom1" id="Nom1" placeholder="Nom" class="ML15" />
+        </p>
+        <p>
+        <input type="radio" name="civil2" id="Civil2Mr" checked="checked" /><label for="Civil2Mr">Mr</label>
+        <input type="radio" name="civil2" id="Civil2Mme" class="ML15" /><label for="Civil2Mme">Mme</label>
+        <input type="text" name="prenom2" id="Prenom2" placeholder="Prénom" class="ML15" />
+        <input type="text" name="nom2" id="Nom2" placeholder="Nom" class="ML15" />
+        </p>
     </div>
-    <p>ici</p>
     <div class="cdeFooter">
-    <p>la</p>
     <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15">Ecran suivant</button>
     </div>
+    <script>
+	function chkFrac() {
+		$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
+	}
+	function chkPartSoc() {
+		$('#rubrsoc').css('display',$('#Partic').is(':checked')==true?'none':'block');
+	}
+	</script>
 </div>
 <div id="log"></div>
 <footer id="footer">
