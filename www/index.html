@@ -93,6 +93,9 @@
 					var el='<tr><td>'+unModele.Elements[cpt].ELCODE+'</td><td>'+unModele.Elements[cpt].ELFR+'</td><td align="right" id="trfpx'+unModele.Elements[cpt].ELCODE+'"></td></tr>';
 					$('#LesElems').append(el);
 				}
+				ret=ret+'<p>Type de cuir : <span id="infotypcuir"></span></p>';
+				ret=ret+'<p>Couleur : <span id="infocoul"></span></p>';
+				ret=ret+'<p>Option : <span id="infoopti"></span></p>';
 /*				ret=ret+'<br/><p>Cuirs :</p>';
 				l=unModele.CatCuir.length;
 				for(cpt=0;cpt<l;cpt++) {
@@ -133,6 +136,7 @@
 	function InitRech(Quoi) {
 		$('#ChampRech').val('');
 		$('#QuelleRech').val(Quoi);
+		var valrech=$('#ValRech').val();
 		if (Quoi=='Modeles') {
 			PopulateRech('Modeles','',function() {
 				$('.PanneauRech').show();
@@ -140,8 +144,9 @@
 			$('#btnAnnulerPanRech').click(function() {
 				$('.PanneauRech').hide();
 			});
+			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
-				if($('#ValRech')=='') {
+				if(valrech=='') {
 					alert('Vous devez sélectionner un modèle');
 					return false;
 				}
@@ -157,19 +162,36 @@
 			});
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
-				if($('#ValRech')=='') {
+				if(valrech=='') {
 					alert('Vous devez sélectionner un type de cuir');
 					return false;
 				}
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
-				var l=unModele.Elements.length;
+					$('#infotypcuir').html(valrech);
+					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
 						var px=unModele.Elements[cpt].Prix*unModele.MOCOEF;
 						$('#trfpx'+elcode).html(px+' €');
 					}
 				});
+			});
+		} else if (Quoi=='Couleur') {
+			PopulateRech('Couleur','',function() {
+				$('.PanneauRech').show();
+			});
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$( "#btnOKPanRech").unbind( "click" );
+			$('#btnOKPanRech').click(function() {
+				if(valrech=='') {
+					alert('Vous devez sélectionner une couleur');
+					return false;
+				}
+				$('.PanneauRech').hide();
+				$('#infocouleur').html(valrech);
 			});
 		}
 	}

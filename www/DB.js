@@ -1110,6 +1110,8 @@ var Modele = function() {
 	this.MODELAI=0;
 	this.FOUR='';
 	this.CUIRNR='';
+	this.COLORNR='';
+	this.OPCODE='';
 	this.Elements=[];
 	this.CatCuir=[];
 	this.Couleurs=[];
@@ -1206,6 +1208,7 @@ Modele.prototype = {
 	},
 	setcuir: function(CUIRNR,callback) {
 		var self=this;
+		if (self.CUIRNR!=CUIRNR) {self.COLORNR='';}
 		self.CUIRNR=CUIRNR;
 		// CHERCHER LA CATEGORIE DU TYPECUIR
 		madb.transaction(
@@ -1223,8 +1226,6 @@ Modele.prototype = {
 			}, function(err) {
 				log('Erreur cucat '+err.code+' '+err.message);
 			}, function() {
-
-
 				//Chercher le prix de chaque element
 				for (var cpt=0;cpt<self.Elements.length;cpt++) {
 					var elcode=self.Elements[cpt].ELCODE;
@@ -1251,8 +1252,6 @@ Modele.prototype = {
 						);
 					})(cpt,elcode,self.Elements.length-1);
 				}
-
-
 			}
 		);
 	}
@@ -1306,6 +1305,37 @@ function PopulateRech(Quoi,Rech,callback) {
 								var cuirnr=results.rows.item(cpt).CUIRNR;
 								var cuiruc=results.rows.item(cpt).CUIRUC;
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
+	case 'Couleur':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher une couleur');
+		var four=unModele.FOUR;
+		var cuirnr=unModele.CUIRNR;
+		log('rech couleur '+modnr);
+		madb.transaction(
+			function(tx) {
+				var sql = "select COLORNR,COLOUC from LiasColo"+
+				" where FOUR='"+four+"' and CUIRNR='"+cuirnr+"'";
+				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
+				log(sql);
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var colornr=results.rows.item(cpt).COLORNR;
+								var colouc=results.rows.item(cpt).COLOUC;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+colornr+'" onclick="Choix($(this))">'+colornr+' - '+colouc+'</a></li>');
 							}
 						}
 					},
