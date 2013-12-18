@@ -191,70 +191,92 @@
     </script>
 </div>
 <div id="Commande" class="Panneau">
-    <div class="cdeEntete">
-    <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
-    </div>
-    <div class="cdeContent">
-    	<p>Facturation fractionnée&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="fract" id="fracoui" onChange="chkFrac()"><label for="fracoui">Oui</label>&nbsp;&nbsp;<input type="radio" name="fract" id="fracnon" onChange="chkFrac()" checked="checked"><label for="fracnon">Non</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span id="rubrfrac">Nombre : <select id="NbFrac"><option value=""></option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option></select></span>
-        </p>
-        <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic" id="lPartic">Particulier</label>&nbsp;&nbsp;
-        <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label></p>
-        <div id="rubrsoc">
-        <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
-        <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA"-></p><div class="clear"></div>
+	<div class="EcranCde current">
+        <div class="cdeEntete">
+        <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
-        <div class="floatleft">
-        <p>
-        <input type="radio" name="civil1" id="Civil1Mr" checked="checked" /><label for="Civil1Mr">Mr</label>
-        <input type="radio" name="civil1" id="Civil1Mme" class="ML15" /><label for="Civil1Mme">Mme</label>
-        <input type="text" name="prenom1" id="Prenom1" placeholder="Prénom" class="ML15" />
-        <input type="text" name="nom1" id="Nom1" placeholder="Nom" class="ML15" />
-        </p>
-        <p>
-        <input type="radio" name="civil2" id="Civil2Mr"/><label for="Civil2Mr">Mr</label>
-        <input type="radio" name="civil2" id="Civil2Mme" checked="checked"  class="ML15" /><label for="Civil2Mme">Mme</label>
-        <input type="text" name="prenom2" id="Prenom2" placeholder="Prénom" class="ML15" />
-        <input type="text" name="nom2" id="Nom2" placeholder="Nom" class="ML15" />
-        </p>
-        <p><input type="text" name="adress" id="Adresse" placeholder="Rue, N°, Etage" /></p>
-        <p>
-        <input type="text" name="cp" id="CP" placeholder="Code postal" />
-        <input type="text" name="ville" id="Ville" placeholder="Localité" class="ML15" />
-        </p>
-        <p><input type="email" name="email" id="Email" placeholder="Email" /></p>
-        <p><input type="tel" name="tel1" id="Tel1" placeholder="Téléphone" /><input type="tel" name="tel2" id="Tel2" placeholder="Téléphone" class="ML15" /></p>
-        <p><input type="tel" name="gsm1" id="Gsm1" placeholder="Gsm" /><input type="tel" name="gsm2" id="Gsm2" placeholder="Gsm" class="ML15" /></p>
+        <div class="cdeContent">
+            <p>Facturation fractionnée&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="fract" id="fracoui" onChange="chkFrac()"><label for="fracoui">Oui</label>&nbsp;&nbsp;<input type="radio" name="fract" id="fracnon" onChange="chkFrac()" checked="checked"><label for="fracnon">Non</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="rubrfrac">Nombre : <select id="NbFrac"><option value=""></option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option></select></span>
+            </p>
+            <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic" id="lPartic">Particulier</label>&nbsp;&nbsp;
+            <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label></p>
+            <div id="rubrsoc">
+            <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
+            <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA"-></p><div class="clear"></div>
+            </div>
+            <div class="floatleft">
+            <p>
+            <input type="radio" name="civil1" id="Civil1Mr" checked="checked" /><label for="Civil1Mr">Mr</label>
+            <input type="radio" name="civil1" id="Civil1Mme" class="ML15" /><label for="Civil1Mme">Mme</label>
+            <input type="text" name="prenom1" id="Prenom1" placeholder="Prénom" class="ML15" />
+            <input type="text" name="nom1" id="Nom1" placeholder="Nom" class="ML15" />
+            </p>
+            <p>
+            <input type="radio" name="civil2" id="Civil2Mr"/><label for="Civil2Mr">Mr</label>
+            <input type="radio" name="civil2" id="Civil2Mme" checked="checked"  class="ML15" /><label for="Civil2Mme">Mme</label>
+            <input type="text" name="prenom2" id="Prenom2" placeholder="Prénom" class="ML15" />
+            <input type="text" name="nom2" id="Nom2" placeholder="Nom" class="ML15" />
+            </p>
+            <p><input type="text" name="adress" id="Adresse" placeholder="Rue, N°, Etage" /></p>
+            <p>
+            <input type="text" name="cp" id="CP" placeholder="Code postal" />
+            <input type="text" name="ville" id="Ville" placeholder="Localité" class="ML15" />
+            </p>
+            <p><input type="email" name="email" id="Email" placeholder="Email" /></p>
+            <p><input type="tel" name="tel1" id="Tel1" placeholder="Téléphone" /><input type="tel" name="tel2" id="Tel2" placeholder="Téléphone" class="ML15" /></p>
+            <p><input type="tel" name="gsm1" id="Gsm1" placeholder="Gsm" /><input type="tel" name="gsm2" id="Gsm2" placeholder="Gsm" class="ML15" /></p>
+            </div>
+            <div class="floatleft ML20">
+            <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
+            </div><div class="clear"></div>
         </div>
-        <div class="floatleft ML20">
-        <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
-        </div><div class="clear"></div>
+        <div class="cdeFooter">
+        <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
+        </div>
     </div>
-    <div class="cdeFooter">
-    <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran(1)">Ecran suivant</button>
+	<div class="EcranCde">
+        <div class="cdeEntete">
+        <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
+        </div>
+        <div class="cdeContent">
+        <p>Délai de livraison : <input type="text" id="Delai"/> semaines</p>
+        </div>
+        <div class="cdeFooter">
+        <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
+        </div>
     </div>
     <script>
+	var EcranActif=1;
 	function chkFrac() {
 		$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
 	}
 	function chkPartSoc() {
 		$('#rubrsoc').css('display',$('#Partic').is(':checked')==true?'none':'block');
 	}
-	function chkEcran(Lequel) {
-		switch (Lequel) {
+	function prevEcran() {
+		$('#Ecran'+EcranActif).removeClass('current');
+		EcranActif-=1;
+		$('#Ecran'+EcranActif).addClass('current');
+	}
+	function chkEcran() {
+		switch (EcranActif) {
 		case 1:
 			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
 				alert('Vous devez entrer le nombre de fractionnement'); return false;
+			}
+			if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
+				alert('Le nom de la société est obligatoire'); return false;
 			}
 			if ($('#Nom1').val()=='' || $('#Prenom1').val()=='') {
 				alert('Le prénom et le nom est obligatoire'); return false;
@@ -268,6 +290,9 @@
 			if ($('#Tel1').val()=='') {
 				alert('Le téléphone est obligatoire'); return false;
 			}
+			$('#Ecran'+EcranActif).removeClass('current');
+			EcranActif+=1;
+			$('#Ecran'+EcranActif).addClass('current');
 			break;
 		}
 	}
