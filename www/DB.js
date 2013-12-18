@@ -1329,7 +1329,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		madb.transaction(
 			function(tx) {
 				var sql = "select COLORNR,COLOUC from LiasColo"+
-				" where FOUR='"+four+"' and CUIRNR='"+cuirnr+"'";
+				" where FOURN='"+four+"' and CUIRNR='"+cuirnr+"'";
 				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
 				log(sql);
 				tx.executeSql(sql,[], 
@@ -1339,6 +1339,36 @@ function PopulateRech(Quoi,Rech,callback) {
 								var colornr=results.rows.item(cpt).COLORNR;
 								var colouc=results.rows.item(cpt).COLOUC;
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+colornr+'" onclick="Choix($(this))">'+colornr+' - '+colouc+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
+	case 'Option':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher une option');
+		var modnr=unModele.MODNR;
+		log('rech option '+modnr);
+		madb.transaction(
+			function(tx) {
+				var sql = "select liasopti.OPCODE,liasopti.OPFR from Mods inner join optimod on Mods.MODNR=optimod.MODNR inner join liasopti on Mods.FOUR=liasopti.FOUR and optimod.OPCODE=liasopti.OPCODE"+
+				" where Mods.MODNR='"+modnr+"'";
+				if (Rech!='') {sql=sql+" and (optimod.OPCODE like '%"+Rech+"%' or liasopti.OPFR like '%"+Rech+"%')";}
+				log(sql);
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var opcode=results.rows.item(cpt).OPCODE;
+								var opfr=results.rows.item(cpt).OPFR;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+opcode+'" onclick="Choix($(this))">'+opcode+' - '+opfr+'</a></li>');
 							}
 						}
 					},

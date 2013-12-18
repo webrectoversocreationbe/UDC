@@ -181,6 +181,18 @@
 				$('.PanneauRech').hide();
 				$('#infocouleur').html(valrech);
 			});
+		} else if (Quoi=='Option') {
+			PopulateRech('Option','',function() {
+				$('.PanneauRech').show();
+			});
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$( "#btnOKPanRech").unbind( "click" );
+			$('#btnOKPanRech').click(function() {
+				$('.PanneauRech').hide();
+				$('#infooption').html(valrech);
+			});
 		}
 	}
 	function Choix(obj) {
