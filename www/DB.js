@@ -1307,7 +1307,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var cuirnr=results.rows.item(cpt).CUIRNR;
 								var cuiruc=results.rows.item(cpt).CUIRUC;
-							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'|'+cuiruc+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
 							}
 						}
 					},
@@ -1325,7 +1325,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#txtrech').html('Rechercher une couleur');
 		var four=unModele.FOUR;
 		var cuirnr=unModele.CUIRNR;
-		log('rech couleur '+modnr);
+		log('rech couleur '+four+' '+cuirnr);
 		madb.transaction(
 			function(tx) {
 				var sql = "select COLORNR,COLOUC from LiasColo"+

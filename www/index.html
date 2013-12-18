@@ -121,6 +121,7 @@
         <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyup="PopulateRech('',this.value,null)" />
         <input type="hidden" name="QuelleRech" id="QuelleRech" />
         <input type="hidden" name="ValRech" id="ValRech" />
+        <input type="hidden" name="DescRech" id="DescRech" />
         </p>
     </div>
     <div class="ContentPanRech">
@@ -160,6 +161,7 @@
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
+					unModele.CUIRUC=$('#DescRech').val();
 					$('#infotypcuir').html(unModele.CUIRNR+' '+unModele.CUIRUC);
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
@@ -179,6 +181,7 @@
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
+				unModele.COLOUC=$('#DescRech').val();
 				$('#infocouleur').html(unModele.COULNR+' '+unModele.COLOUC);
 			});
 		} else if (Quoi=='Option') {
@@ -191,13 +194,16 @@
 			$( "#btnOKPanRech").unbind( "click" );
 			$('#btnOKPanRech').click(function() {
 				$('.PanneauRech').hide();
+				unModele.OPFR=$('#DescRech').val();
 				$('#infooption').html(unModele.OPCODE+' '+unModele.OPFR);
 			});
 		}
 	}
 	function Choix(obj) {
 		$('#ChampRech').val(obj.text());
-		$('#ValRech').val(obj.prop('id').substr(2));
+		var t=obj.prop('id').substr(2).split('|');
+		$('#ValRech').val(t[0]);
+		$('#DescRech').val(t[1]);
 	}
     </script>
 </div>
