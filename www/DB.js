@@ -33,7 +33,7 @@ function Init() {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Tarif').addClass('current');
+						$('#Connexion').addClass('current');
 					}
 					$('.loader').toggle();
 				});	});	});	});	}); });	}); });	});
@@ -286,7 +286,7 @@ window.dbu = {
 							bAdmin=results.rows.item(0).bAdmin;
 							UserVersion=results.rows.item(0).UserVersion;
 							log('Login ok - '+User+' Admin '+bAdmin+' Version '+UserVersion);
-							$('#lienconsulthist').css('display',UserVersion==2?'block':'none');
+							$('.lienconsulthist').css('display',UserVersion==2?'block':'none');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
                         } else {
@@ -1083,10 +1083,10 @@ Requete.prototype = {
 			function(tx) {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
-						dump(results.rows.item,'alert');
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
+							dump(results.rows.item(0),'log');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
