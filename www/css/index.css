@@ -328,13 +328,14 @@ p {
 .cdeContent {padding:15px;}
 .cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
 .cdeContent select {padding:4px; text-align:right;}
+.cdeContent input[type=radio] {background:#FFF; color:#F00;}
 #rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:5px;}
 #Societe {width:312px;}
 #NumTva {width:170px;}
 #Prenom1, #Prenom2 {width:170px;} #Nom1, #Nom2 {width:170px;margin-bottom:5px;}
 #Adresse,#Email {width:502px;margin-bottom:5px;}
 #CP {width:100px;}
-#Ville {width:388px;}
-#Tel1,#Tel2 {width:244px; margin-bottom:5px;}
-#Gsm1,#Gsm2 {width:244px; margin-bottom:5px;}
-#Remarque1 {width:502px; height:150px; margin-bottom:5px;}
+#Ville {width:385px;}
+#Tel1,#Gsm1 {width:244px; margin-bottom:5px;}
+#Tel2,#Gsm2 {width:243px; margin-bottom:5px;}
+#Remarque1 {width:602px; height:219px; margin-bottom:5px; margin-top:3px;}
