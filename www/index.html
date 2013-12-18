@@ -46,10 +46,10 @@
     <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/><br/>
     <p><a onClick="SynchroAll()">Synchronisation</a></p><br/><br/>
-    <p><a onClick="Go('SQL')">SQL</a></p><br/>
+    <p class="uniquementadmin"><a onClick="Go('SQL')">SQL</a></p><br class="uniquementadmin"/>
 </div>
 <div id="Tarif" class="Panneau">
-    <a onClick="Go('Main')" class="bRetour">Retour</a>
+    <a onClick="Go('Main')" class="bRetour"><img src="images/close.png" width="50" height="50"/></a>
     <h1 class="ML10 MT10">Tarif</h1>
     <div id="LeModele" class="ML10">
         <div class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>

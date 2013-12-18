@@ -287,6 +287,7 @@ window.dbu = {
 							UserVersion=results.rows.item(0).UserVersion;
 							log('Login ok - '+User+' Admin '+bAdmin+' Version '+UserVersion);
 							$('.lienconsulthist').css('display',UserVersion==2?'block':'none');
+							$('.uniquementadmin').css('display',bAdmin==1?'block':'none');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
                         } else {
