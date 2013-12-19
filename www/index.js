@@ -44,8 +44,8 @@ var app = {
 };
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
 	app.initialize();
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
 }
 function gotFS(fileSystem) {
 	alert('fs ok');
