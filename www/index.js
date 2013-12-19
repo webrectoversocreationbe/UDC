@@ -97,9 +97,22 @@ function showAlert(Mes,Titre,Bouton) {
 		Bouton
 	);
 }
+function onSuccess(fileSystem)
+{
+     alert(fileSystem.name);
+     alert(fileSystem.root.name);
+}
+function onFail(event)
+{
+     alert(event.target.error.code);
+}
 function downloadFile() {
 /*		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
 */
+
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, onFail);
+
+
 	log('fct dowl');
 		alert('ft');
 	var ft = new FileTransfer();
