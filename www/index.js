@@ -102,18 +102,22 @@ function downloadFile() {
 */
 	log('fct dowl');
 	var fileTransfer = new FileTransfer();
+		alert('ft cree');
 	fileTransfer.download(
 		"http://www.universducuir.be/Accueil/ImgSlide/10-canapes-cuir-bicolore-blanc-et-noir-pas-cher.jpg",
-		"/storage/emulated/0/Download/450002.jpg",
+		"file:///storage/emulated/0/Download/450002.jpg",
 		function(theFile) {
+	alert('la');
 			log("download complete: " + theFile.toURI());
 		},
 		function(error) {
+	alert('erreur');
 			log("download error source " + error.source);
 			log("download error target " + error.target);
 			log("upload error code: " + error.code);
 		}
 	);
+	alert('ici');
 	log('finonfilesucc');
 }
 function ShowProduits() {
