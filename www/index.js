@@ -98,10 +98,12 @@ function showAlert(Mes,Titre,Bouton) {
 	);
 }
 function downloadFile() {
+/*		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
+*/
 	log('fct dowl');
 	var fileTransfer = new FileTransfer();
 	fileTransfer.download(
-		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
+		"http://www.universducuir.be/Accueil/ImgSlide/10-canapes-cuir-bicolore-blanc-et-noir-pas-cher.jpg",
 		"/storage/emulated/0/Download/450002.jpg",
 		function(theFile) {
 			log("download complete: " + theFile.toURI());
