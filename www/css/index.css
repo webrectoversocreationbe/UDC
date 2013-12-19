@@ -317,17 +317,17 @@ p {
 /* TARIF
 -------------------------------*/
 #LeModele {margin-bottom:10px;}
-#trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:727px; border:1px solid #e2001a;}
-#trfLesElems {position:absolute; top:25px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
-.fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:550px;}.fixedHeader tr th+th+th {width:100px;}
-.scrollContent tr td {width:80px;}.scrollContent tr td+td {width:550px;}.scrollContent tr td+td+td {width:100px;}
+#trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:807px; border:1px solid #e2001a;}
+#trfLesElems {position:absolute; top:30px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
+.fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:600px;}.fixedHeader tr th+th+th {width:130px;}
+.scrollContent tr td {width:80px;}.scrollContent tr td+td {width:600px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
-.cdeContent {padding:15px;}
+.cdeContent {padding:15px; overflow:auto;}
 .cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
 .cdeContent select {padding:4px; text-align:right;}
 .cdeContent label{border-radius:4px; font-size:12px; line-height:20px;}
@@ -349,4 +349,4 @@ p {
 /* ecran 2 */
 #Delai {width:40px;}
 #cdeChoix {margin-top:10px;}
-#cx1,#cx2,#cx3,#cx4 {width:200px;}
+#cx1,#cx2,#cx3,#cx4 {width:240px;}

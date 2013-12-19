@@ -236,9 +236,9 @@
             <p><input type="email" name="email" id="Email" placeholder="Email" /></p>
             <p><input type="tel" name="tel1" id="Tel1" placeholder="Téléphone" /><input type="tel" name="tel2" id="Tel2" placeholder="Téléphone" class="ML15" /></p>
             <p><input type="tel" name="gsm1" id="Gsm1" placeholder="Gsm" /><input type="tel" name="gsm2" id="Gsm2" placeholder="Gsm" class="ML15" /></p>
+            <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
             </div>
             <div class="floatleft ML20">
-            <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
             </div><div class="clear"></div>
         </div>
         <div class="cdeFooter">
@@ -250,10 +250,6 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
-        <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
-        <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
-        </p>
         <div id="cdeChoix">
             <div id="cx1" class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
             <div id="cx2" class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
@@ -261,6 +257,10 @@
             <div id="cx4" class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
             <div class="clear"></div>
         </div>
+        <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
+        <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
+        </p>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
