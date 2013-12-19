@@ -123,7 +123,7 @@ th {
 	border-right:1px solid #ccc;
 	background:#ccc;
 	color:#333;
-	font-size:15px;
+	font-size:25px;
 }
 th:last-child {
 	border-right:none;
@@ -136,7 +136,7 @@ td {
 	height:30px;
 /*	border-right:1px solid #ccc;*/
 	vertical-align:middle;
-	font-size:13px;
+	font-size:23px;
 }
 td.last-child {
 /*	border-right:none;*/
@@ -152,14 +152,14 @@ input[type="text"],input[type="password"],input[type="email"],input[type="file"]
 	padding:4px;
 	border-radius:4px;
 	font-family:Verdana, Geneva, sans-serif;
-	font-size:12px;
+	font-size:18px;
 }
 select {
 	border:1px solid #999;
 	padding:4px;
 	border-radius:4px;
 	font-family:Verdana, Geneva, sans-serif;
-	font-size:12px;
+	font-size:18px;
 }
 input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus,input[type="file"]:focus,input[type="tel"]:focus,textarea:focus {
 	border:1px solid #222;
@@ -175,7 +175,7 @@ input[type="button"],input[type="submit"] {
 	padding:3px;
 	border-radius:4px;
 	font-family:Verdana, Geneva, sans-serif;
-	font-size:12px;
+	font-size:18px;
 }
 input[type="button"]:hover,input[type="submit"]:hover {
 	background:#fff;
@@ -245,8 +245,8 @@ body {
 #cnType { float:right; margin-right:10px;}
 h1 {
 	color:#e2001a;
-    font-size:26px;
-	line-height:34px;
+    font-size:36px;
+	line-height:44px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -254,8 +254,8 @@ h1 {
 }
 h2 {
 	color:#e2001a;
-    font-size:22px;
-	line-height:28px;
+    font-size:28px;
+	line-height:38px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -265,8 +265,8 @@ h2 {
 }
 p {
 	font-family:Verdana, Geneva, sans-serif;
-    font-size:16px;
-	line-height:28px;
+    font-size:20px;
+	line-height:32px;
     font-weight:normal;
     margin:0px;
 	color:#333;
@@ -280,7 +280,7 @@ p {
 	display:block;
 }
 .bRetour {
-	position:absolute;
+	position:absolute; 
 	right:5px;
 	top:2px;
 	cursor:pointer;

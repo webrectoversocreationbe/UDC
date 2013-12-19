@@ -1260,6 +1260,45 @@ Modele.prototype = {
 		);
 	}
 }
+/*
+	COMMANDE
+*/
+var Commande = function() {
+	this.Existe=false;
+	this.Vendeur='';
+	this.Actif=0;
+	this.Ref='';this.DateC='';this.Genre='';this.Societe='';this.NumTva='';
+	this.Civil1='';this.Prenom1='';this.Nom1='';this.Civil2='';this.Prenom2='';this.Nom2='';
+	this.Adresse='';this.CP='';this.Ville='';this.Tel1='';this.Tel2='';this.Gsm1='';this.Gsm2='';this.Email='';this.Remarque='';
+	this.Fractionner=0;this.NbFraction=0;
+	this.TotalTarif=0;
+	this.PrixVente=0;
+	this.Remise=0;
+	this.Reprise=0;
+	this.Frais=0;
+	this.GenreFrais='';
+	this.TotalNet=0;
+	this.Financement=0;
+	this.MontantFinancement=0;
+	this.Exoneration=0;
+	this.Acompte=0;
+	this.AcompteCarte=0;
+	this.AcompteEspece=0;
+	this.AcompteCheque=0;
+	this.AcompteAutre=0;
+	this.SoldeAcompte=0;
+	this.DateA='';
+	this.Signature1='';
+	this.Signature2='';
+	this.DetailCommande=[];
+};
+Commande.prototype = {
+	init: function(Id,callback) {
+	}
+}
+/* 
+	FENETRE RECHERCHE
+*/
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
