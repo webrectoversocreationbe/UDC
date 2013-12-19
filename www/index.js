@@ -7,7 +7,6 @@ var app = {
         this.bindEvents();
     },
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('offline', this.onOffline, false);
         document.addEventListener('online', this.onOnline, false);
 		document.addEventListener("menubutton", this.onMenuKeyDown, false);
@@ -30,7 +29,7 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
-			alert('av');
+			alert('dev ready');
 			break;
 		case 'offline':
 			check_network();
@@ -43,7 +42,17 @@ var app = {
 		}
     }
 };
-app.initialize();
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+	app.initialize();
+}
+function gotFS(fileSystem) {
+	alert('fs ok');
+}
+function failFS(error) {
+	alert(error.code);
+}
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
