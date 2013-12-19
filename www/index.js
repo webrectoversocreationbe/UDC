@@ -98,8 +98,10 @@ function showAlert(Mes,Titre,Bouton) {
 	);
 }
 function downloadFile() {
+	log('fct dowl');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,	
 	function onFileSystemSuccess(fileSystem) {
+		log('onfilesucc');
 		var fileTransfer = new FileTransfer();
 		fileTransfer.download(
 			"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
@@ -113,6 +115,7 @@ function downloadFile() {
 				log("upload error code: " + error.code);
 			}
 		);
+		log('finonfilesucc');
 	},
 	function Error() {
 		log('Erreur filesystem');
