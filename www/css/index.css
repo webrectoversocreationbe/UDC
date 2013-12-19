@@ -230,6 +230,7 @@ body {
 }
 #footer p {
 	margin-top:-2px;
+	font-size:13px;
 }
 #log {
 	display:none;
@@ -327,25 +328,25 @@ p {
 .EcranCde {display:none; position:relative;}
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
-.cdeContent {padding:15px; overflow:auto;}
+.cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:36px; left:5px; right:5px; bottom:68px;}
 .cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
 .cdeContent select {padding:4px; text-align:right;}
-.cdeContent label{border-radius:4px; font-size:12px; line-height:20px;}
+.cdeContent label{border-radius:4px; font-size:16px; line-height:28px;}
 .cdeContent input[type=radio] {display:none;}
 .cdeContent input[type=radio] + label {display:inline-block;padding: 2px 12px;background-color: #e7e7e7;color:#505058; border:1px solid #9e9e9e;}
 .cdeContent input[type=radio]:checked + label {background-color:#e2001a;color:#fff;}
 /* ecran 1 */
-#rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:5px;}
-#lPartic {margin-bottom:5px;}
+#rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:8px;}
+#lPartic {margin-bottom:8px;}
 #Societe {width:312px;}
 #NumTva {width:170px;}
-#Prenom1, #Prenom2 {width:170px;} #Nom1, #Nom2 {width:170px;margin-bottom:5px;}
-#Adresse,#Email {width:502px;margin-bottom:5px;}
+#Prenom1, #Prenom2 {width:170px;} #Nom1, #Nom2 {width:185px;margin-bottom:8px;}
+#Adresse,#Email {width:502px;margin-bottom:8px;}
 #CP {width:100px;}
 #Ville {width:383px;}
-#Tel1,#Gsm1 {width:244px; margin-bottom:5px;}
-#Tel2,#Gsm2 {width:243px; margin-bottom:5px;}
-#Remarque1 {width:602px; height:215px; margin-bottom:5px; margin-top:3px;}
+#Tel1,#Gsm1 {width:244px; margin-bottom:8px;}
+#Tel2,#Gsm2 {width:243px; margin-bottom:8px;}
+#Remarque1 {width:602px; height:215px; margin-bottom:8px; margin-top:3px;}
 /* ecran 2 */
 #Delai {width:40px;}
 #cdeChoix {margin-top:10px;}
