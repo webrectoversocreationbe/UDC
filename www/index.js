@@ -97,6 +97,27 @@ function showAlert(Mes,Titre,Bouton) {
 		Bouton
 	);
 }
+function downloadFile() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,	
+	function onFileSystemSuccess(fileSystem) {
+		var fileTransfer = new FileTransfer();
+		fileTransfer.download(
+			"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
+			"450002.jpg",
+			function(theFile) {
+				log("download complete: " + theFile.toURI());
+			},
+			function(error) {
+				log("download error source " + error.source);
+				log("download error target " + error.target);
+				log("upload error code: " + error.code);
+			}
+		);
+	},
+	function Error() {
+		log('Erreur filesystem');
+	});
+}
 function ShowProduits() {
 	$.ajax({
 		type: "POST",
