@@ -196,9 +196,10 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
+        <div class="bloc">
             <p>Facturation fractionnée&nbsp;&nbsp;&nbsp;
             <input type="radio" name="fract" id="fracoui" onChange="chkFrac()"><label for="fracoui">Oui</label>&nbsp;&nbsp;<input type="radio" name="fract" id="fracnon" onChange="chkFrac()" checked="checked"><label for="fracnon">Non</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span id="rubrfrac">Nombre : <select id="NbFrac"><option value=""></option>
+            <span id="rubrfrac">Nombre : <select id="NbFrac">
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -210,12 +211,20 @@
             <option value="10">10</option></select></span>
             </p>
             <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic" id="lPartic">Particulier</label>&nbsp;&nbsp;
-            <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label></p>
+            <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label>&nbsp;&nbsp;
+            <input type="text" name="remvend" id="RemarqueVendeur" placeholder="Remarque conseillé">
+            </p>
             <div id="rubrsoc">
             <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
             <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA"-></p><div class="clear"></div>
+            <p>
+            <input type="radio" name="civil0" id="Civil0Mr" checked="checked" /><label for="Civil0Mr">Mr</label>
+            <input type="radio" name="civil0" id="Civil0Mme" class="ML15" /><label for="Civil0Mme">Mme</label>
+            <input type="text" name="respon" id="Responsable" placeholder="Responsable" class="ML15" />
+            </p>
             </div>
             <div class="floatleft">
+            <div id="rubrpart">
             <p>
             <input type="radio" name="civil1" id="Civil1Mr" checked="checked" /><label for="Civil1Mr">Mr</label>
             <input type="radio" name="civil1" id="Civil1Mme" class="ML15" /><label for="Civil1Mme">Mme</label>
@@ -228,6 +237,7 @@
             <input type="text" name="prenom2" id="Prenom2" placeholder="Prénom" class="ML15" />
             <input type="text" name="nom2" id="Nom2" placeholder="Nom" class="ML15" />
             </p>
+            </div>
             <p><input type="text" name="adress" id="Adresse" placeholder="Rue, N°, Etage" /></p>
             <p>
             <input type="text" name="cp" id="CP" placeholder="Code postal" />
@@ -244,6 +254,7 @@
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
+        </div>
         </div>
     </div>
 	<div id="Ecran2" class="EcranCde">
@@ -273,7 +284,13 @@
 		$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
 	}
 	function chkPartSoc() {
-		$('#rubrsoc').css('display',$('#Partic').is(':checked')==true?'none':'block');
+		if ($('#Partic').is(':checked')==true) {
+			$('#rubrsoc').css('display','none');
+			$('#rubrpart').css('display','block');
+		} else {
+			$('#rubrsoc').css('display','block');
+			$('#rubrpart').css('display','none');
+		}
 	}
 	function prevEcran() {
 		$('#Ecran'+EcranActif).removeClass('current2');
