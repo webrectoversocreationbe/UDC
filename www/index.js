@@ -102,7 +102,7 @@ function downloadFile() {
 	var fileTransfer = new FileTransfer();
 	fileTransfer.download(
 		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
-		"450002.jpg",
+		"/storage/emulated/0/Download/450002.jpg",
 		function(theFile) {
 			log("download complete: " + theFile.toURI());
 		},
