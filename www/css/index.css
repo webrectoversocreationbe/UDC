@@ -230,7 +230,7 @@ body {
 	vertical-align:middle;
 }
 #footer p {
-	margin-top:-4px;
+	margin-top:-5px;
 	font-size:14px;
 }
 #log {
@@ -285,6 +285,7 @@ p {
 	position:absolute; 
 	right:5px;
 	top:0px;
+	margin-top:-4px;
 	cursor:pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0*/ 
 }
@@ -321,7 +322,7 @@ p {
 -------------------------------*/
 #LeModele {margin-bottom:10px;}
 #trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:857px; border:1px solid #e2001a;}
-#trfLesElems {position:absolute; top:33px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
+#trfLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:650px;}.fixedHeader tr th+th+th {width:130px;}
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:650px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
@@ -331,9 +332,9 @@ p {
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
 .cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
-.cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
+.cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px; height:45px;}.cdeFooter button {}
 .cdeContent select {padding:4px; text-align:right;}
-.cdeContent label{border-radius:4px; font-size:16px; line-height:26px;}
+.cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-1px;}
 .cdeContent input[type=radio] {display:none;}
 .cdeContent input[type=radio] + label {display:inline-block;padding: 2px 12px;background-color: #e7e7e7;color:#505058; border:1px solid #9e9e9e;}
 .cdeContent input[type=radio]:checked + label {background-color:#e2001a;color:#fff;}
@@ -341,14 +342,14 @@ p {
 .bloc{width:740px; position:relative; left:50%; margin-left:-370px;}
 #rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:8px;}
 #lPartic {margin-bottom:8px;}
-#RemarqueVendeur {width:521px; margin-top:8px;}
+#RemarqueVendeur {width:524px; margin-top:8px;}
 #Societe {width:438px; margin-bottom:8px;}
 #NumTva {width:276px;}
 #Responsable {width:600px; }
-#Prenom1, #Prenom2 {width:282px;} #Nom1, #Nom2 {width:295px;margin-bottom:8px;}
+#Prenom1, #Prenom2 {width:282px;} #Nom1, #Nom2 {width:298px;margin-bottom:8px;}
 #Adresse,#Email {width:734px;margin-bottom:8px;}
 #CP {width:130px;}
-#Ville {width:582px; margin-bottom:8px;}
+#Ville {width:584px; margin-bottom:8px;}
 #Tel1,#Gsm1 {width:359px; margin-bottom:8px;}
 #Tel2,#Gsm2 {width:360px; margin-bottom:8px;}
 #Remarque1 {width:734px; height:215px; margin-bottom:8px; margin-top:3px;}
