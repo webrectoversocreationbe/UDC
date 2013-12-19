@@ -30,6 +30,18 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
+			alert('av');
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onSuccess, onFail);
+alert('ap');
+function onSuccess(fileSystem)
+{
+     alert(fileSystem.name);
+     alert(fileSystem.root.name);
+}
+function onFail(event)
+{
+     alert(event.target.error.code);
+}
 			break;
 		case 'offline':
 			check_network();
