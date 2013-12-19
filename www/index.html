@@ -74,7 +74,7 @@
         unModele.init($('#ValRech').val(), function() {
             if (unModele.Existe==true) {
                 dump(unModele,'log');
-                var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p>';
+                var ret='<h2>'+unModele.MODNR+' - '+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p>';
                 var l=unModele.Elements.length;
                 $('#LesElems').html('');
                 for(cpt=0;cpt<l;cpt++) {
@@ -140,7 +140,7 @@
 				$('.PanneauRech').hide();
 				unModele.setcuir($('#ValRech').val(),function(){
 					unModele.CUIRUC=$('#DescRech').val();
-					$('#infotypcuir').html('Revêtement : '+unModele.CUIRNR+' '+unModele.CUIRUC);
+					$('#infotypcuir').html('Revêtement : '+unModele.CUIRNR+' - '+unModele.CUIRUC);
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
@@ -164,7 +164,7 @@
 				$('.PanneauRech').hide();
 				unModele.COULNR=$('#ValRech').val();
 				unModele.COLOUC=$('#DescRech').val();
-				$('#infocouleur').html('Couleur : '+unModele.COULNR+' '+unModele.COLOUC);
+				$('#infocouleur').html('Couleur : '+unModele.COULNR+' - '+unModele.COLOUC);
 			});
 		} else if (Quoi=='Option') {
 			PopulateRech('Option','',function() {
@@ -178,7 +178,7 @@
 				$('.PanneauRech').hide();
 				unModele.OPCODE=$('#ValRech').val();
 				unModele.OPFR=$('#DescRech').val();
-				$('#infooption').html('Option : '+unModele.OPCODE+' '+unModele.OPFR);
+				$('#infooption').html('Option : '+unModele.OPCODE+' - '+unModele.OPFR);
 			});
 		}
 	}
