@@ -101,10 +101,11 @@ function downloadFile() {
 /*		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
 */
 	log('fct dowl');
-	var fileTransfer = new FileTransfer();
+		alert('ft');
+	var ft = new FileTransfer();
 		alert('ft cree');
-	fileTransfer.download(
-		"http://www.universducuir.be/Accueil/ImgSlide/10-canapes-cuir-bicolore-blanc-et-noir-pas-cher.jpg",
+	ft.download(
+		encodeURI("http://www.universducuir.be/Accueil/ImgSlide/10-canapes-cuir-bicolore-blanc-et-noir-pas-cher.jpg"),
 		"file:///storage/emulated/0/Download/450002.jpg",
 		function(theFile) {
 	alert('la');
