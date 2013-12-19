@@ -74,7 +74,7 @@
         unModele.init($('#ValRech').val(), function() {
             if (unModele.Existe==true) {
                 dump(unModele,'log');
-                var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p><br/>';
+                var ret='<h2>'+unModele.MOUC+'</h2><p>Délai : '+unModele.MODELAI+' semaines</p>';
                 var l=unModele.Elements.length;
                 $('#LesElems').html('');
                 for(cpt=0;cpt<l;cpt++) {

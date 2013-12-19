@@ -160,6 +160,7 @@ select {
 	border-radius:4px;
 	font-family:Verdana, Geneva, sans-serif;
 	font-size:18px;
+	height:26px;
 }
 input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus,input[type="file"]:focus,input[type="tel"]:focus,textarea:focus {
 	border:1px solid #222;
@@ -229,8 +230,8 @@ body {
 	vertical-align:middle;
 }
 #footer p {
-	margin-top:-2px;
-	font-size:13px;
+	margin-top:-4px;
+	font-size:14px;
 }
 #log {
 	display:none;
@@ -283,8 +284,9 @@ p {
 .bRetour {
 	position:absolute; 
 	right:5px;
-	top:2px;
+	top:0px;
 	cursor:pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0*/ 
 }
 #Signature {margin:5px 0px 10px 0px;}
 .Logo {margin-top:-1px;}
@@ -292,13 +294,13 @@ p {
 .PanneauRech {display:none;background:#FFF;border:3px solid #e2001a;border-radius:5px;width:90%;height:90%;position:fixed;left:5%;top:5%; z-index:10;}
 .HeaderPanRech {height:63px; border-bottom:3px solid #e2001a; position:absolute; top:0; left:0; right:0;}
 .HeaderPanRech p {margin-top:5px;line-height:20px; padding-left:15px; padding-right:15px;}
-.HeaderPanRech p input {width:100%;}
+.HeaderPanRech p input {width:100%; height:24px; font-size:14px;}
 .ContentPanRech {overflow:scroll; overflow-x:hidden; position:absolute; top:63px; left:0; right:0; bottom:40px; margin-top:5px; margin-bottom:5px;}
 .ContentPanRech li {padding-left:15px;line-height:26px; font-size:18px; font-weight:normal; color:#545458; width:100%; cursor:pointer;}
 .ContentPanRech li:hover { background:#e2001a; color:#fff;}
 .ContentPanRech li a {width:100%; display:block;}
 .FooterPanRech {height:40px; border-top:3px solid #e2001a; position:absolute; bottom:0px; left:0; right:0; display:block;vertical-align:middle; padding-left:15px; }
-.FooterPanRech button {margin-top:4px;}
+.FooterPanRech button {margin-top:4px; font-size:17px}
 /* INIT
 -------------------------------*/
 #Init {text-align:center;}
@@ -318,17 +320,17 @@ p {
 /* TARIF
 -------------------------------*/
 #LeModele {margin-bottom:10px;}
-#trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:807px; border:1px solid #e2001a;}
-#trfLesElems {position:absolute; top:30px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
-.fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:600px;}.fixedHeader tr th+th+th {width:130px;}
-.scrollContent tr td {width:80px;}.scrollContent tr td+td {width:600px;}.scrollContent tr td+td+td {width:130px;}
+#trfElems {position:fixed; bottom:35px; left:15px; height:60%; width:857px; border:1px solid #e2001a;}
+#trfLesElems {position:absolute; top:33px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
+.fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:650px;}.fixedHeader tr th+th+th {width:130px;}
+.scrollContent tr td {width:80px;}.scrollContent tr td+td {width:650px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
-.cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:40px; left:5px; right:5px; bottom:68px;}
+.cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
 .cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border-top:1px solid #000; text-align:right; padding:10px;}.cdeFooter button {vertical-align:middle;}
 .cdeContent select {padding:4px; text-align:right;}
 .cdeContent label{border-radius:4px; font-size:16px; line-height:26px;}
@@ -339,11 +341,11 @@ p {
 .bloc{width:740px; position:relative; left:50%; margin-left:-370px;}
 #rubrsoc,#rubrfrac {display:none;} #rubrsoc {margin-bottom:8px;}
 #lPartic {margin-bottom:8px;}
-#RemarqueVendeur {width:502px; margin-top:8px;}
+#RemarqueVendeur {width:521px; margin-top:8px;}
 #Societe {width:438px; margin-bottom:8px;}
 #NumTva {width:276px;}
-#Responsable {width:594px; }
-#Prenom1, #Prenom2 {width:282px;} #Nom1, #Nom2 {width:290px;margin-bottom:8px;}
+#Responsable {width:600px; }
+#Prenom1, #Prenom2 {width:282px;} #Nom1, #Nom2 {width:295px;margin-bottom:8px;}
 #Adresse,#Email {width:734px;margin-bottom:8px;}
 #CP {width:130px;}
 #Ville {width:582px; margin-bottom:8px;}
