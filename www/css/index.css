@@ -332,9 +332,9 @@ p {
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
 .cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
-.cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border:1px solid #000; text-align:right; padding:0px; height:45px; display:block;}.cdeFooter button {}
+.cdeFooter {position:fixed; bottom:25px; left:5px; right:5px; border:1px solid #000; text-align:right; padding:0px; height:45px; display:block;}.cdeFooter button { margin-top:15px; margin-left:-15px;}
 .cdeContent select {padding:4px; text-align:right;}
-.cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-1px;}
+.cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-2px;}
 .cdeContent input[type=radio] {display:none;}
 .cdeContent input[type=radio] + label {display:inline-block;padding: 2px 12px;background-color: #e7e7e7;color:#505058; border:1px solid #9e9e9e;}
 .cdeContent input[type=radio]:checked + label {background-color:#e2001a;color:#fff;}
