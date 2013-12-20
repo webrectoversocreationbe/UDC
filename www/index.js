@@ -5,7 +5,7 @@ var UserVersion=2;
 var app = {
     initialize: function() {
         this.bindEvents();
-			alert('init');
+        app.receivedEvent('deviceready');
     },
     bindEvents: function() {
         document.addEventListener('offline', this.onOffline, false);
@@ -46,7 +46,7 @@ var app = {
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
-//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
 }
 function gotFS(fileSystem) {
 	alert('fs ok');
