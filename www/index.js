@@ -5,6 +5,7 @@ var UserVersion=2;
 var app = {
     initialize: function() {
         this.bindEvents();
+			alert('init');
     },
     bindEvents: function() {
         document.addEventListener('offline', this.onOffline, false);
