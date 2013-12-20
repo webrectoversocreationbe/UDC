@@ -47,11 +47,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
 	alert('av');
-window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-alert("fileSystem " + window.requestFileSystem);	
-var test=window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
-dump(test,'log');
-	alert('ap');
 }
 function gotFS(fileSystem) {
 	alert('fs ok');
