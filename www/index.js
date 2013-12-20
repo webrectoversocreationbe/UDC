@@ -30,7 +30,6 @@ var app = {
 		switch(id) {
 		case 'deviceready':
 			check_network();
-			alert('dev ready');
 			break;
 		case 'offline':
 			check_network();
@@ -43,13 +42,17 @@ var app = {
 		}
     }
 };
+var fs;
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
+	alert('av');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+	alert('ap');
 }
 function gotFS(fileSystem) {
 	alert('fs ok');
+	fs=fileSystem;
 }
 function failFS(error) {
 	alert(error.code);
