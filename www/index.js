@@ -55,7 +55,7 @@ function gotFS(fileSystem) {
 	fs=fileSystem;
 }
 function failFS(error) {
-	alert(error.code);
+	alert(error.target.error.code);
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
