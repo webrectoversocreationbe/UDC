@@ -35,7 +35,8 @@ function Init() {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
+//						$('#Connexion').addClass('current');
+						$('#Commande').addClass('current');
 					}
 					$('.loader').toggle();
 				});	});	});	});	}); });	}); }); });	});
