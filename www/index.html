@@ -144,7 +144,8 @@
 					var l=unModele.Elements.length;
 					for(cpt=0;cpt<l;cpt++) {
 						var elcode=unModele.Elements[cpt].ELCODE;
-						var px=Nombre(unModele.Elements[cpt].Prix*unModele.MOCOEF);
+						var quelcoef=UserVersion==2?unModele.MOCOEF2:unModele.MOCOEF;
+						var px=Nombre(unModele.Elements[cpt].Prix*quelcoef);
 						$('#trfpx'+elcode).html(px+' €');
 					}
 					unModele.COULNR='';

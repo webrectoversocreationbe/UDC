@@ -3,6 +3,7 @@ var syncURL="http://192.168.0.248/UDC/ajaxSync.php";
 var tableUserOk=false;
 var tableSynchroOk=false;
 var tableModeleOk=false;
+var tableCoefOk=false;
 var tableCuirModOk=false;
 var tableLiasCuirOk=false;
 var tableLiasColoOk=false;
@@ -21,14 +22,15 @@ function Init() {
 	dbsync.initialize(function(){
 	 dbu.initialize(function(){
 	  dbmod.initialize(function(){
-	   dbcuirmod.initialize(function(){
-		dbliascuir.initialize(function(){
-		 dbliascolo.initialize(function(){
-		  dbopti.initialize(function(){
-		    dbelemod.initialize(function(){
-		     dbelement.initialize(function(){
-		      dbprix.initialize(function(){
-					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
+	   dbmodcoef.initialize(function(){
+	    dbcuirmod.initialize(function(){
+		 dbliascuir.initialize(function(){
+		  dbliascolo.initialize(function(){
+		   dbopti.initialize(function(){
+			dbelemod.initialize(function(){
+			 dbelement.initialize(function(){
+			  dbprix.initialize(function(){
+					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
 						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
@@ -36,7 +38,7 @@ function Init() {
 						$('#Connexion').addClass('current');
 					}
 					$('.loader').toggle();
-				});	});	});	});	}); });	}); });	});
+				});	});	});	});	}); });	}); }); });	});
 	});
 }
 function SynchroAll() {
@@ -47,16 +49,17 @@ function SynchroAll() {
 		$('.loader').toggle();
 		dbu.synchro(function() {
 		 dbmod.synchro(function(){
-		  dbcuirmod.synchro(function(){
-		   dbliascuir.synchro(function(){
-			dbliascolo.synchro(function(){
-			 dbopti.synchro(function(){
+		  dbmodcoef.synchro(function(){
+		   dbcuirmod.synchro(function(){
+		    dbliascuir.synchro(function(){
+			 dbliascolo.synchro(function(){
+			  dbopti.synchro(function(){
 			   dbelemod.synchro(function(){
 				dbelement.synchro(function(){
 				 dbprix.synchro(function(){
 						$('.loader').toggle();
 						alert('Synchro terminée');
-				 }); }); }); }); }); }); }); });
+				 }); }); }); }); }); }); }); }); });
 		});
 	}
 }
@@ -439,6 +442,113 @@ window.dbmod = {
     txErrorHandler: function(tx) {
         alert(tx.message);
 		log('Erreur SQL mod '+tx.message);
+    }
+};
+/*
+	TABLE MODCOEF
+*/
+window.dbmodcoef = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='ModCoef'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Coef existe');
+							tableCoefOk=true;
+			                callback();
+                        } else {
+                            log('La table Coef n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS ModCoef (" +
+				"MODNR VARCHAR(6) PRIMARY KEY, " +
+				"MOCOEF2 REAL)";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Coef à été créé');
+				tableCoefOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de coefficients créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
+			}
+		}
+		if (self.bDoSynchro==true) {self.synchro(callback);}
+	},
+	synchro: function(callback) {
+        var self = this;
+        $.ajax({
+            url: syncURL,
+	        crossDomain: true,
+			async: false,
+			type: "POST",
+            data: {Genre: 'COEF'},
+            success:function (data) {
+				madb.transaction(
+					function(tx) {
+						var sql = "delete from ModCoef";
+						tx.executeSql(sql);
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				madb.transaction(
+					function(tx) {
+						var l = data.length;
+						var sql = "INSERT INTO ModCoef (MODNR,MOCOEF2) VALUES (?, ?)";
+						var e;
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.MODNR, e.MOCOEF2];
+							tx.executeSql(sql, params);
+						}
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				self.Etat=true;
+				self.syncOK=true;
+				tableCoefOk=true;
+				log('La table Coef à été synchronisée');
+            },
+            error: function(request, model, response) {
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
+            }
+        }).done(function() {
+			callback();
+		});
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
     }
 };
 /*
@@ -1108,6 +1218,7 @@ var Modele = function() {
 	this.MODNR='';
 	this.MOUC='';
 	this.MOCOEF=0;
+	this.MOCOEF2=0;
 	this.MODELAI=0;
 	this.FOUR='';
 	this.CUIRNR='';
@@ -1145,62 +1256,79 @@ Modele.prototype = {
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
 			}, function() {
-				// LES ELEMENTS
-				self.Elements=[];
+				// COEF 2
 				madb.transaction(
 					function(tx) {
-						var sql = "SELECT Element.ELCODE,Element.ELFR FROM Element inner join EleMod on Element.ELCODE=EleMod.ELCODE where EleMod.MODNR='"+Id+"' order by Element.ELCODE";
+						var sql = "SELECT * FROM ModCoef where MODNR='"+Id+"'";
 						tx.executeSql(sql,[], 
 							function(tx, results) {
-								if (results.rows.length > 0) {
-									for (cpt=0;cpt<results.rows.length;cpt++) {
-										self.Elements[cpt]=results.rows.item(cpt);
-									}
+								if (results.rows.length == 1) {
+									self.MOCOEF2=results.rows.item(0).MOCOEF2;
 								}
 							},
-							function(tx) {log('Erreur elem'+tx.message);}
+							function(tx) {log('Erreur '+tx.message);}
 						);
 					}, function(err) {
 						log('Erreur '+err.code+' '+err.message);
 					}, function() {
-						// LES CATCUIR
-						self.CatCuir=[];
+						// LES ELEMENTS
+						self.Elements=[];
 						madb.transaction(
 							function(tx) {
-								var sql = "select CuirMod.CUCAT, CuirMod.CUIRNR, LiasCuir.CUIRUC from CuirMod inner join LiasCuir on CuirMod.CUIRNR=LiasCuir.CUIRNR "+
-									"where CuirMod.MODNR='"+Id+"' and LiasCuir.FOURN='"+self.FOUR+"'";
+								var sql = "SELECT Element.ELCODE,Element.ELFR FROM Element inner join EleMod on Element.ELCODE=EleMod.ELCODE where EleMod.MODNR='"+Id+"' order by Element.ELCODE";
 								tx.executeSql(sql,[], 
 									function(tx, results) {
 										if (results.rows.length > 0) {
 											for (cpt=0;cpt<results.rows.length;cpt++) {
-												self.CatCuir[cpt]=results.rows.item(cpt);
+												self.Elements[cpt]=results.rows.item(cpt);
 											}
 										}
 									},
-									function(tx) {log('Erreur catcuir'+tx.message);}
+									function(tx) {log('Erreur elem'+tx.message);}
 								);
 							}, function(err) {
 								log('Erreur '+err.code+' '+err.message);
 							}, function() {
-								// LES OPTIONS
+								// LES CATCUIR
+								self.CatCuir=[];
 								madb.transaction(
 									function(tx) {
-										var sql = "SELECT Num,OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
-											log(sql);
+										var sql = "select CuirMod.CUCAT, CuirMod.CUIRNR, LiasCuir.CUIRUC from CuirMod inner join LiasCuir on CuirMod.CUIRNR=LiasCuir.CUIRNR "+
+											"where CuirMod.MODNR='"+Id+"' and LiasCuir.FOURN='"+self.FOUR+"'";
 										tx.executeSql(sql,[], 
 											function(tx, results) {
 												if (results.rows.length > 0) {
 													for (cpt=0;cpt<results.rows.length;cpt++) {
-														self.Opti[cpt]=results.rows.item(cpt);
+														self.CatCuir[cpt]=results.rows.item(cpt);
 													}
 												}
 											},
-											function(tx) {log('Erreur options '+tx.message);}
+											function(tx) {log('Erreur catcuir'+tx.message);}
 										);
 									}, function(err) {
 										log('Erreur '+err.code+' '+err.message);
 									}, function() {
-										callback();
+										// LES OPTIONS
+										madb.transaction(
+											function(tx) {
+												var sql = "SELECT Num,OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
+													log(sql);
+												tx.executeSql(sql,[], 
+													function(tx, results) {
+														if (results.rows.length > 0) {
+															for (cpt=0;cpt<results.rows.length;cpt++) {
+																self.Opti[cpt]=results.rows.item(cpt);
+															}
+														}
+													},
+													function(tx) {log('Erreur options '+tx.message);}
+												);
+											}, function(err) {
+												log('Erreur '+err.code+' '+err.message);
+											}, function() {
+												callback();
+											}
+										);
 									}
 								);
 							}
