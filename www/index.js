@@ -47,7 +47,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
 window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+log('ici');
 var test=window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+log('ici2');
 dump(test,'log');
 }
 function gotFS(fileSystem) {
