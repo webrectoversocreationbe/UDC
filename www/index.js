@@ -49,7 +49,7 @@ function onDeviceReady() {
 window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 log('ici');
 try {
-var test=window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+var test=window.requestFileSystem(window.PERSISTENT, 0, gotFS, failFS);
 } catch(e) {
 	alert(e);
 }
