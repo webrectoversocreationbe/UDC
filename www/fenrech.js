@@ -12,7 +12,6 @@ function PopulateRech(Quoi,Rech,callback) {
 			function(tx) {
 				var sql = "SELECT MODNR, MOUC FROM Mods";
 				if (Rech!='') {sql=sql+" where MOUC like '%"+Rech+"%' or MODNR like '%"+Rech+"%'";}
-				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
@@ -36,13 +35,11 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un type de cuir');
 		var modnr=unModele.MODNR;
-		log('rech typecuir '+modnr);
 		madb.transaction(
 			function(tx) {
 				var sql = "select cuirmod.CUIRNR,liascuir.CUIRUC from Mods inner join cuirmod on Mods.MODNR=cuirmod.MODNR inner join liascuir on Mods.FOUR=liascuir.FOURN and cuirmod.CUIRNR=liascuir.CUIRNR"+
 				" where Mods.MODNR='"+modnr+"'";
 				if (Rech!='') {sql=sql+" and (cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%')";}
-				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
@@ -67,13 +64,11 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#txtrech').html('Rechercher une couleur');
 		var four=unModele.FOUR;
 		var cuirnr=unModele.CUIRNR;
-		log('rech couleur '+four+' '+cuirnr);
 		madb.transaction(
 			function(tx) {
 				var sql = "select COLORNR,COLOUC from LiasColo"+
 				" where FOURN='"+four+"' and CUIRNR='"+cuirnr+"'";
 				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
-				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
@@ -98,13 +93,11 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#txtrech').html('Rechercher une option');
 		var modnr=unModele.MODNR;
 		var four=unModele.FOUR;
-		log('rech option '+modnr);
 		madb.transaction(
 			function(tx) {
 				var sql = "select OPCODE,OPFR from Opti"+
 				" where MODNR='"+modnr+"' and FOUR='"+four+"'";
 				if (Rech!='') {sql=sql+" and (OPCODE like '%"+Rech+"%' or OPFR like '%"+Rech+"%')";}
-				log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
