@@ -46,23 +46,44 @@ var fs;
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
-window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-log('ici');
-try {
-	var test=window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
-} catch(e) {
-	alert(e);
-}
-log('ici2');
-dump(test,'log');
+	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+	try {
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
+	} catch(e) {
+		alert(e);
+	}
 }
 function gotFS(fileSystem) {
 	alert('fs ok');
 	fs=fileSystem;
+	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 }
 function failFS(error) {
 	alert(error.target.error.code);
 }
+
+    function gotFileEntry(fileEntry) {
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+
+    function gotFileWriter(writer) {
+        writer.onwriteend = function(evt) {
+            log("contents of file now 'some sample text'");
+            writer.truncate(11);  
+            writer.onwriteend = function(evt) {
+                log("contents of file now 'some sample'");
+                writer.seek(4);
+                writer.write(" different text");
+                writer.onwriteend = function(evt){
+                    log("contents of file now 'some different text'");
+                }
+            };
+        };
+        writer.write("some sample text");
+    }
+    function fail(error) {
+        log(error.code);
+    }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
