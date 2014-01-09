@@ -56,6 +56,7 @@ function onDeviceReady() {
 }
 function gotFS(fileSystem) {
 	fs=fileSystem;
+	log('fs ok');
 //	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 	var fileTransfer = new FileTransfer();
 	fileTransfer.download(
