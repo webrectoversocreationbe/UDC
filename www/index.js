@@ -59,6 +59,7 @@ function gotFS(fileSystem) {
 	log('fs ok');
 //	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 	var fileTransfer = new FileTransfer();
+	log('ft ok');
 	fileTransfer.download(
 		"http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg",
 		"350003.jpg",
@@ -71,6 +72,7 @@ function gotFS(fileSystem) {
 			log("upload error code" + error.code);
 		}
 	);
+	log('ft dw ok');
 }
 function failFS(error) {
 	alert(error.target.error.code);
