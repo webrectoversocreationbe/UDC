@@ -1,3 +1,3 @@
-# PhoneGap Build Starter Application
+# PhoneGap Build UDC
 
 
