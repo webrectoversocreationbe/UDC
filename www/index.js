@@ -50,18 +50,30 @@ function onDeviceReady() {
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
 	} catch(e) {
-		alert(e);
+		alert('Erreur filesystem');
+		log(e);
 	}
 }
 function gotFS(fileSystem) {
-	alert('fs ok');
 	fs=fileSystem;
-	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+//	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+	var fileTransfer = new FileTransfer();
+	fileTransfer.download(
+		"http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg",
+		"350003.jpg",
+		function(entry) {
+			log("download complete: " + entry.fullPath);
+		},
+		function(error) {
+			log("download error source " + error.source);
+			log("download error target " + error.target);
+			log("upload error code" + error.code);
+		}
+	);
 }
 function failFS(error) {
 	alert(error.target.error.code);
 }
-
     function gotFileEntry(fileEntry) {
         fileEntry.createWriter(gotFileWriter, fail);
     }
