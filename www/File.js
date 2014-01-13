@@ -1,8 +1,7 @@
 var fs;                 // FileSystem (accès disques)
 var ft;                 // FileTransfer (download/upload fichiers);
-var error;              // En cas d'erreur...
 
-var gfs={
+var objfs={
 	init: function(callback) {
 		var self=this;
 		log('Initialisation système de fichiers');
@@ -19,7 +18,7 @@ var gfs={
 }
 
 function InitFS(callback) {
-	gfs.init(callback);
+	objfs.init(callback);
 }
 
 function InitFT(callback) {
