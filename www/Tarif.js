@@ -1,5 +1,6 @@
 var trfModele={}
 function InitTarif() {
+	log('Init tarif');
 }
 function trfInfoModele() {
     trfModele=new Modele();
