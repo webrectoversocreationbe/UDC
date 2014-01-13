@@ -20,7 +20,9 @@ var app = {
         app.receivedEvent('online');
     },
 	onMenuKeyDown: function() {
-		showAlert('Menu','Menu','OK');
+		Vibre(2500);
+		Sonne(3);
+		showAlert('Touche Menu appuyée','Menu contextuel','OK');
 	},
     receivedEvent: function(id) {
 		switch(id) {
@@ -117,30 +119,11 @@ function showAlert(Mes,Titre,Bouton) {
 		Bouton
 	);
 }
-function downloadFile() {
-/*		"http://192.168.0.248/UDC/ServeurDistant/Photos/450/450002.jpg",
-*/
-
-	log('fct dowl');
-		alert('ft');
-	var ft = new FileTransfer();
-		alert('ft cree');
-	ft.download(
-		encodeURI("http://www.universducuir.be/Accueil/ImgSlide/10-canapes-cuir-bicolore-blanc-et-noir-pas-cher.jpg"),
-		"file:///storage/emulated/0/Download/450002.jpg",
-		function(theFile) {
-	alert('la');
-			log("download complete: " + theFile.toURI());
-		},
-		function(error) {
-	alert('erreur');
-			log("download error source " + error.source);
-			log("download error target " + error.target);
-			log("upload error code: " + error.code);
-		}
-	);
-	alert('ici');
-	log('finonfilesucc');
+function Vibre(temps) {
+	navigator.notification.vibrate(temps)
+}
+function Sonne(nb) {
+	navigator.notification.beep(nb);
 }
 function ShowProduits() {
 	$.ajax({
