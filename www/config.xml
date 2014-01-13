@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "be.rectoversocreation.UDC"
-        version   = "1.1.29">
+        version   = "1.1.31">
 
     <name>Univers du cuir</name>
 
     <description>
-        Application - Bon de commande.
+        Application - Bon de commande2.
     </description>
 
     <author href="http://www.businessadvices.be" email="web@rectoversocreation.be">
