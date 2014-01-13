@@ -49,7 +49,7 @@ function onDeviceReady() {
 	app.receivedEvent('deviceready');
 	InitDB();
 	InitFS(function(){alert('fsok');});
-//	InitFT();
+	InitFT();
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}

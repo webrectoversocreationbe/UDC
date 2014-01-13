@@ -7,13 +7,13 @@ var gfs={
 		log('Initialisation système de fichiers');
 		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 		try {
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.gotFS(filesystem,callback), self.failFS(error,callback));
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.gotFS(fs,callback), self.failFS(error,callback));
 		} catch(e) {
 			log('Erreur init filesystem' + e);
 		}
 	},
 	gotFS: function(fileSystem,callback) {
-		fs=fileSystem;
+		//fs=fileSystem;
 		log('FileSystem opérationnel');
 		callback();
 	},
