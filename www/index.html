@@ -266,10 +266,22 @@
         </div>
         <div class="cdeContent">
             <div id="cdeChoix">
-                <div id="cx1" class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
-                <div id="cx2" class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
-                <div id="cx3" class="floatleft ML15"><p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p></div>
-                <div id="cx4" class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
+                <div id="cx1" class="floatleft">
+                	<p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p>
+                    <p id="cdemoduc">355001 - DEBUSSY</p>
+                </div>
+                <div id="cx2" class="floatleft ML15">
+                	<p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p>
+                    <p id="cdecuiruc">0001 - MONOLYTH</p>
+                </div>
+                <div id="cx3" class="floatleft ML15">
+                	<p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p>
+                    <p id="cdecolouc">001 - CHÊNE CLAIR</p>
+                </div>
+                <div id="cx4" class="floatleft ML15">
+                	<p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p>
+                    <p id="cdeopfr">001 - FINITION ANTIQUE</p>
+                </div>
                 <div class="clear"></div>
             </div><br/>
             <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
@@ -284,8 +296,8 @@
                 </table>
                 </div>
             </div>
-            <p class="ML15"><button class="btncde" id="ajelem">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem">Ajouter une remarque</button></p>
-            <p class="ML15"><label for="factenssiege">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;<button class="btncde" id="realcroquis">Réaliser un croquis</button></p>
+            <p class="ML15"><button class="btncde" id="ajelem">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem">Ajouter une remarque</button></p><br/>
+            <p class="ML15"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;<button class="btncde" id="realcroquis">Réaliser un croquis</button></p>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>

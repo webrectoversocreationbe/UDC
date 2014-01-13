@@ -332,7 +332,7 @@ p {
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
 .cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
-.cdeFooter {display:block;position:fixed; left:5px; right:5px; bottom:25px; border:1px solid #000; text-align:right; padding:0px;height:45px;}
+.cdeFooter {display:block;position:fixed; left:5px; right:5px; bottom:25px; border-top:1px solid #000; text-align:right; padding:0px;height:45px;}
 .cdeFooter button, .btncde {margin:5px 10px 5px 10px; padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px;}
 .cdeContent select {padding:4px; text-align:right;}
 .cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-2px;}
@@ -360,5 +360,5 @@ p {
 #cx1,#cx2,#cx3,#cx4 {width:240px;}
 #cdeElems {position:relative; top:15px; left:15px; height:60%; width:857px; border:1px solid #e2001a; margin-bottom:25px;}
 #cdeLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
-.cdefixedHeader tr th {width:650px;}.fixedHeader tr th+th {width:130px;}
-.cdescrollContent tr td {width:680px;}.scrollContent tr td+td {width:130px;}
+.cdefixedHeader tr th {width:650px;}.cdefixedHeader tr th+th {width:130px;}
+.cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}
