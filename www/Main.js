@@ -47,11 +47,9 @@ $(document).ready(function() {
 function onDeviceReady() {
 	app.initialize();
 	app.receivedEvent('deviceready');
-	InitDB(
-		initFS(
-			initFT(function(){log('tout ok');})
-		)
-	);
+	InitDB();
+	InitFS(function(){alert('fsok');});
+//	InitFT();
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}

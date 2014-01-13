@@ -15,7 +15,7 @@ var bDoLogin=false;
 /* 
 	INIT GENERAL
 */
-function InitDB(callback) {
+function InitDB() {
 	log('Initialisation base de données');
 	if (debug==true) {
 		$('#Init').removeClass('current');
@@ -44,7 +44,6 @@ function InitDB(callback) {
 						$('#Commande').addClass('current');
 					}
 					$('.loader').toggle();
-					callback();
 				});	});	});	});	}); });	}); }); });	});
 	});
 }
