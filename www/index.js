@@ -61,8 +61,8 @@ function gotFS(fileSystem) {
 	var fileTransfer = new FileTransfer();
 	log('ft ok');
 	fileTransfer.download(
-		"http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg",
-		"350003.jpg",
+		encodeURI("http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg"),
+		fs.root.fullPath + "/350003.jpg",
 		function(entry) {
 			log("download complete: " + entry.fullPath);
 		},
