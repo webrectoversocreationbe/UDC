@@ -49,7 +49,10 @@ $(document).ready(function() {
 function onDeviceReady() {
 	log('ondeviceready');
 	app.initialize();
-	InitDB();
+	app.receivedEvent('deviceready');
+	InitDB(onDBInitOk);
+}
+function onDBInitOk() {
 	log('init fs');
 	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 	try {
