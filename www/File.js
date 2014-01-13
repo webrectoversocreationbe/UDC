@@ -14,7 +14,7 @@ var gfs={
 		}
 	},
 	gotFS: function(fileSystem,callback) {
-		//fs=fileSystem;
+		fs=fileSystem;
 		log('FileSystem opérationnel');
 		callback();
 	},

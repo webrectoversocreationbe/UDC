@@ -53,7 +53,9 @@ function onDeviceReady() {
 		// initialisation du filetransfer
 		InitFT(function() {
 			// initialisation de la DB
-			InitDB();
+			InitDB(function() {
+				log('Base de données initialisée');
+			});
 		});
 	});
 }
