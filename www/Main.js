@@ -119,6 +119,7 @@ function Go(Ou) {
 		$('#Tarif').addClass('current');
 		break;
 	case 'Commande':
+		InitCommande();
 		$('.Panneau').removeClass('current');
 		$('#Commande').addClass('current');
 		break;
