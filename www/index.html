@@ -265,26 +265,27 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
-        <div id="cdeChoix">
-            <div id="cx1" class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
-            <div id="cx2" class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
-            <div id="cx3" class="floatleft ML15"><p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p></div>
-            <div id="cx4" class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
-            <div class="clear"></div>
-        </div><br/>
-        <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
-        <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
-        </p>
-        <table>
-        <tr>
-        <td><p>élement</p>
-        </td>
-        <td><p>quantité</p>
-        </td>
-        </tr>
-        </table>
-        <button id="ajelem">Ajouter un élément</button>&nbsp;<button id="supprelem">Supprimer un élément</button>&nbsp;<button id="ajrem">Ajouter une remarque</button>
+            <div id="cdeChoix">
+                <div id="cx1" class="floatleft"><p>Modèle : <button id="RechMod" onClick="InitRech('Modeles')">Choisir</button></p></div>
+                <div id="cx2" class="floatleft ML15"><p>Revêtement : <button id="RechCuir" onClick="InitRech('TypeCuir')">Choisir</button></p></div>
+                <div id="cx3" class="floatleft ML15"><p>Couleur : <button id="RechCouleur" onClick="InitRech('Couleur')">Choisir</button></p></div>
+                <div id="cx4" class="floatleft ML15"><p>Option : <button id="RechOptions" onClick="InitRech('Option')">Choisir</button></p></div>
+                <div class="clear"></div>
+            </div><br/>
+            <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
+            <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
+            </p>
+            <div id="cdeElems">
+                <div><table><thead class="cdefixedHeader"><tr><th align="left">Eléments</th><th align="right">Quantité&nbsp;&nbsp;&nbsp;&nbsp;</th></tr></thead></table></div>
+                <div id="cdeLesElems">
+                <table id="cdetLesElems" class="cdescrollContent">
+                <!-- <tr><td>123456</td><td>dffdsfkjhg lkdfjgh ldfskgjhlruhksjhglkdfjhgldfkj</td><td align="right">12.00 €</td></tr> -->
+                </table>
+                </div>
+            </div>
+            <p class="ML15"><button class="btncde" id="ajelem">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem">Ajouter une remarque</button></p>
+            <p class="ML15"><label for="factenssiege">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;<button class="btncde" id="realcroquis">Réaliser un croquis</button></p>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
@@ -312,7 +313,7 @@
 	function chkEcran() {
 		switch (EcranActif) {
 		case 1:
-			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
+/*			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
 				alert('Vous devez entrer le nombre de fractionnement'); return false;
 			}
 			if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
@@ -329,7 +330,7 @@
 			}
 			if ($('#Tel1').val()=='') {
 				alert('Le téléphone est obligatoire'); return false;
-			}
+			}*/
 			$('#Ecran'+EcranActif).removeClass('current2');
 			EcranActif+=1;
 			$('#Ecran'+EcranActif).addClass('current2');
