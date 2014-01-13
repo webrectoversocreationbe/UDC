@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "be.rectoversocreation.UDC2"
-        version   = "1.1.11">
+        version   = "1.1.12">
 
     <name>Univers du cuir</name>
 
     <description>
-        Application - Bon de commande2.
+        Application - Bon de commande.
     </description>
 
     <author href="http://www.businessadvices.be" email="web@rectoversocreation.be">
@@ -27,6 +27,7 @@
 	<feature name="http://api.phonegap.com/1.0/battery"/>
 	<feature name="http://api.phonegap.com/1.0/notification"/>
 	<feature name="http://api.phonegap.com/1.0/storage"/>
+	<feature name="http://api.phonegap.com/1.0/file"/>
 
 	<preference name="target-device" 			  value="universal" />
     <preference name="phonegap-version"           value="3.0.0" />          <!-- all: current version of PhoneGap -->
