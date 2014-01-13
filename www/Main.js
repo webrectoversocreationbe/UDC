@@ -105,6 +105,10 @@ function CloseApp() {
 }
 function Go(Ou) {
 	switch(Ou) {
+	case 'SQL':
+		$('.Panneau').removeClass('current');
+		$('#SQL').addClass('current');
+		break;
 	case 'Main':
 		$('.Panneau').removeClass('current');
 		$('#Main').addClass('current');
@@ -113,10 +117,6 @@ function Go(Ou) {
 		InitTarif();
 		$('.Panneau').removeClass('current');
 		$('#Tarif').addClass('current');
-		break;
-	case 'SQL':
-		$('.Panneau').removeClass('current');
-		$('#SQL').addClass('current');
 		break;
 	case 'Commande':
 		$('.Panneau').removeClass('current');
