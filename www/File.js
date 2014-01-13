@@ -1,5 +1,6 @@
 var fs;                 // FileSystem (accès disques)
 var ft;                 // FileTransfer (download/upload fichiers);
+var error;              // En cas d'erreur...
 
 var gfs={
 	init: function(callback) {

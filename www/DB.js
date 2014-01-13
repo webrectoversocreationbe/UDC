@@ -15,13 +15,14 @@ var bDoLogin=false;
 /* 
 	INIT GENERAL
 */
-function InitDB() {
+function InitDB(callback) {
 	log('Initialisation base de données');
 	if (debug==true) {
 		$('#Init').removeClass('current');
 		$('#Commande').addClass('current');
 		return false
 	}
+	var truc=this;
 	$('.loader').toggle();
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
@@ -44,6 +45,7 @@ function InitDB() {
 						$('#Commande').addClass('current');
 					}
 					$('.loader').toggle();
+					truc.callback();
 				});	});	});	});	}); });	}); }); });	});
 	});
 }

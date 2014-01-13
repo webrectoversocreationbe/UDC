@@ -25,7 +25,7 @@ var app = {
     receivedEvent: function(id) {
 		switch(id) {
 		case 'deviceready':
-			log('DeviceReady');
+			log('L\'application est prête');
 			check_network();
 			break;
 		case 'offline':
@@ -45,11 +45,17 @@ $(document).ready(function() {
 });
 
 function onDeviceReady() {
+	// initialisation de l'application
 	app.initialize();
 	app.receivedEvent('deviceready');
-	InitDB();
-	InitFS(function(){alert('fsok');});
-	InitFT();
+	// initialisation du filesystem
+	InitFS(function() {
+		// initialisation du filetransfer
+		InitFT(function() {
+			// initialisation de la DB
+			InitDB();
+		});
+	});
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
