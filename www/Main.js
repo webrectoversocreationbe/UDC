@@ -1,8 +1,9 @@
 var debug=false;
-var bConnected=false;
-var bAdmin=false;
-var User='';
-var UserVersion=2;
+var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
+var bAdmin=false;       // SI l'utilisateur est administrateur
+var User='';            // Utilisateur loggué
+var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
+
 var app = {
     initialize: function() {
         this.bindEvents();
@@ -57,10 +58,10 @@ function onDeviceReady() {
 }
 function gotFS(fileSystem) {
 	fs=fileSystem;
-	log('fs ok');
+	log('FileSystem opérationnel');
 //	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 	var fileTransfer = new FileTransfer();
-	log('ft ok');
+	log('FileTransfer opérationnel');
 	fileTransfer.download(
 		encodeURI("http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg"),
 		fs.root.fullPath + "/350003.jpg",
@@ -73,10 +74,9 @@ function gotFS(fileSystem) {
 			log("upload error code" + error.code);
 		}
 	);
-	log('ft dw ok');
 }
 function failFS(error) {
-	alert(error.target.error.code);
+	log('fserror '+error.target.error.code);
 }
     function gotFileEntry(fileEntry) {
         fileEntry.createWriter(gotFileWriter, fail);
@@ -110,6 +110,7 @@ function Go(Ou) {
 		$('#Main').addClass('current');
 		break;
 	case 'Tarif':
+		InitTarif();
 		$('.Panneau').removeClass('current');
 		$('#Tarif').addClass('current');
 		break;

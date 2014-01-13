@@ -1,11 +1,88 @@
 /* 
 	FENETRES DE RECHERCHE
 */
+function InitRech(Quoi) {
+	$('#ChampRech').val('');
+	$('#QuelleRech').val(Quoi);
+	var valrech=$('#ValRech').val();
+	if (Quoi=='trfModeles') {
+		PopulateRech('trfModeles','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			trfInfoModele();
+		});
+	} else if (Quoi=='trfTypeCuir') {
+		PopulateRech('trfTypeCuir','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			trfModele.setcuir($('#ValRech').val(),function(){
+				trfModele.CUIRUC=$('#DescRech').val();
+				$('#infotypcuir').html('Revêtement : '+trfModele.CUIRNR+' - '+trfModele.CUIRUC);
+				var l=trfModele.Elements.length;
+				for(cpt=0;cpt<l;cpt++) {
+					var elcode=trfModele.Elements[cpt].ELCODE;
+					var quelcoef=UserVersion==2?trfModele.MOCOEF2:trfModele.MOCOEF;
+					var px=Nombre(trfModele.Elements[cpt].Prix*quelcoef);
+					$('#trfpx'+elcode).html(px+' €');
+				}
+				trfModele.COULNR='';
+				trfModele.COLOUC='';
+				$('#infocouleur').html('');
+			});
+		});
+	} else if (Quoi=='trfCouleur') {
+		PopulateRech('trfCouleur','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			trfModele.COULNR=$('#ValRech').val();
+			trfModele.COLOUC=$('#DescRech').val();
+			$('#infocouleur').html('Couleur : '+trfModele.COULNR+' - '+trfModele.COLOUC);
+		});
+	} else if (Quoi=='trfOption') {
+		PopulateRech('trfOption','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			trfModele.OPCODE=$('#ValRech').val();
+			trfModele.OPFR=$('#DescRech').val();
+			$('#infooption').html('Option : '+trfModele.OPCODE+' - '+trfModele.OPFR);
+		});
+	}
+}
+function Choix(obj) {
+	$('#ChampRech').val(obj.text());
+	var t=obj.prop('id').substr(2).split('|');
+	$('#ValRech').val(t[0]);
+	$('#DescRech').val(t[1]);
+}
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
 	switch (Quoi) {
-	case 'Modeles':
+	case 'trfModeles':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(
@@ -31,10 +108,10 @@ function PopulateRech(Quoi,Rech,callback) {
 			}
 		);
 		break;
-	case 'TypeCuir':
+	case 'trfTypeCuir':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un type de cuir');
-		var modnr=unModele.MODNR;
+		var modnr=trfModele.MODNR;
 		madb.transaction(
 			function(tx) {
 				var sql = "select cuirmod.CUIRNR,liascuir.CUIRUC from Mods inner join cuirmod on Mods.MODNR=cuirmod.MODNR inner join liascuir on Mods.FOUR=liascuir.FOURN and cuirmod.CUIRNR=liascuir.CUIRNR"+
@@ -59,11 +136,11 @@ function PopulateRech(Quoi,Rech,callback) {
 			}
 		);
 		break;
-	case 'Couleur':
+	case 'trfCouleur':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher une couleur');
-		var four=unModele.FOUR;
-		var cuirnr=unModele.CUIRNR;
+		var four=trfModele.FOUR;
+		var cuirnr=trfModele.CUIRNR;
 		madb.transaction(
 			function(tx) {
 				var sql = "select COLORNR,COLOUC from LiasColo"+
@@ -88,11 +165,11 @@ function PopulateRech(Quoi,Rech,callback) {
 			}
 		);
 		break;
-	case 'Option':
+	case 'trfOption':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher une option');
-		var modnr=unModele.MODNR;
-		var four=unModele.FOUR;
+		var modnr=trfModele.MODNR;
+		var four=trfModele.FOUR;
 		madb.transaction(
 			function(tx) {
 				var sql = "select OPCODE,OPFR from Opti"+
