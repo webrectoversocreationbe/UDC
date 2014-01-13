@@ -50,10 +50,8 @@ var app = {
 var fs;
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+	log('ondeviceready');
 	app.initialize();
-}
-$(document).ready(function() {
-	InitDB();
 	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
@@ -61,6 +59,9 @@ $(document).ready(function() {
 		alert('Erreur filesystem');
 		log(e);
 	}
+}
+$(document).ready(function() {
+	InitDB();
 });
 function gotFS(fileSystem) {
 	fs=fileSystem;
@@ -133,6 +134,7 @@ function Go(Ou) {
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
 function check_network() {
+	log('check network');
     var networkState = navigator.network.connection.type;
     var states = {};
     states[Connection.UNKNOWN]  = 'Inconnu';
