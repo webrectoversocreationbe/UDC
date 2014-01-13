@@ -3,22 +3,18 @@ var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
 var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
+var fs;                 // FileSystem (accès disques)
+var ft;                 // FileTransfer (download/upload fichiers);
 
 var app = {
     initialize: function() {
         this.bindEvents();
-        app.receivedEvent('deviceready');
     },
     bindEvents: function() {
         document.addEventListener('offline', this.onOffline, false);
         document.addEventListener('online', this.onOnline, false);
 		document.addEventListener("menubutton", this.onMenuKeyDown, false);
 	},
-    onDeviceReady: function() {
-		$.mobile.allowCrossDomainPages = true;
-		$.support.cors = true;
-		app.receivedEvent('deviceready');
-    },
     onOffline: function() {
         app.receivedEvent('offline');
     },
@@ -37,21 +33,24 @@ var app = {
 		case 'offline':
 			log('offline');
 			check_network();
-//			$('#sync').attr('enabled',false);
 			break;
 		case 'online':
 			log('online');
 			check_network();
-//			$('#sync').attr('enabled',true);
 			break;
 		}
     }
 };
-var fs;
-document.addEventListener("deviceready", onDeviceReady, false);
+
+$(document).ready(function() {
+	document.addEventListener("deviceready", onDeviceReady, false);
+});
+
 function onDeviceReady() {
 	log('ondeviceready');
 	app.initialize();
+	InitDB();
+	log('init fs');
 	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
@@ -60,9 +59,6 @@ function onDeviceReady() {
 		log(e);
 	}
 }
-$(document).ready(function() {
-	InitDB();
-});
 function gotFS(fileSystem) {
 	fs=fileSystem;
 	log('FileSystem opérationnel');
