@@ -20,8 +20,7 @@ var app = {
         app.receivedEvent('online');
     },
 	onMenuKeyDown: function() {
-		Vibre(2500);
-		Sonne(3);
+		Sonne(1);
 		showAlert('Touche Menu appuyée','Menu contextuel','OK');
 	},
     receivedEvent: function(id) {

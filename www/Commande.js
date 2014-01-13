@@ -1,25 +1,27 @@
+var cdeModele={}
+var EcranActif;
 function InitCommande() {
+	EcranActif=1;
 	var d=new Date();
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
-	$('#RemarqueVendeur').html('');
-	$('#Societe').html('');
-	$('#NumTva').html('');
-	$('#Responsable').html('');
-	$('#Prenom1').html('');
-	$('#Nom1').html('');
-	$('#Prenom2').html('');
-	$('#Nom2').html('');
-	$('#Adresse').html('');
-	$('#CP').html('');
-	$('#Ville').html('');
-	$('#Email').html('');
-	$('#Tel1').html('');
-	$('#Tel2').html('');
-	$('#Gsm1').html('');
-	$('#Gsm2').html('');
-	$('#Remarque1').html('');
+	$('#RemarqueVendeur').val('');
+	$('#Societe').val('');
+	$('#NumTva').val('');
+	$('#Responsable').val('');
+	$('#Prenom1').val('');
+	$('#Nom1').val('');
+	$('#Prenom2').val('');
+	$('#Nom2').val('');
+	$('#Adresse').val('');
+	$('#CP').val('');
+	$('#Ville').val('');
+	$('#Email').val('');
+	$('#Tel1').val('');
+	$('#Tel2').val('');
+	$('#Gsm1').val('');
+	$('#Gsm2').val('');
+	$('#Remarque1').val('');
 }
-var EcranActif=1;
 function chkFrac() {
 	$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
 }
@@ -63,4 +65,22 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	}
+}
+function cdeInfoModele() {
+    cdeModele=new Modele();
+    cdeModele.init($('#ValRech').val(), function() {
+        if (cdeModele.Existe==true) {
+            $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MOUC);
+			$('#Delai').val(cdeModele.MODELAI);
+            var l=cdeModele.Elements.length;
+            $('#cdetLesElems').html('');
+            for(cpt=0;cpt<l;cpt++) {
+                var el='<tr><td>'+cdeModele.Elements[cpt].ELCODE+' - '+cdeModele.Elements[cpt].ELFR+'</td><td align="right" id="cdeelqte'+cdeModele.Elements[cpt].ELCODE+'"></td></tr>';
+                $('#cdetLesElems').append(el);
+            }
+        } else {
+            $('#cdemoduc').html('<p>Modèle innexistant</p>');
+			$('#Delai').val('');
+        }
+    });
 }

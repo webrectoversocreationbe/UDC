@@ -17,6 +17,18 @@ function InitRech(Quoi) {
 			$('.PanneauRech').hide();
 			trfInfoModele();
 		});
+	} else if (Quoi=='cdeModeles') {
+		PopulateRech('cdeModeles','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			//trfInfoModele();
+		});
 	} else if (Quoi=='trfTypeCuir') {
 		PopulateRech('trfTypeCuir','',function() {
 			$('.PanneauRech').show();
@@ -83,6 +95,7 @@ function PopulateRech(Quoi,Rech,callback) {
 	$('#ValRech').val('');
 	switch (Quoi) {
 	case 'trfModeles':
+	case 'cdeModeles':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(

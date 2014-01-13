@@ -1,6 +1,5 @@
 var trfModele={}
 function InitTarif() {
-	log('Init tarif');
 	$('#trfResult').html('');
 	$('#trfTLesElems').html('');
 }
@@ -8,7 +7,6 @@ function trfInfoModele() {
     trfModele=new Modele();
     trfModele.init($('#ValRech').val(), function() {
         if (trfModele.Existe==true) {
-            dump(trfModele,'log');
             var ret='<h2>'+trfModele.MODNR+' - '+trfModele.MOUC+'</h2><p>Délai : '+trfModele.MODELAI+' semaines</p>';
             var l=trfModele.Elements.length;
             $('#trfTLesElems').html('');
