@@ -3,8 +3,6 @@ var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
 var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
-var fs;                 // FileSystem (accès disques)
-var ft;                 // FileTransfer (download/upload fichiers);
 
 var app = {
     initialize: function() {
@@ -27,15 +25,15 @@ var app = {
     receivedEvent: function(id) {
 		switch(id) {
 		case 'deviceready':
-			log('deviceready');
+			log('DeviceReady');
 			check_network();
 			break;
 		case 'offline':
-			log('offline');
+			log('Offline');
 			check_network();
 			break;
 		case 'online':
-			log('online');
+			log('Online');
 			check_network();
 			break;
 		}
@@ -47,68 +45,18 @@ $(document).ready(function() {
 });
 
 function onDeviceReady() {
-	log('ondeviceready');
 	app.initialize();
 	app.receivedEvent('deviceready');
-	InitDB(onDBInitOk);
-}
-function onDBInitOk() {
-	log('init fs');
-	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-	try {
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
-	} catch(e) {
-		alert('Erreur filesystem');
-		log(e);
-	}
-}
-function gotFS(fileSystem) {
-	fs=fileSystem;
-	log('FileSystem opérationnel');
-//	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-	var fileTransfer = new FileTransfer();
-	log('FileTransfer opérationnel');
-	fileTransfer.download(
-		encodeURI("http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg"),
-		fs.root.fullPath + "/350003.jpg",
-		function(entry) {
-			log("download complete: " + entry.fullPath);
-		},
-		function(error) {
-			log("download error source " + error.source);
-			log("download error target " + error.target);
-			log("upload error code" + error.code);
-		}
+	InitDB(
+		initFS(
+			initFT(function(){log('tout ok');})
+		)
 	);
 }
-function failFS(error) {
-	log('fserror '+error.target.error.code);
-}
-    function gotFileEntry(fileEntry) {
-        fileEntry.createWriter(gotFileWriter, fail);
-    }
-
-    function gotFileWriter(writer) {
-        writer.onwriteend = function(evt) {
-            log("contents of file now 'some sample text'");
-            writer.truncate(11);  
-            writer.onwriteend = function(evt) {
-                log("contents of file now 'some sample'");
-                writer.seek(4);
-                writer.write(" different text");
-                writer.onwriteend = function(evt){
-                    log("contents of file now 'some different text'");
-                }
-            };
-        };
-        writer.write("some sample text");
-    }
-    function fail(error) {
-        log(error.code);
-    }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
+
 function Go(Ou) {
 	switch(Ou) {
 	case 'SQL':
@@ -133,7 +81,7 @@ function Go(Ou) {
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
 function check_network() {
-	log('check network');
+	log('Test de connectivité');
     var networkState = navigator.network.connection.type;
     var states = {};
     states[Connection.UNKNOWN]  = 'Inconnu';
