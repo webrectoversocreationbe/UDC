@@ -17,6 +17,11 @@ var bDoLogin=false;
 */
 function Init() {
 	log('Initialisation');
+	if (debug==true) {
+		$('#Init').removeClass('current');
+		$('#Commande').addClass('current');
+		return false
+	}
 	$('.loader').toggle();
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){

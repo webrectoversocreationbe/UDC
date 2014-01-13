@@ -1,3 +1,4 @@
+var debug=false;
 var bConnected=false;
 var bAdmin=false;
 var User='';
