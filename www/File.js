@@ -8,19 +8,13 @@ var gfs={
 		log('Initialisation système de fichiers');
 		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 		try {
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.gotFS(fs,callback), self.failFS(error,callback));
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+				function(filesystem) {log('FileSystem opérationnel'); fs=filesystem; callback();}, 
+				function(error) {log('fserror '+error.target.error.code); callback();}
+			);
 		} catch(e) {
 			log('Erreur init filesystem' + e);
 		}
-	},
-	gotFS: function(fileSystem,callback) {
-		fs=fileSystem;
-		log('FileSystem opérationnel');
-		callback();
-	},
-	failFS: function(error,callback) {
-		log('fserror '+error.target.error.code);
-		callback();
 	}
 }
 
