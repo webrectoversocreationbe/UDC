@@ -31,13 +31,16 @@ var app = {
     receivedEvent: function(id) {
 		switch(id) {
 		case 'deviceready':
+			log('deviceready');
 			check_network();
 			break;
 		case 'offline':
+			log('offline');
 			check_network();
 //			$('#sync').attr('enabled',false);
 			break;
 		case 'online':
+			log('online');
 			check_network();
 //			$('#sync').attr('enabled',true);
 			break;
@@ -48,6 +51,9 @@ var fs;
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	app.initialize();
+}
+$(document).ready(function() {
+	InitDB();
 	window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, failFS);
@@ -55,7 +61,7 @@ function onDeviceReady() {
 		alert('Erreur filesystem');
 		log(e);
 	}
-}
+});
 function gotFS(fileSystem) {
 	fs=fileSystem;
 	log('FileSystem opérationnel');

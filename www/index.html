@@ -21,6 +21,9 @@
     <script src="Main.js"></script>                                  <!-- Interface : Init Appli, Getion panneaux écrans, Outils Phonegap -->
 </head>
 <body>
+<!--
+	PANNEAU INIT APPLI
+-->
 <div id="Init" class="Panneau current">
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation (première utilisation)</h2><br/>
@@ -28,6 +31,9 @@
     <img src="images/loader.gif" class="loader">
     <p id="InitResult"></p>
 </div>
+<!--
+	PANNEAU LOGIN
+-->
 <div id="Connexion" class="Panneau">
     <img src="images/logo.png" class="Logo">
     <form name="ident" id="ident" action="#" method="post">
@@ -40,6 +46,9 @@
     </form>
     <p id="rechmod"></p>
 </div>
+<!--
+	PANNEAU MENU GENERAL
+-->
 <div id="Main" class="Panneau">
     <img src="images/logo.png" class="Logo"><br/><br/><br/>
     <h2>Sélectionnez votre choix</h2><br/>
@@ -52,6 +61,9 @@
     <p><a onClick="SynchroAll()">Synchronisation</a></p><br/><img src="images/loader.gif" class="loader"><br/>
     <p class="uniquementadmin"><a onClick="Go('SQL')">SQL</a></p><br class="uniquementadmin"/>
 </div>
+<!--
+	PANNEAU TARIF
+-->
 <div id="Tarif" class="Panneau">
     <a onClick="Go('Main')" class="bRetour"><img src="images/close.png" width="50" height="50"/></a>
     <h1 class="ML10 MT10">Tarif</h1>
@@ -72,26 +84,9 @@
         </div>
     </div>
 </div>
-<div class="PanneauRech">
-	<div class="HeaderPanRech">
-    	<p>
-        <span id="txtrech">Rechercher</span> :<br/>
-        <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyup="PopulateRech('',this.value,null)" />
-        <input type="hidden" name="QuelleRech" id="QuelleRech" />
-        <input type="hidden" name="ValRech" id="ValRech" />
-        <input type="hidden" name="DescRech" id="DescRech" />
-        </p>
-    </div>
-    <div class="ContentPanRech">
-    <ul id="lesli">
-    <li><a id="VR023001" onclick="Choix($(this))">023001 - TABLE OVALE REF 3336</a></li>
-    <li><a id="VR170016" onclick="Choix($(this))">170016 - DEBUSSY</a></li>
-    </ul>
-    </div>
-    <div class="FooterPanRech">
-    	<p><button id="btnOKPanRech">Ok</button><button class="ML15" id="btnAnnulerPanRech">Annuler</button></p>
-    </div>
-</div>
+<!--
+	PANNEAU NOUVELLE VENTE
+-->
 <div id="Commande" class="Panneau">
 	<div id="Ecran1" class="EcranCde current2">
         <div class="cdeEntete">
@@ -202,58 +197,33 @@
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
         </div>
     </div>
-    <script>
-	var EcranActif=1;
-	function chkFrac() {
-		$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
-	}
-	function chkPartSoc() {
-		if ($('#Partic').is(':checked')==true) {
-			$('#rubrsoc').css('display','none');
-			$('#rubrpart').css('display','block');
-		} else {
-			$('#rubrsoc').css('display','block');
-			$('#rubrpart').css('display','none');
-		}
-	}
-	function prevEcran() {
-		$('#Ecran'+EcranActif).removeClass('current2');
-		EcranActif-=1;
-		$('#Ecran'+EcranActif).addClass('current2');
-	}
-	function chkEcran() {
-		switch (EcranActif) {
-		case 1:
-/*			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
-				alert('Vous devez entrer le nombre de fractionnement'); return false;
-			}
-			if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
-				alert('Le nom de la société est obligatoire'); return false;
-			}
-			if ($('#Nom1').val()=='' || $('#Prenom1').val()=='') {
-				alert('Le prénom et le nom est obligatoire'); return false;
-			}
-			if ($('#CP').val()=='') {
-				alert('Le code postal est obligatoire'); return false;
-			}
-			if ($('#Ville').val()=='') {
-				alert('L\'adresse est obligatoire'); return false;
-			}
-			if ($('#Tel1').val()=='') {
-				alert('Le téléphone est obligatoire'); return false;
-			}*/
-			$('#Ecran'+EcranActif).removeClass('current2');
-			EcranActif+=1;
-			$('#Ecran'+EcranActif).addClass('current2');
-			break;
-		}
-	}
-	</script>
 </div>
-<div id="log"></div>
-<footer id="footer">
-<p><a onClick="$('#log').toggle()">&copy; Business Advices</a> <span id="cnType"></span></p>
-</footer>
+<!--
+	FENETRE DE RECHERCHE
+-->
+<div class="PanneauRech">
+	<div class="HeaderPanRech">
+    	<p>
+        <span id="txtrech">Rechercher</span> :<br/>
+        <input type="text" name="Rech" id="ChampRech" size="20" onFocus="this.value=''" onKeyup="PopulateRech('',this.value,null)" />
+        <input type="hidden" name="QuelleRech" id="QuelleRech" />
+        <input type="hidden" name="ValRech" id="ValRech" />
+        <input type="hidden" name="DescRech" id="DescRech" />
+        </p>
+    </div>
+    <div class="ContentPanRech">
+    <ul id="lesli">
+    <li><a id="VR023001" onclick="Choix($(this))">023001 - TABLE OVALE REF 3336</a></li>
+    <li><a id="VR170016" onclick="Choix($(this))">170016 - DEBUSSY</a></li>
+    </ul>
+    </div>
+    <div class="FooterPanRech">
+    	<p><button id="btnOKPanRech">Ok</button><button class="ML15" id="btnAnnulerPanRech">Annuler</button></p>
+    </div>
+</div>
+<!--
+	PANNEAU SQL
+-->
 <div id="SQL" class="Panneau">
 	<a onClick="Go('Main')" class="bRetour">Retour</a>
     <h1 class="ML10">SQL</h1>
@@ -262,21 +232,11 @@
     </table>
     <div id="sqlResult">
     </div>
-    <script>
-	function ExecSQL() {
-		var sql=$('#sqlReq').val();
-		$('#sqlResult').html('');
-		var uneReq=new Requete();
-		uneReq.exec(sql, function() {
-			var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
-			dump(uneReq.Resu,'sqlResult');
-			$('#sqlResult').prepend(ret);
-		});
-	}
-	$(document).ready(function() {
-		Init();
-	});
-	</script>
 </div>
+<!-- LOG ET FOOTER -->
+<div id="log"></div>
+<footer id="footer">
+<p><a onClick="$('#log').toggle()">&copy; Business Advices</a> <span id="cnType"></span></p>
+</footer>
 </body>
 </html>

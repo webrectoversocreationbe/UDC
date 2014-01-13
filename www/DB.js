@@ -15,8 +15,8 @@ var bDoLogin=false;
 /* 
 	INIT GENERAL
 */
-function Init() {
-	log('Initialisation');
+function InitDB() {
+	log('Initialisation base de données');
 	if (debug==true) {
 		$('#Init').removeClass('current');
 		$('#Commande').addClass('current');
@@ -68,6 +68,19 @@ function SynchroAll() {
 				 }); }); }); }); }); }); }); }); });
 		});
 	}
+}
+/*
+	SQL DEBUG
+*/
+function ExecSQL() {
+	var sql=$('#sqlReq').val();
+	$('#sqlResult').html('');
+	var uneReq=new Requete();
+	uneReq.exec(sql, function() {
+		var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
+		dump(uneReq.Resu,'sqlResult');
+		$('#sqlResult').prepend(ret);
+	});
 }
 /*
 	TABLE SYNCHRO
