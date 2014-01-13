@@ -22,7 +22,6 @@ function InitDB(callback) {
 		$('#Commande').addClass('current');
 		return false
 	}
-	var truc=this;
 	$('.loader').toggle();
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
 	dbsync.initialize(function(){
@@ -45,7 +44,7 @@ function InitDB(callback) {
 						$('#Commande').addClass('current');
 					}
 					$('.loader').toggle();
-					truc.callback();
+					callback();
 				});	});	});	});	}); });	}); }); });	});
 	});
 }
