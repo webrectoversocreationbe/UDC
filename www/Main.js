@@ -49,6 +49,9 @@ function onDeviceReady() {
 	// initialisation de l'application
 	app.initialize();
 	app.receivedEvent('deviceready');
+	InitAll();
+}
+function InitAll() {
 	// initialisation du filesystem
 	InitFS(function() {
 		// initialisation du filetransfer
@@ -88,7 +91,6 @@ function Go(Ou) {
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
 function check_network() {
-	log('Test de connectivité');
     var networkState = navigator.network.connection.type;
     var states = {};
     states[Connection.UNKNOWN]  = 'Inconnu';
@@ -100,10 +102,12 @@ function check_network() {
     states[Connection.NONE]     = 'Non connecté';
     $('#cnType').html(states[networkState]);
 	if (states[networkState]=='Non connecté') {
+		log('Test de connectivité - Non connecté');
 		bConnected=false;
 		$('#cnType').removeClass('vert');
 		$('#cnType').addClass('rouge');
 	} else {
+		log('Test de connectivité - '+states[networkState]);
 		bConnected=true;
 		$('#cnType').removeClass('rouge');
 		$('#cnType').addClass('vert');
