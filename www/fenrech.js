@@ -1,5 +1,5 @@
 /* 
-	FENETRE RECHERCHE
+	FENETRES DE RECHERCHE
 */
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}

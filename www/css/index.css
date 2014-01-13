@@ -357,8 +357,8 @@ p {
 /* ecran 2 */
 #Delai {width:40px;}
 #cdeChoix {margin-top:10px;}
-#cx1,#cx2,#cx3,#cx4 {width:240px;}
-#cdeElems {position:relative; top:15px; left:15px; height:60%; width:857px; border:1px solid #e2001a; margin-bottom:25px;}
+#cx1,#cx2,#cx3,#cx4 {width:20%;}
+#cdeElems {position:relative; top:15px; left:15px; height:60%; width:830px; border:1px solid #e2001a; margin-bottom:25px;}
 #cdeLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
-.cdefixedHeader tr th {width:650px;}.cdefixedHeader tr th+th {width:130px;}
+.cdefixedHeader tr th {width:680px;}.cdefixedHeader tr th+th {width:150px;}
 .cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}

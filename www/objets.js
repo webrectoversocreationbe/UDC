@@ -1,5 +1,5 @@
 /*
-	LES OBJETS
+	LES OBJETS (Classes)
 */
 var Modele = function() {
 	this.Existe=false;
