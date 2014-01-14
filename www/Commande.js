@@ -69,9 +69,12 @@ function chkEcran() {
 function cdeInfoModele() {
     cdeModele=new Modele();
     cdeModele.init($('#ValRech').val(), function() {
+		log('modele init');
         if (cdeModele.Existe==true) {
+			log('modele existe');
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MOUC);
 			$('#Delai').val(cdeModele.MODELAI);
+			log('modele les elems');
             var l=cdeModele.Elements.length;
             $('#cdetLesElems').html('');
             for(cpt=0;cpt<l;cpt++) {
