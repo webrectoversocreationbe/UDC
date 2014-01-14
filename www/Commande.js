@@ -67,7 +67,9 @@ function chkEcran() {
 	}
 }
 function cdeInfoModele() {
+		log('cdeinfo');
     cdeModele=new Modele();
+		log('cde new mod');
     cdeModele.init($('#ValRech').val(), function() {
 		log('modele init');
         if (cdeModele.Existe==true) {
