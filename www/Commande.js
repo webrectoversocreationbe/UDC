@@ -91,3 +91,9 @@ function cdeAjRem() {
 		}
 	});
 }
+function cdeCroquis() {
+	$('#croquis').css('display','block');
+}
+function cdeCroquisFini() {
+	$('#croquis').css('display','none');
+}

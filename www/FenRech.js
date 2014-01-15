@@ -166,19 +166,24 @@ function InitRech(Quoi) {
 			Vibre(1000);
 			showAlert('Choisissez un modèle','Impossible',['Ok']);
 		} else {
-			PopulateRech('cdeSupprElem','',function() {
-				$('.PanneauRech').show();
-			});
-			$('#btnAnnulerPanRech').click(function() {
-				$('.PanneauRech').hide();
-			});
-			$( "#btnOKPanRech").unbind( "click" );
-			$('#btnOKPanRech').click(function() {
-				$('.PanneauRech').hide();
-				var elcode=$('#ValRech').val();
-				var elfr=$('#DescRech').val();
-				$('#cdeelem'+elcode).remove();
-			});
+			var nbelem=$('#cdetLesElems tr').length;
+			if (nbelem==0) {
+				showAlert('Rien à supprimer','Impossible',['Ok']);
+			} else {
+				PopulateRech('cdeSupprElem','',function() {
+					$('.PanneauRech').show();
+				});
+				$('#btnAnnulerPanRech').click(function() {
+					$('.PanneauRech').hide();
+				});
+				$( "#btnOKPanRech").unbind( "click" );
+				$('#btnOKPanRech').click(function() {
+					$('.PanneauRech').hide();
+					var elcode=$('#ValRech').val();
+					var elfr=$('#DescRech').val();
+					$('#cdeelem'+elcode).remove();
+				});
+			}
 		}
 	}
 }

@@ -43,6 +43,7 @@ var app = {
 
 $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
+	$('.sigPad').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#145394',penWidth:2});
 });
 
 function onDeviceReady() {

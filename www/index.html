@@ -89,6 +89,16 @@
 	PANNEAU NOUVELLE VENTE
 -->
 <div id="Commande" class="Panneau">
+	<div id="croquis">
+        <div id="croqpad">
+            <div class="sigPad" style="position:relative;">
+              <div class="sigWrapper">
+                <canvas class="pad" width="1010" height="255"></canvas>
+              </div>
+            </div>
+        </div>
+        <button class="btncde ML15" onClick="cdeCroquisFini()">Ok</button>
+    </div>
 	<div id="Ecran1" class="EcranCde current2">
         <div class="cdeEntete">
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
@@ -195,7 +205,7 @@
             </div>
             <div class="clear"></div>
             <p class="ML15"><button class="btncde" id="ajelem" onClick="InitRech('cdeAjElem')">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem" onClick="InitRech('cdeSupprElem')">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem" onClick="cdeAjRem()">Ajouter une remarque</button></p><br/>
-            <p class="ML15"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;<button class="btncde" id="realcroquis">Réaliser un croquis</button></p>
+            <p class="ML15"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;<button class="btncde" id="realcroquis" onClick="cdeCroquis()">Réaliser un croquis</button></p>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
