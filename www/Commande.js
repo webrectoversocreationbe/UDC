@@ -68,7 +68,7 @@ function chkEcran() {
 	}
 }
 function cdeInfoModele() {
-	$('#cdemoduc').html('');
+	$('#cdemoduc').html('&nbsp;');
 	$('#cdecuiruc').html('');
 	$('#cdecolouc').html('');
 	$('#cdeopfr').html('');
@@ -87,7 +87,7 @@ function cdeAjRem() {
 	showPrompt('Entrez la remarque :','Remarque du modèle','',function(results) {
 		if (results.buttonIndex==1) {
 			var remarque=results.input1
-			$('#cdeRemMod').html('<p><u>Remarque</u> :<br/>'+remarque+'</p>');
+			$('#cdeRemMod').html('<p class="ML15"><u>Remarque</u> :<br/>'+remarque+'</p>');
 		}
 	});
 }
