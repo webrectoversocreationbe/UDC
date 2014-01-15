@@ -67,6 +67,11 @@ function chkEcran() {
 	}
 }
 function cdeInfoModele() {
+	$('#cdemoduc').html('');
+	$('#cdecuiruc').html('');
+	$('#cdecolouc').html('');
+	$('#cdeopfr').html('');
+	$('#cdetLesElems').empty();
     cdeModele=new Modele();
     cdeModele.init($('#ValRech').val(), function() {
         if (cdeModele.Existe==true) {

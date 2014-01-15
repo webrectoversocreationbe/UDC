@@ -122,12 +122,13 @@ function showAlert(Mes,Titre,Bouton) {
 		Bouton
 	);
 }
-function showPrompt(Mes,Titre,callback) {
+function showPrompt(Mes,Titre,MesParDef,callback) {
     navigator.notification.prompt(
         Mes,
         callback,
         Titre,
-        ['Ok','Annuler']
+        ['Ok','Annuler'],
+		MesParDef
     );
 }
 function Vibre(temps) {

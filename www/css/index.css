@@ -355,7 +355,7 @@ p {
 #Tel2,#Gsm2 {width:360px; margin-bottom:8px;}
 #Remarque1 {width:734px; height:215px; margin-bottom:8px; margin-top:3px;}
 /* ecran 2 */
-#Delai {width:40px;}
+#Delai {width:40px; text-align:right;}
 #cdeChoix {margin-top:10px;}
 #cx1,#cx2,#cx3,#cx4 {width:20%;}
 #cdeElems {position:relative; top:15px; left:15px; height:60%; width:830px; border:1px solid #e2001a; margin-bottom:25px;}

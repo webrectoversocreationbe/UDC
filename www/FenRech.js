@@ -136,26 +136,31 @@ function InitRech(Quoi) {
 			$('#cdeopfr').html(cdeModele.OPCODE+' - '+cdeModele.OPFR);
 		});
 	} else if (Quoi=='cdeAjElem') {
-		PopulateRech('cdeAjElem','',function() {
-			$('.PanneauRech').show();
-		});
-		$('#btnAnnulerPanRech').click(function() {
-			$('.PanneauRech').hide();
-		});
-		$( "#btnOKPanRech").unbind( "click" );
-		$('#btnOKPanRech').click(function() {
-			$('.PanneauRech').hide();
-			var elcode=$('#ValRech').val();
-			var elfr=$('#DescRech').val();
-			var qte=0;
-			showPrompt('Entrez la quantité :',elfr,function(results) {
-				if (results.buttonIndex==1) {
-					qte=results.input1
-					var ret='<tr><td>'+elcode+' - '+elfr+'</td><td>'+qte+'</td></tr>';
-					$('#cdetLesElems').append(ret);
-				}
+		if (cdeModele.MODNR=='') {
+			Vibre(1000);
+			showAlert('Choisissez un modèle','Impossible',['Ok']);
+		} else {
+			PopulateRech('cdeAjElem','',function() {
+				$('.PanneauRech').show();
 			});
-		});
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$( "#btnOKPanRech").unbind( "click" );
+			$('#btnOKPanRech').click(function() {
+				$('.PanneauRech').hide();
+				var elcode=$('#ValRech').val();
+				var elfr=$('#DescRech').val();
+				var qte=1;
+				showPrompt('Entrez la quantité :',elfr,qte,function(results) {
+					if (results.buttonIndex==1) {
+						qte=results.input1
+						var ret='<tr><td>'+elcode+' - '+elfr+'</td><td>'+qte+'</td></tr>';
+						$('#cdetLesElems').append(ret);
+					}
+				});
+			});
+		}
 	}
 }
 function Choix(obj) {
