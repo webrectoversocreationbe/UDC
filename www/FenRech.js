@@ -93,6 +93,20 @@ function InitRech(Quoi) {
 			trfModele.COLOUC=$('#DescRech').val();
 			$('#infocouleur').html('Couleur : '+trfModele.COULNR+' - '+trfModele.COLOUC);
 		});
+	} else if (Quoi=='cdeCouleur') {
+		PopulateRech('cdeCouleur','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			cdeModele.COULNR=$('#ValRech').val();
+			cdeModele.COLOUC=$('#DescRech').val();
+			$('#cdecolouc').html(cdeModele.COULNR+' - '+cdeModele.COLOUC);
+		});
 	} else if (Quoi=='trfOption') {
 		PopulateRech('trfOption','',function() {
 			$('.PanneauRech').show();
@@ -106,6 +120,20 @@ function InitRech(Quoi) {
 			trfModele.OPCODE=$('#ValRech').val();
 			trfModele.OPFR=$('#DescRech').val();
 			$('#infooption').html('Option : '+trfModele.OPCODE+' - '+trfModele.OPFR);
+		});
+	} else if (Quoi=='cdeOption') {
+		PopulateRech('cdeOption','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			cdeModele.OPCODE=$('#ValRech').val();
+			cdeModele.OPFR=$('#DescRech').val();
+			$('#cdeopfr').html(trfModele.OPCODE+' - '+trfModele.OPFR);
 		});
 	}
 }
@@ -231,11 +259,69 @@ function PopulateRech(Quoi,Rech,callback) {
 			}
 		);
 		break;
+	case 'cdeCouleur':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher une couleur');
+		var four=cdeModele.FOUR;
+		var cuirnr=cdeModele.CUIRNR;
+		madb.transaction(
+			function(tx) {
+				var sql = "select COLORNR,COLOUC from LiasColo"+
+				" where FOURN='"+four+"' and CUIRNR='"+cuirnr+"'";
+				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var colornr=results.rows.item(cpt).COLORNR;
+								var colouc=results.rows.item(cpt).COLOUC;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+colornr+'|'+colouc+'" onclick="Choix($(this))">'+colornr+' - '+colouc+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
 	case 'trfOption':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher une option');
 		var modnr=trfModele.MODNR;
 		var four=trfModele.FOUR;
+		madb.transaction(
+			function(tx) {
+				var sql = "select OPCODE,OPFR from Opti"+
+				" where MODNR='"+modnr+"' and FOUR='"+four+"'";
+				if (Rech!='') {sql=sql+" and (OPCODE like '%"+Rech+"%' or OPFR like '%"+Rech+"%')";}
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var opcode=results.rows.item(cpt).OPCODE;
+								var opfr=results.rows.item(cpt).OPFR;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+opcode+'|'+opfr+'" onclick="Choix($(this))">'+opcode+' - '+opfr+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
+	case 'cdeOption':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher une option');
+		var modnr=cdeModele.MODNR;
+		var four=cdeModele.FOUR;
 		madb.transaction(
 			function(tx) {
 				var sql = "select OPCODE,OPFR from Opti"+
