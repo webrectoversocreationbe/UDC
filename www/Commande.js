@@ -97,3 +97,7 @@ function cdeCroquis() {
 function cdeCroquisFini() {
 	$('#croquis').css('display','none');
 }
+function cdeCroquisEfface() {
+	var api = $('#sigPadCroquis').signaturePad();
+	api.clearCanvas();
+}

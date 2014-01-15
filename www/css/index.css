@@ -329,7 +329,7 @@ p {
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}
-#croquis {background:#fff; z-index:10; display:none; position:fixed; top:12px; left:12px; right:12px; bottom:12px; border:1px solid #e2001a; padding:12px;}
+#croquis {background:#fff; z-index:10; display:none; position:fixed; top:42px; left:12px; right:12px; bottom:42px; border:1px solid #e2001a; padding:12px;}
 .current2 {display:block;}
 .cdeEntete {border-bottom:1px solid #000;}.cdeEntete table {margin-bottom:0px;}.cdeEntete td {font-size:22px;}
 .cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
