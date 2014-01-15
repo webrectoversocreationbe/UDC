@@ -67,22 +67,11 @@ function chkEcran() {
 	}
 }
 function cdeInfoModele() {
-		log('cdeinfo');
     cdeModele=new Modele();
-		log('cde new mod');
     cdeModele.init($('#ValRech').val(), function() {
-		log('modele init');
         if (cdeModele.Existe==true) {
-			log('modele existe');
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MOUC);
 			$('#Delai').val(cdeModele.MODELAI);
-			log('modele les elems');
-            var l=cdeModele.Elements.length;
-            $('#cdetLesElems').html('');
-            for(cpt=0;cpt<l;cpt++) {
-                var el='<tr><td>'+cdeModele.Elements[cpt].ELCODE+' - '+cdeModele.Elements[cpt].ELFR+'</td><td align="right" id="cdeelqte'+cdeModele.Elements[cpt].ELCODE+'"></td></tr>';
-                $('#cdetLesElems').append(el);
-            }
         } else {
             $('#cdemoduc').html('<p>Modèle innexistant</p>');
 			$('#Delai').val('');

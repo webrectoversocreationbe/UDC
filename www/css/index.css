@@ -362,3 +362,4 @@ p {
 #cdeLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .cdefixedHeader tr th {width:680px;}.cdefixedHeader tr th+th {width:150px;}
 .cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}
+#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:12px;}
