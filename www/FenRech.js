@@ -27,7 +27,7 @@ function InitRech(Quoi) {
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
-			//trfInfoModele();
+			cdeInfoModele();
 		});
 	} else if (Quoi=='trfTypeCuir') {
 		PopulateRech('trfTypeCuir','',function() {
