@@ -1,6 +1,7 @@
 var cdeModele={}
 var EcranActif;
 function InitCommande() {
+    cdeModele=new Modele();
 	EcranActif=1;
 	var d=new Date();
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
@@ -72,7 +73,6 @@ function cdeInfoModele() {
 	$('#cdecolouc').html('');
 	$('#cdeopfr').html('');
 	$('#cdetLesElems').empty();
-    cdeModele=new Modele();
     cdeModele.init($('#ValRech').val(), function() {
         if (cdeModele.Existe==true) {
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MOUC);
@@ -82,4 +82,12 @@ function cdeInfoModele() {
 			$('#Delai').val('');
         }
     });
+}
+function cdeAjRem() {
+	showPrompt('Entrez la remarque :','Remarque du modèle','',function(results) {
+		if (results.buttonIndex==1) {
+			var remarque=results.input1
+			$('#cdeRemMod').html('<p><u>Remarque</u> :<br/>'+remarque+'</p>');
+		}
+	});
 }

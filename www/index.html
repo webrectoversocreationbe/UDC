@@ -183,7 +183,7 @@
             <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
             <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
             </p>
-            <div id="cdeElems">
+            <div id="cdeElems" class="floatleft">
                 <div><table><thead class="cdefixedHeader"><tr><th align="left">Eléments</th><th align="right">Quantité&nbsp;&nbsp;&nbsp;&nbsp;</th></tr></thead></table></div>
                 <div id="cdeLesElems">
                 <table id="cdetLesElems" class="cdescrollContent">
@@ -191,7 +191,10 @@
                 </table>
                 </div>
             </div>
-            <p class="ML15"><button class="btncde" id="ajelem" onClick="InitRech('cdeAjElem')">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem">Ajouter une remarque</button></p><br/>
+            <div id="cdeRemMod" class="floatleft ML15">
+            </div>
+            <div class="clear"></div>
+            <p class="ML15"><button class="btncde" id="ajelem" onClick="InitRech('cdeAjElem')">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem" onClick="InitRech('cdeSupprElem')">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem" onClick="cdeAjRem()">Ajouter une remarque</button></p><br/>
             <p class="ML15"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;<button class="btncde" id="realcroquis">Réaliser un croquis</button></p>
         </div>
         <div class="cdeFooter">

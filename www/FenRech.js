@@ -155,10 +155,29 @@ function InitRech(Quoi) {
 				showPrompt('Entrez la quantité :',elfr,qte,function(results) {
 					if (results.buttonIndex==1) {
 						qte=results.input1
-						var ret='<tr><td>'+elcode+' - '+elfr+'</td><td>'+qte+'</td></tr>';
+						var ret='<tr id="cdeelem'+elcode+'"><td>'+elcode+' - '+elfr+'</td><td align="right">'+qte+'</td></tr>';
 						$('#cdetLesElems').append(ret);
 					}
 				});
+			});
+		}
+	} else if (Quoi=='cdeSupprElem') {
+		if (cdeModele.MODNR=='') {
+			Vibre(1000);
+			showAlert('Choisissez un modèle','Impossible',['Ok']);
+		} else {
+			PopulateRech('cdeSupprElem','',function() {
+				$('.PanneauRech').show();
+			});
+			$('#btnAnnulerPanRech').click(function() {
+				$('.PanneauRech').hide();
+			});
+			$( "#btnOKPanRech").unbind( "click" );
+			$('#btnOKPanRech').click(function() {
+				$('.PanneauRech').hide();
+				var elcode=$('#ValRech').val();
+				var elfr=$('#DescRech').val();
+				$('#cdeelem'+elcode).remove();
 			});
 		}
 	}
@@ -379,6 +398,18 @@ function PopulateRech(Quoi,Rech,callback) {
 			var elcode=cdeModele.Elements[cpt].ELCODE;
 			var elfr=cdeModele.Elements[cpt].ELFR;
 			$('#lesli').append('<li><a class="leschoix" id="VR'+elcode+'|'+elfr+'" onclick="Choix($(this))">'+elcode+' - '+elfr+'</a></li>');
+		}
+		callback();
+		break;
+	case 'cdeSupprElem':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher un élément');
+		var nbelem=$('#cdetLesElems tr').length;
+		for (var cpt=0;cpt<nbelem;cpt++) {
+			var elcode=$('#cdetLesElems tr:eq('+cpt+')').attr('id').substr(7);
+			var elem=$('#cdetLesElems tr:eq('+cpt+') td').html();
+			log(elcode+':'+elem);
+			$('#lesli').append('<li><a class="leschoix" id="VR'+elcode+'|" onclick="Choix($(this))">'+elem+'</a></li>');
 		}
 		callback();
 		break;
