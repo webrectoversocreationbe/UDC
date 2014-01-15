@@ -54,6 +54,31 @@ function InitRech(Quoi) {
 				$('#infocouleur').html('');
 			});
 		});
+	} else if (Quoi=='cdeTypeCuir') {
+		PopulateRech('cdeTypeCuir','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			cdeModele.setcuir($('#ValRech').val(),function(){
+				cdeModele.CUIRUC=$('#DescRech').val();
+				$('#cdecuiruc').html(cdeModele.CUIRNR+' - '+cdeModele.CUIRUC);
+				var l=cdeModele.Elements.length;
+				for(cpt=0;cpt<l;cpt++) {
+					var elcode=cdeModele.Elements[cpt].ELCODE;
+					var quelcoef=UserVersion==2?cdeModele.MOCOEF2:cdeModele.MOCOEF;
+					var px=Nombre(cdeModele.Elements[cpt].Prix*quelcoef);
+//					$('#trfpx'+elcode).html(px+' €');
+				}
+				cdeModele.COULNR='';
+				cdeModele.COLOUC='';
+				$('#cdecolouc').html('');
+			});
+		});
 	} else if (Quoi=='trfCouleur') {
 		PopulateRech('trfCouleur','',function() {
 			$('.PanneauRech').show();
