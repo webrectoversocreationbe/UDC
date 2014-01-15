@@ -174,6 +174,34 @@ function PopulateRech(Quoi,Rech,callback) {
 			}
 		);
 		break;
+	case 'cdeTypeCuir':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher un type de cuir');
+		var modnr=cdeModele.MODNR;
+		madb.transaction(
+			function(tx) {
+				var sql = "select cuirmod.CUIRNR,liascuir.CUIRUC from Mods inner join cuirmod on Mods.MODNR=cuirmod.MODNR inner join liascuir on Mods.FOUR=liascuir.FOURN and cuirmod.CUIRNR=liascuir.CUIRNR"+
+				" where Mods.MODNR='"+modnr+"'";
+				if (Rech!='') {sql=sql+" and (cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%')";}
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var cuirnr=results.rows.item(cpt).CUIRNR;
+								var cuiruc=results.rows.item(cpt).CUIRUC;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'|'+cuiruc+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
 	case 'trfCouleur':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher une couleur');

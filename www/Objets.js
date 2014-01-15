@@ -23,7 +23,6 @@ var Modele = function() {
 Modele.prototype = {
 	init: function(Id,callback) {
 		var bOk=false; var self=this;
-		log('init mod');
 		// FICHE MODS
 		madb.transaction(
 			function(tx) {
@@ -100,7 +99,6 @@ Modele.prototype = {
 										madb.transaction(
 											function(tx) {
 												var sql = "SELECT Num,OPCODE,Opti.OPFR FROM Opti where Opti.FOUR='"+self.FOUR+"' and Opti.MODNR='"+Id+"'";
-													log(sql);
 												tx.executeSql(sql,[], 
 													function(tx, results) {
 														if (results.rows.length > 0) {
@@ -134,7 +132,6 @@ Modele.prototype = {
 		madb.transaction(
 			function(tx) {
 				var sql = "SELECT CUCAT FROM CuirMod where MODNR='"+self.MODNR+"' and CUIRNR='"+CUIRNR+"'";
-					log(sql);
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
@@ -153,7 +150,6 @@ Modele.prototype = {
 						madb.transaction(
 							function(tx) {
 								var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"' order by PXDATE desc";
-									log(sql+' '+value);
 								tx.executeSql(sql,[], 
 									function(tx, results) {
 										if (results.rows.length > 0) {
