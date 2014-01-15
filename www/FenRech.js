@@ -133,7 +133,28 @@ function InitRech(Quoi) {
 			$('.PanneauRech').hide();
 			cdeModele.OPCODE=$('#ValRech').val();
 			cdeModele.OPFR=$('#DescRech').val();
-			$('#cdeopfr').html(trfModele.OPCODE+' - '+trfModele.OPFR);
+			$('#cdeopfr').html(cdeModele.OPCODE+' - '+cdeModele.OPFR);
+		});
+	} else if (Quoi=='cdeAjElem') {
+		PopulateRech('cdeAjElem','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			var elcode=$('#ValRech').val();
+			var elfr=$('#DescRech').val();
+			var qte=0;
+			showPrompt('Entrez la quantité :',elfr,function(results) {
+				if (results.buttonIndex==1) {
+					qte=results.input1
+					var ret='<tr><td>'+elcode+' - '+elfr+'</td><td>'+qte+'</td></tr>';
+					$('#cdetLesElems').append(ret);
+				}
+			});
 		});
 	}
 }
@@ -345,6 +366,16 @@ function PopulateRech(Quoi,Rech,callback) {
 				callback();
 			}
 		);
+		break;
+	case 'cdeAjElem':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher un élément');
+		for (var cpt=0;cpt<cdeModele.Elements.length;cpt++) {
+			var elcode=cdeModele.Elements[cpt].ELCODE;
+			var elfr=cdeModele.Elements[cpt].ELFR;
+			$('#lesli').append('<li><a class="leschoix" id="VR'+elcode+'|'+elfr+'" onclick="Choix($(this))">'+elcode+' - '+elfr+'</a></li>');
+		}
+		callback();
 		break;
 	}
 }

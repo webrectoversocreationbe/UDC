@@ -122,6 +122,14 @@ function showAlert(Mes,Titre,Bouton) {
 		Bouton
 	);
 }
+function showPrompt(Mes,Titre,callback) {
+    navigator.notification.prompt(
+        Mes,
+        callback,
+        Titre,
+        ['Ok','Annuler']
+    );
+}
 function Vibre(temps) {
 	navigator.notification.vibrate(temps)
 }
