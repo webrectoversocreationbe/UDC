@@ -3,7 +3,13 @@
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width:1012px;
+/*  max-width:1012px;*/
+}
+.sigWrapper {
+  clear: both;
+/*  height: 257px;*/
+
+  border: 1px solid #ccc;
 }
 
 .sigPad label {
@@ -122,13 +128,6 @@
 
   font-size: 0.75em;
   line-height: 1.375;
-}
-
-.sigWrapper {
-  clear: both;
-  height: 257px;
-
-  border: 1px solid #ccc;
 }
 
 .sigWrapper.current {
