@@ -365,3 +365,7 @@ p {
 .cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}
 #cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:12px;}
 #cdeRemMod {font-size:14px; width:280px; padding-top:15px;}
+/* ecran 3 */
+/* ecran 4 */
+#tableauprix tr td {width:70%;}
+#tableauprix tr td+td {width:30%;}

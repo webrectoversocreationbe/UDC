@@ -1,4 +1,4 @@
-var debug=true;
+var debug=false;
 var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
 var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué
@@ -43,7 +43,7 @@ var app = {
 
 $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
-	$('.sigPad').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#145394',penWidth:2});
+	$('.sigPad').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3});
 });
 
 function onDeviceReady() {

@@ -211,12 +211,12 @@
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
         </div>
     </div>
-	<div id="Ecran3" class="EcranCde">
+	<div id="Ecran3" class="EcranCde"> 
         <div class="cdeEntete">
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
-            <div style="text-align:center; margin-top:40%;">
+            <div style="text-align:center; margin-top:20%;">
             <p>Ajouter un autre modèle à la commande ?</p>
             <button class="btncde ML15" onClick="btnNouvMod()">Oui</button>&nbsp;&nbsp;<button class="btncde ML15" onClick="cdeEcranPrix()">Non</button>
             </div>
@@ -230,17 +230,19 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent centre">
-        <table width="80%" style="width:80%;">
-        <tr><td>Prix de vente</td><td><input type="text" id="" value="" size="15"/></td></tr>
-        <tr><td>Prix total au tarif</td><td><input type="text" id="" value="" size="15"/></td></tr>
-        <tr><td>Remises et promotions</td><td><input type="text" id="" value="" size="15"/></td></tr>
-        <tr><td>Rachat salon</td><td><input type="text" id="" value="" size="15"/></td></tr>
-        <tr><td><p>Frais complémentaires : <br/><input type="text" id="" value="" size="15"/></p></td><td><input type="text" id="" value="" size="15"/></td></tr>
-        <tr><td align="right">Prix de vente total : </td><td><input type="text" id="" value="" size="15"/></td></tr>
-        </table>
-        <p>Financement d'une partie de l'achat&nbsp;&nbsp;<input type="checkbox" id="chkfinoui">&nbsp;<label for="chkfinoui">Oui</label>&nbsp;&nbsp;<input type="checkbox" id="chkfinnon">&nbsp;<label for="chkfinnon">Non</label></p>
-        <p>Montant du crédit : <input type="text" id="MontantFin" size="20"/></p>
-        <p><label for="chkexon">Exonération TVA</label>&nbsp;&nbsp;<input type="checkbox" id="chkexon"></p>
+            <table width="80%" style="width:80%;" id="tableauprix">
+            <tr><td align="left">Prix de vente</td><td><input type="text" id="" value="" size="15"/></td></tr>
+            <tr><td align="left">Prix total au tarif</td><td><input type="text" id="" value="" size="15"/></td></tr>
+            <tr><td align="left">Remises et promotions</td><td><input type="text" id="" value="" size="15"/></td></tr>
+            <tr><td align="left">Rachat salon</td><td><input type="text" id="" value="" size="15"/></td></tr>
+            <tr><td align="left">Frais complémentaires : <br/><input type="text" id="" value="" size="25"/></td><td><input type="text" id="" value="" size="15"/></td></tr>
+            <tr><td align="right">Prix de vente total : </td><td><input type="text" id="" value="" size="15"/></td></tr>
+            </table>
+            <div style="width:80%; text-align:right;">
+                <p>Financement d'une partie de l'achat&nbsp;&nbsp;<input type="checkbox" id="chkfinoui">&nbsp;<label for="chkfinoui">Oui</label>&nbsp;&nbsp;<input type="checkbox" id="chkfinnon">&nbsp;<label for="chkfinnon">Non</label></p>
+                <p>Montant du crédit : <input type="text" id="MontantFin" size="20"/></p>
+                <p><label for="chkexon">Exonération TVA</label>&nbsp;&nbsp;<input type="checkbox" id="chkexon"></p>
+            </div>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button>
