@@ -1,4 +1,4 @@
-var debug=false;
+var debug=true;
 var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
 var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué

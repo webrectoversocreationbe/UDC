@@ -65,6 +65,11 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
+	case 2:
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+		break;
 	}
 }
 function cdeInfoModele() {
@@ -100,4 +105,11 @@ function cdeCroquisFini() {
 function cdeCroquisEfface() {
 	var api = $('#sigPadCroquis').signaturePad();
 	api.clearCanvas();
+}
+function btnNouvMod() {
+    cdeModele=new Modele();
+	EcranActif=2;
+}
+function cdeEcranPrix() {
+	EcranActif=3;
 }
