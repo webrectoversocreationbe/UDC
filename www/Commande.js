@@ -22,6 +22,21 @@ function InitCommande() {
 	$('#Gsm1').val('');
 	$('#Gsm2').val('');
 	$('#Remarque1').val('');
+	$('#cdemoduc').html('');
+	$('#cdecuiruc').html('');
+	$('#cdecolouc').html('');
+	$('#cdeopfr').html('');
+	$('#Delai').val('');
+	$('#cdetLesElems').empty();
+	$('#cdeRemMod').html('');
+	$('#cdePV').val('');
+	$('#cdePT').val('');
+	$('#cdeRem').val('');
+	$('#cdeRachat').val('');
+	$('#cdeFCLIB').val('');
+	$('#cdeFC').val('');
+	$('#cdePVTOT').val('');
+	$('#MontantFin').val('');
 }
 function chkFrac() {
 	$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
