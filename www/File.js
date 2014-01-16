@@ -17,7 +17,7 @@ var objfs={
 	},
 	createdir: function(Dossier) {
 		fs.root.getDirectory(Dossier, {create: true, exclusive: false}, 
-			function() {log('dossier créé');}, 
+			function() {log('Dossier UDC ok');}, 
 			function() {log('erreur dossier');}
 		);
 	}
@@ -31,9 +31,16 @@ function InitFT(callback) {
 	ft = new FileTransfer();
 	log('FileTransfer opérationnel');
 	callback();
-/*	ft.download(
-		encodeURI("http://192.168.0.248/UDC/ServeurDistant/Photos/350/350003.jpg"),
-		fs.root.fullPath + "/350003.jpg",
+}
+
+function FileExist(Fichier) {
+}
+
+function DownloadFile(Url,FileName) {
+	log('Essai chargement '+Url+' sauver sous '+FileName);
+	ft.download(
+		encodeURI(Url),
+		fs.root.fullPath + "UDC/"+FileName,
 		function(entry) {
 			log("download complete: " + entry.fullPath);
 		},
@@ -42,7 +49,7 @@ function InitFT(callback) {
 			log("download error target " + error.target);
 			log("upload error code" + error.code);
 		}
-	);*/
+	);
 }
 function SynchroImg() {
 	$.ajax({
@@ -55,7 +62,9 @@ function SynchroImg() {
 			var e;
 			for (var i = 0; i < l; i++) {
 				e = response[i];
-				log(e);
+				var tfile=e.split('/');
+				var filen=tfile[3];
+				DownloadFile("http://192.168.0.248/UDC/"+e,filen);
 			}
 		},
 		error: function() {
