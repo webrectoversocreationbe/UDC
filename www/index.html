@@ -59,8 +59,7 @@
     <p><a onClick="">Photos</a></p><br/>
     <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/><br/>
-    <p><a onClick="SynchroAll()">Synchronisation</a></p><br/><img src="images/loader.gif" class="loader"><br/>
-    <p class="uniquementadmin"><a onClick="Go('SQL')">SQL</a></p><br class="uniquementadmin"/>
+    <p><a onClick="Go('Administration')">Administration</a></p><br/><br/>
 </div>
 <!--
 	PANNEAU TARIF
@@ -248,6 +247,16 @@
         <button class="btncde ML15" onClick="Go('Main')">Annulation vente</button>
         </div>
     </div>
+</div>
+<!--
+	PANNEAU ADMINISTRATION
+-->
+<div id="Administration" class="Panneau">
+	<a onClick="Go('Main')" class="bRetour">Retour</a>
+    <h1 class="ML10">Administration</h1>
+    <p><a onClick="SynchroAll()">Synchronisation Données</a></p><br/><img src="images/loader.gif" class="loader"><br/>
+    <p><a onClick="SynchroImg()">Synchronisation Images</a></p><br/><img src="images/loader.gif" class="loader"><br/>
+    <p class="uniquementadmin"><a onClick="Go('SQL')">SQL</a></p><br class="uniquementadmin"/>
 </div>
 <!--
 	FENETRE DE RECHERCHE

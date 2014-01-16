@@ -74,6 +74,10 @@ function Go(Ou) {
 		$('.Panneau').removeClass('current');
 		$('#SQL').addClass('current');
 		break;
+	case 'Administration':
+		$('.Panneau').removeClass('current');
+		$('#Administration').addClass('current');
+		break;
 	case 'Main':
 		$('.Panneau').removeClass('current');
 		$('#Main').addClass('current');

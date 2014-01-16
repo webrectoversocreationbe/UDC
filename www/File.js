@@ -38,7 +38,25 @@ function InitFT(callback) {
 		}
 	);*/
 }
-
+function SynchroImg() {
+	$.ajax({
+		type: "POST",
+		url: "http://192.168.0.248/UDC/SynchroImgVersTablettes.php",
+        crossDomain: true,
+		dataType: "json",
+		success: function(response) {
+			var l = response.length;
+			var e;
+			for (var i = 0; i < l; i++) {
+				e = response[i];
+				log(e);
+			}
+		},
+		error: function() {
+			showAlert('Une erreur est survenue','Attention','OK');
+		}
+	});	
+}
 // créer un fichier
 	//	fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
     function gotFileEntry(fileEntry) {
