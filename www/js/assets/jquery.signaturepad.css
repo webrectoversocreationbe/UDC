@@ -3,11 +3,11 @@
   margin: 0;
   padding: 0;
   width: 100%;
-/*  max-width:1012px;*/
+  max-width:1012px;
 }
 .sigWrapper {
   clear: both;
-/*  height: 257px;*/
+  height: 457px;
 
   border: 1px solid #ccc;
 }
