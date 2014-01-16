@@ -8,12 +8,18 @@ var objfs={
 		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 		try {
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-				function(filesystem) {log('FileSystem opérationnel'); fs=filesystem; callback();}, 
+				function(filesystem) {log('FileSystem opérationnel'); fs=filesystem; self.createdir('UDC'); callback();}, 
 				function(error) {log('fserror '+error.target.error.code); callback();}
 			);
 		} catch(e) {
 			log('Erreur init filesystem' + e);
 		}
+	},
+	createdir: function(Dossier) {
+		fs.root.getDirectory(Dossier, {create: true, exclusive: false}, 
+			function() {log('dossier créé');}, 
+			function() {log('erreur dossier');}
+		);
 	}
 }
 
