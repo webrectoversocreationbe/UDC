@@ -108,8 +108,12 @@ function cdeCroquisEfface() {
 }
 function btnNouvMod() {
     cdeModele=new Modele();
-	EcranActif=2;
+	$('#Ecran'+EcranActif).removeClass('current2');
+	EcranActif-=1;
+	$('#Ecran'+EcranActif).addClass('current2');
 }
 function cdeEcranPrix() {
-	EcranActif=3;
+	$('#Ecran'+EcranActif).removeClass('current2');
+	EcranActif=4;
+	$('#Ecran'+EcranActif).addClass('current2');
 }
