@@ -40,7 +40,7 @@ function DownloadFile(Url,FileName) {
 	log('Essai chargement '+Url+' sauver sous '+FileName);
 	ft.download(
 		encodeURI(Url),
-		fs.root.fullPath + "UDC/"+FileName,
+		fs.root.fullPath + "/UDC/"+FileName,
 		function(entry) {
 			log("download complete: " + entry.fullPath);
 		},
