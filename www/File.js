@@ -35,7 +35,7 @@ function InitFT(callback) {
 
 function CheckIfFileExists(Fichier,success,fail) {
 	log('FE '+Fichier);
-	fs.root.getFile(Fichier, {create: false, exclusive: false}, success, fail);
+	fs.root.getFile(Fichier, {create: false, exclusive: false}, success(), fail());
 }
 
 function DownloadFile(Url,FileName) {

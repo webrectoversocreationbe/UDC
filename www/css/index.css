@@ -326,7 +326,7 @@ p {
 .fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:650px;}.fixedHeader tr th+th+th {width:130px;}
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:650px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
-#trfwrapperimg {position:fixed; bottom:35px; left:872px; height:60%; width:257px; border:1px solid #e2001a;}
+#trfwrapperimg {position:fixed; bottom:35px; left:872px; height:60%; right:15px; border:1px solid #e2001a;}
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}
