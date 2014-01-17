@@ -37,7 +37,6 @@ function FileExist(Fichier) {
 }
 
 function DownloadFile(Url,FileName) {
-	log('Essai chargement '+Url+' sauver sous '+FileName);
 	ft.download(
 		encodeURI(Url),
 		fs.root.fullPath + "/UDC/"+FileName,
@@ -65,7 +64,9 @@ function SynchroImg() {
 				var tfile=e.split('/');
 				var filen=tfile[3];
 				DownloadFile("http://192.168.0.248/UDC/"+e,filen);
+				$('#nbimg').html(i+'/'+l);
 			}
+			$('#nbimg').html('');
 		},
 		error: function() {
 			showAlert('Une erreur est survenue','Attention','OK');
