@@ -40,20 +40,11 @@ function fileExists(Fichier,callbackOk,callbackNOK) {
 		log('udce');
 			de.getFile(Fichier, {create: false, exclusive: false}, 
 				function(fe) {
-			log('gotf');
-					fe.file(function(f) {
-			log('fileok');
-							callbackOK();
-						}, 
-						function(e){
-			log('filenok');
-							callbackNOK();
-						}
-					);
+					callbackOK();
 				}, 
 				function(e) {
+					log('errgf');
 					callbackNOK();
-			log('errgf');
 				}
 			);
 		},
