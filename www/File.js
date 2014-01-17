@@ -37,7 +37,7 @@ function CheckIfFileExists(Fichier) {
     var http = new XMLHttpRequest();
     http.open('HEAD', Fichier, false);
     http.send(null);
-    return (http.status != 404);
+    return http.status != 404 ? true : false;
 }
 
 function DownloadFile(Url,FileName) {
