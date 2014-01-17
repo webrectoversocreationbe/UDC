@@ -33,7 +33,8 @@ function InitFT(callback) {
 	callback();
 }
 
-function FileExist(Fichier) {
+function FileExist(Fichier,success,fail) {
+	fs.root.getFile(Fichier, {create: false, exclusive: false}, success, fail);
 }
 
 function DownloadFile(Url,FileName) {

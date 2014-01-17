@@ -1,7 +1,9 @@
 var trfModele={}
+var trfScroll;
 function InitTarif() {
 	$('#trfResult').html('');
 	$('#trfTLesElems').html('');
+	trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
 }
 function trfInfoModele() {
     trfModele=new Modele();
@@ -18,6 +20,23 @@ function trfInfoModele() {
             ret=ret+'<p id="infocouleur"></p>';
             ret=ret+'<p id="infooption"></p>';
             $('#trfResult').html(ret);
+			// Images...
+			$('#trfscroller ul').empty();
+			var Fichier='';
+			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'.jpg';
+			CheckIfFileExists(Fichier, 
+				function() {
+					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg"></li>');
+					},
+				function() {}
+			);
+			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
+			CheckIfFileExists(Fichier, 
+				function() {
+					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg"></li>');
+					},
+				function() {}
+			);
         } else {
             $('#trfResult').html('<p>Modèle innexistant</p>');
         }

@@ -12,6 +12,7 @@
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery.signaturepad.js"></script>
     <script src="js/assets/json2.min.js"></script>
+    <script src="js/iscroll.js"></script>
     <script src="Util.js"></script>                                  <!-- Util javascript -->
     <script src="DB.js"></script>                                    <!-- Base de données : Init, Synchro -->
     <script src="File.js"></script>                                  <!-- Fichiers : Création/Suppression/Download/Upload -->
@@ -75,7 +76,7 @@
         <div class="clear"></div>
     </div>
     <div id="trfResult"></div>
-    <div id="trfElems">
+    <div id="trfElems" class="floatleft">
         <div><table><thead class="fixedHeader"><tr><th align="left">Elément</th><th align="left">Description</th><th align="right">Prix&nbsp;&nbsp;&nbsp;&nbsp;</th></tr></thead></table></div>
         <div id="trfLesElems">
         <table id="trfTLesElems" class="scrollContent">
@@ -83,6 +84,14 @@
         </table>
         </div>
     </div>
+    <div id="trfwrapperimg" class="floatleft ML10">
+        <div id="trfscroller">
+            <ul>
+                <li>Cell 1</li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
 </div>
 <!--
 	PANNEAU NOUVELLE VENTE
