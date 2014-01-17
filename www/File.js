@@ -35,12 +35,15 @@ function InitFT(callback) {
 
 String.prototype.fileExists = function() {
 	filename = this.trim();
-	var response = jQuery.ajax({
+	$.ajax({
 		url: filename,
-		type: 'HEAD',
-		async: false
-	}).status;  
-	return (response != "200") ? false : true;
+		async: false,
+		statusCode: {
+			404: function() {
+				return false;
+			}
+		}
+	}).done(function() {return true;});
 }
 
 function DownloadFile(Url,FileName) {

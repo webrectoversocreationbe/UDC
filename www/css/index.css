@@ -326,31 +326,9 @@ p {
 .fixedHeader tr th {width:60px;}.fixedHeader tr th+th {width:650px;}.fixedHeader tr th+th+th {width:130px;}
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:650px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
-#trfwrapperimg {position:fixed; bottom:35px; left:872px; height:60%; right:15px; border:1px solid #e2001a; overflow: hidden;}
+#trfwrapperimg {position:fixed; bottom:35px; left:872px; height:60%; right:15px; border:1px solid #e2001a; overflow:scroll; overflow-x:hidden;}
 #trfscroller ul li {width:100%;}
-#trfscroller {
-	position: absolute;
-	z-index: 1;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	height: 100%;
-	background-color: #a00;
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
-}
-
+#trfscroller {}
 #trfscroller ul {
 	list-style: none;
 	padding: 0;
@@ -364,7 +342,6 @@ p {
 	display: block;
 	width: 100%;
 	background-color: #fafafa;
-	font-size: 14px;
 }
 #trfscroller li img {
 	display: block;
