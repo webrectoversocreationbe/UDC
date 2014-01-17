@@ -34,7 +34,6 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	filename = this.trim();
 	var reader = new FileReader();
 	reader.onloadend = function(evt) {
 		log('ole');
@@ -44,7 +43,7 @@ function fileExists(Fichier,callbackOk,callbackNOK) {
 		   callbackOK();
 		}         
 	};
-	reader.readAsDataURL(filename);
+	reader.readAsDataURL(Fichier);
 }
 
 function DownloadFile(Url,FileName) {
