@@ -33,9 +33,11 @@ function InitFT(callback) {
 	callback();
 }
 
-function CheckIfFileExists(Fichier,success,fail) {
-	log('FE '+Fichier);
-	fs.root.getFile(Fichier, {create: false, exclusive: false}, success(), fail());
+function CheckIfFileExists(Fichier) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', Fichier, false);
+    http.send(null);
+    return (http.status != 404);
 }
 
 function DownloadFile(Url,FileName) {

@@ -327,6 +327,7 @@ p {
 .scrollContent tr td {width:80px;}.scrollContent tr td+td {width:650px;}.scrollContent tr td+td+td {width:130px;}
 #trfResult {margin-left:10px;width:auto;overflow:scroll;overflow-x:hidden;}
 #trfwrapperimg {position:fixed; bottom:35px; left:872px; height:60%; right:15px; border:1px solid #e2001a;}
+#trfscroller ul li {width:100%;}
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}
