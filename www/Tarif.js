@@ -29,7 +29,9 @@ function trfInfoModele() {
 					log('existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
 				},
-				function() {}
+				function() {
+					log('existe pas');
+				}
 			);
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
 			fileExists(Fichier,
@@ -37,7 +39,9 @@ function trfInfoModele() {
 					log('existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg" width="100%"></li>');
 				},
-				function() {}
+				function() {
+					log('existe pas');
+				}
 			);
         } else {
             $('#trfResult').html('<p>Modèle innexistant</p>');

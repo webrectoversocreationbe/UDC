@@ -34,16 +34,12 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	var reader = new FileReader();
-	reader.onloadend = function(evt) {
-		log('ole');
-		if(evt.target.result == null) {
-		   callbackNOK();
-		} else {
-		   callbackOK();
-		}         
-	};
-	reader.readAsDataURL(Fichier);
+	var fl=fileSystem.root.getFile(Fichier, {create: false, exclusive: false}, 
+		function(f) {
+			callbackOK();
+		}, 
+		callbackNOK
+	);
 }
 
 function DownloadFile(Url,FileName) {
