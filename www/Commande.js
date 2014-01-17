@@ -87,7 +87,7 @@ function chkEcran() {
 		if ($('#cdemoduc').html()=='') {
 			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
 		}
-		if ($('#cdemoduc').html()=='') {
+		if ($('#cdecuiruc').html()=='') {
 			showAlert('Il faut choisir un revêtement','Attention','OK'); return false;
 		}
 		if ($('#Delai').val()=='') {
