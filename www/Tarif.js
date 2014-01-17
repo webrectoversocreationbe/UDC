@@ -26,6 +26,7 @@ function trfInfoModele() {
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'.jpg';
 			CheckIfFileExists(Fichier, 
 				function() {
+					log('existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg"></li>');
 					trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
 					},
@@ -34,6 +35,7 @@ function trfInfoModele() {
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
 			CheckIfFileExists(Fichier, 
 				function() {
+					log('existe A');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg"></li>');
 					trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
 					},
