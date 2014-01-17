@@ -40,7 +40,7 @@ function fileExists(Fichier,callbackOk,callbackNOK) {
 		log('udce');
 			de.getFile(Fichier, {create: false, exclusive: false}, 
 				function(fe) {
-					callbackOK();
+					callbackOk();
 				}, 
 				function(e) {
 					log('errgf');
