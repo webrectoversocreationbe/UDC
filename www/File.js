@@ -35,15 +35,15 @@ function InitFT(callback) {
 
 String.prototype.fileExists = function() {
 	filename = this.trim();
-	$.ajax({
-		url: filename,
-		async: false,
-		statusCode: {
-			404: function() {
-				return false;
-			}
-		}
-	}).done(function() {return true;});
+	var reader = new FileReader();
+	reader.onloadend = function(evt) {
+		if(evt.target.result == null) {
+		   return false;
+		} else {
+		   return true;
+		}         
+	};
+	reader.readAsDataURL(filename);
 }
 
 function DownloadFile(Url,FileName) {
