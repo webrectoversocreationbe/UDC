@@ -33,11 +33,14 @@ function InitFT(callback) {
 	callback();
 }
 
-function CheckIfFileExists(Fichier) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', Fichier, false);
-    http.send(null);
-    return http.status != 404 ? true : false;
+String.prototype.fileExists = function() {
+	filename = this.trim();
+	var response = jQuery.ajax({
+		url: filename,
+		type: 'HEAD',
+		async: false
+	}).status;  
+	return (response != "200") ? false : true;
 }
 
 function DownloadFile(Url,FileName) {

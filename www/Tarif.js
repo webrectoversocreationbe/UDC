@@ -24,12 +24,12 @@ function trfInfoModele() {
 			$('#trfscroller ul').empty();
 			var Fichier='';
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'.jpg';
-			if (CheckIfFileExists(Fichier)==true) {
+			if (Fichier.fileexists()==true) {
 				log('existe');
 				$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
 			}
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
-			if (CheckIfFileExists(Fichier)==true) {
+			if (Fichier.fileexists()==true) {
 				log('existe A');
 				$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
 			}
