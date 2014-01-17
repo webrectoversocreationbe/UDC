@@ -34,9 +34,12 @@ function InitFT(callback) {
 }
 
 String.prototype.fileExists = function() {
+	log('fe');
 	filename = this.trim();
 	var reader = new FileReader();
+	log('fr');
 	reader.onloadend = function(evt) {
+		log('ole');
 		if(evt.target.result == null) {
 		   return false;
 		} else {
@@ -44,6 +47,7 @@ String.prototype.fileExists = function() {
 		}         
 	};
 	reader.readAsDataURL(filename);
+	log('rdu');
 }
 
 function DownloadFile(Url,FileName) {
