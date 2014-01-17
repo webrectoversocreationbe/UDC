@@ -33,21 +33,18 @@ function InitFT(callback) {
 	callback();
 }
 
-String.prototype.fileExists = function() {
-	log('fe');
+function fileExists(Fichier,callbackOk,callbackNOK) {
 	filename = this.trim();
 	var reader = new FileReader();
-	log('fr');
 	reader.onloadend = function(evt) {
 		log('ole');
 		if(evt.target.result == null) {
-		   return false;
+		   callbackNOK();
 		} else {
-		   return true;
+		   callbackOK();
 		}         
 	};
 	reader.readAsDataURL(filename);
-	log('rdu');
 }
 
 function DownloadFile(Url,FileName) {

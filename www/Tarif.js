@@ -24,15 +24,21 @@ function trfInfoModele() {
 			$('#trfscroller ul').empty();
 			var Fichier='';
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'.jpg';
-			if (Fichier.fileExists()==true) {
-				log('existe');
-				$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
-			}
+			fileExists(Fichier,
+				function() {
+					log('existe');
+					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
+				},
+				function() {}
+			);
 			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
-			if (Fichier.fileExists()==true) {
-				log('existe A');
-				$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
-			}
+			fileExists(Fichier,
+				function() {
+					log('existe');
+					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg" width="100%"></li>');
+				},
+				function() {}
+			);
         } else {
             $('#trfResult').html('<p>Modèle innexistant</p>');
         }
