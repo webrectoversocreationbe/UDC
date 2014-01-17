@@ -34,24 +34,31 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	 fileSystem.root.getDirectory("newDirectory", {create:false,exclusive:false},
+	log('fe');
+	 fileSystem.root.getDirectory("UDC", {create:false,exclusive:false},
 	 	function(de) {
+		log('udce');
 			de.getFile(Fichier, {create: false, exclusive: false}, 
 				function(fe) {
+			log('gotf');
 					fe.file(function(f) {
+			log('fileok');
 							callbackOK();
 						}, 
 						function(e){
+			log('filenok');
 							callbackNOK();
 						}
 					);
 				}, 
 				function(e) {
 					callbackNOK();
+			log('errgf');
 				}
 			);
 		},
-		function() {
+		function(e) {
+			log('errde');
 			callbackNOK();
 		}); 
 }
