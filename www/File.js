@@ -35,7 +35,7 @@ function InitFT(callback) {
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
 	log('fe');
-	 fileSystem.root.getDirectory("UDC", {create:false,exclusive:false},
+	fs.root.getDirectory("UDC", {create:false,exclusive:false},
 	 	function(de) {
 		log('udce');
 			de.getFile(Fichier, {create: false, exclusive: false}, 
