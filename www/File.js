@@ -34,20 +34,26 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	fs.root.getFile("/UDC/"+Fichier, {create: false, exclusive: false}, 
-		function(fe) {
-			fe.file(function(f) {
-					callbackOK();
+	 fileSystem.root.getDirectory("newDirectory", {create:false,exclusive:false},
+	 	function(de) {
+			de.getFile(Fichier, {create: false, exclusive: false}, 
+				function(fe) {
+					fe.file(function(f) {
+							callbackOK();
+						}, 
+						function(e){
+							callbackNOK();
+						}
+					);
 				}, 
-				function(e){
+				function(e) {
 					callbackNOK();
 				}
 			);
-		}, 
-		function(e) {
+		},
+		function() {
 			callbackNOK();
-		}
-	);
+		}); 
 }
 
 function DownloadFile(Url,FileName) {
