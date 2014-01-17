@@ -59,6 +59,7 @@ function SynchroImg() {
 		success: function(response) {
 			var l = response.length;
 			var e;
+			$('#admloaderimg').toggle();
 			for (var i = 0; i < l; i++) {
 				e = response[i];
 				var tfile=e.split('/');
@@ -67,6 +68,8 @@ function SynchroImg() {
 				$('#nbimg').html(i+'/'+l);
 			}
 			$('#nbimg').html('');
+			$('#admloaderimg').toggle();
+			showAlert('Terminée','Synchronisation','OK');
 		},
 		error: function() {
 			showAlert('Une erreur est survenue','Attention','OK');
