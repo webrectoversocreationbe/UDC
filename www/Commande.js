@@ -78,21 +78,52 @@ function chkEcran() {
 		if ($('#Tel1').val()=='') {
 			alert('Le téléphone est obligatoire'); return false;
 		}*/
+		$('#pfactenssiege').css('display',$('#Societ').is(':checked')==true?'inline':'none');
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 2:
+		if ($('#cdemoduc').html()=='') {
+			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
+		}
+		if ($('#cdemoduc').html()=='') {
+			showAlert('Il faut choisir un revêtement','Attention','OK'); return false;
+		}
+		if ($('#Delai').val()=='') {
+			showAlert('Il faut préciser le délai','Attention','OK'); return false;
+		}
+		if ($('#cdetLesElems tr').length==0) {
+			showAlert('Il faut définir les élements','Attention','OK'); return false;
+		}
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 4:
+		if ($('#cdePV').val()=='') {
+			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
+		}
+		if ($('#cdePT').val()=='') {
+			showAlert('Il faut préciser le prix total au tarif','Attention','OK'); return false;
+		}
+		if ($('#cdeFCLIB').val()!='' && $('#cdeFC').val()=='') {
+			showAlert('Il faut préciser le montant des frais complémentaires','Attention','OK'); return false;
+		}
+		if ($('#chkfinoui').is(':checked')==true && $('#MontantFin').val()=='') {
+			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
+		}
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 5:
+		if ($('#cdePVTOTTVAC').val()=='') {
+			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
+		}
+		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
+			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
+		}
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');

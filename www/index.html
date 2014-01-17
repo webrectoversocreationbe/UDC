@@ -204,7 +204,7 @@
             </div>
             <div class="clear"></div>
             <p class="ML15"><button class="btncde" id="ajelem" onClick="InitRech('cdeAjElem')">Ajouter un élément</button>&nbsp;<button class="btncde" id="supprelem" onClick="InitRech('cdeSupprElem')">Supprimer un élément</button>&nbsp;<button class="btncde" id="ajrem" onClick="cdeAjRem()">Ajouter une remarque</button></p><br/>
-            <p class="ML15"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;<button class="btncde" id="realcroquis" onClick="cdeCroquis()">Réaliser un croquis</button></p>
+            <p class="ML15"><span id="pfactenssiege"><label for="factenssiege" class="ML15">Facturation "Ensemble de sièges"&nbsp;</label><input type="checkbox" id="factenssiege">&nbsp;&nbsp;&nbsp;&nbsp;</span><button class="btncde" id="realcroquis" onClick="cdeCroquis()">Réaliser un croquis</button></p>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
@@ -238,7 +238,7 @@
                 <tr><td align="left">Frais complémentaires : <br/><input type="text" id="cdeFCLIB" value="" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15"/> €</td></tr>
                 <tr><td align="left">Prix de vente total : </td><td align="right"><input type="text" id="cdePVTOT" value="" size="15"/> €</td></tr>
                 </table>
-                <div style="width:600px; text-align:right; margin:0 auto;">
+                <div style="width:600px; text-align:right; margin:0 auto 0 20px;">
                     <p>Financement d'une partie de l'achat&nbsp;&nbsp;<input type="radio" name="finpartachat" id="chkfinoui" value="oui">&nbsp;<label for="chkfinoui">Oui</label>&nbsp;&nbsp;<input type="radio" id="chkfinnon" name="finpartachat" value="non" checked="checked">&nbsp;<label for="chkfinnon">Non</label></p><br/>
                     <p>Montant du crédit : <input type="text" id="MontantFin" size="15"/> €</p><br/>
                     <p><label class="P20" for="chkexon">Exonération TVA</label>&nbsp;&nbsp;<input type="checkbox" id="chkexon"></p>
@@ -268,7 +268,7 @@
             	<p>Acompte à payer au maximum pour le : <span class="floatright"><input type="text" id="cdeacomptedate" size="15">&nbsp;&nbsp;</span></p>
                 <div class="clear"></div>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>

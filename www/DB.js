@@ -19,7 +19,7 @@ function InitDB(callback) {
 	log('Initialisation base de données');
 	if (debug==true) {
 		$('#Init').removeClass('current');
-		$('#Commande').addClass('current');
+		$('#Main').addClass('current');
 		return false
 	}
 	$('.loader').toggle();
