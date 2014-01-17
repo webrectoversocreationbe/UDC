@@ -3,7 +3,7 @@ var trfScroll;
 function InitTarif() {
 	$('#trfResult').html('');
 	$('#trfTLesElems').html('');
-	trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
+	$('#trfscroller ul').empty();
 }
 function trfInfoModele() {
     trfModele=new Modele();
@@ -27,6 +27,7 @@ function trfInfoModele() {
 			CheckIfFileExists(Fichier, 
 				function() {
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg"></li>');
+					trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
 					},
 				function() {}
 			);
@@ -34,6 +35,7 @@ function trfInfoModele() {
 			CheckIfFileExists(Fichier, 
 				function() {
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg"></li>');
+					trfScroll = new IScroll('#trfwrapperimg', { scrollX: true, scrollY: false, mouseWheel: true });
 					},
 				function() {}
 			);

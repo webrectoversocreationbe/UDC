@@ -33,7 +33,7 @@ function InitFT(callback) {
 	callback();
 }
 
-function FileExist(Fichier,success,fail) {
+function CheckIfFileExists(Fichier,success,fail) {
 	fs.root.getFile(Fichier, {create: false, exclusive: false}, success, fail);
 }
 
