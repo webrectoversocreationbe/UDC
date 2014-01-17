@@ -23,7 +23,7 @@ function trfInfoModele() {
 			// Images...
 			$('#trfscroller ul').empty();
 			var Fichier='';
-			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'.jpg';
+			Fichier=trfModele.MODNR+'.jpg';
 			fileExists(Fichier,
 				function() {
 					log('existe');
@@ -33,7 +33,7 @@ function trfInfoModele() {
 					log('existe pas');
 				}
 			);
-			Fichier=fs.root.fullPath + "/UDC/"+trfModele.MODNR+'A.jpg';
+			Fichier=trfModele.MODNR+'A.jpg';
 			fileExists(Fichier,
 				function() {
 					log('existe');

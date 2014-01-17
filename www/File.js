@@ -34,7 +34,7 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	var fl=fileSystem.root.getFile(Fichier, {create: false, exclusive: false}, 
+	var fl=fs.root.getFile("/UDC/"+Fichier, {create: false, exclusive: false}, 
 		function(f) {
 			callbackOK();
 		}, 
