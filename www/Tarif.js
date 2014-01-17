@@ -26,21 +26,21 @@ function trfInfoModele() {
 			Fichier=trfModele.MODNR+'.jpg';
 			fileExists(Fichier,
 				function() {
-					log('existe');
+					log(Fichier+' existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
 				},
 				function() {
-					log('existe pas');
+					log(Fichier+' existe pas');
 				}
 			);
 			Fichier=trfModele.MODNR+'A.jpg';
 			fileExists(Fichier,
 				function() {
-					log('existe');
+					log(Fichier+' existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg" width="100%"></li>');
 				},
 				function() {
-					log('existe pas');
+					log(Fichier+' existe pas');
 				}
 			);
         } else {

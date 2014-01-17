@@ -34,11 +34,19 @@ function InitFT(callback) {
 }
 
 function fileExists(Fichier,callbackOk,callbackNOK) {
-	var fl=fs.root.getFile("/UDC/"+Fichier, {create: false, exclusive: false}, 
-		function(f) {
-			callbackOK();
+	fs.root.getFile("/UDC/"+Fichier, {create: false, exclusive: false}, 
+		function(fe) {
+			fe.file(function(f) {
+					callbackOK();
+				}, 
+				function(e){
+					callbackNOK();
+				}
+			);
 		}, 
-		callbackNOK
+		function(e) {
+			callbackNOK();
+		}
 	);
 }
 
