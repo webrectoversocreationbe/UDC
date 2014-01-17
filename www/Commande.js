@@ -3,6 +3,8 @@ var EcranActif;
 function InitCommande() {
     cdeModele=new Modele();
 	EcranActif=1;
+	$('.EcranCde').removeClass('current2');
+	$('#Ecran'+EcranActif).addClass('current2');
 	var d=new Date();
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
 	$('#RemarqueVendeur').val('');

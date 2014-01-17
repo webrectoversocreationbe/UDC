@@ -57,9 +57,9 @@ function SynchroImg() {
         crossDomain: true,
 		dataType: "json",
 		success: function(response) {
+			$('#admloaderimg').toggle();
 			var l = response.length;
 			var e;
-			$('#admloaderimg').toggle();
 			for (var i = 0; i < l; i++) {
 				e = response[i];
 				var tfile=e.split('/');
