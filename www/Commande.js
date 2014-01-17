@@ -92,6 +92,11 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
+	case 5:
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+		break;
 	}
 }
 function cdeInfoModele() {

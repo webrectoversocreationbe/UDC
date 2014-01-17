@@ -61,11 +61,13 @@ function SynchroImg() {
 			var l = response.length;
 			var e;
 			for (var i = 0; i < l; i++) {
+				(function test(response,i,l) {
 				e = response[i];
 				var tfile=e.split('/');
 				var filen=tfile[3];
 				DownloadFile("http://192.168.0.248/UDC/"+e,filen);
 				$('#nbimg').html(i+'/'+l);
+				})(response,i,l);
 			}
 			$('#nbimg').html('');
 			$('#admloaderimg').css('display','none');
