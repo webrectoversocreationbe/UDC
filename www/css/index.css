@@ -374,6 +374,16 @@ p {
 #cdeRem {width:120px; text-align:right;}
 #cdeRachat {width:120px; text-align:right;}
 #cdeFC {width:120px; text-align:right;}
-#cdeFCLIB {width:320px;}
+#cdeFCLIB {width:340px;}
 #cdePVTOT {width:120px; text-align:right;}
 #MontantFin {width:120px; text-align:right;}
+#tableauacompte td {font-size:20px;}
+#tableauacompte tr td {width:70%;}
+#tableauacompte tr td+td {width:30%;}
+#cdePVTOTTVAC {width:120px; text-align:right;}
+#cdeacomptecarte {width:120px; text-align:right;}
+#cdeacompteespece {width:120px; text-align:right;}
+#cdeacomptecheque {width:120px; text-align:right;}
+#cdeacompteautre {width:120px; text-align:right;}
+#cdesoldeacompte {width:120px; text-align:right;}
+#cdeacomptedate {width:120px;}

@@ -57,7 +57,7 @@ function SynchroImg() {
         crossDomain: true,
 		dataType: "json",
 		success: function(response) {
-			$('#admloaderimg').toggle();
+			$('#admloaderimg').css('display','inline');
 			var l = response.length;
 			var e;
 			for (var i = 0; i < l; i++) {
@@ -68,7 +68,7 @@ function SynchroImg() {
 				$('#nbimg').html(i+'/'+l);
 			}
 			$('#nbimg').html('');
-			$('#admloaderimg').toggle();
+			$('#admloaderimg').css('display','none');
 			showAlert('Terminée','Synchronisation','OK');
 		},
 		error: function() {
