@@ -124,27 +124,19 @@ function chkEcran() {
 			cde.DetailCommande.push(cdeModele);
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
-			log('cptmod'+cptmod);
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
-			log('nbelem'+nbelem);
 			$('#cdetLesElems tr').each(function(index) {
-				log('index'+index);
-				var temp=$(this).children().eq(0).html().split(' -');
-				var elcode=temp[0];
-				log('elcode'+elcode);
+				var elcode=$(this).children().eq(0).html().split(' -',1)[0];
 				var qte=$(this).children().eq(1).html();
-				log('qte'+qte);
 				for(cpt=0;cpt<nbelem;cpt++) {
-					log('cptel'+cpt);
 					var el=cde.DetailCommande[cptmod].Elements[cpt];
 					cde.DetailCommande[cptmod].Elements[cpt].Qte=0;
 					if (el.ELCODE==elcode) {
-						log('elem trouvé'+elcode);
 						cde.DetailCommande[cptmod].Elements[cpt].Qte=qte;
 					}
 				}
 			});
-		dump(cde,'log');
+		dump(cde.DetailCommande,'log');
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
