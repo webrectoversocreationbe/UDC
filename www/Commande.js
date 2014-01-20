@@ -124,14 +124,21 @@ function chkEcran() {
 			cde.DetailCommande.push(cdeModele);
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
+			log('cptmod'+cptmod);
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
-			$('#cdetLesElems tr').each(function() {
+			log('nbelem'+nbelem);
+			$('#cdetLesElems tr').each(function(index) {
+				log('index'+index);
 				var elcode=this.attr('id').substr(7);
+				log('elcode'+elcode);
 				var qte=this.children().eq(1).html();
+				log('qte'+qte);
 				for(cpt=0;cpt<nbelem;cpt++) {
+					log('cptel'+cpt);
 					var el=cde.DetailCommande[cptmod].Elements[cpt];
-					cde.DetailCommande[cptmod].Elements[cpt].Qte
+					cde.DetailCommande[cptmod].Elements[cpt].Qte=0;
 					if (el.ELCODE==elcode) {
+						log('elem trouvé'+elcode);
 						cde.DetailCommande[cptmod].Elements[cpt].Qte=qte;
 					}
 				}
