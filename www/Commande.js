@@ -88,7 +88,7 @@ function chkEcran() {
 			alert('Le téléphone est obligatoire'); return false;
 		}*/
 		// OBJ CDE
-		cde.Societe=$('#Societe').val();cde.NumTva=$('#NumTva').val();
+		cde.Societe=$('#Societe').val();cde.NumTva=$('#NumTva').val();cde.RemarqueVendeur=$('#RemarqueVendeur').val();
 		cde.Civil0=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';cde.Responsable=$('#Responsable').val();
 		cde.Civil1=$('#Civil1Mr').is(':checked')==true?'Mr':'Mme';cde.Prenom1=$('#Prenom1').val();cde.Nom1=$('#Nom1').val();
 		cde.Civil2=$('#Civil2Mr').is(':checked')==true?'Mr':'Mme';cde.Prenom2=$('#Prenom2').val();cde.Nom2=$('#Nom2').val();
@@ -96,7 +96,6 @@ function chkEcran() {
 		cde.Tel1=$('#Tel1').val();cde.Tel2=$('#Tel2').val();cde.Gsm1=$('#Gsm1').val();cde.Gsm2=$('#Gsm2').val();
 		cde.Email=$('#Email').val();cde.Remarque=$('#Remarque1').val();
 		cde.Fractionner=$('#fracoui').is(':checked')==true?1:0;cde.NbFraction=$('#NbFrac').val();
-		dump(cde,'log');
 		// ECRAN SUIVANT
 		$('#pfactenssiege').css('display',$('#Societ').is(':checked')==true?'inline':'none');
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -104,6 +103,7 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 2:
+		// CHECK
 /*		if ($('#cdemoduc').html()=='') {
 			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
 		}
@@ -116,6 +116,10 @@ function chkEcran() {
 		if ($('#cdetLesElems tr').length==0) {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
 		}*/
+		// OBJ CDE
+		cde.DetailCommande.push(cdeModele);
+		dump(cde,'log');
+		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
