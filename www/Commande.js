@@ -30,13 +30,7 @@ function VideZones() {
 	$('#Gsm2').val('');
 	$('#Remarque1').val('');
 	
-	$('#cdemoduc').html('');
-	$('#cdecuiruc').html('');
-	$('#cdecolouc').html('');
-	$('#cdeopfr').html('');
-	$('#Delai').val('');
-	$('#cdetLesElems').empty();
-	$('#cdeRemMod').html('');
+	VideEcranCdeMod();
 	
 	$('#cdePV').val('');
 	$('#cdePT').val('');
@@ -47,6 +41,15 @@ function VideZones() {
 	
 	$('#cdePVTOT').val('');
 	$('#MontantFin').val('');
+}
+function VideEcranCdeMod() {
+	$('#cdemoduc').html('');
+	$('#cdecuiruc').html('');
+	$('#cdecolouc').html('');
+	$('#cdeopfr').html('');
+	$('#Delai').val('');
+	$('#cdetLesElems').empty();
+	$('#cdeRemMod').html('');
 }
 function chkFrac() {
 	$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
@@ -117,7 +120,22 @@ function chkEcran() {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
 		}*/
 		// OBJ CDE
-		cde.DetailCommande.push(cdeModele);
+			// ajout du modèle au détail de commande
+			cde.DetailCommande.push(cdeModele);
+			// quantité des élements
+			var cptmod=cde.DetailCommande.length-1;
+			var nbelem=cde.DetailCommande[cptmod].Elements.length;
+			$('#cdetLesElems tr').each(function() {
+				var elcode=this.attr('id').substr(7);
+				var qte=this.children().eq(1).html();
+				for(cpt=0;cpt<nbelem;cpt++) {
+					var el=cde.DetailCommande[cptmod].Elements[cpt];
+					cde.DetailCommande[cptmod].Elements[cpt].Qte
+					if (el.ELCODE==elcode) {
+						cde.DetailCommande[cptmod].Elements[cpt].Qte=qte;
+					}
+				}
+			});
 		dump(cde,'log');
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -190,6 +208,7 @@ function cdeCroquisEfface() {
 }
 function btnNouvMod() {
     cdeModele=new Modele();
+	VideEcranCdeMod();
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif-=1;
 	$('#Ecran'+EcranActif).addClass('current2');
