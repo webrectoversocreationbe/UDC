@@ -129,7 +129,8 @@ function chkEcran() {
 			log('nbelem'+nbelem);
 			$('#cdetLesElems tr').each(function(index) {
 				log('index'+index);
-				var elcode=this.attr('id').substr(7);
+				var temp=this.children().eq(0).html().split(' -');
+				var elcode=temp[0];
 				log('elcode'+elcode);
 				var qte=this.children().eq(1).html();
 				log('qte'+qte);
