@@ -129,10 +129,10 @@ function chkEcran() {
 			log('nbelem'+nbelem);
 			$('#cdetLesElems tr').each(function(index) {
 				log('index'+index);
-				var temp=this.children().eq(0).html().split(' -');
+				var temp=$(this).children().eq(0).html().split(' -');
 				var elcode=temp[0];
 				log('elcode'+elcode);
-				var qte=this.children().eq(1).html();
+				var qte=$(this).children().eq(1).html();
 				log('qte'+qte);
 				for(cpt=0;cpt<nbelem;cpt++) {
 					log('cptel'+cpt);
