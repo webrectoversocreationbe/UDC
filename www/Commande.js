@@ -136,9 +136,7 @@ function chkEcran() {
 				}
 			});
 			// calculer le prix
-			log('calcul');
 			cde.CalculPrix();
-			log('calculé');
 			$('#cdePT').val(cde.TotalTarif);
 		dump(cde.DetailCommande,'log');
 		// ECRAN SUIV
@@ -170,6 +168,8 @@ function chkEcran() {
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
+		// RECAP
+		RecapCde();
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -226,6 +226,36 @@ function ActualisePrix() {
 	var PT=$('#cdePV').val().replace(',','.');
 	var Rem=$('#cdeRem').val().replace(',','.');
 	var Rachat=$('#cdeRachat').val().replace(',','.');
-	var pvtot=PT-Rem-Rachat;
+	var FC=$('#cdeFC').val().replace(',','.');
+	var pvtot=PT-Rem-Rachat+FC;
+	var pvtvac=pvtot*1.21;
+	var ac20=pvtvac*0.20;
 	$('#cdePVTOT').val(pvtot)
+	$('#cdePVTOTTVAC').val(pvtvac);
+	$('#acompte20').html(Nombre(ac20)+' €');
+}
+function RecapCde() {
+	var r='';
+	r=r+'<p>Date : '+cde.DateC+'</p>';
+	r=r+'<p>Commande : '+cde.Ref+'</p>';
+	r=r+'<p>Vendeur : '+cde.Vendeur+'</p>';
+	if (cde.Societe!='') {
+		r=r+'<p>Société : '+cde.Societe+'</p>';
+		r=r+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>';
+	} else {
+		r=r+'<p>';
+		r=r+'Client : <br/>';
+		r=r+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1;
+		r=r+cde.Civil2==''?'':'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+		r=r+'</p>';
+	}
+	r=r+cde.Adresse==''?'':'<p>Adresse : <br/>'+cde.Adresse+'</p>';
+	r=r+cde.CP==''?'':'<p>'+cde.CP+' '+cde.Ville+'</p>';
+	r=r+cde.Tel1==''?'':'<p>Téléphone : '+cde.Tel1+'</p>';
+	r=r+cde.Tel2==''?'':'<p>Téléphone : '+cde.Tel2+'</p>';
+	r=r+cde.Gsm1==''?'':'<p>Gsm : '+cde.Gsm1+'</p>';
+	r=r+cde.Gsm2==''?'':'<p>Gsm : '+cde.Gsm2+'</p>';
+	r=r+cde.Email==''?'':'<p>Email : '+cde.Email+'</p>';
+	r=r+cde.Remarque==''?'':'<p>Remarque : <br/>'+cde.Remarque+'</p>';
+	$('#RecapCde').html(r);
 }
