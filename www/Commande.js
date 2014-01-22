@@ -141,7 +141,7 @@ function chkEcran() {
 			cde.CalculPrix();
 			$('#cdePV').val(cde.TotalTarif);
 			$('#cdePT').val(cde.TotalTarif);
-		dump(cde.DetailCommande,'log');
+			$('#cdePVTOT').val(cde.TotalTarif);
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -164,7 +164,7 @@ function chkEcran() {
 		cde.MontantFinancement=$('#MontantFin').val();
 		cde.Frais=$('#cdeFC').val();
 		cde.GenreFrais=$('#cdeFCLIB').val();
-		cde.Exoneration=$('#chkfinoui').is(':checked')==true?1:0;
+		cde.Exoneration=$('#chkexon').is(':checked')==true?1:0;
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -177,6 +177,7 @@ function chkEcran() {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
 		// RECAP
+		log('ecran5');
 		var Acompte=0;
 		acompte+=$('#cdeacomptecarte').val();
 		acompte+=$('#cdeacompteespece').val();
@@ -189,7 +190,9 @@ function chkEcran() {
 		cde.AcompteAutre=$('#cdeacompteautre').val();
 		cde.SoldeAcompte=$('#cdesoldeacompte').val();
 		cde.DateA=$('#cdeacomptedate').val();
+		log('recap');
 		RecapCde();
+		log('apres recap');
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -247,8 +250,9 @@ function ActualisePrix() {
 	var Rem=$('#cdeRem').val().replace(',','.');
 	var Rachat=$('#cdeRachat').val().replace(',','.');
 	var FC=$('#cdeFC').val().replace(',','.');
-	var pvtot=PT-Rem-Rachat+FC;
-	var pvtvac=pvtot*cde.Exoneration==0?1.21:1;
+	var pvtot=PT-Rem-Rachat+parseInt(FC);
+	var pvtvac=0;
+	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
 	$('#cdePVTOT').val(Nombre(pvtot))
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
