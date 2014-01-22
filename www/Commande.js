@@ -167,6 +167,7 @@ function chkEcran() {
 		cde.Frais=$('#cdeFC').val();
 		cde.GenreFrais=$('#cdeFCLIB').val();
 		if($('#chkexon').is(':checked')==true) {cde.Exoneration=1;} else {cde.Exoneration=0;}
+		ActualisePrix();
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -191,7 +192,7 @@ function chkEcran() {
 		cde.AcompteAutre=$('#cdeacompteautre').val();
 		cde.SoldeAcompte=$('#cdesoldeacompte').val();
 		cde.DateA=$('#cdeacomptedate').val();
-		cde.TotalNet=$('#cdePVTOT').val();
+		cde.TotalNet=$('#cdePV').val();
 		cde.TotalTVAC=$('#cdePVTOTTVAC').val();
 		RecapCde();
 		
@@ -252,14 +253,10 @@ function ActualisePrix() {
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();
-	var pvtot=PT;
-	log(pvtot);
+	var pvtot=parseFloat(PT);
 	if (Rem!='') {pvtot=pvtot-Rem;}
-	log(pvtot);
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
-	log(pvtot);
 	if (FC!='') {pvtot=pvtot+FC;}
-	log(pvtot);
 	var pvtvac=0;
 	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
