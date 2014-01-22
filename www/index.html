@@ -240,12 +240,12 @@
         <div class="cdeContent">
         	<div style="width:800px; margin:0 auto;">
                 <table width="80%" style="width:600px;"  id="tableauprix">
-                <tr><td align="left">Prix de vente :</td><td align="right"><input type="text" id="cdePV" value="" size="15" onChange="ActualiserPrix()"/> €</td></tr>
-                <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="" size="15" onChange="NePasAfficherPrix()"/> €</td></tr>
-                <tr><td align="left">Remises et promotions :</td><td align="right"><input type="text" id="cdeRem" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
-                <tr><td align="left">Rachat salon :</td><td align="right"><input type="text" id="cdeRachat" size="15" onChange="ActualisePrix()"/> €</td></tr>
-                <tr><td align="left">Frais complémentaires : <br/><input type="text" id="cdeFCLIB" value="" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
-                <tr><td align="left">Prix de vente total : </td><td align="right"><input type="text" id="cdePVTOT" value="" size="15"/> €</td></tr>
+                <tr><td align="left">Prix de vente :</td><td align="right"><input type="text" id="cdePV" value="0" size="15" onChange="ActualiserPrix()"/> €</td></tr>
+                <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="0" size="15" onChange="NePasAfficherPrix()"/> €</td></tr>
+                <tr><td align="left">Remises et promotions :</td><td align="right"><input type="text" id="cdeRem" value="0" size="15" onChange="ActualisePrix()"/> €</td></tr>
+                <tr><td align="left">Rachat salon :</td><td align="right"><input type="text" id="cdeRachat" size="15" value="0" onChange="ActualisePrix()"/> €</td></tr>
+                <tr><td align="left">Frais complémentaires : <br/><input type="text" id="cdeFCLIB" value="0" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
+                <tr><td align="left">Prix de vente total : </td><td align="right"><input type="text" id="cdePVTOT" value="0" size="15"/> €</td></tr>
                 </table>
                 <div style="width:600px; text-align:right; margin:0 auto 0 20px;">
                     <p>Financement d'une partie de l'achat&nbsp;&nbsp;<input type="radio" name="finpartachat" id="chkfinoui" value="oui">&nbsp;<label for="chkfinoui">Oui</label>&nbsp;&nbsp;<input type="radio" id="chkfinnon" name="finpartachat" value="non" checked="checked">&nbsp;<label for="chkfinnon">Non</label></p><br/>

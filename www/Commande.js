@@ -162,6 +162,8 @@ function chkEcran() {
 		}*/
 		cde.Financement=$('#chkfinoui').is(':checked')==true?1:0;
 		cde.MontantFinancement=$('#MontantFin').val();
+		cde.Remise=$('#cdeRem').val();
+		cde.Reprise=$('#cdeRachat').val();
 		cde.Frais=$('#cdeFC').val();
 		cde.GenreFrais=$('#cdeFCLIB').val();
 		cde.Exoneration=$('#chkexon').is(':checked')==true?1:0;
@@ -177,7 +179,6 @@ function chkEcran() {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
 		// RECAP
-		log('ecran5');
 		var acompte=0;
 		acompte=acompte+$('#cdeacomptecarte').val();
 		acompte=acompte+$('#cdeacompteespece').val();
@@ -190,9 +191,10 @@ function chkEcran() {
 		cde.AcompteAutre=$('#cdeacompteautre').val();
 		cde.SoldeAcompte=$('#cdesoldeacompte').val();
 		cde.DateA=$('#cdeacomptedate').val();
-		log('recap');
+		cde.TotalNet=$('#cdePVTOT').val();
+		cde.TotalTVAC=$('#cdePVTOTTVAC').val();
 		RecapCde();
-		log('apres recap');
+		
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -288,7 +290,7 @@ function RecapCde() {
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
-		r=r+'<br/><p>Modèle : '+cde.DetailCommande[cptm].MOUC+'</p>';
+		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MOUC+'</p>';
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
 		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
