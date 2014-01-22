@@ -236,19 +236,17 @@ function ActualisePrix() {
 }
 function RecapCde() {
 	var r='';
-	r=r+'<p>Date : '+cde.DateC+'</p>';
-	r=r+'<p>Commande : '+cde.Ref+'</p>';
-	r=r+'<p>Vendeur : '+cde.Vendeur+'</p>';
-	if (cde.Societe!='') {
-		r=r+'<p>Société : '+cde.Societe+'</p>';
-		r=r+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>';
-	} else {
-		r=r+'<p>';
-		r=r+'Client : <br/>';
-		r=r+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1;
-		r=r+cde.Civil2==''?'':'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
-		r=r+'</p>';
-	}
-	r=r+cde.Adresse==''?'':'<p>Adresse : <br/>'+cde.Adresse+'</p>';
+	r='<p>Date : '+cde.DateC+'</p>'
+	+'<p>Commande : '+cde.Ref+'</p>'
+	+'<p>Vendeur : '+cde.Vendeur+'</p>'
+	+cde.Societe!=''?
+		'<p>Société : '+cde.Societe+'</p>'
+		+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>'
+	:
+		'<p>'
+		+'Client : <br/>'
+		+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1
+		+cde.Civil2==''?'':'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2
+		+'</p>';
 	$('#RecapCde').html(r);
 }
