@@ -166,7 +166,7 @@ function chkEcran() {
 		cde.Reprise=$('#cdeRachat').val();
 		cde.Frais=$('#cdeFC').val();
 		cde.GenreFrais=$('#cdeFCLIB').val();
-		cde.Exoneration=$('#chkexon').is(':checked')==true?1:0;
+		if($('#chkexon').is(':checked')==true) {cde.Exoneration=1;} else {cde.Exoneration=0;}
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -248,11 +248,11 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
-	var PT=parseFloat($('#cdePV').val().replace(',','.'));
-	var Rem=parseFloat($('#cdeRem').val().replace(',','.'));
-	var Rachat=parseFloat($('#cdeRachat').val().replace(',','.'));
-	var FC=parseFloat($('#cdeFC').val().replace(',','.'));
-	var pvtot=parseFloat(PT);
+	var PT=$('#cdePV').val();
+	var Rem=$('#cdeRem').val();
+	var Rachat=$('#cdeRachat').val();
+	var FC=$('#cdeFC').val();
+	var pvtot=PT;
 	log(pvtot);
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	log(pvtot);
