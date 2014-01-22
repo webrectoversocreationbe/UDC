@@ -135,6 +135,9 @@ function chkEcran() {
 					}
 				}
 			});
+			// calculer le prix
+			cde.CalulPrix();
+			$('#cdePT').val(cde.TotalTarif);
 		dump(cde.DetailCommande,'log');
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -154,7 +157,6 @@ function chkEcran() {
 		if ($('#chkfinoui').is(':checked')==true && $('#MontantFin').val()=='') {
 			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
 		}*/
-		$('#cdePT').val(cde.TotalTarif);
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
