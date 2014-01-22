@@ -9,6 +9,8 @@ function InitCommande() {
 	$('.EcranCde').removeClass('current2');
 	$('#Ecran'+EcranActif).addClass('current2');
 	var d=new Date();
+	cde.Vendeur=User;
+	cde.DateC=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
 }
 function VideZones() {
@@ -246,7 +248,7 @@ function RecapCde() {
 		r=r+'<p>';
 		r=r+'Client : <br/>';
 		r=r+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1
-		if(cde.Civil2!='') {
+		if(cde.Prenom2!='') {
 			r=r+'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
 		}
 		r=r+'</p>';
@@ -259,5 +261,20 @@ function RecapCde() {
 	if(cde.Gsm2!='') {r=r+'<p>Gsm : '+cde.Gsm2+'</p>';}
 	if(cde.Email!='') {r=r+'<p>Email : '+cde.Email+'</p>';}
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
+	var nbmod=cde.DetailCommande.length;
+	for(cptm=0;cptm<nbmod;cptm++) {
+		r=r+'<br/><p>Modèle : '+cde.DetailCommande[cptm].MOUC+' Revêtement : '+cde.DetailCommande[cptm].CUIRUC+' Couleur : '+cde.DetailCommande[cptm].COLOUC+' Option : '+cde.DetailCommande[cptm].OPFR+'</p>';
+		var nbelem=cde.DetailCommande[cptm].Elements.length;
+		for(cpte=0;cpte<nbelem;cpte++) {
+			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;
+			var Qte=cde.DetailCommande[cptm].Elements[cpte].Qte;
+			var Px=cde.DetailCommande[cptm].Elements[cpte].Prix;
+			if (Qte>0) {
+				r=r+'<p>'+descelem+' : '+Qte+' = '+(Qte*Px)+'</p>';
+			}
+		}
+	}
+	
+	
 	$('#RecapCde').html(r);
 }
