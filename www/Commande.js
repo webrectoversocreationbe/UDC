@@ -180,10 +180,10 @@ function chkEcran() {
 		}*/
 		// RECAP
 		var acompte=0;
-		acompte=acompte+parseFloat($('#cdeacomptecarte').val());
-		acompte=acompte+parseFloat($('#cdeacompteespece').val());
-		acompte=acompte+parseFloat($('#cdeacomptecheque').val());
-		acompte=acompte+parseFloat($('#cdeacompteautre').val());
+		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val());}
+		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val());}
+		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val());}
+		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val());}
 		cde.Acompte=acompte;
 		cde.AcompteCarte=$('#cdeacomptecarte').val();
 		cde.AcompteEspece=$('#cdeacompteespece').val();
@@ -252,7 +252,10 @@ function ActualisePrix() {
 	var Rem=parseFloat($('#cdeRem').val().replace(',','.'));
 	var Rachat=parseFloat($('#cdeRachat').val().replace(',','.'));
 	var FC=parseFloat($('#cdeFC').val().replace(',','.'));
-	var pvtot=parseFloat(PT-Rem-Rachat+FC);
+	var pvtot=parseFloat(PT);
+	if (Rem!='') {pvtot=pvtot-Rem;}
+	if (Rachat!='') {pvtot=pvtot-Rachat;}
+	if (FC!='') {pvtot=pvtot+FC;}
 	var pvtvac=0;
 	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
