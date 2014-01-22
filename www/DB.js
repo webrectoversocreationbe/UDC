@@ -297,12 +297,12 @@ window.dbu = {
 		});
 	},
 	login: function() {
-		var User=$('#User').val();
+		var U=$('#User').val();
 		var Psw=$('#Psw').val();
-		log('Login '+User+' : '+Psw);
+		log('Login '+U+' : '+Psw);
         madb.transaction(
             function(tx) {
-                tx.executeSql("SELECT User,bAdmin,Version as UserVersion FROM Users WHERE User='"+User+"' AND Psw='"+Psw+"'", this.txErrorHandler,
+                tx.executeSql("SELECT User,bAdmin,Version as UserVersion FROM Users WHERE User='"+U+"' AND Psw='"+Psw+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							User=results.rows.item(0).User;

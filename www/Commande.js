@@ -54,6 +54,7 @@ function VideEcranCdeMod() {
 	$('#Delai').val('');
 	$('#cdetLesElems').empty();
 	$('#cdeRemMod').html('');
+	cdeCroquisEfface();
 }
 function chkFrac() {
 	$('#rubrfrac').css('display',$('#fracnon').is(':checked')==true?'none':'inline');
@@ -245,12 +246,20 @@ function EffacerSign() {
 	api.clearCanvas();
 }
 function OkSign() {
-	EffacerSign();
+	var api = $('#sigPadSign1').signaturePad();
 	var prenomnom='';
-	if (($('#Societ').is(':checked')==true && $('#Societe').val()=='') || cde.Signature2!='') {
+	if($('#nomsign').html()==cde.Civil0+' '+cde.Responsable) {
+		cde.Signature1=api.getSignature();
 		chkEcran();
-	} else {
+	}
+	if($('#nomsign').html()==cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1) {
+		cde.Signature1=api.getSignature();
+		EffacerSign();
 		prenomnom=cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+	}
+	if($('#nomsign').html()==cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2) {
+		cde.Signature2=api.getSignature();
+		chkEcran();
 	}
 	$('#nomsign').html(prenomnom);
 }
