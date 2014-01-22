@@ -222,3 +222,10 @@ function cdeEcranPrix() {
 	EcranActif=4;
 	$('#Ecran'+EcranActif).addClass('current2');
 }
+function ActualisePrix() {
+	var PT=$('#cdePV').val().replace(',','.');
+	var Rem=$('#cdeRem').val().replace(',','.');
+	var Rachat=$('#cdeRachat').val().replace(',','.');
+	var pvtot=PT-Rem-Rachat;
+	$('#cdePVTOT').val(pvtot)
+}
