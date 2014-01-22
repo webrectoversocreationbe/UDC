@@ -178,7 +178,7 @@ function chkEcran() {
 		}*/
 		// RECAP
 		log('ecran5');
-		var Acompte=0;
+		var acompte=0;
 		acompte=acompte+$('#cdeacomptecarte').val();
 		acompte=acompte+$('#cdeacompteespece').val();
 		acompte=acompte+$('#cdeacomptecheque').val();
@@ -246,11 +246,11 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
-	var PT=$('#cdePV').val().replace(',','.');
-	var Rem=$('#cdeRem').val().replace(',','.');
-	var Rachat=$('#cdeRachat').val().replace(',','.');
-	var FC=$('#cdeFC').val().replace(',','.');
-	var pvtot=PT-Rem-Rachat+parseInt(FC);
+	var PT=parseFloat($('#cdePV').val().replace(',','.'));
+	var Rem=parseFloat($('#cdeRem').val().replace(',','.'));
+	var Rachat=parseFloat($('#cdeRachat').val().replace(',','.'));
+	var FC=parseFloat($('#cdeFC').val().replace(',','.'));
+	var pvtot=parseFloat(PT-Rem-Rachat+FC);
 	var pvtvac=0;
 	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
