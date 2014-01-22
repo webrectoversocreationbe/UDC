@@ -230,8 +230,8 @@ function ActualisePrix() {
 	var pvtot=PT-Rem-Rachat+FC;
 	var pvtvac=pvtot*1.21;
 	var ac20=pvtvac*0.20;
-	$('#cdePVTOT').val(pvtot)
-	$('#cdePVTOTTVAC').val(pvtvac);
+	$('#cdePVTOT').val(Nombre(pvtot))
+	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
 	$('#acompte20').html(Nombre(ac20)+' €');
 }
 function RecapCde() {
@@ -250,12 +250,5 @@ function RecapCde() {
 		r=r+'</p>';
 	}
 	r=r+cde.Adresse==''?'':'<p>Adresse : <br/>'+cde.Adresse+'</p>';
-	r=r+cde.CP==''?'':'<p>'+cde.CP+' '+cde.Ville+'</p>';
-	r=r+cde.Tel1==''?'':'<p>Téléphone : '+cde.Tel1+'</p>';
-	r=r+cde.Tel2==''?'':'<p>Téléphone : '+cde.Tel2+'</p>';
-	r=r+cde.Gsm1==''?'':'<p>Gsm : '+cde.Gsm1+'</p>';
-	r=r+cde.Gsm2==''?'':'<p>Gsm : '+cde.Gsm2+'</p>';
-	r=r+cde.Email==''?'':'<p>Email : '+cde.Email+'</p>';
-	r=r+cde.Remarque==''?'':'<p>Remarque : <br/>'+cde.Remarque+'</p>';
 	$('#RecapCde').html(r);
 }
