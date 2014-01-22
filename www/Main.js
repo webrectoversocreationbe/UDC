@@ -44,6 +44,7 @@ var app = {
 $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
 	$('#sigPadCroquis').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
+	$('#sigPadSign1').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
 });
 
 function onDeviceReady() {
