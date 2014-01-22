@@ -179,10 +179,10 @@ function chkEcran() {
 		// RECAP
 		log('ecran5');
 		var Acompte=0;
-		acompte+=$('#cdeacomptecarte').val();
-		acompte+=$('#cdeacompteespece').val();
-		acompte+=$('#cdeacomptecheque').val();
-		acompte+=$('#cdeacompteautre').val();
+		acompte=acompte+$('#cdeacomptecarte').val();
+		acompte=acompte+$('#cdeacompteespece').val();
+		acompte=acompte+$('#cdeacomptecheque').val();
+		acompte=acompte+$('#cdeacompteautre').val();
 		cde.Acompte=acompte;
 		cde.AcompteCarte=$('#cdeacomptecarte').val();
 		cde.AcompteEspece=$('#cdeacompteespece').val();
