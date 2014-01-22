@@ -209,5 +209,20 @@ var Commande = function() {
 };
 Commande.prototype = {
 	init: function(Id,callback) {
+	},
+	CalculPrix: function() {
+		var Prix=0;
+		var nbmod=this.DetailCommande.length;
+		for(cptm=0;cptm<nbmod;cptm++) {
+			var nbelem=this.DetailCommande[cptm].Elements.length;
+			for(cpte=0;cpte<nbelem;cpte++) {
+				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
+				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
+				if (Qte>0) {
+					Prix=Prix+(Qte*Px);
+				}
+			}
+		}
+		this.TotalTarif=Prix;
 	}
 }

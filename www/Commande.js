@@ -130,7 +130,6 @@ function chkEcran() {
 				var qte=$(this).children().eq(1).html();
 				for(cpt=0;cpt<nbelem;cpt++) {
 					var el=cde.DetailCommande[cptmod].Elements[cpt];
-					cde.DetailCommande[cptmod].Elements[cpt].Qte=0;
 					if (el.ELCODE==elcode) {
 						cde.DetailCommande[cptmod].Elements[cpt].Qte=qte;
 					}
@@ -155,6 +154,7 @@ function chkEcran() {
 		if ($('#chkfinoui').is(':checked')==true && $('#MontantFin').val()=='') {
 			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
 		}*/
+		$('#cdePT').val(cde.TotalTarif);
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
