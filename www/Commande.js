@@ -136,7 +136,9 @@ function chkEcran() {
 				}
 			});
 			// calculer le prix
+			log('calcul');
 			cde.CalulPrix();
+			log('calculé');
 			$('#cdePT').val(cde.TotalTarif);
 		dump(cde.DetailCommande,'log');
 		// ECRAN SUIV

@@ -218,6 +218,7 @@ Commande.prototype = {
 			for(cpte=0;cpte<nbelem;cpte++) {
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
 				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
+				log(Qte+' '+Px);
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
 				}
