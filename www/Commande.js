@@ -238,15 +238,26 @@ function RecapCde() {
 	var r='';
 	r='<p>Date : '+cde.DateC+'</p>'
 	+'<p>Commande : '+cde.Ref+'</p>'
-	+'<p>Vendeur : '+cde.Vendeur+'</p>'
-	+cde.Societe!=''?
-		'<p>Société : '+cde.Societe+'</p>'
+	+'<p>Vendeur : '+cde.Vendeur+'</p>';
+	if (cde.Societe!='') {
+		r=r+'<p>Société : '+cde.Societe+'</p>'
 		+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>'
-	:
-		'<p>'
-		+'Client : <br/>'
-		+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1
-		+cde.Civil2==''?'':'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2
-		+'</p>';
+	} else {
+		r=r+'<p>';
+		r=r+'Client : <br/>';
+		r=r+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1
+		if(cde.Civil2!='') {
+			r=r+'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+		}
+		r=r+'</p>';
+	}
+	if(cde.Adresse!='') {r=r+'<p>Adresse : <br/>'+cde.Adresse+'</p>';}
+	if(cde.CP!='') {r=r+'<p>'+cde.CP+' '+cde.Ville+'</p>';}
+	if(cde.Tel1!='') {r=r+'<p>Téléphone : '+cde.Tel1+'</p>';}
+	if(cde.Tel2!='') {r=r+'<p>Téléphone : '+cde.Tel2+'</p>';}
+	if(cde.Gsm1!='') {r=r+'<p>Gsm : '+cde.Gsm1+'</p>';}
+	if(cde.Gsm2!='') {r=r+'<p>Gsm : '+cde.Gsm2+'</p>';}
+	if(cde.Email!='') {r=r+'<p>Email : '+cde.Email+'</p>';}
+	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	$('#RecapCde').html(r);
 }
