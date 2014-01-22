@@ -205,6 +205,7 @@ var Commande = function() {
 	this.DateA='';
 	this.Signature1='';
 	this.Signature2='';
+	this.AfficherPrix=1;
 	this.DetailCommande=[];
 };
 Commande.prototype = {

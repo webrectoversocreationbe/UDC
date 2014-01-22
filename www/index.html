@@ -238,10 +238,10 @@
         <table width="100%"><tr><td width="33%">18 décembre 2013</td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right">Chris</td></tr></table>
         </div>
         <div class="cdeContent">
-        	<div style="width:600px; margin:0 auto;">
+        	<div style="width:800px; margin:0 auto;">
                 <table width="80%" style="width:600px;"  id="tableauprix">
-                <tr><td align="left">Prix de vente :</td><td align="right"><input type="text" id="cdePV" value="" size="15"/> €</td></tr>
-                <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="" size="15"/> €</td></tr>
+                <tr><td align="left">Prix de vente :</td><td align="right"><input type="text" id="cdePV" value="" size="15" onChange="ActualiserPrix()"/> €</td></tr>
+                <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="" size="15" onChange="NePasAfficherPrix()"/> €</td></tr>
                 <tr><td align="left">Remises et promotions :</td><td align="right"><input type="text" id="cdeRem" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Rachat salon :</td><td align="right"><input type="text" id="cdeRachat" size="15" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Frais complémentaires : <br/><input type="text" id="cdeFCLIB" value="" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>

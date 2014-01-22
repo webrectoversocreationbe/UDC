@@ -236,6 +236,9 @@ function ActualisePrix() {
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
 	$('#acompte20').html(Nombre(ac20)+' €');
 }
+function NePasAfficherPrix() {
+	cde.AfficherPrix=0;
+}
 function RecapCde() {
 	var r='';
 	r='<p>Date : '+cde.DateC+'</p>'
@@ -263,18 +266,28 @@ function RecapCde() {
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
-		r=r+'<br/><p>Modèle : '+cde.DetailCommande[cptm].MOUC+' Revêtement : '+cde.DetailCommande[cptm].CUIRUC+' Couleur : '+cde.DetailCommande[cptm].COLOUC+' Option : '+cde.DetailCommande[cptm].OPFR+'</p>';
+		r=r+'<br/><p>Modèle : '+cde.DetailCommande[cptm].MOUC+'</p>';
+		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
+		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
+		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
 		var nbelem=cde.DetailCommande[cptm].Elements.length;
 		for(cpte=0;cpte<nbelem;cpte++) {
 			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;
 			var Qte=cde.DetailCommande[cptm].Elements[cpte].Qte;
 			var Px=cde.DetailCommande[cptm].Elements[cpte].Prix;
 			if (Qte>0) {
-				r=r+'<p>'+descelem+' : '+Qte+' = '+(Qte*Px)+'</p>';
+				r=r+'<p class="ML15">- '+descelem+' : '+Qte;
+				if (cde.AfficherPrix==1) {r=r+' = '+(Qte*Px)+' €';}
+				r=r+'</p>';
 			}
 		}
 	}
-	
+	r=r+'<br/><p><u>Total</u> : </p>';
+	r=r+'<p>Prix de vente : '+cde.TotalNet+' €</p>';
+	if(cde.Remise!='') {r=r+'<p>Remise : '+cde.Remise+' €</p>';}
+	if(cde.Reprise!='') {r=r+'<p>Rachat : '+cde.Reprise+' €</p>';}
+	if(cde.Frais!='') {r=r+'<p>Frais complémentaires : '+cde.Frais+' €</p>';}
+	r=r+'<p>Prix TVAC : '+cde.TotalTVAC+' €</p>';
 	
 	$('#RecapCde').html(r);
 }
