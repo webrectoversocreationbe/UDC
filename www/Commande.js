@@ -217,6 +217,11 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
+	case 7:
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+		break;
 	}
 }
 function cdeInfoModele() {
@@ -234,6 +239,20 @@ function cdeInfoModele() {
 			$('#Delai').val('');
         }
     });
+}
+function EffacerSign() {
+	var api = $('#sigPadSign1').signaturePad();
+	api.clearCanvas();
+}
+function OkSign() {
+	EffacerSign();
+	var prenomnom='';
+	if (($('#Societ').is(':checked')==true && $('#Societe').val()=='') || cde.Signature2!='') {
+		chkEcran();
+	} else {
+		prenomnom=cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+	}
+	$('#nomsign').html(prenomnom);
 }
 function cdeAjRem() {
 	showPrompt('Entrez la remarque :','Remarque du modèle','',function(results) {

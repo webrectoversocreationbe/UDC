@@ -101,7 +101,7 @@
         <div id="croqpad">
             <div id="sigPadCroquis" class="sigPad" style="position:relative;">
               <div class="sigWrapper" style="">
-                <canvas id="canvascroquis" class="pad" width="1012" height="257" style=""></canvas>
+                <canvas id="canvascroquis" class="pad" width="1011" height="256" style=""></canvas>
               </div>
             </div>
         </div>
@@ -307,11 +307,24 @@
             <div id="blocSign">
                 <div id="sigPadSign1" class="sigPad" style="position:relative;">
                   <div class="sigWrapper" style="">
-                    <canvas id="canvassign1" class="pad" width="1012" height="257" style=""></canvas>
+                    <canvas id="canvassign1" class="pad" width="1011" height="256" style=""></canvas>
                   </div>
                 </div>
             </div>
             <p class="centre"><button class="btncde" onClick="EffacerSign()">Effacer</button><button class="btncde ML15" onClick="OkSign()">Ok</button></p>
+        </div>
+        <div class="cdeFooter">
+        <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
+        </div>
+    </div>
+	<div id="Ecran8" class="EcranCde">
+        <div class="cdeEntete">
+        <table width="100%"><tr><td width="33%" class="DateC"></td><td align="center">Commande : <strong>16541</strong></td><td width="33%" align="right" class="User"></td></tr></table>
+        </div>
+        <div class="cdeContent centre">
+        	<p style="margin-top:350px;">Confirmer l'enregistrement de la commande<br/>et l'envoi au bureau</p>
+            <br/><br/>
+            <button class="btncde" onClick="ConfirmCde()">Confirmer</button>
         </div>
         <div class="cdeFooter">
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde ML15" onClick="Go('Main')">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
