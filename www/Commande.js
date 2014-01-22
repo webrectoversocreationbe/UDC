@@ -141,9 +141,9 @@ function chkEcran() {
 			});
 			// calculer le prix
 			cde.CalculPrix();
-			$('#cdePV').val(cde.TotalTarif);
-			$('#cdePT').val(cde.TotalTarif);
-			$('#cdePVTOT').val(cde.TotalTarif);
+			$('#cdePV').val(Nombre(cde.TotalTarif));
+			$('#cdePT').val(Nombre(cde.TotalTarif));
+			$('#cdePVTOT').val(Nombre(cde.TotalTarif));
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -197,6 +197,14 @@ function chkEcran() {
 		cde.TotalNet=$('#cdePV').val();
 		cde.TotalTVAC=$('#cdePVTOTTVAC').val();
 		RecapCde();
+		
+		var prenomnom='';
+		if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
+			prenomnom=cde.Civil0+' '+cde.Responsable;
+		} else {
+			prenomnom=cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1;
+		}
+		$('#nomsign').html(prenomnom);
 		
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
