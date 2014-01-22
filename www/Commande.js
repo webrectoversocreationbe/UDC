@@ -127,6 +127,8 @@ function chkEcran() {
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
+			cde.DetailCommande[cptmod].Delai=$('#Delai').val();
+			if ($('#GenreASAP').is(':checked')==true) {cde.DetailCommande[cptmod].GenreDelai='ASAP';} else {cde.DetailCommande[cptmod].GenreDelai='Respecter';}
 			$('#cdetLesElems tr').each(function(index) {
 				var elcode=$(this).children().eq(0).html().split(' -',1)[0];
 				var qte=$(this).children().eq(1).html();
@@ -200,6 +202,11 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
+	case 6:
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+		break;
 	}
 }
 function cdeInfoModele() {
@@ -256,7 +263,7 @@ function ActualisePrix() {
 	var pvtot=parseFloat(PT);
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
-	if (FC!='') {pvtot=pvtot+FC;}
+	if (FC!='') {pvtot=pvtot+parseFloat(FC);}
 	var pvtvac=0;
 	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
@@ -294,10 +301,11 @@ function RecapCde() {
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
-		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MOUC+'</p>';
+		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MOUC+'</p>';
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
 		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
+		if (cde.DetailCommande[cptm].Delai!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].Delai+' - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
 		var nbelem=cde.DetailCommande[cptm].Elements.length;
 		for(cpte=0;cpte<nbelem;cpte++) {
 			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;
