@@ -141,9 +141,9 @@ function chkEcran() {
 			});
 			// calculer le prix
 			cde.CalculPrix();
-			$('#cdePV').val(Nombre(cde.TotalTarif));
-			$('#cdePT').val(Nombre(cde.TotalTarif));
-			$('#cdePVTOT').val(Nombre(cde.TotalTarif));
+			$('#cdePV').val(FormatNombre(cde.TotalTarif,2,''));
+			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
+			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -321,23 +321,23 @@ function RecapCde() {
 			var Px=cde.DetailCommande[cptm].Elements[cpte].Prix;
 			if (Qte>0) {
 				r=r+'<p class="ML15">- '+descelem+' : '+Qte;
-				if (cde.AfficherPrix==1) {r=r+' = '+(Qte*Px)+' €';}
+				if (cde.AfficherPrix==1) {r=r+' = '+Nombre(Qte*Px)+' €';}
 				r=r+'</p>';
 			}
 		}
 	}
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : '+cde.TotalNet+' €</p>';
-	if(cde.Remise!='') {r=r+'<p>Remise : '+cde.Remise+' €</p>';}
-	if(cde.Reprise!='') {r=r+'<p>Rachat : '+cde.Reprise+' €</p>';}
-	if(cde.Frais!='') {r=r+'<p>Frais complémentaires : '+cde.Frais+' €</p>';}
+	r=r+'<p>Prix de vente : '+Nombre(cde.TotalNet)+' €</p>';
+	if(cde.Remise!='') {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
+	if(cde.Reprise!='') {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
+	if(cde.Frais!='') {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
 	r=r+'<p>Prix TVAC : '+cde.TotalTVAC+' €</p>';
-	r=r+'<br/><p><u>Acompte payé ce jour</u> : '+cde.Acompte+' €</p>';
-	if(cde.AcompteCarte!='') {r=r+'<p>Carte : '+cde.AcompteCarte+' €</p>';}
-	if(cde.AcompteEspece!='') {r=r+'<p>Espèce : '+cde.AcompteEspece+' €</p>';}
-	if(cde.AcompteCheque!='') {r=r+'<p>Chèque : '+cde.AcompteCheque+' €</p>';}
-	if(cde.AcompteAutre!='') {r=r+'<p>Autre : '+cde.AcompteAutre+' €</p>';}
-	if(cde.SoldeAcompte!='') {r=r+'<p>Solde acompte : '+cde.SoldeAcompte+' €</p>';}
+	r=r+'<br/><p><u>Acompte payé ce jour</u> : '+Nombre(cde.Acompte)+' €</p>';
+	if(cde.AcompteCarte!='') {r=r+'<p>Carte : '+Nombre(cde.AcompteCarte)+' €</p>';}
+	if(cde.AcompteEspece!='') {r=r+'<p>Espèce : '+Nombre(cde.AcompteEspece)+' €</p>';}
+	if(cde.AcompteCheque!='') {r=r+'<p>Chèque : '+Nombre(cde.AcompteCheque)+' €</p>';}
+	if(cde.AcompteAutre!='') {r=r+'<p>Autre : '+Nombre(cde.AcompteAutre)+' €</p>';}
+	if(cde.SoldeAcompte!='') {r=r+'<p>Solde acompte : '+Nombre(cde.SoldeAcompte)+' €</p>';}
 	if(cde.DateA!='') {r=r+'<p>A payer pour le : '+cde.DateA+'</p>';}
 	if(cde.MontantFinancement!='') {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
 	
