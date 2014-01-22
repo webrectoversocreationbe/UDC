@@ -21,6 +21,10 @@ function FormatNombre(valeur,decimal,separateur) {
 function Nombre(valeur) {
 	return FormatNombre(valeur,2,".");
 }
+function NomMois(mois) {
+	t=['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+	return t[mois];
+}
 function repeatString(str, num) {out = ''; for (var i = 0; i < num; i++) {out += str;} return out;}
 function dump(v, howDisplay, recursionLevel) {
     howDisplay = (typeof howDisplay === 'undefined') ? "alert" : howDisplay;

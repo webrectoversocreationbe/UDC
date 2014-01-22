@@ -10,7 +10,9 @@ function InitCommande() {
 	$('#Ecran'+EcranActif).addClass('current2');
 	var d=new Date();
 	cde.Vendeur=User;
-	cde.DateC=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
+	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
+	$('.DateC').html(cde.DateC);
+	$('.User').html(User);
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
 }
 function VideZones() {
@@ -327,7 +329,7 @@ function RecapCde() {
 		}
 	}
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : '+Nombre(cde.TotalNet)+' €</p>';
+	r=r+'<p>Prix de vente : '+cde.TotalNet+' €</p>';
 	if(cde.Remise!='') {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
 	if(cde.Reprise!='') {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
 	if(cde.Frais!='') {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
