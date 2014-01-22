@@ -253,9 +253,13 @@ function ActualisePrix() {
 	var Rachat=parseFloat($('#cdeRachat').val().replace(',','.'));
 	var FC=parseFloat($('#cdeFC').val().replace(',','.'));
 	var pvtot=parseFloat(PT);
+	log(pvtot);
 	if (Rem!='') {pvtot=pvtot-Rem;}
+	log(pvtot);
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
+	log(pvtot);
 	if (FC!='') {pvtot=pvtot+FC;}
+	log(pvtot);
 	var pvtvac=0;
 	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
 	var ac20=pvtvac*0.20;
