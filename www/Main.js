@@ -43,7 +43,7 @@ var app = {
 
 $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
-	$('#sigPadSign1').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
+	$('#sigPadSign1').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvassign1'});
 	$('#sigPadCroquis').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
 });
 
