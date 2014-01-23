@@ -18,7 +18,7 @@ var bDoLogin=false;
 	INIT GENERAL
 */
 function InitDB(callback) {
-	log('Initialisation base de données');
+	log('Initialisation base de données ici');
 	if (debug==true) {
 		$('#Init').removeClass('current');
 		$('#Main').addClass('current');
