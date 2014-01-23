@@ -11,6 +11,8 @@ var tableOptiOk=false;
 var tableEleModOk=false;
 var tableElementOk=false;
 var tablePrixOk=false;
+var tableCommandeOk=false;
+var tableDetCdeOk=false;
 var bDoLogin=false;
 /* 
 	INIT GENERAL
@@ -35,8 +37,10 @@ function InitDB(callback) {
 			dbelemod.initialize(function(){
 			 dbelement.initialize(function(){
 			  dbprix.initialize(function(){
+			   dbcommande.initialize(function(){
+			    dbdetcde.initialize(function(){
 					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
-						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true
+						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true && tableCommandeOk==true && tableDetCdeOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
@@ -45,7 +49,7 @@ function InitDB(callback) {
 					}
 					$('.loader').toggle();
 					callback();
-				});	});	});	});	}); });	}); }); });	});
+				});	});	});	});	});	});	}); });	}); }); });	});
 	});
 }
 function SynchroAll() {
@@ -1198,6 +1202,178 @@ window.dbprix = {
     txErrorHandler: function(tx) {
         alert(tx.message);
 		log('Erreur SQL Prix '+tx.message);
+    }
+};
+/*
+	TABLE COMMANDES
+*/
+window.dbcommande = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Commande'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Commande existe');
+							tableCommandeOk=true;
+			                callback();
+                        } else {
+                            log('La table Commande n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS Commande (" +
+				"Ref VARCHAR(8) PRIMARY KEY, " +
+				"Vendeur VARCHAR(50)," +
+				"Societe VARCHAR(50)," +
+				"NumTva VARCHAR(20)," +
+				"RemVen VARCHAR(150)," +
+				"Civil0 VARCHAR(5)," +
+				"Responsable VARCHAR(50)," +
+				"Civil1 VARCHAR(5)," +
+				"Prenom1 VARCHAR(100)," +
+				"Nom1 VARCHAR(100)," +
+				"Civil2 VARCHAR(5)," +
+				"Prenom2 VARCHAR(100)," +
+				"Nom2 VARCHAR(100)," +
+				"Adresse VARCHAR(150)," +
+				"CP VARCHAR(20)," +
+				"Ville VARCHAR(150)," +
+				"Tel1 VARCHAR(20)," +
+				"Tel2 VARCHAR(20)," +
+				"Gsm1 VARCHAR(20)," +
+				"Gsm2 VARCHAR(20)," +
+				"Email VARCHAR(150)," +
+				"Remarque VARCHAR(250)," +
+				"Fractionner INTEGER," +
+				"NbFraction INTEGER," +
+				"FactEnsSiege INTEGER," +
+				"TotalTarif REAL," +
+				"PrixVente REAL," +
+				"Remise REAL," +
+				"Reprise REAL," +
+				"Frais REAL," +
+				"GenreFrais VARCHAR(50)," +
+				"TotalNet REAL," +
+				"Financement INTEGER," +
+				"MontantFin REAL," +
+				"Exoneration INTEGER," +
+				"TotalTVAC REAL," +
+				"Acompte REAL," +
+				"AcompteCarte REAL," +
+				"AcompteEspece REAL," +
+				"AcompteCheque REAL," +
+				"AcompteAutre REAL," +
+				"SoldeAcompte REAL," +
+				"DateA VARCHAR(15)," +
+				"Signature1 VARCHAR(515)," +
+				"Signature2 VARCHAR(515)" +
+				")";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Commande à été créé');
+				tableCommandeOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de Commandes créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			}
+		}
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
+    }
+};
+/*
+	TABLE DETAIL CDE
+*/
+window.dbdetcde = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='DetCde'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Détail de commande existe');
+							tableDetCdeOk=true;
+			                callback();
+                        } else {
+                            log('La table Détail de commande n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS DetCde (" +
+				"Num INTEGER PRIMARY KEY, " +
+				"Ref VARCHAR(8), " +
+				"MODNR VARCHAR(6)," +
+				"MODUC VARCHAR(50)," +
+				"CUIRNR VARCHAR(8)," +
+				"CUIRUC VARCHAR(50)," +
+				"COULNR VARCHAR(5)," +
+				"COLOUC VARCHAR(50)," +
+				"OPCODE VARCHAR(8)," +
+				"OPFR VARCHAR(50)," +
+				"CROQUIS VARCHAR(500)," +
+				"Delai INTEGER," +
+				"GenreDelai VARCHAR(10)" +
+				")";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Détail de commande à été créé');
+				tableDetCdeOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de Detail de commande créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			}
+		}
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
     }
 };
 /*
