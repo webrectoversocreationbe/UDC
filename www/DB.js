@@ -1212,6 +1212,7 @@ window.dbcommande = {
 	bDoSynchro: false,
 	syncOK: false,
     initialize: function(callback) {
+		log('init cde');
         var self = this;
         madb.transaction(
             function(tx) {
