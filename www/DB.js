@@ -18,7 +18,7 @@ var bDoLogin=false;
 	INIT GENERAL
 */
 function InitDB(callback) {
-	log('Initialisation base de données ici');
+	log('Initialisation base de données');
 	if (debug==true) {
 		$('#Init').removeClass('current');
 		$('#Main').addClass('current');
@@ -1301,6 +1301,7 @@ window.dbcommande = {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			}
 		}
+		callback();
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
@@ -1371,6 +1372,7 @@ window.dbdetcde = {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			}
 		}
+		callback();
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
