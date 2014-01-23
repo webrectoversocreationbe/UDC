@@ -126,7 +126,7 @@ window.dbsync = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Synchro à été créé');
+                log('La table Synchro à été créée');
 				tableSynchroOk=true;
 				self.initOk(callback);
             }
@@ -236,7 +236,7 @@ window.dbu = {
             },
             this.txErrorHandler,
             function() {
-                log('La table User à été créé');
+                log('La table User à été créée');
 				tableUserOk=true;
 				self.initOk(callback);
             }
@@ -382,7 +382,7 @@ window.dbmod = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Modèles à été créé');
+                log('La table Modèles à été créée');
 				tableModeleOk=true;
 				self.initOk(callback);
             }
@@ -506,7 +506,7 @@ window.dbmodcoef = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Coef à été créé');
+                log('La table Coef à été créée');
 				tableCoefOk=true;
 				self.initOk(callback);
             }
@@ -606,7 +606,7 @@ window.dbcuirmod = {
             },
             this.txErrorHandler,
             function() {
-                log('La table CuirMod à été créé');
+                log('La table CuirMod à été créée');
 				tableCuirModOk=true;
 				self.initOk(callback);
             }
@@ -615,7 +615,7 @@ window.dbcuirmod = {
 	initOk: function(callback) {
         var self = this;
 		if (self.Etat==false) {
-			$('#InitResult').append('Table de Cuir créée<br/>');
+			$('#InitResult').append('Table de revêtements créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			} else {
@@ -699,7 +699,7 @@ window.dbliascuir = {
             },
             this.txErrorHandler,
             function() {
-                log('La table LiasCuir à été créé');
+                log('La table LiasCuir à été créée');
 				tableLiasCuirOk=true;
 				self.initOk(callback);
             }
@@ -784,7 +784,7 @@ window.dbliascolo = {
             },
             this.txErrorHandler,
             function() {
-                log('La table LiasColo à été créé');
+                log('La table LiasColo à été créée');
 				tableLiasColoOk=true;
 				self.initOk(callback);
             }
@@ -793,7 +793,7 @@ window.dbliascolo = {
 	initOk: function(callback) {
         var self = this;
 		if (self.Etat==false) {
-			$('#InitResult').append('Table de Couleurs créée<br/>');
+			$('#InitResult').append('Table de couleurs créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			} else {
@@ -871,7 +871,7 @@ window.dbopti = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Opti à été créé');
+                log('La table Opti à été créée');
 				tableOptiOk=true;
 				self.initOk(callback);
             }
@@ -955,7 +955,7 @@ window.dbelemod = {
             },
             this.txErrorHandler,
             function() {
-                log('La table EleMod à été créé');
+                log('La table EleMod à été créée');
 				tableEleModOk=true;
 				self.initOk(callback);
             }
@@ -1039,7 +1039,7 @@ window.dbelement = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Element à été créé');
+                log('La table Element à été créée');
 				tableElementOk=true;
 				self.initOk(callback);
             }
@@ -1135,7 +1135,7 @@ window.dbprix = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Prix à été créé');
+                log('La table Prix à été créée');
 				tablePrixOk=true;
 				self.initOk(callback);
             }
@@ -1287,7 +1287,7 @@ window.dbcommande = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Commande à été créé');
+                log('La table Commande à été créée');
 				tableCommandeOk=true;
 				self.initOk(callback);
             }
@@ -1296,7 +1296,7 @@ window.dbcommande = {
 	initOk: function(callback) {
         var self = this;
 		if (self.Etat==false) {
-			$('#InitResult').append('Table de Commandes créée<br/>');
+			$('#InitResult').append('Table de commandes créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			}
@@ -1358,7 +1358,7 @@ window.dbdetcde = {
             },
             this.txErrorHandler,
             function() {
-                log('La table Détail de commande à été créé');
+                log('La table Détail de commande à été créée');
 				tableDetCdeOk=true;
 				self.initOk(callback);
             }
