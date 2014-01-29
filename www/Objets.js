@@ -143,31 +143,53 @@ Modele.prototype = {
 			}, function(err) {
 				log('Erreur cucat '+err.code+' '+err.message);
 			}, function() {
-				//Chercher le prix de chaque element
-				for (var cpt=0;cpt<self.Elements.length;cpt++) {
-					var elcode=self.Elements[cpt].ELCODE;
-					(function test(value,elcode,maxv) {
-						madb.transaction(
-							function(tx) {
-								var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"' order by PXDATE desc";
-								tx.executeSql(sql,[], 
-									function(tx, results) {
-										if (results.rows.length > 0) {
-											self.Elements[value].Prix=results.rows.item(0).PRIX;
-										}
-									},
-									function(tx) {log('Erreur rech prix '+this.message);}
-								);
-							}, function(err) {
-								log('Erreur sel prix '+err.code+' '+err.message);
-							}, function() {
-								if (value==maxv) {
-									callback();
+				// LES COULEURS
+				madb.transaction(
+					function(tx) {
+						var sql = "SELECT * FROM LiasColo where FOURN='"+self.FOUR+"' and CUIRNR='"+CUIRNR+"'";
+						tx.executeSql(sql,[], 
+							function(tx, results) {
+								if (results.rows.length > 0) {
+									for (var cpt=0;cpt<results.rows.length;cpt++) {
+										self.Couleurs[cpt]=results.rows.item(cpt);
+									}
 								}
-							}
+							},
+							function(tx) {log('Erreur options '+tx.message);}
 						);
-					})(cpt,elcode,self.Elements.length-1);
-				}
+					}, function(err) {
+						log('Erreur cucat '+err.code+' '+err.message);
+					}, function() {
+				
+						//Chercher le prix de chaque element
+						for (var cpt=0;cpt<self.Elements.length;cpt++) {
+							var elcode=self.Elements[cpt].ELCODE;
+							(function test(value,elcode,maxv) {
+								madb.transaction(
+									function(tx) {
+										var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"' order by PXDATE desc";
+										tx.executeSql(sql,[], 
+											function(tx, results) {
+												if (results.rows.length > 0) {
+													self.Elements[value].Prix=results.rows.item(0).PRIX;
+												}
+											},
+											function(tx) {log('Erreur rech prix '+this.message);}
+										);
+									}, function(err) {
+										log('Erreur sel prix '+err.code+' '+err.message);
+									}, function() {
+										if (value==maxv) {
+											callback();
+										}
+									}
+								);
+							})(cpt,elcode,self.Elements.length-1);
+						}
+				
+				
+					}
+				);
 			}
 		);
 	}
