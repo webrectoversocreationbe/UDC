@@ -1348,7 +1348,7 @@ window.dbdetcde = {
 				"MODUC VARCHAR(50)," +
 				"CUIRNR VARCHAR(8)," +
 				"CUIRUC VARCHAR(50)," +
-				"COULNR VARCHAR(5)," +
+				"COLORNR VARCHAR(5)," +
 				"COLOUC VARCHAR(50)," +
 				"OPCODE VARCHAR(8)," +
 				"OPFR VARCHAR(50)," +

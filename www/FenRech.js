@@ -49,7 +49,7 @@ function InitRech(Quoi) {
 					var px=Nombre(trfModele.Elements[cpt].Prix*quelcoef);
 					$('#trfpx'+elcode).html(px+' €');
 				}
-				trfModele.COULNR='';
+				trfModele.COLORNR='';
 				trfModele.COLOUC='';
 				$('#infocouleur').html('');
 			});
@@ -74,7 +74,7 @@ function InitRech(Quoi) {
 					var px=Nombre(cdeModele.Elements[cpt].Prix*quelcoef);
 //					$('#trfpx'+elcode).html(px+' €');
 				}
-				cdeModele.COULNR='';
+				cdeModele.COLORNR='';
 				cdeModele.COLOUC='';
 				$('#cdecolouc').html('');
 			});
@@ -89,9 +89,9 @@ function InitRech(Quoi) {
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
-			trfModele.COULNR=$('#ValRech').val();
+			trfModele.COLORNR=$('#ValRech').val();
 			trfModele.COLOUC=$('#DescRech').val();
-			$('#infocouleur').html('Couleur : '+trfModele.COULNR+' - '+trfModele.COLOUC);
+			$('#infocouleur').html('Couleur : '+trfModele.COLORNR+' - '+trfModele.COLOUC);
 		});
 	} else if (Quoi=='cdeCouleur') {
 		PopulateRech('cdeCouleur','',function() {
@@ -103,9 +103,9 @@ function InitRech(Quoi) {
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
-			cdeModele.COULNR=$('#ValRech').val();
+			cdeModele.COLORNR=$('#ValRech').val();
 			cdeModele.COLOUC=$('#DescRech').val();
-			$('#cdecolouc').html(cdeModele.COULNR+' - '+cdeModele.COLOUC);
+			$('#cdecolouc').html(cdeModele.COLORNR+' - '+cdeModele.COLOUC);
 		});
 	} else if (Quoi=='trfOption') {
 		PopulateRech('trfOption','',function() {
