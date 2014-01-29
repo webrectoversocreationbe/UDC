@@ -40,7 +40,7 @@ function InitDB(callback) {
 			  dbprix.initialize(function(){
 			   dbcommande.initialize(function(){
 			    dbdetcde.initialize(function(){
-			     dbdetcde.initialize(function(){
+			     dbeldetcde.initialize(function(){
 					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
 						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true && tableCommandeOk==true && tableDetCdeOk==true
 						) {bDoLogin=true;}
