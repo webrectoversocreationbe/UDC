@@ -75,7 +75,7 @@ function prevEcran() {
 }
 function chkEcran() {
 	switch (EcranActif) {
-	case 1:
+	case 1: // Infos clients
 		// CHECK
 /*			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
 			alert('Vous devez entrer le nombre de fractionnement'); return false;
@@ -110,7 +110,7 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
-	case 2:
+	case 2: // Ecran modèle > commande
 		// CHECK
 /*		if ($('#cdemoduc').html()=='') {
 			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
@@ -152,7 +152,9 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
-	case 4:
+	case 3: // Ecran ajouter un modèle ?
+		break;
+	case 4: // Prix de vente + Remise + Rachat
 /*		if ($('#cdePV').val()=='') {
 			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
 		}
@@ -177,14 +179,14 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
-	case 5:
+	case 5: // Prix TVAC + Acompte
 /*		if ($('#cdePVTOTTVAC').val()=='') {
 			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
 		}
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
-		// RECAP
+		// PREPARE RECAP
 		var acompte=0;
 		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val());}
 		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val());}
@@ -213,12 +215,12 @@ function chkEcran() {
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
-	case 6:
+	case 6: // RECAP
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
-	case 7:
+	case 7: // SIGNATURES
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');

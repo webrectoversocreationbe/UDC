@@ -13,6 +13,7 @@ var tableElementOk=false;
 var tablePrixOk=false;
 var tableCommandeOk=false;
 var tableDetCdeOk=false;
+var tableElDetCdeOk=false;
 var bDoLogin=false;
 /* 
 	INIT GENERAL
@@ -39,6 +40,7 @@ function InitDB(callback) {
 			  dbprix.initialize(function(){
 			   dbcommande.initialize(function(){
 			    dbdetcde.initialize(function(){
+			     dbdetcde.initialize(function(){
 					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
 						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true && tableCommandeOk==true && tableDetCdeOk==true
 						) {bDoLogin=true;}
@@ -49,7 +51,7 @@ function InitDB(callback) {
 					}
 					$('.loader').toggle();
 					callback();
-				});	});	});	});	});	});	}); });	}); }); });	});
+				});	});	});	});	});	});	});	}); });	}); }); });	});
 	});
 }
 function SynchroAll() {
@@ -1237,6 +1239,7 @@ window.dbcommande = {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Commande (" +
 				"Ref VARCHAR(8) PRIMARY KEY, " +
+				"DateC VARCHAR(10)," +
 				"Vendeur VARCHAR(50)," +
 				"Societe VARCHAR(50)," +
 				"NumTva VARCHAR(20)," +
@@ -1278,7 +1281,7 @@ window.dbcommande = {
 				"AcompteCheque REAL," +
 				"AcompteAutre REAL," +
 				"SoldeAcompte REAL," +
-				"DateA VARCHAR(15)," +
+				"DateA VARCHAR(10)," +
 				"Signature1 VARCHAR(515)," +
 				"Signature2 VARCHAR(515)" +
 				")";
@@ -1367,6 +1370,70 @@ window.dbdetcde = {
         var self = this;
 		if (self.Etat==false) {
 			$('#InitResult').append('Table de Detail de commande créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			}
+		}
+		callback();
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
+    }
+};
+/*
+	TABLE ELEMENTS DU DETAIL CDE
+*/
+window.dbeldetcde = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='ElDetCde'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Eléments du détail existe');
+							tableElDetCdeOk=true;
+			                callback();
+                        } else {
+                            log('La table Eléments du détail n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS ElDetCde (" +
+				"Num INTEGER PRIMARY KEY, " +
+				"NumDetCde INTEGER, " +
+				"ELCODE VARCHAR(10)," +
+				"ELFR VARCHAR(50)," +
+				"Qte REAL," +
+				"Prix REAL" +
+				")";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Eléments du détail à été créée');
+				tableElDetCdeOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de Eléments du detail de commande créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
 			}
