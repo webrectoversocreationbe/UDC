@@ -375,3 +375,6 @@ function RecapCde() {
 	
 	$('#RecapCde').html(r);
 }
+function ConfirmCde() {
+	dump(cde,'log');
+}
