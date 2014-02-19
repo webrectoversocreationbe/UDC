@@ -377,7 +377,9 @@ function RecapCde() {
 }
 function ConfirmCde() {
 	dbcommande.newNum(function(Ref) {
-		alert(Ref);
+		cde.Ref=Ref;
 		dump(cde,'log');
+		dbcommande.insertCde(cde,function() {
+		});
 	});
 }
