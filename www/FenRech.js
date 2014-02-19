@@ -3,6 +3,7 @@
 */
 function InitRech(Quoi) {
 	$('#ChampRech').val('');
+	$('#DescRech').val('');
 	$('#QuelleRech').val(Quoi);
 	var valrech=$('#ValRech').val();
 	if (Quoi=='trfModeles') {
