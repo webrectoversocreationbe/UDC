@@ -1312,11 +1312,9 @@ window.dbcommande = {
                 tx.executeSql("select Max(Ref)+1 as Ref from Commande", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
-							alert(results.rows.item(0).Ref);
-			                callback();
-                        } else {
-							alert('pas de resultat');
-			                callback();
+							var Ref=results.rows.item(0).Ref;
+							if (Ref==null) {Ref=1;}
+			                callback(Ref);
                         }
                     });
             }
