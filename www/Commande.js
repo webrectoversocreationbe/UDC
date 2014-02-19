@@ -380,6 +380,7 @@ function ConfirmCde() {
 		cde.Ref=Ref;
 		dump(cde,'log');
 		dbcommande.insertCde(cde,function() {
+			alert('voila');
 		});
 	});
 }
