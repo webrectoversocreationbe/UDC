@@ -1321,27 +1321,40 @@ window.dbcommande = {
         );
 	},
 	insertCde: function(oCde,callback) {
-		log('ici1');
         var self = this;
+		// LA COMMANDE
 		madb.transaction(
 			function(tx) {
-		log('ici2');
 				var o = oCde;
 				var sql = "INSERT INTO Commande (Ref,DateC,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
 					"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
 					"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				var params = [o.Ref,o.DateC,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,o.Gsm1,o.Gsm2,o.Email,
-								o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,o.Exoneration,o.TotalTVAC,
-								o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
-		log('ici3');
+				var params = [o.Ref,o.DateCYYYYMMDD,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,
+					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
+					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params);
-		log('ici4');
 			},
 			self.txErrorHandler,
 			function(tx) {
-		log('ici5');
-				alert('ok');
-				callback();
+				var l=oCde.DetailCommande.length;
+				for (var cpt = 0; cpt < l; cpt++) {
+					// LES MODELES
+					madb.transaction(
+						function(tx) {
+							var o = oCde.DetailCommande[cpt];
+							var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,o.Croquis,o.Delai,o.GenreDelai];
+							tx.executeSql(sql, params);
+						},
+						self.txErrorHandler,
+						function(tx,results) {
+							var idMod=results.insertId;
+							alert(idMod);
+							// LES ELEMENTS
+							callback();
+						}
+					);
+				}
 			}
 		);
 	},

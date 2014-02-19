@@ -11,6 +11,7 @@ function InitCommande() {
 	var d=new Date();
 	cde.Vendeur=User;
 	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
+	cde.DateCYYYYMMDD=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
 	$('.DateC').html(cde.DateC);
 	$('.User').html(User);
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
@@ -380,7 +381,7 @@ function ConfirmCde() {
 		cde.Ref=Ref;
 		dump(cde,'log');
 		dbcommande.insertCde(cde,function() {
-			alert('voila');
+			Go('Main');
 		});
 	});
 }
