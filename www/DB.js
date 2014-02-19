@@ -1344,10 +1344,10 @@ window.dbcommande = {
 							var o = oCde.DetailCommande[cpt];
 							var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 							var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,o.Croquis,o.Delai,o.GenreDelai];
-							tx.executeSql(sql, params,function(results){
+							tx.executeSql(sql, params,function(tx,results){
 								var idMod=results.insertId;
 								alert(idMod);
-							});
+							},self.txErrorHandler);
 						},
 						self.txErrorHandler,
 						function(tx) {
