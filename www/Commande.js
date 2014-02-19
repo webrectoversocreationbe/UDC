@@ -376,5 +376,7 @@ function RecapCde() {
 	$('#RecapCde').html(r);
 }
 function ConfirmCde() {
-	dump(cde,'log');
+	dbcommande.newNum(function() {
+		dump(cde,'log');
+	});
 }

@@ -1305,6 +1305,23 @@ window.dbcommande = {
 		}
 		callback();
 	},
+	newNum: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("select Max(Ref)+1 as Ref from Commande", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							alert(results.rows.item(0).Ref);
+			                callback();
+                        } else {
+							alert('pas de resultat');
+			                callback();
+                        }
+                    });
+            }
+        );
+	},
     txErrorHandler: function(tx) {
         alert(tx.message);
 		log('Erreur SQL Sync '+tx.message);
