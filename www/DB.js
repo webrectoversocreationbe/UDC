@@ -1333,9 +1333,9 @@ window.dbcommande = {
 					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params, function(tx, results) {
-					alert(results.insertId);
+					dbdetcde.insertCde(oCde,results.insertId,callback)
 				},function() {
-					alert("Error processing SQL: "+err.code);
+					log("Error processing SQL insertcde : "+err.code);
 				});
 			},
 			self.txErrorHandler,
@@ -1501,6 +1501,8 @@ window.dbeldetcde = {
 			}
 		}
 		callback();
+	},
+	insertEl: function(oCde,indMod,callback) {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
