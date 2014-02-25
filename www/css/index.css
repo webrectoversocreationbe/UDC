@@ -357,6 +357,7 @@ p {
 .cdeContent {padding:15px; overflow:scroll; overflow-x: hidden; position:fixed; top:41px; left:5px; right:5px; bottom:68px;}
 .cdeFooter {display:block;position:fixed; left:5px; right:5px; bottom:25px; border-top:1px solid #000; text-align:right; padding:0px;height:45px;}
 .cdeFooter button, .btncde {margin:7px 10px 5px 10px; padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px;}
+.gbtncde {margin:7px 10px 5px 10px; padding-top:15px; padding-bottom:15px; padding-left:30px; padding-right:30px; font-size:24px;}
 .cdeContent select {padding:4px; text-align:right;}
 .cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-2px;}
 .cdeContent input[type=radio] {display:none;}
