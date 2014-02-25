@@ -1332,30 +1332,14 @@ window.dbcommande = {
 				var params = [o.Ref,o.DateCYYYYMMDD,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,
 					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
-				tx.executeSql(sql, params);
+				tx.executeSql(sql, params, function(tx, results) {
+					alert(results.insertId);
+				},function() {
+					alert("Error processing SQL: "+err.code);
+				});
 			},
 			self.txErrorHandler,
 			function(tx) {
-				var l=oCde.DetailCommande.length;
-				for (var cpt = 0; cpt < l; cpt++) {
-					// LES MODELES
-					madb.transaction(
-						function(tx) {
-							var o = oCde.DetailCommande[cpt];
-							var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-							var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,o.Croquis,o.Delai,o.GenreDelai];
-							tx.executeSql(sql, params,function(tx,results){
-								var idMod=results.insertId;
-								alert(idMod);
-							},self.txErrorHandler);
-						},
-						self.txErrorHandler,
-						function(tx) {
-							// LES ELEMENTS
-							callback();
-						}
-					);
-				}
 			}
 		);
 	},
@@ -1429,6 +1413,30 @@ window.dbdetcde = {
 			}
 		}
 		callback();
+	},
+	insertDet: function(oCde,IdCde,callback) {
+			var l=oCde.DetailCommande.length;
+			for (var cpt = 0; cpt < l; cpt++) {
+				// LES MODELES
+				madb.transaction(
+					function(tx) {
+						var o = oCde.DetailCommande[cpt];
+						var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
+						tx.executeSql(sql, params,function(tx,results){
+							var idMod=results.insertId;
+							alert(idMod);
+						},function(err) {
+							alert(err.code);
+						});
+					},
+					self.txErrorHandler,
+					function(tx) {
+						// LES ELEMENTS
+					}
+				);
+			}
+			callback();
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
