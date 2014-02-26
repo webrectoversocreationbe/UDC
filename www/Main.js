@@ -161,5 +161,20 @@ function DoPDF() {
 	var doc = new jsPDF();
 	doc.setFontSize(20);
 	doc.text(35, 25, "Hello world");
-	doc.save('ici.pdf');
+	var pdfOutput = doc.output();
+	FS.root.getFile("ici.pdf", {create: true}, function(entry) {
+		var fileEntry = entry;
+		log(entry);
+		entry.createWriter(function(writer) {
+			writer.onwrite = function(evt) {
+				log("write success");
+			};
+			log("writing to file");
+			writer.write( pdfOutput );
+		}, function(error) {
+			log(error);
+		});
+		}, function(error){
+			log(error);
+	});
 }
