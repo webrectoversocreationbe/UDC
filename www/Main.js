@@ -166,8 +166,8 @@ function DoPDF() {
 		var fileEntry = entry;
 		entry.createWriter(function(writer) {
 			writer.onwrite = function(evt) {
-				log("write success");
-				Dropbox.save("ici.pdf");
+				log("write success"+fs.root.fullPath);
+				Dropbox.save(fs.root.fullPath+"/ici.pdf");
 				log('droped');
 			};
 			writer.write( pdfOutput );
