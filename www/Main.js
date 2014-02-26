@@ -162,7 +162,7 @@ function DoPDF() {
 	doc.setFontSize(20);
 	doc.text(35, 25, "Hello world");
 	var pdfOutput = doc.output();
-	FS.root.getFile("ici.pdf", {create: true}, function(entry) {
+	fs.root.getFile("ici.pdf", {create: true}, function(entry) {
 		var fileEntry = entry;
 		log(entry);
 		entry.createWriter(function(writer) {
