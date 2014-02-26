@@ -157,3 +157,9 @@ function ShowProduits() {
 		}
 	});	
 }
+function DoPDF() {
+	var doc = new jsPDF();
+	doc.setFontSize(20);
+	doc.text(35, 25, "Hello world");
+	doc.save('ici.pdf');
+}
