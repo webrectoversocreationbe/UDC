@@ -164,12 +164,12 @@ function DoPDF() {
 	var pdfOutput = doc.output();
 	fs.root.getFile("ici.pdf", {create: true}, function(entry) {
 		var fileEntry = entry;
-		log(entry);
 		entry.createWriter(function(writer) {
 			writer.onwrite = function(evt) {
 				log("write success");
+				Dropbox.save("ici.pdf", "ici.pdf");
+				log('droped');
 			};
-			log("writing to file");
 			writer.write( pdfOutput );
 		}, function(error) {
 			log(error);
