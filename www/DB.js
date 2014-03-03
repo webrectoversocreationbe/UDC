@@ -1325,7 +1325,7 @@ window.dbcommande = {
 		// LA COMMANDE
 		madb.transaction(
 			function(tx) {
-				log('insert cde '+oCde.ref);
+				log('insert cde '+oCde.Ref);
 				var o = oCde;
 				var sql = "INSERT INTO Commande (Ref,DateC,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
 					"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
@@ -1339,16 +1339,22 @@ window.dbcommande = {
 					var l=oCde.DetailCommande.length;
 					var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					for (var i = 0; i < l; i++) {
-						var o = oCde.DetailCommande[cpt];
-						var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
 						log('insert '+o.MODNR);
-						tx.executeSql(sql, params,function(tx, results){
-							var idMod=results.insertId;
-							alert(idMod);
-						},function(err) {
-							alert(err.code);
+						var o = oCde.DetailCommande[i];
+						var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
+						tx.executeSql(sql, params,
+						(function(i) {
+							return function(tx,results) {
+								var idMod=results.insertId;
+								log('mod inserted'+idMod);
+							}
+						})(i),
+						function(err) {
+							alert('err'+err);
 						});
 					}
+					callback();
+					log('fini detail');
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
 				});
