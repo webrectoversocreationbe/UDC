@@ -1335,7 +1335,21 @@ window.dbcommande = {
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params, function(tx, results) {
 					log('insert detail');
-					dbdetcde.insertCde(oCde,results.insertId,callback)
+//					dbdetcde.insertCde(oCde,results.insertId,callback)
+					var l=oCde.DetailCommande.length;
+					var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					for (var i = 0; i < l; i++) {
+						var o = oCde.DetailCommande[cpt];
+						var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
+						log('insert '+o.MODNR);
+						tx.executeSql(sql, params,function(tx,results){
+							var idMod=results.insertId;
+							alert(idMod);
+						},function(err) {
+							alert(err.code);
+						});
+					}
+					callback();
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
 				});
