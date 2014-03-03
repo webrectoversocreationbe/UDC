@@ -1337,16 +1337,17 @@ window.dbcommande = {
 					function(tx, results) {
 						log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
 						var l=oCde.DetailCommande.length;
+						var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							var od = oCde.DetailCommande[i];
 							var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
-							var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 							log('insert '+od.MODNR);
 							tx.executeSql(sqld, paramsd,
 								function(tx,results) {
 									log('mod inserted '+od.MODNR);
 								},
 								function(err) {
+									dump(paramsd,'log');
 									log('err ins mod '+err.message);
 								}
 							);
