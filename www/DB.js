@@ -77,19 +77,6 @@ function SynchroAll() {
 	}
 }
 /*
-	SQL DEBUG
-*/
-function ExecSQL() {
-	var sql=$('#sqlReq').val();
-	$('#sqlResult').html('');
-	var uneReq=new Requete();
-	uneReq.exec(sql, function() {
-		var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
-		//dump(uneReq.Resu,'sqlResult');
-		$('#sqlResult').prepend(ret);
-	});
-}
-/*
 	TABLE SYNCHRO
 */
 window.dbsync = {
@@ -1342,7 +1329,7 @@ window.dbcommande = {
 							var od = oCde.DetailCommande[i];
 							(function insertcdemod(value,refcde,od) {
 								var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-								var paramsd = [refcde,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+								var paramsd = [refcde.toString(),od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
 								log('insert '+od.MODNR);
 								tx.executeSql(sqld, paramsd,
 									function(tx,results) {
@@ -1522,8 +1509,6 @@ window.dbeldetcde = {
 		}
 		callback();
 	},
-	insertEl: function(oCde,indMod,callback) {
-	},
     txErrorHandler: function(tx) {
         alert(tx.message);
 		log('Erreur SQL Sync '+tx.message);
@@ -1543,11 +1528,10 @@ Requete.prototype = {
 			function(tx) {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
-						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
 							for (var i = 0; i < self.Nb; i++) {
-								dump(results.rows.item(i),'sqlResult');
+								self.Resu.push(results.rows.item(i));
 							}
 						}
 					},
@@ -1560,4 +1544,14 @@ Requete.prototype = {
 			}
 		);
 	}
+}
+function ExecSQL() {
+	var sql=$('#sqlReq').val();
+	$('#sqlResult').html('');
+	var uneReq=new Requete();
+	uneReq.exec(sql, function() {
+		var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
+		dump(uneReq.Resu,'sqlResult');
+		$('#sqlResult').prepend(ret);
+	});
 }
