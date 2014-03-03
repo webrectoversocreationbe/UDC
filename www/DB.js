@@ -1333,32 +1333,29 @@ window.dbcommande = {
 				var params = [o.Ref,o.DateCYYYYMMDD,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,
 					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
-				tx.executeSql(sql, params, function(tx, results) {
-					log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
-//					dbdetcde.insertCde(oCde,results.insertId,callback)
-					var l=oCde.DetailCommande.length;
-					var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-					for (var i = 0; i < l; i++) {
-						var od = oCde.DetailCommande[i];
-						var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
-						log('insert '+od.MODNR);
-						tx.executeSql(sqld, paramsd,
-						(function(i) {
-							return function(tx,results) {
-								var idMod=results.insertId;
-								log('mod inserted'+idMod);
-							}
-						})(i),
-						(function(i) {
-							return function(err) {
-							}
-						})(i)
-					)}
-					log('fini detail');
-				},function() {
-					log("Error processing SQL insertcde : "+err.code);
-				});
-				callback();
+				tx.executeSql(sql, params, 
+					function(tx, results) {
+						log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
+						var l=oCde.DetailCommande.length;
+						for (var i = 0; i < l; i++) {
+							var od = oCde.DetailCommande[i];
+							var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+							var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+							log('insert '+od.MODNR);
+							tx.executeSql(sqld, paramsd,
+								function(tx,results) {
+									log('mod inserted '+od.MODNR);
+								},
+								function(err) {
+									log('err ins mod '+err.message);
+								}
+							);
+						}
+						log('fini detail');
+					},function(err) {
+						log("Error processing SQL insertcde : "+err.code+' '+err.message);
+					}
+				);
 			},
 			self.txErrorHandler,
 			function(tx,results) {
