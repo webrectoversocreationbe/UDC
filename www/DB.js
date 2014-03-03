@@ -1313,61 +1313,64 @@ window.dbcommande = {
 		madb.transaction(
 			function(tx) {
 				log('insert cde '+oCde.Ref);
-				var o = oCde;
-				var sql = "INSERT INTO Commande (Ref,DateC,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
-					"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
-					"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				var params = [o.Ref,o.DateCYYYYMMDD,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,
-					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
-					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
-				tx.executeSql(sql, params, 
-					function(tx, results) {
-						// LES MODELES
-						log('insert detail');
-						var l=oCde.DetailCommande.length;
-						for (var i = 0; i < l; i++) {
-							var od = oCde.DetailCommande[i];
-							(function insertcdemod(value,refcde,od) {
-								var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-								var paramsd = [refcde.toString(),od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
-								log('insert '+od.MODNR);
-								tx.executeSql(sqld, paramsd,
-									function(tx,results) {
-										log('mod inserted '+od.MODNR+' id:'+results.insertId);
-										var NumDetCde=results.insertId;
-										// LES ELEMENTS
-										var nbel=od.Elements.length;
-										for (var cptel = 0; cptel < nbel; cptel++) {
-											var odm = od.Elements[cptel];
-											(function insertcdemod(value,NumDetCde,odm) {
-												if (odm.Qte!=undefined) {
-													var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
-													var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
-													log('insert det mod '+odm.ELFR);
-													tx.executeSql(sqldm, paramsdm,
-														function(tx,results) {
-															log('det mod inserted '+odm.ELFR+' id:'+results.insertId);
-														},
-														function(tx,err) {
-															log('err ins det mod '+err.code+' '+err.message);
-														}
-													);
-												}
-											})(cptel,NumDetCde,odm);
+				(function inscde(oCde) {
+					var o = oCde;
+					var sql = "INSERT INTO Commande (Ref,DateC,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
+						"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
+						"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2) VALUES (?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					var params = [o.Ref,o.DateCYYYYMMDD,o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,o.Tel1,o.Tel2,
+						o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
+						o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
+					tx.executeSql(sql, params, 
+						function(tx, results) {
+							// LES MODELES
+							log('insert detail');
+							var l=oCde.DetailCommande.length;
+							for (var i = 0; i < l; i++) {
+								var od = oCde.DetailCommande[i];
+								(function insertcdemod(value,refcde,od) {
+									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+									var paramsd = [refcde.toString(),od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+									log('insert '+od.MODNR);
+									tx.executeSql(sqld, paramsd,
+										function(tx,results) {
+											log('mod inserted '+od.MODNR+' id:'+results.insertId);
+											var NumDetCde=results.insertId;
+											// LES ELEMENTS
+											var nbel=od.Elements.length;
+											for (var cptel = 0; cptel < nbel; cptel++) {
+												var odm = od.Elements[cptel];
+												(function insertcdemod(value,NumDetCde,odm) {
+													if (odm.Qte!=undefined) {
+														var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
+														var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
+														log('insert det mod '+odm.ELFR);
+														tx.executeSql(sqldm, paramsdm,
+															function(tx,results) {
+																log('det mod inserted '+odm.ELFR+' id:'+results.insertId);
+															},
+															function(tx,err) {
+																log('err ins det mod '+err.code+' '+err.message);
+															}
+														);
+													}
+												})(cptel,NumDetCde,odm);
+											}
+											log('fini detail mod '+od.MODNR);
+										},
+										function(tx,err) {
+											log('err ins mod '+err.code+' '+err.message);
 										}
-										log('fini detail mod '+od.MODNR);
-									},
-									function(tx,err) {
-										log('err ins mod '+err.code+' '+err.message);
-									}
-								);
-							})(i,oCde.Ref,od);
+									);
+								})(i,oCde.Ref,od);
+							}
+							log('fini detail');
+						},function(err) {
+							log("Error processing SQL insertcde : "+err.code+' '+err.message);
 						}
-						log('fini detail');
-					},function(err) {
-						log("Error processing SQL insertcde : "+err.code+' '+err.message);
-					}
-				);
+					);
+				})(oCde);
+				log('fin insert cde');
 			},
 			self.txErrorHandler,
 			function(tx,results) {
