@@ -1548,7 +1548,7 @@ Requete.prototype = {
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
-							dump(results.item(0),'log');
+							dump(results.rows.item(0),'log');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}

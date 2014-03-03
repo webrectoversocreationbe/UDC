@@ -197,7 +197,7 @@ function Choix(obj) {
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
-	$('#btnOKPanRech').removeAttr("disabled");
+	$('#btnOKPanRech').propr("disabled",false);
 	switch (Quoi) {
 	case 'trfModeles':
 	case 'cdeModeles':
@@ -216,7 +216,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+modnr+'" onclick="Choix($(this))">'+modnr+' - '+mouc+'</a></li>');
 							}
 						} else {
-							$('#btnOKPanRech').attr("disabled", "disabled");
+							$('#btnOKPanRech').propr("disabled",true);
 						}
 					},
 					function(tx) {log('Erreur recherche '+this.message);}
@@ -246,7 +246,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'|'+cuiruc+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
 							}
 						} else {
-							$('#btnOKPanRech').attr("disabled", "disabled");
+							$('#btnOKPanRech').propr("disabled",true);
 						}
 					},
 					function(tx) {log('Erreur recherche '+this.message);}
@@ -276,7 +276,7 @@ function PopulateRech(Quoi,Rech,callback) {
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+cuirnr+'|'+cuiruc+'" onclick="Choix($(this))">'+cuirnr+' - '+cuiruc+'</a></li>');
 							}
 						} else {
-							$('#btnOKPanRech').attr("disabled", "disabled");
+							$('#btnOKPanRech').propr("disabled",true);
 						}
 					},
 					function(tx) {log('Erreur recherche '+this.message);}
