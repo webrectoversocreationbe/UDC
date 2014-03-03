@@ -85,7 +85,7 @@ function ExecSQL() {
 	var uneReq=new Requete();
 	uneReq.exec(sql, function() {
 		var ret='<h2>Résultat</h2><p>'+uneReq.Nb+' enregistrements</p>';
-		dump(uneReq.Resu,'sqlResult');
+		//dump(uneReq.Resu,'sqlResult');
 		$('#sqlResult').prepend(ret);
 	});
 }
@@ -1338,40 +1338,22 @@ window.dbcommande = {
 						// LES MODELES
 						log('insert detail');
 						var l=oCde.DetailCommande.length;
-						var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
 							var od = oCde.DetailCommande[i];
-							var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
-							log('insert '+od.MODNR);
-							tx.executeSql(sqld, paramsd,
-								function(tx,results) {
-									log('mod inserted '+od.MODNR+' id:'+results.insertId);
-									var NumDetCde=results.insertId;
-									// LES ELEMENTS
-									var nbel=od.Elements.length;
-									var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
-									for (var cptel = 0; cptel < nbel; cptel++) {
-										var odm = od.Elements[cptel];
-										if (odm.Qte!=undefined) {
-											var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
-											log('insert det mod '+od.MODNR);
-											tx.executeSql(sqldm, paramsdm,
-												function(tx,results) {
-													log('det mod inserted '+od.MODNR+' id:'+results.insertId);
-													// LES ELEMENTS
-												},
-												function(tx,err) {
-													log('err ins det mod '+err.code+' '+err.message);
-												}
-											);
-										}
+							(function insertcdemod(value,refcde,od) {
+								var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+								var paramsd = [refcde,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+								log('insert '+od.MODNR);
+								tx.executeSql(sqld, paramsd,
+									function(tx,results) {
+										log('mod inserted '+od.MODNR+' id:'+results.insertId);
+										var NumDetCde=results.insertId;
+									},
+									function(tx,err) {
+										log('err ins mod '+err.code+' '+err.message);
 									}
-									log('fini detail mod');
-								},
-								function(tx,err) {
-									log('err ins mod '+err.code+' '+err.message);
-								}
-							);
+								);
+							})(i,oCde.Ref,od);
 						}
 						log('fini detail');
 					},function(err) {
@@ -1543,7 +1525,7 @@ Requete.prototype = {
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
-							dump(results.rows.item(0),'log');
+							dump(results.rows.item,'sqlResult');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
