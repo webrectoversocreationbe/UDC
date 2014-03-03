@@ -1346,7 +1346,27 @@ window.dbcommande = {
 							tx.executeSql(sqld, paramsd,
 								function(tx,results) {
 									log('mod inserted '+od.MODNR+' id:'+results.insertId);
+									var NumDetCde=results.insertId;
 									// LES ELEMENTS
+									var nbel=od.Elements.length;
+									var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
+									for (var cptel = 0; cptel < nbel; cptel++) {
+										var odm = od.Elements[cptel];
+										if (odm.Qte!=undefined) {
+											var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
+											log('insert det mod '+od.MODNR);
+											tx.executeSql(sqldm, paramsdm,
+												function(tx,results) {
+													log('det mod inserted '+od.MODNR+' id:'+results.insertId);
+													// LES ELEMENTS
+												},
+												function(tx,err) {
+													log('err ins det mod '+err.code+' '+err.message);
+												}
+											);
+										}
+									}
+									log('fini detail mod');
 								},
 								function(tx,err) {
 									log('err ins mod '+err.code+' '+err.message);
@@ -1434,31 +1454,6 @@ window.dbdetcde = {
 			}
 		}
 		callback();
-	},
-	insertDet: function(oCde,IdCde,callback) {
-        var self = this;
-		madb.transaction(
-			function(tx) {
-				var l=oCde.DetailCommande.length;
-				var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-				for (var i = 0; i < l; i++) {
-					var o = oCde.DetailCommande[cpt];
-					var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
-					log('insert '+o.MODNR);
-					tx.executeSql(sql, params,function(tx,results){
-						var idMod=results.insertId;
-						alert(idMod);
-					},function(err) {
-						alert(err.code);
-					});
-				}
-			},
-			self.txErrorHandler, 
-			function(tx) {
-				log('ok callback');
-				callback();
-			}
-		);
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
