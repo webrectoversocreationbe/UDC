@@ -1339,9 +1339,9 @@ window.dbcommande = {
 					var l=oCde.DetailCommande.length;
 					var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					for (var i = 0; i < l; i++) {
-						log('insert '+o.MODNR);
 						var od = oCde.DetailCommande[i];
 						var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+						log('insert '+od.MODNR);
 						tx.executeSql(sqld, paramsd,
 						(function(i) {
 							return function(tx,results) {
@@ -1350,7 +1350,7 @@ window.dbcommande = {
 							}
 						})(i),
 						function(err) {
-							alert('err'+err);
+							alert('err'+err.message);
 						});
 					}
 					log('fini detail');
