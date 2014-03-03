@@ -1349,10 +1349,11 @@ window.dbcommande = {
 								log('mod inserted'+idMod);
 							}
 						})(i),
-						function(err) {
-							alert('err'+err.message);
-						});
-					}
+						(function(i) {
+							return function(err) {
+							}
+						})(i)
+					)}
 					log('fini detail');
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
