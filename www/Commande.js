@@ -12,8 +12,12 @@ function InitCommande() {
 	cde.Vendeur=User;
 	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
 	cde.DateCYYYYMMDD=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-	$('.DateC').html(cde.DateC);
-	$('.User').html(User);
+	dbcommande.newNum(function(Ref) {
+		cde.Ref=Ref;
+		$('.DateC').html(cde.DateC);
+		$('.NumCde').html('Commande : <strong>'+Ref+'</strong>');
+		$('.User').html(User);
+	});
 //	alert(d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear());
 }
 function VideZones() {
@@ -377,11 +381,8 @@ function RecapCde() {
 	$('#RecapCde').html(r);
 }
 function ConfirmCde() {
-	dbcommande.newNum(function(Ref) {
-		cde.Ref=Ref;
-		dump(cde,'log');
-		dbcommande.insertCde(cde,function() {
-			Go('Main');
-		});
+	dump(cde,'log');
+	dbcommande.insertCde(cde,function() {
+		Go('Main');
 	});
 }
