@@ -1349,13 +1349,13 @@ window.dbcommande = {
 							alert(err.code);
 						});
 					}
-					callback();
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
 				});
 			},
 			self.txErrorHandler,
-			function(tx) {
+			function(tx,results) {
+				callback();
 			}
 		);
 	},
