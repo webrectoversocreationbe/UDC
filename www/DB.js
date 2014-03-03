@@ -1346,9 +1346,9 @@ window.dbcommande = {
 								function(tx,results) {
 									log('mod inserted '+od.MODNR);
 								},
-								function(err) {
+								function(tx,err) {
 									dump(paramsd,'log');
-									log('err ins mod '+err.message);
+									log('err ins mod '+err.code+' '+err.message);
 								}
 							);
 						}
@@ -1547,7 +1547,7 @@ Requete.prototype = {
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
-							dump(results.rows.item(0),'log');
+							dump(results.rows,'log');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
