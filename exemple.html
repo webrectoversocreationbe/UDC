@@ -1,0 +1,100 @@
+(function test(value,elcode,maxv) {
+    var sql = "SELECT PRIX FROM Prix where MODNR='"+self.MODNR+"' and PXCATEG='"+self.CUCAT+"' and PXELEM='"+elcode+"' order by PXDATE desc";
+    tx.executeSql(sql,[], 
+        function(tx, results) {
+            if (results.rows.length > 0) {
+                self.Elements[value].Prix=results.rows.item(0).PRIX;
+            }
+        },
+        function(tx) {log('Erreur rech prix '+this.message);}
+    );
+})(cpt,elcode,self.Elements.length-1);
+
+
+						var l=oCde.DetailCommande.length;
+						var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						for (var i = 0; i < l; i++) {
+							var od = oCde.DetailCommande[i];
+							var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+							log('insert '+od.MODNR);
+							tx.executeSql(sqld, paramsd,
+								function(tx,results) {
+									log('mod inserted '+od.MODNR+' id:'+results.insertId);
+									var NumDetCde=results.insertId;
+									// LES ELEMENTS
+									var nbel=od.Elements.length;
+									var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
+									for (var cptel = 0; cptel < nbel; cptel++) {
+										var odm = od.Elements[cptel];
+										if (odm.Qte!=undefined) {
+											var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
+											log('insert det mod '+od.MODNR);
+											tx.executeSql(sqldm, paramsdm,
+												function(tx,results) {
+													log('det mod inserted '+od.MODNR+' id:'+results.insertId);
+													// LES ELEMENTS
+												},
+												function(tx,err) {
+													log('err ins det mod '+err.code+' '+err.message);
+												}
+											);
+										}
+									}
+									log('fini detail mod');
+								},
+								function(tx,err) {
+									log('err ins mod '+err.code+' '+err.message);
+								}
+							);
+						}
+						log('fini detail');
+
+
+I would have done something a little more Object-Oriented:
+
+// Generic DB Object
+function DB( dbNativeObject ) {
+    this._native = dbNativeObject;
+}
+
+// Associated methods
+jQuery.extend( DB.prototype, {
+    exec: function( sql ) {
+        return jQuery.Deferred(function( defer ) {
+            this._native.transaction(function( transaction ) {
+                transaction.executeSql( sql, [],
+                    function( transaction, result ) {
+                        defer.resolveWith( transaction, [ result ] );
+                    },
+                    function( transaction, error ) {
+                        defer.rejectWith( transaction, [ error, sql ] );
+                    }
+                )
+            })
+        }).promise();
+    } 
+} );
+
+// More specific subclass
+function MyDB( dbNativeObject ) {
+    DB.call( this, dbNativeObject );
+}
+
+// Extend methods
+jQuery.extend( MyDB.prototype, DB.prototype, {
+    loadSummary: function() {
+        return this.exec( "SELECT * FROM tbl_summary" );
+    }
+} );
+
+// Actual code
+var myDB = new MyDB( g_oDeviceDB );
+
+myDB.loadSummary().done(function( resultSet ) {
+    data = resultSet.rows.item( 0 );
+    jQuery.each( data, function( key, value ) {
+        jQuery( "#summary_" + key ).text( value );
+    });
+});
+
+Just add all you app-specific methods into the MyDB prototype in the extend and you get quite an elegant solution imo.

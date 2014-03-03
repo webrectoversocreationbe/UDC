@@ -1348,6 +1348,27 @@ window.dbcommande = {
 									function(tx,results) {
 										log('mod inserted '+od.MODNR+' id:'+results.insertId);
 										var NumDetCde=results.insertId;
+										// LES ELEMENTS
+										var nbel=od.Elements.length;
+										for (var cptel = 0; cptel < nbel; cptel++) {
+											var odm = od.Elements[cptel];
+											(function insertcdemod(value,NumDetCde,odm) {
+												if (odm.Qte!=undefined) {
+													var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
+													var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
+													log('insert det mod '+odm.ELFR);
+													tx.executeSql(sqldm, paramsdm,
+														function(tx,results) {
+															log('det mod inserted '+odm.ELFR+' id:'+results.insertId);
+														},
+														function(tx,err) {
+															log('err ins det mod '+err.code+' '+err.message);
+														}
+													);
+												}
+											})(cptel,NumDetCde,odm);
+										}
+										log('fini detail mod '+od.MODNR);
 									},
 									function(tx,err) {
 										log('err ins mod '+err.code+' '+err.message);
@@ -1525,7 +1546,9 @@ Requete.prototype = {
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
-							dump(results.rows.item,'sqlResult');
+							for (var i = 0; i < self.Nb; i++) {
+								dump(results.rows.item(i),'sqlResult');
+							}
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
