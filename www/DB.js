@@ -1347,7 +1347,7 @@ window.dbcommande = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL Sync '+tx.message);
+		log('Erreur SQL CDE '+tx.message);
     }
 };
 /*
@@ -1443,7 +1443,7 @@ window.dbdetcde = {
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);
-		log('Erreur SQL Sync '+tx.message);
+		log('Erreur SQL DET '+tx.message);
     }
 };
 /*
