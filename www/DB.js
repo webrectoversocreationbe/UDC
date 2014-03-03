@@ -1325,6 +1325,7 @@ window.dbcommande = {
 		// LA COMMANDE
 		madb.transaction(
 			function(tx) {
+				log('insert cde');
 				var o = oCde;
 				var sql = "INSERT INTO Commande (Ref,DateC,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
 					"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
@@ -1333,6 +1334,7 @@ window.dbcommande = {
 					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params, function(tx, results) {
+					log('insert detail');
 					dbdetcde.insertCde(oCde,results.insertId,callback)
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
@@ -1415,6 +1417,7 @@ window.dbdetcde = {
 		callback();
 	},
 	insertDet: function(oCde,IdCde,callback) {
+        var self = this;
 		madb.transaction(
 			function(tx) {
 				var l=oCde.DetailCommande.length;
