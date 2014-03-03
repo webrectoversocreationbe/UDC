@@ -1337,12 +1337,12 @@ window.dbcommande = {
 					log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
 //					dbdetcde.insertCde(oCde,results.insertId,callback)
 					var l=oCde.DetailCommande.length;
-					var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					for (var i = 0; i < l; i++) {
 						log('insert '+o.MODNR);
-						var o = oCde.DetailCommande[i];
-						var params = [oCde.Ref,o.MODNR,o.MOUC,o.CUIRNR,o.CUIRUC,o.COLORNR,o.COLOUC,o.OPCODE,o.OPFR,'',o.Delai,o.GenreDelai];
-						tx.executeSql(sql, params,
+						var od = oCde.DetailCommande[i];
+						var paramsd = [oCde.Ref,od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+						tx.executeSql(sqld, paramsd,
 						(function(i) {
 							return function(tx,results) {
 								var idMod=results.insertId;
@@ -1353,11 +1353,11 @@ window.dbcommande = {
 							alert('err'+err);
 						});
 					}
-					callback();
 					log('fini detail');
 				},function() {
 					log("Error processing SQL insertcde : "+err.code);
 				});
+				callback();
 			},
 			self.txErrorHandler,
 			function(tx,results) {
@@ -1366,7 +1366,6 @@ window.dbcommande = {
 		);
 	},
     txErrorHandler: function(tx) {
-        alert(tx.message);
 		log('Erreur SQL CDE '+tx.message);
     }
 };
