@@ -1334,7 +1334,7 @@ window.dbcommande = {
 					o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params, function(tx, results) {
-					log('insert detail '+results.insertId);
+					log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
 //					dbdetcde.insertCde(oCde,results.insertId,callback)
 					var l=oCde.DetailCommande.length;
 					var sql = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
