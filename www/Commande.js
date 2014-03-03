@@ -11,7 +11,9 @@ function InitCommande() {
 	var d=new Date();
 	cde.Vendeur=User;
 	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
-	cde.DateCYYYYMMDD=d.getFullYear()+'-'+(d.getMonth()+1)[1]?(d.getMonth()+1):'0'+(d.getMonth()+1)+'-'+(d.getDate()[1]?d.getDate():'0'+d.getDate());
+	var mm=d.getMonth()+1;
+	var dd=d.getDate();
+	cde.DateCYYYYMMDD=d.getFullYear()+'-'+(mm[1]?mm:'0'+mm)+'-'+(dd[1]?dd:'0'+dd);
 	dbcommande.newNum(function(Ref) {
 		cde.Ref=Ref;
 		$('.DateC').html(cde.DateC);

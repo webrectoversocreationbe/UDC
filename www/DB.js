@@ -1335,7 +1335,8 @@ window.dbcommande = {
 					o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
 				tx.executeSql(sql, params, 
 					function(tx, results) {
-						log('insert detail cde '+oCde.Ref+' id:'+results.insertId);
+						// LES MODELES
+						log('insert detail');
 						var l=oCde.DetailCommande.length;
 						var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 						for (var i = 0; i < l; i++) {
@@ -1344,10 +1345,10 @@ window.dbcommande = {
 							log('insert '+od.MODNR);
 							tx.executeSql(sqld, paramsd,
 								function(tx,results) {
-									log('mod inserted '+od.MODNR);
+									log('mod inserted '+od.MODNR+' id:'+results.insertId);
+									// LES ELEMENTS
 								},
 								function(tx,err) {
-									dump(paramsd,'log');
 									log('err ins mod '+err.code+' '+err.message);
 								}
 							);
@@ -1547,7 +1548,7 @@ Requete.prototype = {
 						self.Resu.push(results.rows);
 						self.Nb=results.rows.length;
 						if (results.rows.length > 0) {
-							dump(results.rows,'log');
+							dump(results.item(0),'log');
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}
