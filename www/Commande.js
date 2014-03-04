@@ -226,9 +226,12 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
-		var resp=$('#civil0Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Responsable').val();
-		var mr=$('#civil1Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom1').val()+$('#Nom1').val();
-		var mme=$('#civil2Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom2').val()+$('#Nom2').val();
+		var resp=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';
+		resp=resp+' '+$('#Responsable').val();
+		var mr=$('#Civil1Mr').is(':checked')==true?'Mr':'Mme';
+		mr=mr+' '+$('#Prenom1').val()+$('#Nom1').val();
+		var mme=$('#Civil2Mr').is(':checked')==true?'Mr':'Mme';
+		mme=mme+' '+$('#Prenom2').val()+$('#Nom2').val();
 		if ($('#Partic').is(':checked')==true) {
 			$('#QuiSigneApres').val(1);
 			$('#nomsign').html(mr);
@@ -270,9 +273,12 @@ function OkSign() {
 	if ($('#Responsable').val()!='') {genrecivil=3;}
 	else if ($('#Prenom2').val()!='') {genrecivil=2;}
 	else {genrecivil=1;}
-	var resp=$('#civil0Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Responsable').val();
-	var mr=$('#civil1Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom1').val()+$('#Nom1').val();
-	var mme=$('#civil2Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom2').val()+$('#Nom2').val();
+	var resp=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';
+	resp=resp+' '+$('#Responsable').val();
+	var mr=$('#Civil1Mr').is(':checked')==true?'Mr':'Mme';
+	mr=mr+' '+$('#Prenom1').val()+$('#Nom1').val();
+	var mme=$('#Civil2Mr').is(':checked')==true?'Mr':'Mme';
+	mme=mme+' '+$('#Prenom2').val()+$('#Nom2').val();
 	var qsa=$('#QuiSigneApres').val();
 	var api = $('#sigPadSign1').signaturePad();
 	var prenomnom='';
@@ -284,6 +290,7 @@ function OkSign() {
 	if (qsa==1) {
 		cde.Signature1=api.getSignature();
 		$('#QuiSigneApres').val(2);
+		EffacerSign();
 	}
 	if ($('#Prenom2').val()=='') {
 		chkEcran();
