@@ -202,7 +202,7 @@ var Commande = function() {
 	this.Existe=false;
 	this.Vendeur='';
 	this.Actif=0;
-	this.Ref='';this.DateC='';this.DateCYYYYMMDD='';this.Genre='';
+	this.Ref='';this.DateC='';this.DateCYYYYMMDD='';this.Etat='';
 	this.Societe='';this.NumTva='';this.RemarqueVendeur='';
 	this.Civil0='';this.Responsable='';this.Civil1='';this.Prenom1='';this.Nom1='';this.Civil2='';this.Prenom2='';this.Nom2='';
 	this.Adresse='';this.CP='';this.Ville='';this.Tel1='';this.Tel2='';this.Gsm1='';this.Gsm2='';this.Email='';this.Remarque='';

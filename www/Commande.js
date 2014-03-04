@@ -426,6 +426,30 @@ function RecapCde() {
 function ConfirmCde() {
 	dump(cde,'log');
 	dbcommande.insertCde(cde,function() {
-		Go('Main');
+        $.ajax({
+            url: "http://192.168.0.248/UDC/ajaxAddCde.php",
+	        crossDomain: true,
+			async: false,
+			dataType: 'json',
+			type: "POST",
+            data: {Cde: JSON.stringify(cde)},
+            success:function (data) {
+				madb.transaction(
+					function(tx) {
+						var sql = "update Commandes set Etat='Synchro' where Ref='"+cde.Ref+"'";
+						tx.executeSql(sql);
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				log('La commande à été synchronisée');
+            },
+            error: function(request, model, response) {
+				log(request.responseText + " " +model + " " + response);
+            }
+        }).done(function(){
+			Go('Main');
+		});
 	});
 }
