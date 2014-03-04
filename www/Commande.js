@@ -226,6 +226,11 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
+		if ($('#Partic').is(':checked')==true) {
+			$('#nomsign').html(cde.civil1+' '+cde.prenom1+' '+cde.nom1);
+		} else {
+			$('#nomsign').html(cde.Responsable);
+		}
 		break;
 	case 7: // SIGNATURES
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -264,7 +269,11 @@ function OkSign() {
 	if($('#nomsign').html()==cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1) {
 		cde.Signature1=api.getSignature();
 		EffacerSign();
-		prenomnom=cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+		if (cde.prenom2=='') {
+			chkEcran();
+		} else {
+			prenomnom=cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
+		}
 	}
 	if($('#nomsign').html()==cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2) {
 		cde.Signature2=api.getSignature();
