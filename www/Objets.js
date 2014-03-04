@@ -3,6 +3,7 @@
 */
 var Modele = function() {
 	this.Existe=false;
+	this.Perso=false;
 	this.MODNR='';
 	this.MOUC='';
 	this.MOCOEF=0;

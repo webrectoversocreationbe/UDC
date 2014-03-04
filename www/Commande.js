@@ -264,6 +264,16 @@ function cdeInfoModele() {
         }
     });
 }
+function DefMod(Quoi) {
+	switch(Quoi) {
+		case 'cdeModeles':
+		case 'cdeTypeCuir':
+		case 'cdeCouleur':
+		case 'cdeOption':
+			InitRech(Quoi);
+			break;
+	}
+}
 function EffacerSign() {
 	var api = $('#sigPadSign1').signaturePad();
 	api.clearCanvas();
