@@ -436,8 +436,8 @@ function ConfirmCde() {
             success:function (data) {
 				madb.transaction(
 					function(tx) {
-						var sql = "update Commandes set Etat='Synchro' where Ref='"+cde.Ref+"'";
-						tx.executeSql(sql);
+						var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
+						tx.executeSql(sql,[],function(tx,results){log('update sync ok');},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
 					},
 					self.txErrorHandler,
 					function(tx) {
