@@ -8,8 +8,9 @@ function InitCommande() {
 	EcranActif=1;
 	$('.EcranCde').removeClass('current2');
 	$('#Ecran'+EcranActif).addClass('current2');
-	var d=new Date();
+	EffacerSign();
 	cde.Vendeur=User;
+	var d=new Date();
 	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
 	var mm=d.getMonth()+1;
 	var dd=d.getDate();
@@ -287,15 +288,16 @@ function OkSign() {
 		cde.Signature2='';
 		chkEcran();
 	}
-	if (qsa==1) {
-		cde.Signature1=api.getSignature();
-		$('#QuiSigneApres').val(2);
-		EffacerSign();
-	}
 	if ($('#Prenom2').val()=='') {
 		chkEcran();
 	}
-	$('#nomsign').html(mme);
+	if (qsa==1) {
+		cde.Signature1=api.getSignature();
+		$('#QuiSigneApres').val(2);
+		$('#nomsign').html(mme);
+		EffacerSign();
+		return true;
+	}
 	if ($('#QuiSigneApres').val()==2) {
 		cde.Signature2=api.getSignature();
 		chkEcran();
