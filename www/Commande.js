@@ -226,10 +226,15 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
+		var resp=$('#civil0Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Responsable').val();
+		var mr=$('#civil1Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom1').val()+$('#Nom1').val();
+		var mme=$('#civil2Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom2').val()+$('#Nom2').val();
 		if ($('#Partic').is(':checked')==true) {
-			$('#nomsign').html(cde.civil1+' '+cde.prenom1+' '+cde.nom1);
+			$('#QuiSigneApres').val(1);
+			$('#nomsign').html(mr);
 		} else {
-			$('#nomsign').html(cde.Responsable);
+			$('#QuiSigneApres').val(3);
+			$('#nomsign').html(resp);
 		}
 		break;
 	case 7: // SIGNATURES
@@ -260,26 +265,34 @@ function EffacerSign() {
 	api.clearCanvas();
 }
 function OkSign() {
+	var genrecivil=0;
+	// 1 Mr  ---- 2 Mr Mme ---- 3 Resp
+	if ($('#Responsable').val()!='') {genrecivil=3;}
+	else if ($('#Prenom2').val()!='') {genrecivil=2;}
+	else {genrecivil=1;}
+	var resp=$('#civil0Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Responsable').val();
+	var mr=$('#civil1Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom1').val()+$('#Nom1').val();
+	var mme=$('#civil2Mr').is(':checked')==true?'Mr':'Mme'+' '+$('#Prenom2').val()+$('#Nom2').val();
+	var qsa=$('#QuiSigneApres').val();
 	var api = $('#sigPadSign1').signaturePad();
 	var prenomnom='';
-	if($('#nomsign').html()==cde.Civil0+' '+cde.Responsable) {
+	if(genrecivil==3) {
 		cde.Signature1=api.getSignature();
+		cde.Signature2='';
 		chkEcran();
 	}
-	if($('#nomsign').html()==cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1) {
+	if (qsa==1) {
 		cde.Signature1=api.getSignature();
-		EffacerSign();
-		if (cde.prenom2=='') {
-			chkEcran();
-		} else {
-			prenomnom=cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
-		}
+		$('#QuiSigneApres').val(2);
 	}
-	if($('#nomsign').html()==cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2) {
+	if ($('#Prenom2').val()=='') {
+		chkEcran();
+	}
+	$('#nomsign').html(mme);
+	if ($('#QuiSigneApres').val()==2) {
 		cde.Signature2=api.getSignature();
 		chkEcran();
 	}
-	$('#nomsign').html(prenomnom);
 }
 function cdeAjRem() {
 	showPrompt('Entrez la remarque :','Remarque du modèle','',function(results) {
