@@ -1366,7 +1366,7 @@ window.dbcommande = {
 								})(i,oCde.Ref,od);
 							}
 							log('fini detail');
-						},function(err) {
+						},function(tx,err) {
 							log("Error processing SQL insertcde : "+err.code+' '+err.message);
 						}
 					);
