@@ -16,6 +16,7 @@ var Modele = function() {
 	this.COLOUC='';
 	this.OPCODE='';
 	this.OPFR='';
+	this.CROQUIS='';
 	this.Elements=[];
 	this.CatCuir=[];
 	this.Couleurs=[];

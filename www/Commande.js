@@ -111,7 +111,7 @@ function chkEcran() {
 		cde.Adresse=$('#Adresse').val();cde.CP=$('#CP').val();cde.Ville=$('#Ville').val();
 		cde.Tel1=$('#Tel1').val();cde.Tel2=$('#Tel2').val();cde.Gsm1=$('#Gsm1').val();cde.Gsm2=$('#Gsm2').val();
 		cde.Email=$('#Email').val();cde.Remarque=$('#Remarque1').val();
-		cde.Fractionner=$('#fracoui').is(':checked')==true?1:0;cde.NbFraction=$('#NbFrac').val();
+		cde.Fractionner=$('#fracoui').is(':checked')==true?1:0;cde.NbFraction=parseInt($('#NbFrac').val()) || 0;
 		// ECRAN SUIVANT
 		$('#pfactenssiege').css('display',$('#Societ').is(':checked')==true?'inline':'none');
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -133,6 +133,9 @@ function chkEcran() {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
 		}*/
 		// OBJ CDE
+			// CROQUIS
+			var api = $('#sigPadCroquis').signaturePad();
+			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
 			cde.DetailCommande.push(cdeModele);
 			// quantité des élements
