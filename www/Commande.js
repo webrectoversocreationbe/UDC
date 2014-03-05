@@ -184,6 +184,7 @@ function chkEcran() {
 		cde.Reprise=$('#cdeRachat').val().replace(',','.');
 		cde.Frais=$('#cdeFC').val().replace(',','.');
 		cde.GenreFrais=$('#cdeFCLIB').val();
+		log('av actu');
 		if($('#chkexon').is(':checked')==true) {cde.Exoneration=1;} else {cde.Exoneration=0;}
 		ActualisePrix();
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -347,11 +348,12 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
+	log('actuprix');
 	var PT=$('#cdePV').val();
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();
-	var pvtot=parseFloat(PT);
+	var pvtot=parseFloat(PT.replace(',','.'));
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
 	if (FC!='') {pvtot=pvtot+parseFloat(FC);}
@@ -361,6 +363,7 @@ function ActualisePrix() {
 	$('#cdePVTOT').val(Nombre(pvtot))
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
 	$('#acompte20').html(Nombre(ac20)+' €');
+	log('finactu');
 }
 function NePasAfficherPrix() {
 	cde.AfficherPrix=0;
