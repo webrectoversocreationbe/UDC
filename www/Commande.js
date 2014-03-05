@@ -176,8 +176,11 @@ function chkEcran() {
 			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
 		}*/
 		cde.Financement=$('#chkfinoui').is(':checked')==true?1:0;
-		cde.MontantFinancement=$('#MontantFin').val().replace(',','.');
+		log(cde.Financement);
+		cde.MontantFinancement=parseFloat($('#MontantFin').val().replace(',','.'));
+		log(cde.MontantFinancement);
 		cde.Remise=$('#cdeRem').val().replace(',','.');
+		log(cde.Remise);
 		cde.Reprise=$('#cdeRachat').val().replace(',','.');
 		cde.Frais=$('#cdeFC').val().replace(',','.');
 		cde.GenreFrais=$('#cdeFCLIB').val();
