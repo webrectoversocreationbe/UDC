@@ -1549,7 +1549,7 @@ Requete.prototype = {
 		);
 	}
 }
-function ExecSQL() {
+function ExecAdminSQL() {
 	var sql=$('#sqlReq').val();
 	$('#sqlResult').html('');
 	var uneReq=new Requete();
