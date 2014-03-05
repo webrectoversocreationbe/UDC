@@ -203,7 +203,7 @@ function chkEcran() {
 		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val().replace(',','.'));}
 		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val().replace(',','.'));}
 		log('3');
-		cde.Acompte=parseFloat(acompte.replace(',','.'));
+		cde.Acompte=parseFloat(acompte);
 		log('4');
 		cde.AcompteCarte=parseFloat($('#cdeacomptecarte').val().replace(',','.'));
 		cde.AcompteEspece=parseFloat($('#cdeacompteespece').val().replace(',','.'));
