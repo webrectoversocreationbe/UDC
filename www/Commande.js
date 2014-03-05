@@ -52,12 +52,12 @@ function VideZones() {
 	$('#cdeFC').val('');
 	
 	$('#cdePVTOT').val('');
-	$('#cdeacomptecarte').val();
-	$('#cdeacompteespece').val();
-	$('#cdeacomptecheque').val();
-	$('#cdeacompteautre').val();
-	$('#cdesoldeacompte').val();
-	$('#cdeacomptedate').val();
+	$('#cdeacomptecarte').val('');
+	$('#cdeacompteespece').val('');
+	$('#cdeacomptecheque').val('');
+	$('#cdeacompteautre').val('');
+	$('#cdesoldeacompte').val('');
+	$('#cdeacomptedate').val('');
 	$('#MontantFin').val('');
 }
 function VideEcranCdeMod() {
