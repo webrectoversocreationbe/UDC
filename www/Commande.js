@@ -255,7 +255,7 @@ function cdeInfoModele() {
 	$('#cdetLesElems').empty();
     cdeModele.init($('#ValRech').val(), function() {
         if (cdeModele.Existe==true) {
-            $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MOUC);
+            $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MODUC);
 			$('#Delai').val(cdeModele.MODELAI);
         } else {
             $('#cdemoduc').html('<p>Modèle innexistant</p>');
@@ -347,7 +347,7 @@ function ActualisePrix() {
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();
-	var pvtot=parseFloat(PT.replace(',','.')) || 0;
+	var pvtot=parseFloat(PT.replace(' ','').replace(',','.')) || 0;
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
 	if (FC!='') {pvtot=pvtot+parseFloat(FC);}
@@ -388,7 +388,7 @@ function RecapCde() {
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
-		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MOUC+'</p>';
+		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MODUC+'</p>';
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
 		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
@@ -410,7 +410,7 @@ function RecapCde() {
 	if(cde.Remise>0) {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
 	if(cde.Reprise>0) {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
 	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
-	r=r+'<p>Prix TVAC : '+cde.TotalTVAC+' €</p>';
+	r=r+'<p>Prix TVAC : '+Nombre(cde.TotalTVAC)+' €</p>';
 	r=r+'<br/><p><u>Acompte payé ce jour</u> : '+Nombre(cde.Acompte)+' €</p>';
 	if(cde.AcompteCarte>0) {r=r+'<p>Carte : '+Nombre(cde.AcompteCarte)+' €</p>';}
 	if(cde.AcompteEspece>0) {r=r+'<p>Espèce : '+Nombre(cde.AcompteEspece)+' €</p>';}

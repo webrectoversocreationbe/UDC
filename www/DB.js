@@ -363,7 +363,7 @@ window.dbmod = {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS Mods (" +
 				"MODNR VARCHAR(6) PRIMARY KEY, " +
-				"MOUC VARCHAR(100), " +
+				"MODUC VARCHAR(100), " +
 				"MOCOEF REAL, " +
 				"MODELAI INTEGER, " +
 				"FOUR VARCHAR(3))";
@@ -410,11 +410,11 @@ window.dbmod = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT INTO Mods (MODNR,MOUC,MOCOEF,MODELAI,FOUR) VALUES (?, ?, ?, ?, ?)";
+						var sql = "INSERT INTO Mods (MODNR,MODUC,MOCOEF,MODELAI,FOUR) VALUES (?, ?, ?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.MODNR, e.MOUC, e.MOCOEF, e.MODELAI, e.FOUR];
+							var params = [e.MODNR, e.MODUC, e.MOCOEF, e.MODELAI, e.FOUR];
 							tx.executeSql(sql, params);
 						}
 					},
@@ -439,12 +439,12 @@ window.dbmod = {
 		var rech=$('#trfRech').val();
         madb.transaction(
             function(tx) {
-                tx.executeSql("SELECT * FROM Mods WHERE MODNR like '%"+rech+"%' or MOUC like '%"+rech+"%'", this.txErrorHandler,
+                tx.executeSql("SELECT * FROM Mods WHERE MODNR like '%"+rech+"%' or MODUC like '%"+rech+"%'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length > 0) {
 							var ret='';
 							for (var i = 0; i < results.rows.length; i++) {
-								ret=ret+'<p>'+results.rows.item(i).MODNR+' - '+results.rows.item(i).MOUC.replace("''","'")+'</p>';
+								ret=ret+'<p>'+results.rows.item(i).MODNR+' - '+results.rows.item(i).MODUC.replace("''","'")+'</p>';
 	                        }
 							$('#trfResult').html(ret);
                         }
@@ -1331,7 +1331,7 @@ window.dbcommande = {
 								var od = oCde.DetailCommande[i];
 								(function insertcdemod(value,refcde,od) {
 									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-									var paramsd = [refcde.toString(),od.MODNR,od.MOUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
+									var paramsd = [refcde.toString(),od.MODNR,od.MODUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai];
 									log('insert '+od.MODNR);
 									tx.executeSql(sqld, paramsd,
 										function(tx,results) {

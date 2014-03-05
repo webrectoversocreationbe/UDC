@@ -19,7 +19,7 @@ function FormatNombre(valeur,decimal,separateur) {
 	return val_format;
 }
 function Nombre(valeur) {
-	return FormatNombre(valeur,2,".");
+	return FormatNombre(valeur,2,"");
 }
 function NomMois(mois) {
 	t=['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
