@@ -176,10 +176,10 @@ function chkEcran() {
 			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
 		}*/
 		cde.Financement=$('#chkfinoui').is(':checked')==true?1:0;
-		cde.MontantFinancement=parseFloat($('#MontantFin').val().replace(',','.'));
-		cde.Remise=parseFloat($('#cdeRem').val().replace(',','.'));
-		cde.Reprise=parseFloat($('#cdeRachat').val().replace(',','.'));
-		cde.Frais=parseFloat($('#cdeFC').val().replace(',','.'));
+		cde.MontantFinancement=parseFloat($('#MontantFin').val().replace(',','.')) || 0;
+		cde.Remise=parseFloat($('#cdeRem').val().replace(',','.')) || 0;
+		cde.Reprise=parseFloat($('#cdeRachat').val().replace(',','.')) || 0;
+		cde.Frais=parseFloat($('#cdeFC').val().replace(',','.')) || 0;
 		cde.GenreFrais=$('#cdeFCLIB').val();
 		if($('#chkexon').is(':checked')==true) {cde.Exoneration=1;} else {cde.Exoneration=0;}
 		ActualisePrix();
@@ -195,28 +195,21 @@ function chkEcran() {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
 		// PREPARE RECAP
-		log('1');
 		var acompte=0;
-		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val().replace(',','.'));}
-		log('2');
-		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val().replace(',','.'));}
-		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val().replace(',','.'));}
-		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val().replace(',','.'));}
-		log('3');
-		cde.Acompte=parseFloat(acompte);
-		log('4');
-		cde.AcompteCarte=parseFloat($('#cdeacomptecarte').val().replace(',','.'));
-		cde.AcompteEspece=parseFloat($('#cdeacompteespece').val().replace(',','.'));
-		cde.AcompteCheque=parseFloat($('#cdeacomptecheque').val().replace(',','.'));
-		cde.AcompteAutre=parseFloat($('#cdeacompteautre').val().replace(',','.'));
-		cde.SoldeAcompte=parseFloat($('#cdesoldeacompte').val().replace(',','.'));
-		log('5');
+		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val().replace(',','.')) || 0;}
+		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;}
+		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val().replace(',','.')) || 0;}
+		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val().replace(',','.')) || 0;}
+		cde.Acompte=parseFloat(acompte) || 0;
+		cde.AcompteCarte=parseFloat($('#cdeacomptecarte').val().replace(',','.')) || 0;
+		cde.AcompteEspece=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
+		cde.AcompteCheque=parseFloat($('#cdeacomptecheque').val().replace(',','.')) || 0;
+		cde.AcompteAutre=parseFloat($('#cdeacompteautre').val().replace(',','.')) || 0;
+		cde.SoldeAcompte=parseFloat($('#cdesoldeacompte').val().replace(',','.')) || 0;
 		cde.DateA=$('#cdeacomptedate').val();
-		cde.TotalNet=parseFloat($('#cdePV').val().replace(',','.'));
-		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.'));
-		log('av recap');
+		cde.TotalNet=parseFloat($('#cdePV').val().replace(',','.')) || 0;
+		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
 		RecapCde();
-		log('ap recap');
 		var prenomnom='';
 		if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
 			prenomnom=cde.Civil0+' '+cde.Responsable;
@@ -297,7 +290,7 @@ function OkSign() {
 	var mme=$('#Civil2Mr').is(':checked')==true?'Mr':'Mme';
 	mme=mme+' '+$('#Prenom2').val()+$('#Nom2').val();
 	var qsa=$('#QuiSigneApres').val();
-	var api = $('#sigPadSign1').getSignatureString();
+	var api = $('#sigPadSign1').signaturePad();
 	var prenomnom='';
 	if(genrecivil==3) {
 		cde.Signature1=api.getSignatureString();
@@ -350,12 +343,11 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
-	log('actuprix');
 	var PT=$('#cdePV').val();
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();
-	var pvtot=parseFloat(PT.replace(',','.'));
+	var pvtot=parseFloat(PT.replace(',','.')) || 0;
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
 	if (FC!='') {pvtot=pvtot+parseFloat(FC);}
@@ -365,7 +357,6 @@ function ActualisePrix() {
 	$('#cdePVTOT').val(Nombre(pvtot))
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
 	$('#acompte20').html(Nombre(ac20)+' €');
-	log('finactu');
 }
 function NePasAfficherPrix() {
 	cde.AfficherPrix=0;
@@ -415,19 +406,19 @@ function RecapCde() {
 		}
 	}
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : '+cde.TotalNet+' €</p>';
-	if(cde.Remise!='') {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
-	if(cde.Reprise!='') {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
-	if(cde.Frais!='') {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
+	r=r+'<p>Prix de vente : '+Nombre(cde.TotalNet)+' €</p>';
+	if(cde.Remise>0) {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
+	if(cde.Reprise>0) {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
+	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
 	r=r+'<p>Prix TVAC : '+cde.TotalTVAC+' €</p>';
 	r=r+'<br/><p><u>Acompte payé ce jour</u> : '+Nombre(cde.Acompte)+' €</p>';
-	if(cde.AcompteCarte!='') {r=r+'<p>Carte : '+Nombre(cde.AcompteCarte)+' €</p>';}
-	if(cde.AcompteEspece!='') {r=r+'<p>Espèce : '+Nombre(cde.AcompteEspece)+' €</p>';}
-	if(cde.AcompteCheque!='') {r=r+'<p>Chèque : '+Nombre(cde.AcompteCheque)+' €</p>';}
-	if(cde.AcompteAutre!='') {r=r+'<p>Autre : '+Nombre(cde.AcompteAutre)+' €</p>';}
-	if(cde.SoldeAcompte!='') {r=r+'<p>Solde acompte : '+Nombre(cde.SoldeAcompte)+' €</p>';}
+	if(cde.AcompteCarte>0) {r=r+'<p>Carte : '+Nombre(cde.AcompteCarte)+' €</p>';}
+	if(cde.AcompteEspece>0) {r=r+'<p>Espèce : '+Nombre(cde.AcompteEspece)+' €</p>';}
+	if(cde.AcompteCheque>0) {r=r+'<p>Chèque : '+Nombre(cde.AcompteCheque)+' €</p>';}
+	if(cde.AcompteAutre>0) {r=r+'<p>Autre : '+Nombre(cde.AcompteAutre)+' €</p>';}
+	if(cde.SoldeAcompte>0) {r=r+'<p>Solde acompte : '+Nombre(cde.SoldeAcompte)+' €</p>';}
 	if(cde.DateA!='') {r=r+'<p>A payer pour le : '+cde.DateA+'</p>';}
-	if(cde.MontantFinancement!='') {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
+	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
 	
 	$('#RecapCde').html(r);
 }
