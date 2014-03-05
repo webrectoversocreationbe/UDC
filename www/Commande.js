@@ -52,6 +52,12 @@ function VideZones() {
 	$('#cdeFC').val('');
 	
 	$('#cdePVTOT').val('');
+	$('#cdeacomptecarte').val();
+	$('#cdeacompteespece').val();
+	$('#cdeacomptecheque').val();
+	$('#cdeacompteautre').val();
+	$('#cdesoldeacompte').val();
+	$('#cdeacomptedate').val();
 	$('#MontantFin').val('');
 }
 function VideEcranCdeMod() {
@@ -158,6 +164,7 @@ function chkEcran() {
 			$('#cdePV').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
+			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -210,7 +217,7 @@ function chkEcran() {
 		cde.AcompteAutre=parseFloat($('#cdeacompteautre').val().replace(',','.')) || 0;
 		cde.SoldeAcompte=parseFloat($('#cdesoldeacompte').val().replace(',','.')) || 0;
 		cde.DateA=$('#cdeacomptedate').val();
-		cde.TotalNet=parseFloat($('#cdePV').val().replace(',','.')) || 0;
+		cde.TotalNet=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
 		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
 		RecapCde();
 		var prenomnom='';
@@ -409,7 +416,7 @@ function RecapCde() {
 		}
 	}
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : '+Nombre(cde.TotalNet)+' €</p>';
+	r=r+'<p>Prix de vente : '+Nombre(cde.PrixVente)+' €</p>';
 	if(cde.Remise>0) {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
 	if(cde.Reprise>0) {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
 	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}

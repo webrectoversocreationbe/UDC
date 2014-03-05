@@ -1270,8 +1270,8 @@ window.dbcommande = {
 				"AcompteAutre REAL," +
 				"SoldeAcompte REAL," +
 				"DateA VARCHAR(10)," +
-				"Signature1 VARCHAR(515)," +
-				"Signature2 VARCHAR(515)" +
+				"Signature1 TEXT," +
+				"Signature2 TEXT" +
 				")";
                 tx.executeSql(sql);
             },
