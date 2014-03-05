@@ -45,6 +45,7 @@ $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
 	$('#sigPadSign1').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvassign1'});
 	$('#sigPadCroquis').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
+	$(function(){$( ".DatePicker" ).datepicker({showOtherMonths: true,selectOtherMonths: true,dateFormat:'dd/mm/yy',monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa']});});
 });
 
 function onDeviceReady() {
