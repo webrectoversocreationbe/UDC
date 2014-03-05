@@ -195,17 +195,22 @@ function chkEcran() {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}*/
 		// PREPARE RECAP
+		log('1');
 		var acompte=0;
 		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val().replace(',','.'));}
+		log('2');
 		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val().replace(',','.'));}
 		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val().replace(',','.'));}
 		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val().replace(',','.'));}
+		log('3');
 		cde.Acompte=parseFloat(acompte.replace(',','.'));
+		log('4');
 		cde.AcompteCarte=parseFloat($('#cdeacomptecarte').val().replace(',','.'));
 		cde.AcompteEspece=parseFloat($('#cdeacompteespece').val().replace(',','.'));
 		cde.AcompteCheque=parseFloat($('#cdeacomptecheque').val().replace(',','.'));
 		cde.AcompteAutre=parseFloat($('#cdeacompteautre').val().replace(',','.'));
 		cde.SoldeAcompte=parseFloat($('#cdesoldeacompte').val().replace(',','.'));
+		log('5');
 		cde.DateA=$('#cdeacomptedate').val();
 		cde.TotalNet=parseFloat($('#cdePV').val().replace(',','.'));
 		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.'));
