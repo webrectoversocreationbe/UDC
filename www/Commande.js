@@ -141,6 +141,7 @@ function chkEcran() {
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
+			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
 			cde.DetailCommande.push(cdeModele);
@@ -326,7 +327,7 @@ function cdeAjRem() {
 	showPrompt('Entrez la remarque :','Remarque du modèle','',function(results) {
 		if (results.buttonIndex==1) {
 			var remarque=results.input1
-			$('#cdeRemMod').html('<p class="ML15"><u>Remarque</u> :<br/>'+remarque+'</p>');
+			$('#cdeRemMod').html('<p class="ML15"><u>Remarque</u> :<br/><span id="cdeRemModCtn">'+remarque+'</span></p>');
 		}
 	});
 }
