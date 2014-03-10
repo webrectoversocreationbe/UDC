@@ -93,6 +93,7 @@ function TesteLaConnectivite() {
 			});
 		}
 		$('#AdresseServeur').val(adresseServeur);
+		$('#AdmAdresseServeur').val(adresseServeur);
 		log('Serveur : '+$('#AdresseServeur').val());
 		// Accès au serveur ?
 		$.ajax({
@@ -113,8 +114,8 @@ function TesteLaConnectivite() {
 		});
 	}
 }
-function DefinirAdresseServeur() {
-	setPref('AdresseServeur',$('#AdresseServeur').val());
+function DefinirAdresseServeur(idAdrsServ) {
+	setPref('AdresseServeur',$('#'+idAdrsServ).val());
 	TesteLaConnectivite();
 }
 function Go(Ou) {
