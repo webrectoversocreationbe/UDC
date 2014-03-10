@@ -100,20 +100,15 @@ function TesteLaConnectivite() {
 			url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
 			crossDomain: true,
 			async: false,
-			error: function(err) {
-				log('Erreur ajax '+err);
+			success: function(data) {
+				log('Connexion au serveur réussie');
 				bOk=true;
+			},
+			error: function(xhr,err) {
+				log('Erreur ajax '+err);
+				adresseServeur='';
+				bOk=false;
 			}
-		}).done(function (data) {
-			showAlert('Connexion au serveur '+adresseServeur+' réussie','Connectivité',[OK]);
-			log('Connexion au serveur réussie');
-			bOk=true;
-		}).fail(function (jqXHR, textStatus) {
-			showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
-			log('Connexion au serveur '+adresseServeur+' impossible');
-			log('erreur = '+textStatus);
-			adresseServeur='';
-			bOk=false;
 		});
 	}
 }
