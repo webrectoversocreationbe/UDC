@@ -1631,6 +1631,7 @@ Pref.prototype = {
 						} else {
 							self.Valeur='';
 						}
+						self.bErr=false;
 					},
 					function(tx) {
 						log('Erreur '+tx.message);
@@ -1669,7 +1670,7 @@ Pref.prototype = {
 		);
 	}
 }
-function GetPref() {
+function TestPref() {
 	var p=new Pref()
 	p.set('coucou','ici3',function(ret) {
 		alert('ajok'+ret);

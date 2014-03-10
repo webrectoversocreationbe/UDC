@@ -60,6 +60,18 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
+	// Adresse du serveur
+	var adresseServeur=getPref('AdresseServeur','');
+	while(adresseServeur=='') {
+		adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
+			if (results.buttonIndex==1) {
+				var adresseServeur=results.input1
+				$('#AdresseServeur').val(adresseServeur);
+				setPref('AdresseServeur',adresseServeur);
+			}
+		});
+	}
+	log('Serveur : '+adresseServeur);
 	// initialisation du filesystem
 	InitFS(function() {
 		// initialisation du filetransfer
@@ -102,6 +114,15 @@ function Go(Ou) {
 	}
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
+function getPref(cle, parDefaut){
+    try{
+        var R = window.localStorage.getItem(cle);
+        if (R==null || R=='') {return parDefaut;} else {return R;}
+    }catch(e){return parDefaut;}     
+}
+function setPref(cle, valeur){
+    window.localStorage.setItem(cle, valeur);
+}
 function check_network() {
     var networkState = navigator.network.connection.type;
     var states = {};
