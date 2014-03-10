@@ -1625,6 +1625,7 @@ Pref.prototype = {
 			function(tx) {
 				tx.executeSql("select Valeur from Prefs where Cle='"+cle+"'",[], 
 					function(tx, results) {
+						log('get1');
 						if (results.rows.length > 0) {
 							self.Valeur=results.rows.item(0).Valeur;
 							return self.Valeur;
@@ -1641,34 +1642,38 @@ Pref.prototype = {
 				log('Erreur '+err.code+' '+err.message);
 				return '';
 			}, function() {
+						log('get2');
 				return self.Valeur;
 			}
 		);
 	},
-	set: function(cle,valeur) {
+	set: function(cle,valeur,callback) {
 		var self=this;
 		madb.transaction(
 			function(tx) {
 				tx.executeSql("insert or replace into Prefs (Cle,Valeur) values (?,?)",[cle,valeur], 
 					function(tx, results) {
-						return true;
+						callback(true);
 					},
 					function(tx) {
 						log('Erreur insert '+tx.message);
-						return false;
+						callback(false);
 					}
 				);
 			}, function(err) {
 				log('Erreur transact '+err.code+' '+err.message);
-				return false;
+				callback(false);
 			}, function() {
-				return true;
+				callback(true);
 			}
 		);
 	}
 }
 function GetPref() {
 	var p=new Pref()
-	p.set('coucou','ici3');
-	alert(p.get('coucou'));
+	p.set('coucou','ici3',function(ret) {
+		alert(ret);
+		var test=p.get('coucou');
+		alert(test);
+	});
 }
