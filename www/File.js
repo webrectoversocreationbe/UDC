@@ -44,18 +44,13 @@ function InitFT(callback) {
 }
 
 function folderExists(folder,callbackOk,callbackNOK) {
-	log('foldere');
 	fs.root.getDirectory(folder.toString(), {create:false,exclusive:false},
 	 	function(de) {
-			log('udce');
 			callbackOK();
 		},
 		function(e) {
-			if (e.code==FileError.PATH_EXISTS_ERR) {
-				log('errde');
-			}
 			callbackNOK();
-		}); 
+	}); 
 }
 function fileExists(Fichier,callbackOk,callbackNOK) {
 	log('fe');

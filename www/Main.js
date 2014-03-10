@@ -60,10 +60,14 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
+	// Connectivité obligatoire à l'init
+	while (bConnected==false) {
+		showAlert('Vous devez activer le WiFi pour continuer','Connectivité',[OK]);
+	}
+	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
 	var bOk=false;
 	while (bOk==false) {
-		// Adresse du serveur
 		while(adresseServeur=='') {
 			adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 				if (results.buttonIndex==1) {
@@ -187,39 +191,4 @@ function Vibre(temps) {
 }
 function Sonne(nb) {
 	navigator.notification.beep(nb);
-}
-function ShowProduits() {
-	$.ajax({
-		type: "POST",
-		url: "http://www.candicar.eu/Prod/ajaxPhoneGap.php",
-        crossDomain: true,
-		dataType: "html",
-		success: function(response) {
-			$('#Produits').html(response);
-		},
-		error: function() {
-			$('#Produits').append('Une erreur est survenue');
-		}
-	});	
-}
-function DoPDF() {
-	var doc = new jsPDF();
-	doc.setFontSize(20);
-	doc.text(35, 25, "Hello world");
-	var pdfOutput = doc.output();
-	fs.root.getFile("ici.pdf", {create: true}, function(entry) {
-		var fileEntry = entry;
-		entry.createWriter(function(writer) {
-			writer.onwrite = function(evt) {
-				log("write success"+fs.root.fullPath);
-				Dropbox.save(fs.root.fullPath+"/ici.pdf");
-				log('droped');
-			};
-			writer.write( pdfOutput );
-		}, function(error) {
-			log(error);
-		});
-		}, function(error){
-			log(error);
-	});
 }
