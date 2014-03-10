@@ -60,7 +60,6 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
-	TesteLaConnectivite();
 	// initialisation du filesystem
 	InitFS(function() {
 		// initialisation du filetransfer
@@ -68,6 +67,7 @@ function InitAll() {
 			// initialisation de la DB
 			InitDB(function() {
 				log('Base de données initialisée');
+				TesteLaConnectivite();
 			});
 		});
 	});
