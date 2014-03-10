@@ -85,9 +85,9 @@ function TesteLaConnectivite() {
 	var bOk=false;
 	while (bOk==false) {
 		while(adresseServeur=='') {
-			adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
+			showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 				if (results.buttonIndex==1) {
-					var adresseServeur=results.input1
+					adresseServeur=results.input1
 					setPref('AdresseServeur',adresseServeur);
 				}
 			});
@@ -108,6 +108,7 @@ function TesteLaConnectivite() {
 				log(model + " " + response);
 				showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
 				adresseServeur='';
+				bOk=false;
 			}
 		});
 	}
