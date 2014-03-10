@@ -99,18 +99,17 @@ function TesteLaConnectivite() {
 		$.ajax({
 			url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
 			crossDomain: true,
-			async: false,
-			success:function (data) {
-				log('Connexion au serveur réussie');
-				bOk=true;
-			},
-			error: function(request, model, response) {
-				log('Connexion au serveur '+adresseServeur+' impossible');
-				log(model + " " + response);
-				showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
-				adresseServeur='';
-				bOk=false;
-			}
+			async: false
+		}).done(function (data) {
+			showAlert('Connexion au serveur '+adresseServeur+' réussie','Connectivité',[OK]);
+			log('Connexion au serveur réussie');
+			bOk=true;
+		}).fail(function (jqXHR, textStatus) {
+			showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
+			log('Connexion au serveur '+adresseServeur+' impossible');
+			log('erreur = '+textStatus);
+			adresseServeur='';
+			bOk=false;
 		});
 	}
 }
