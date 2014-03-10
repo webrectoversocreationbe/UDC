@@ -82,10 +82,11 @@ function TesteLaConnectivite() {
 	}
 	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
-	var bOk=false;
+	var bOk=false; var cpte=0;
 	while (bOk==false) {
-		while(adresseServeur=='') {
-			showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
+		cpte++;
+		if (adresseServeur=='') {
+			showPrompt('Essai '+cpte+' - Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 				if (results.buttonIndex==1) {
 					adresseServeur=results.input1
 					setPref('AdresseServeur',adresseServeur);
