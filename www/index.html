@@ -32,6 +32,7 @@
 <div id="Init" class="Panneau current">
     <img src="images/logo.png" class="Logo">
     <h2>Initialisation de l'application</h2><br/>
+    <p class="uniquementdeconnecte">Vous devez être connecté au WiFi pour initialiser l'application</p><br/>
     <p><a class="rouge" onClick="InitAll()">Initialiser</a></p><br/>
     <img src="images/loader.gif" class="loader">
     <p id="InitResult"></p>
@@ -342,7 +343,7 @@
     <a onClick="Go('Main')" class="bRetour"><img src="images/close.png" width="50" height="50"/></a>
     <div class="ML10 MT10">
     <h1 class="ML10">Administration</h1><br/>
-    <p class="ML10">Adresse du serveur : <input type="text" id="AdresseServeur" value="">&nbsp;<button id="btnAdrServ">Définir</button></p><br/><br/>
+    <p class="ML10">Adresse du serveur : <input type="text" id="AdresseServeur" value="">&nbsp;<button id="btnAdrServ" onClick="DefinirAdresseServeur()">Définir</button></p><br/><br/>
     <p class="ML10"><a onClick="SynchroAll()">Synchronisation Données</a></p><br/><img id="admloaderdb" src="images/loader.gif" class="loader"><br/>
     <p class="ML10"><a onClick="SynchroImg()">Synchronisation Images</a>&nbsp;<span id="nbimg"></span></p><br/><img id="admloaderimg" src="images/loader.gif" class="loader"><br/>
     <p class="uniquementadmin ML10"><a onClick="Go('SQL')">SQL</a></p><br class="uniquementadmin"/><br class="uniquementadmin"/>

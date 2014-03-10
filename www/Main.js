@@ -60,8 +60,24 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
+	TesteLaConnectivite();
+	// initialisation du filesystem
+	InitFS(function() {
+		// initialisation du filetransfer
+		InitFT(function() {
+			// initialisation de la DB
+			InitDB(function() {
+				log('Base de données initialisée');
+			});
+		});
+	});
+}
+function CloseApp() {
+	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
+}
+function TesteLaConnectivite() {
 	// Connectivité obligatoire à l'init
-	while (bConnected==false) {
+	if (bConnected==false) {
 		showAlert('Vous devez activer le WiFi pour continuer','Connectivité',[OK]);
 	}
 	// Adresse du serveur
@@ -94,21 +110,11 @@ function InitAll() {
 			}
 		});
 	}
-	// initialisation du filesystem
-	InitFS(function() {
-		// initialisation du filetransfer
-		InitFT(function() {
-			// initialisation de la DB
-			InitDB(function() {
-				log('Base de données initialisée');
-			});
-		});
-	});
 }
-function CloseApp() {
-	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
+function DefinirAdresseServeur() {
+	setPref('AdresseServeur',$('#AdresseServeur').val());
+	TesteLaConnectivite();
 }
-
 function Go(Ou) {
 	switch(Ou) {
 	case 'SQL':
@@ -161,11 +167,15 @@ function check_network() {
 		bConnected=false;
 		$('#cnType').removeClass('vert');
 		$('#cnType').addClass('rouge');
+		$('.uniquementdeconnecte').css('display','block');
+		$('.uniquementconnecte').css('display','none');
 	} else {
 		log('Test de connectivité - '+states[networkState]);
 		bConnected=true;
 		$('#cnType').removeClass('rouge');
 		$('#cnType').addClass('vert');
+		$('.uniquementdeconnecte').css('display','none');
+		$('.uniquementconnecte').css('display','block');
 	}
 }
 function alertDismissed() {}
