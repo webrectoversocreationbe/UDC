@@ -60,18 +60,36 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
-	// Adresse du serveur
-	var adresseServeur=getPref('AdresseServeur','');
-	while(adresseServeur=='') {
-		adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
-			if (results.buttonIndex==1) {
-				var adresseServeur=results.input1
-				$('#AdresseServeur').val(adresseServeur);
-				setPref('AdresseServeur',adresseServeur);
+	var bOk=false;
+	do {
+		// Adresse du serveur
+		var adresseServeur=getPref('AdresseServeur','');
+		while(adresseServeur=='') {
+			adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
+				if (results.buttonIndex==1) {
+					var adresseServeur=results.input1
+					setPref('AdresseServeur',adresseServeur);
+				}
+			});
+		}
+		$('#AdresseServeur').val(adresseServeur);
+		log('Serveur : '+$('#AdresseServeur').val());
+		// Accès au serveur ?
+		$.ajax({
+			url: "http://"+adresseServeur+"/UDC/ajaxTestConnexion.php",
+			crossDomain: true,
+			async: false,
+			success:function (data) {
+				log('Connexion au serveur réussie');
+				bOk=true;
+			},
+			error: function(request, model, response) {
+				log('Connexion au serveur '+adresseServeur+'impossible');
+				log(request.responseText + " " +model + " " + response);
+				showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
 			}
 		});
-	}
-	log('Serveur : '+adresseServeur);
+	} while (bOk==true);
 	// initialisation du filesystem
 	InitFS(function() {
 		// initialisation du filetransfer
