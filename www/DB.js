@@ -1617,33 +1617,32 @@ function ExecAdminSQL() {
 var Pref = function() {
 	this.Cle='';
 	this.Valeur='';
+	this.bErr=false;
 }
 Pref.prototype = {
-	get: function(cle) {
+	get: function(cle,callback) {
 		var self=this;
 		madb.transaction(
 			function(tx) {
 				tx.executeSql("select Valeur from Prefs where Cle='"+cle+"'",[], 
 					function(tx, results) {
-						log('get1');
 						if (results.rows.length > 0) {
 							self.Valeur=results.rows.item(0).Valeur;
-							return self.Valeur;
 						} else {
-							return '';
+							self.Valeur='';
 						}
 					},
 					function(tx) {
 						log('Erreur '+tx.message);
-						return '';
+						self.bErr=true;
 					}
 				);
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
-				return '';
+				self.bErr=true;
+				callback(self.bErr,'');
 			}, function() {
-						log('get2');
-				return self.Valeur;
+				callback(self.bErr,self.Valeur);
 			}
 		);
 	},
@@ -1653,18 +1652,19 @@ Pref.prototype = {
 			function(tx) {
 				tx.executeSql("insert or replace into Prefs (Cle,Valeur) values (?,?)",[cle,valeur], 
 					function(tx, results) {
-						callback(true);
+						self.bErr=false;
 					},
 					function(tx) {
 						log('Erreur insert '+tx.message);
-						callback(false);
+						self.bErr=true;
 					}
 				);
 			}, function(err) {
 				log('Erreur transact '+err.code+' '+err.message);
-				callback(false);
+				self.bErr=true;
+				callback(self.bErr);
 			}, function() {
-				callback(true);
+				callback(self.bErr);
 			}
 		);
 	}
@@ -1672,8 +1672,9 @@ Pref.prototype = {
 function GetPref() {
 	var p=new Pref()
 	p.set('coucou','ici3',function(ret) {
-		alert(ret);
-		var test=p.get('coucou');
-		alert(test);
+		alert('ajok'+ret);
+		p.get('coucou',function(bOk,ret) {
+			alert('val='+ret);
+		});
 	});
 }
