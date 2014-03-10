@@ -100,12 +100,13 @@ function TesteLaConnectivite() {
 		async: false,
 		success: function(data) {
 			log('Connexion au serveur réussie');
-			bOk=true;
 		},
-		error: function(xhr,err) {
-			log('Erreur ajax '+err);
+		error: function(xhr,err,errt) {
+			log('Erreur ajax '+errt);
 			adresseServeur='';
-			bOk=false;
+			setPref('AdresseServeur','');
+			alert('Adresse incorrecte');
+			TesteLaConnectivite();
 		}
 	});
 }
