@@ -1627,12 +1627,19 @@ Pref.prototype = {
 					function(tx, results) {
 						if (results.rows.length > 0) {
 							self.Valeur=results.rows.item(0).Valeur;
+							return self.Valeur;
+						} else {
+							return '';
 						}
 					},
-					function(tx) {log('Erreur '+tx.message);}
+					function(tx) {
+						log('Erreur '+tx.message);
+						return '';
+					}
 				);
 			}, function(err) {
 				log('Erreur '+err.code+' '+err.message);
+				return '';
 			}, function() {
 				return self.Valeur;
 			}
@@ -1644,11 +1651,16 @@ Pref.prototype = {
 			function(tx) {
 				tx.executeSql("insert or replace into Prefs (Cle,Valeur) values (?,?)",[cle,valeur], 
 					function(tx, results) {
+						return true;
 					},
-					function(tx) {log('Erreur insert '+tx.message);}
+					function(tx) {
+						log('Erreur insert '+tx.message);
+						return false;
+					}
 				);
 			}, function(err) {
 				log('Erreur transact '+err.code+' '+err.message);
+				return false;
 			}, function() {
 				return true;
 			}
