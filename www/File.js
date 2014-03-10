@@ -8,7 +8,17 @@ var objfs={
 		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 		try {
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-				function(filesystem) {log('FileSystem opérationnel'); fs=filesystem; self.createdir('UDC',callback);}, 
+				function(filesystem) {
+					log('FileSystem opérationnel'); 
+					fs=filesystem; 
+					folderExists('UDC',
+					function() {
+						callback();
+					},
+					function() {
+						self.createdir('UDC',callback);
+					});
+				}, 
 				function(error) {log('fserror '+error.target.error.code); callback();}
 			);
 		} catch(e) {
@@ -33,6 +43,18 @@ function InitFT(callback) {
 	callback();
 }
 
+function folderExists(folder,callbackOk,callbackNOK) {
+	log('foldere');
+	fs.root.getDirectory(folder, {create:false,exclusive:false},
+	 	function(de) {
+			log('udce');
+			callbackOK();
+		},
+		function(e) {
+			log('errde');
+			callbackNOK();
+		}); 
+}
 function fileExists(Fichier,callbackOk,callbackNOK) {
 	log('fe');
 	fs.root.getDirectory("UDC", {create:false,exclusive:false},
