@@ -99,7 +99,11 @@ function TesteLaConnectivite() {
 		$.ajax({
 			url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
 			crossDomain: true,
-			async: false
+			async: false,
+			error: function(err) {
+				log('Erreur ajax '+err);
+				bOk=true;
+			}
 		}).done(function (data) {
 			showAlert('Connexion au serveur '+adresseServeur+' réussie','Connectivité',[OK]);
 			log('Connexion au serveur réussie');
