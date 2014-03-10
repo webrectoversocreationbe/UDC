@@ -240,9 +240,9 @@ function chkEcran() {
 		var resp=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';
 		resp=resp+' '+$('#Responsable').val();
 		var mr=$('#Civil1Mr').is(':checked')==true?'Mr':'Mme';
-		mr=mr+' '+$('#Prenom1').val()+$('#Nom1').val();
+		mr=mr+' '+$('#Prenom1').val()+' '+$('#Nom1').val();
 		var mme=$('#Civil2Mr').is(':checked')==true?'Mr':'Mme';
-		mme=mme+' '+$('#Prenom2').val()+$('#Nom2').val();
+		mme=mme+' '+$('#Prenom2').val()+' '+$('#Nom2').val();
 		if ($('#Partic').is(':checked')==true) {
 			$('#QuiSigneApres').val(1);
 			$('#nomsign').html(mr);
