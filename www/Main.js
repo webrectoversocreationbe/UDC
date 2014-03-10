@@ -60,10 +60,10 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
+	var adresseServeur=getPref('AdresseServeur','');
 	var bOk=false;
-	do {
+	while (bOk==false) {
 		// Adresse du serveur
-		var adresseServeur=getPref('AdresseServeur','');
 		while(adresseServeur=='') {
 			adresseServeur=showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 				if (results.buttonIndex==1) {
@@ -76,7 +76,7 @@ function InitAll() {
 		log('Serveur : '+$('#AdresseServeur').val());
 		// Accès au serveur ?
 		$.ajax({
-			url: "http://"+adresseServeur+"/UDC/ajaxTestConnexion.php",
+			url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
 			crossDomain: true,
 			async: false,
 			success:function (data) {
@@ -89,7 +89,7 @@ function InitAll() {
 				showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
 			}
 		});
-	} while (bOk==true);
+	}
 	// initialisation du filesystem
 	InitFS(function() {
 		// initialisation du filetransfer
