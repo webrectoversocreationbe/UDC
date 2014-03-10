@@ -1669,9 +1669,6 @@ Pref.prototype = {
 }
 function GetPref() {
 	var p=new Pref()
-	alert(p.set('coucou','ici1'));
-	if (p.set('coucou','ici2')==true) {
-		log('ici2');
-		alert(p.get('coucou'));
-	}
+	p.set('coucou','ici3');
+	alert(p.get('coucou'));
 }
