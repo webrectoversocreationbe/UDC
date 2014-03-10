@@ -78,7 +78,7 @@ function CloseApp() {
 function TesteLaConnectivite() {
 	// Connectivité obligatoire à l'init
 	if (bConnected==false) {
-		showAlert('Vous devez activer le WiFi pour continuer','Connectivité',[OK]);
+		alert('Vous devez activer le WiFi pour continuer');
 	}
 	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
@@ -104,9 +104,10 @@ function TesteLaConnectivite() {
 				bOk=true;
 			},
 			error: function(request, model, response) {
-				log('Connexion au serveur '+adresseServeur+'impossible');
-				log(request.responseText + " " +model + " " + response);
+				log('Connexion au serveur '+adresseServeur+' impossible');
+				log(model + " " + response);
 				showAlert('Connexion au serveur '+adresseServeur+' impossible','Connectivité',[OK]);
+				adresseServeur='';
 			}
 		});
 	}
