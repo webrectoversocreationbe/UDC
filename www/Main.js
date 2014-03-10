@@ -82,36 +82,32 @@ function TesteLaConnectivite() {
 	}
 	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
-	var bOk=false; var cpte=0;
-	while (bOk==false) {
-		cpte++;
-		if (adresseServeur=='') {
-			showPrompt('Essai '+cpte+' - Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
-				if (results.buttonIndex==1) {
-					adresseServeur=results.input1
-					setPref('AdresseServeur',adresseServeur);
-				}
-			});
-		}
-		$('#AdresseServeur').val(adresseServeur);
-		$('#AdmAdresseServeur').val(adresseServeur);
-		log('Serveur : '+$('#AdresseServeur').val());
-		// Accès au serveur ?
-		$.ajax({
-			url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
-			crossDomain: true,
-			async: false,
-			success: function(data) {
-				log('Connexion au serveur réussie');
-				bOk=true;
-			},
-			error: function(xhr,err) {
-				log('Erreur ajax '+err);
-				adresseServeur='';
-				bOk=false;
+	if (adresseServeur=='') {
+		showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
+			if (results.buttonIndex==1) {
+				adresseServeur=results.input1
+				setPref('AdresseServeur',adresseServeur);
 			}
 		});
 	}
+	$('#AdresseServeur').val(adresseServeur);
+	$('#AdmAdresseServeur').val(adresseServeur);
+	log('Serveur : '+$('#AdresseServeur').val());
+	// Accès au serveur ?
+	$.ajax({
+		url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
+		crossDomain: true,
+		async: false,
+		success: function(data) {
+			log('Connexion au serveur réussie');
+			bOk=true;
+		},
+		error: function(xhr,err) {
+			log('Erreur ajax '+err);
+			adresseServeur='';
+			bOk=false;
+		}
+	});
 }
 function DefinirAdresseServeur(idAdrsServ) {
 	setPref('AdresseServeur',$('#'+idAdrsServ).val());
