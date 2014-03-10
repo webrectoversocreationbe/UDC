@@ -1,5 +1,6 @@
 var madb;
 var syncURL="http://192.168.0.248/UDC/ajaxSync.php";
+var tablePrefOk=false;
 var tableUserOk=false;
 var tableSynchroOk=false;
 var tableModeleOk=false;
@@ -27,6 +28,7 @@ function InitDB(callback) {
 	}
 	$('.loader').toggle();
 	madb=window.openDatabase("syncdb", "1.0", "SyncDB", 20000000);
+	dbpref.initialize(function(){
 	dbsync.initialize(function(){
 	 dbu.initialize(function(){
 	  dbmod.initialize(function(){
@@ -41,7 +43,7 @@ function InitDB(callback) {
 			   dbcommande.initialize(function(){
 			    dbdetcde.initialize(function(){
 			     dbeldetcde.initialize(function(){
-					if (tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
+					if (tablePrefOk==true && tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
 						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true && tableCommandeOk==true && tableDetCdeOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
@@ -51,7 +53,7 @@ function InitDB(callback) {
 					}
 					$('.loader').toggle();
 					callback();
-				});	});	});	});	});	});	});	}); });	}); }); });	});
+				});	});	});	});	});	});	});	});	}); });	}); }); });	});
 	});
 }
 function SynchroAll() {
@@ -76,6 +78,55 @@ function SynchroAll() {
 		});
 	}
 }
+/*
+	TABLE PREFS
+*/
+window.dbpref = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Prefs'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table Préférences existe');
+							tablePrefOk=true;
+			                callback();
+                        } else {
+                            log('La table Préférences n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS Prefs (" +
+				"Cle VARCHAR(50) PRIMARY KEY, " +
+				"Valeur TEXT)"
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Préférences à été créée');
+				tablePrefOk=true;
+				callback();
+            }
+        );
+    },
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Prefs '+tx.message);
+    }
+};
 /*
 	TABLE SYNCHRO
 */
@@ -1559,4 +1610,54 @@ function ExecAdminSQL() {
 		dump(uneReq.Resu,'sqlResult');
 		$('#sqlResult').prepend(ret);
 	});
+}
+/*
+	PREFERENCES
+*/
+var Pref = function() {
+	this.Cle='';
+	this.Valeur='';
+}
+Pref.prototype = {
+	get: function(cle) {
+		var self=this;
+		madb.transaction(
+			function(tx) {
+				tx.executeSql("select Valeur from Prefs where Cle='"+cle+"'",[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							self.Valeur=results.rows.item(0).Valeur;
+						}
+					},
+					function(tx) {log('Erreur '+tx.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				return self.Valeur;
+			}
+		);
+	},
+	set: function(cle,valeur) {
+		var self=this;
+		madb.transaction(
+			function(tx) {
+				tx.executeSql("insert or replace Prefs (Cle,Valeur) values ('"+cle+"','"+valeur+"')",[], 
+					function(tx, results) {
+					},
+					function(tx) {log('Erreur '+tx.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				return true;
+			}
+		);
+	}
+}
+function GetPref() {
+	var p=new Pref()
+	if (p.set('coucou','ici')==true) {
+		alert(p.get('coucou'));
+	}
 }
