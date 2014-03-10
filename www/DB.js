@@ -1642,13 +1642,13 @@ Pref.prototype = {
 		var self=this;
 		madb.transaction(
 			function(tx) {
-				tx.executeSql("insert or replace Prefs (Cle,Valeur) values ('"+cle+"','"+valeur+"')",[], 
+				tx.executeSql("insert or replace into Prefs (Cle,Valeur) values (?,?)",[cle,valeur], 
 					function(tx, results) {
 					},
-					function(tx) {log('Erreur '+tx.message);}
+					function(tx) {log('Erreur insert '+tx.message);}
 				);
 			}, function(err) {
-				log('Erreur '+err.code+' '+err.message);
+				log('Erreur transact '+err.code+' '+err.message);
 			}, function() {
 				return true;
 			}
