@@ -133,23 +133,23 @@ function ParamsParDef() {
 		showConfirm('Magasin : ','Vous êtes dans quel',['Waterloo','Bouge','Gosselies'],function(results) {
 			if (results==1) {
 				setPref('Magasin','Gosselies');
-				$('#mag1').prop('selected',true);
+				$('#mag1').prop('checked',true);
 			}
 			if (results==2) {
 				setPref('Magasin','Bouge');
-				$('#mag2').prop('selected',true);
+				$('#mag2').prop('checked',true);
 			}
 			if (results==3) {
 				setPref('Magasin','Waterloo');
-				$('#mag3').prop('selected',true);
+				$('#mag3').prop('checked',true);
 			}
 			ParamsParDef();
 		});
 	} else {
 		switch(Magasin) {
-			case 'Gosselies':$('#mag1').prop('selected',true);break;
-			case 'Bouge':$('#mag1').prop('selected',true);break;
-			case 'Waterloo':$('#mag1').prop('selected',true);break;
+			case 'Gosselies':$('#mag1').prop('checked',true);break;
+			case 'Bouge':$('#mag1').prop('checked',true);break;
+			case 'Waterloo':$('#mag1').prop('checked',true);break;
 		}
 	}
 }
