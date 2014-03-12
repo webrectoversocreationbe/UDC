@@ -48,8 +48,8 @@ function InitDB(callback) {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-//						$('#Connexion').addClass('current');
-						$('#Main').addClass('current');
+						$('#Connexion').addClass('current');
+//						$('#Main').addClass('current');
 					}
 					$('.loader').toggle();
 					callback();
@@ -343,23 +343,23 @@ window.dbu = {
 	login: function() {
 		var U=$('#User').val();
 		var Psw=$('#Psw').val();
-		log('Login '+U+' : '+Psw);
+//		log('Login '+U);
         madb.transaction(
             function(tx) {
                 tx.executeSql("SELECT User,bAdmin,Version as UserVersion FROM Users WHERE User='"+U+"' AND Psw='"+Psw+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							User=results.rows.item(0).User;
-							bAdmin=results.rows.item(0).bAdmin;
+							bAdmin=results.rows.item(0).bAdmin; var sadmin=bAdmin==1?' (Admin)':'';
 							UserVersion=results.rows.item(0).UserVersion;
-							log('Login ok - '+User+' Admin '+bAdmin+' Version '+UserVersion);
+							log('Login '+User+sadmin+' Version '+UserVersion);
 							$('.lienconsulthist').css('display',UserVersion==2?'block':'none');
 							$('.uniquementadmin').css('display',bAdmin==1?'block':'none');
 							$('#Connexion').removeClass('current');
 							$('#Main').addClass('current');
                         } else {
                             log('Utilisateur ou mot de passe inconnu');
-							alert('Utilisateur ou mot de passe inconnu');
+							showAlert('Utilisateur ou mot de passe inconnu','Connexion',['Ok']);
 							$('#Psw').val('');
 							$('#User').val('');
 							$('#User').focus();
