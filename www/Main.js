@@ -4,6 +4,7 @@ var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
 var adresseServeur='';  // 192.168.0.248
+var Magasin='';         // Gosselies Bouge Waterloo
 
 var app = {
     initialize: function() {
@@ -123,22 +124,32 @@ function DefinirAdresseServeur(idAdrsServ) {
 }
 function ParamsParDef() {
 	var bTest=true;
-	// Magasin 2
-	var magasin=getPref('Magasin','');
-	if (magasin=='') {
+	// Magasin 
+				setPref('Magasin','');
+	Magasin=getPref('Magasin','');
+	if (Magasin=='') {
 		bTest=false;
 		showAlert('Magasin : ','Vous êtes dans quel','Gosselies,Bouge,Waterloo',function(results) {
 			if (results.buttonIndex==1) {
 				setPref('Magasin','Gosselies');
+				$('#mag1').prop('selected',true);
 			}
 			if (results.buttonIndex==2) {
 				setPref('Magasin','Bouge');
+				$('#mag2').prop('selected',true);
 			}
 			if (results.buttonIndex==3) {
 				setPref('Magasin','Waterloo');
+				$('#mag3').prop('selected',true);
 			}
 			ParamsParDef();
 		});
+	} else {
+		switch(Magasin) {
+			case 'Gosselies':$('#mag1').prop('selected',true);break;
+			case 'Bouge':$('#mag1').prop('selected',true);break;
+			case 'Waterloo':$('#mag1').prop('selected',true);break;
+		}
 	}
 }
 function DefinirMagasin(id) {
