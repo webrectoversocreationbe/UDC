@@ -91,7 +91,7 @@ function DownloadFile(Url,FileName) {
 function SynchroImg() {
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.0.248/UDC/SynchroImgVersTablettes.php",
+		url: "http://"+adresseServeur+"/UDC/SynchroImgVersTablettes.php",
         crossDomain: true,
 		dataType: "json",
 		success: function(response) {
@@ -103,7 +103,7 @@ function SynchroImg() {
 				e = response[i];
 				var tfile=e.split('/');
 				var filen=tfile[3];
-				DownloadFile("http://192.168.0.248/UDC/"+e,filen);
+				DownloadFile("http://"+adresseServeur+"/UDC/"+e,filen);
 				$('#nbimg').html(i+'/'+l);
 				})(response,i,l);
 			}

@@ -3,6 +3,7 @@ var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
 var bAdmin=false;       // SI l'utilisateur est administrateur
 var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
+var adresseServeur='';  // 192.168.0.248
 
 var app = {
     initialize: function() {
@@ -68,6 +69,7 @@ function InitAll() {
 				// initialisation de la DB
 				InitDB(function() {
 					log('Base de données initialisée');
+					ParamsParDef();
 				});
 			});
 		});
@@ -81,26 +83,21 @@ function TesteLaConnectivite(callback) {
 	if (bConnected==false) {
 		alert('Vous devez activer le WiFi pour continuer');
 	}
-	log('1');
 	var bTest=true;
 	// Adresse du serveur
-	var adresseServeur=getPref('AdresseServeur','');
+	adresseServeur=getPref('AdresseServeur','');
 	if (adresseServeur=='') {
-		log('2');
 		bTest=false;
 		showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 			if (results.buttonIndex==1) {
 				adresseServeur=results.input1
 				setPref('AdresseServeur',adresseServeur);
-				log('3');
 				TesteLaConnectivite(callback);
 			}
 		});
 	}
-	$('#AdresseServeur').val(adresseServeur);
 	$('#AdmAdresseServeur').val(adresseServeur);
 	if (bTest==true) {
-	log('4');
 		// Accès au serveur ?
 		$.ajax({
 			url: "http://"+adresseServeur+"/UDC/ajaxTestConnexion.php",
@@ -112,7 +109,6 @@ function TesteLaConnectivite(callback) {
 				callback();
 			},
 			error: function(xhr,err,errt) {
-				log('Erreur ajax '+errt);
 				adresseServeur='';
 				setPref('AdresseServeur','');
 				alert('Adresse incorrecte');
@@ -124,6 +120,26 @@ function TesteLaConnectivite(callback) {
 function DefinirAdresseServeur(idAdrsServ) {
 	setPref('AdresseServeur',$('#'+idAdrsServ).val());
 	TesteLaConnectivite();
+}
+function ParamsParDef() {
+	var bTest=true;
+	// Magasin
+	var magasin=getPref('Magasin','');
+	if (magasin=='') {
+		bTest=false;
+		showAlert('Magasin : ','Vous êtes',['Gosselies','Bouge','Waterloo'],function(results) {
+			if (results.buttonIndex==1) {
+				setPref('Magasin','Gosselies');
+			}
+			if (results.buttonIndex==2) {
+				setPref('Magasin','Bouge');
+			}
+			if (results.buttonIndex==3) {
+				setPref('Magasin','Waterloo');
+			}
+			ParamsParDef();
+		});
+	}
 }
 function Go(Ou) {
 	switch(Ou) {
@@ -193,6 +209,14 @@ function showAlert(Mes,Titre,Bouton) {
 	navigator.notification.alert(
 		Mes, 
 		alertDismissed,
+		Titre,
+		Bouton
+	);
+}
+function showConfirm(Mes,Titre,Bouton,callback) {
+	navigator.notification.confirm(
+		Mes, 
+		callback,
 		Titre,
 		Bouton
 	);

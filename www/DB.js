@@ -1,5 +1,5 @@
 var madb;
-var syncURL="http://192.168.0.248/UDC/ajaxSync.php";
+var syncURL="http://"+adresseServeur+"/UDC/ajaxSync.php";
 var tablePrefOk=false;
 var tableUserOk=false;
 var tableSynchroOk=false;
