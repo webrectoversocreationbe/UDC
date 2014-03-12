@@ -133,25 +133,29 @@ function ParamsParDef() {
 		showConfirm('Magasin : ','Vous êtes dans quel',['Waterloo','Bouge','Gosselies'],function(results) {
 			if (results==1) {
 				setPref('Magasin','Gosselies');
-				$('#mag1').prop('checked',true);
+				$('#mag1').attr('checked',true);
 			}
 			if (results==2) {
 				setPref('Magasin','Bouge');
-				$('#mag2').prop('checked',true);
+				$('#mag2').attr('checked',true);
 			}
 			if (results==3) {
 				setPref('Magasin','Waterloo');
-				$('#mag3').prop('checked',true);
+				$('#mag3').attr('checked',true);
 			}
 			ParamsParDef();
 		});
 	} else {
 		switch(Magasin) {
-			case 'Gosselies':$('#mag1').prop('checked',true);break;
-			case 'Bouge':$('#mag1').prop('checked',true);break;
-			case 'Waterloo':$('#mag1').prop('checked',true);break;
+			case 'Gosselies':$('#mag1').attr('checked',true);break;
+			case 'Bouge':$('#mag1').attr('checked',true);break;
+			case 'Waterloo':$('#mag1').attr('checked',true);break;
 		}
 	}
+	BonDuNum=getPref('BonDuNum');
+	BonAuNum=getPref('BonAuNum');
+	$('#dunum').val(BonDuNum);
+	$('#aunum').val(BonAuNum);
 }
 function DefinirMagasin(id) {
 	switch(id) {
@@ -163,6 +167,8 @@ function DefinirMagasin(id) {
 function DefinirNumBon() {
 	BonDuNum=$('#dunum').val();
 	BonAuNum=$('#aunum').val();
+	setPref('BonDuNum',BonDuNum);
+	setPref('BonAuNum',BonAuNum);
 }
 function Go(Ou) {
 	switch(Ou) {
