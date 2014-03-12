@@ -348,6 +348,12 @@ p {
 	position:relative;
 	z-index:2;
 }
+/* ADMIN
+-------------------------------*/
+#Administration
+#Administration input[type=radio] {display:none;}
+#Administration input[type=radio] + label {display:inline-block;padding: 2px 12px;background-color: #e7e7e7;color:#505058; border:1px solid #9e9e9e;}
+#Administration input[type=radio]:checked + label {background-color:#e2001a;color:#fff;}
 /* COMMANDES
 -------------------------------*/
 .EcranCde {display:none; position:relative;}

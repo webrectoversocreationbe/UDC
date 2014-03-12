@@ -149,9 +149,9 @@ function ParamsParDef() {
 	} else {
 		log('1');
 		switch(Magasin) {
-			case 'Gosselies':document.getElementById('#mag1').selected=true;break;
-			case 'Bouge':document.getElementById('#mag2').selected=true;break;
-			case 'Waterloo':document.getElementById('#mag3').selected=true;break;
+			case 'Gosselies':document.getElementById('#mag1').checked=true;break;
+			case 'Bouge':log('2');document.getElementById('#mag2').checked=true;break;
+			case 'Waterloo':document.getElementById('#mag3').checked=true;break;
 		}
 		alert(Magasin+' '+document.getElementById('#mag2').selected);
 	}
