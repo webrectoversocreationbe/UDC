@@ -123,7 +123,7 @@ function DefinirAdresseServeur(idAdrsServ) {
 }
 function ParamsParDef() {
 	var bTest=true;
-	// Magasin
+	// Magasin 2
 	var magasin=getPref('Magasin','');
 	if (magasin=='') {
 		bTest=false;
