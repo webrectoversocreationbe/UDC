@@ -151,9 +151,10 @@ function ParamsParDef() {
 			case 'Bouge':document.getElementById('#mag2').checked=true;break;
 			case 'Waterloo':document.getElementById('#mag3').checked=true;break;
 		}
+		alert(Magasin+' '+document.getElementById('#mag2').checked);
 	}
-	BonDuNum=parseInt(getPref('BonDuNum',1));
-	BonAuNum=parseInt(getPref('BonAuNum',1000));
+	BonDuNum=getPref('BonDuNum',1);
+	BonAuNum=getPref('BonAuNum',1000);
 	log(BonDuNum+' '+BonAuNum+' '+Magasin);
 	$('#dunum').val(BonDuNum);
 	$('#aunum').val(BonAuNum);
