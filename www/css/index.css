@@ -416,3 +416,5 @@ p {
 #cdeacompteautre {width:120px; text-align:right;}
 #cdesoldeacompte {width:120px; text-align:right;}
 #cdeacomptedate {width:120px; text-align:right;}
+/* ecran 6 */
+#btnconfirmcde {padding:10px; padding-left:15px; padding-right:15px; font-size:20px;}

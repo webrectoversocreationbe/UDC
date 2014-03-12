@@ -442,6 +442,8 @@ function RecapCde() {
 }
 function ConfirmCde() {
 	dump(cde,'log');
+	$('.loader').toggle();
+	$('#btnconfirmcde').prop('disabled',true);
 	dbcommande.insertCde(cde,function() {
         $.ajax({
             url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
@@ -466,6 +468,8 @@ function ConfirmCde() {
 				log(request.responseText + " " +model + " " + response);
             }
         }).done(function(){
+			$('.loader').toggle();
+			$('#btnconfirmcde').prop('disabled',false);
 			Go('Main');
 		});
 	});

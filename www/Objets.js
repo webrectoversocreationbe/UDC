@@ -34,7 +34,7 @@ Modele.prototype = {
 					function(tx, results) {
 						if (results.rows.length == 1) {
 							self.MODNR=results.rows.item(0).MODNR;
-							self.MODUC=results.rows.item(0).MOUC;
+							self.MODUC=results.rows.item(0).MODUC;
 							self.MOCOEF=results.rows.item(0).MOCOEF;
 							self.MODELAI=results.rows.item(0).MODELAI;
 							self.FOUR=results.rows.item(0).FOUR;
