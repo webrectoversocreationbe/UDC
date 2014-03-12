@@ -11,13 +11,14 @@ var objfs={
 				function(filesystem) {
 					log('FileSystem opérationnel'); 
 					fs=filesystem; 
-					folderExists('UDC',
+					self.createdir('UDC',callback);
+/*					folderExists('UDC',
 					function() {
 						callback();
 					},
 					function() {
 						self.createdir('UDC',callback);
-					});
+					});*/
 				}, 
 				function(error) {log('fserror '+error.target.error.code); callback();}
 			);
