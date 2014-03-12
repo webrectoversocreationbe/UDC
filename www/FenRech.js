@@ -205,14 +205,14 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#txtrech').html('Rechercher un modèle');
 		madb.transaction(
 			function(tx) {
-				var sql = "SELECT MODNR, MOUC FROM Mods";
-				if (Rech!='') {sql=sql+" where MOUC like '%"+Rech+"%' or MODNR like '%"+Rech+"%'";}
+				var sql = "SELECT MODNR, MODUC FROM Mods";
+				if (Rech!='') {sql=sql+" where MODUC like '%"+Rech+"%' or MODNR like '%"+Rech+"%'";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var modnr=results.rows.item(cpt).MODNR;
-								var mouc=results.rows.item(cpt).MOUC;
+								var mouc=results.rows.item(cpt).MODUC;
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+modnr+'" onclick="Choix($(this))">'+modnr+' - '+mouc+'</a></li>');
 							}
 						}
