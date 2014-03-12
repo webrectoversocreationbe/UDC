@@ -128,7 +128,6 @@ function DefinirAdresseServeur(idAdrsServ) {
 function ParamsParDef() {
 	var bTest=true;
 	// Magasin 
-		log('0');
 	Magasin=getPref('Magasin','');
 	if (Magasin=='') {
 		bTest=false;
@@ -148,17 +147,15 @@ function ParamsParDef() {
 			ParamsParDef();
 		});
 	} else {
-		log('1');
 		switch(Magasin) {
 			case 'Gosselies':$('#mag1').prop('checked',true);break;
-			case 'Bouge':log('2');$('#mag2').prop('checked',true);break;
+			case 'Bouge':$('#mag2').prop('checked',true);break;
 			case 'Waterloo':$('#mag3').prop('checked',true);break;
 		}
-		alert(Magasin+' '+$('#mag2').prop('checked'));
 	}
 	BonDuNum=getPref('BonDuNum',1);
 	BonAuNum=getPref('BonAuNum',1000);
-	log(BonDuNum+' '+BonAuNum+' '+Magasin);
+	log('Magasin : '+Magasin+' du bon '+BonDuNum+' au bon '+BonAuNum);
 	$('#dunum').val(BonDuNum);
 	$('#aunum').val(BonAuNum);
 }

@@ -165,7 +165,7 @@ function chkEcran() {
 			$('#cdePV').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
-			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
+			cde.PrixVente=parseFloat($('#cdeP'+cde.AfficherPrix==1?'V':'T').val().replace(',','.')) || 0;
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
