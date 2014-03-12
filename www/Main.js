@@ -131,15 +131,15 @@ function ParamsParDef() {
 	if (Magasin=='') {
 		bTest=false;
 		showConfirm('Magasin : ','Vous êtes dans quel',['Waterloo','Bouge','Gosselies'],function(results) {
-			if (results.buttonIndex==1) {
+			if (results==1) {
 				setPref('Magasin','Gosselies');
 				$('#mag1').prop('selected',true);
 			}
-			if (results.buttonIndex==2) {
+			if (results==2) {
 				setPref('Magasin','Bouge');
 				$('#mag2').prop('selected',true);
 			}
-			if (results.buttonIndex==3) {
+			if (results==3) {
 				setPref('Magasin','Waterloo');
 				$('#mag3').prop('selected',true);
 			}
