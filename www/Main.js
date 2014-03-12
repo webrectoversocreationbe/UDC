@@ -5,6 +5,8 @@ var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
 var adresseServeur='';  // 192.168.0.248
 var Magasin='';         // Gosselies Bouge Waterloo
+var BonDuNum=1;
+var BonAuNum=1000;
 
 var app = {
     initialize: function() {
@@ -129,7 +131,7 @@ function ParamsParDef() {
 	Magasin=getPref('Magasin','');
 	if (Magasin=='') {
 		bTest=false;
-		showAlert('Magasin : ','Vous êtes dans quel',[['Gosselies'],['Bouge'],['Waterloo']],function(results) {
+		showConfirm('Magasin : ','Vous êtes dans quel',['Gosselies','Bouge','Waterloo'],function(results) {
 			if (results.buttonIndex==1) {
 				setPref('Magasin','Gosselies');
 				$('#mag1').prop('selected',true);
@@ -158,6 +160,10 @@ function DefinirMagasin(id) {
 		case 2:setPref('Magasin','Bouge');break;
 		case 3:setPref('Magasin','Waterloo');break;
 	}
+}
+function DefinirNumBon() {
+	BonDuNum=$('#dunum').val();
+	BonAuNum=$('#aunum').val();
 }
 function Go(Ou) {
 	switch(Ou) {

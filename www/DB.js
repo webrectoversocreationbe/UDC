@@ -1352,7 +1352,8 @@ window.dbcommande = {
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							var Ref=results.rows.item(0).Ref;
-							if (Ref==null) {Ref=1;}
+							if (Ref==null) {Ref=BonDuNum;}
+							if (Ref<BonDuNum) {Ref=BonDuNum;}
 			                callback(Ref);
                         }
                     });
