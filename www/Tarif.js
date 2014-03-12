@@ -9,7 +9,7 @@ function trfInfoModele() {
     trfModele=new Modele();
     trfModele.init($('#ValRech').val(), function() {
         if (trfModele.Existe==true) {
-            var ret='<h2>'+trfModele.MODNR+' - '+trfModele.MOUC+'</h2><p>Délai : '+trfModele.MODELAI+' semaines</p>';
+            var ret='<h2>'+trfModele.MODNR+' - '+trfModele.MODUC+'</h2><p>Délai : '+trfModele.MODELAI+' semaines</p>';
             var l=trfModele.Elements.length;
             $('#trfTLesElems').html('');
             for(cpt=0;cpt<l;cpt++) {
@@ -26,21 +26,21 @@ function trfInfoModele() {
 			Fichier=trfModele.MODNR+'.jpg';
 			fileExists(Fichier,
 				function() {
-					log(Fichier+' existe');
+//					log(Fichier+' existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'.jpg" width="100%"></li>');
 				},
 				function() {
-					log(Fichier+' existe pas');
+//					log(Fichier+' existe pas');
 				}
 			);
 			Fichier=trfModele.MODNR+'A.jpg';
 			fileExists(Fichier,
 				function() {
-					log(Fichier+' existe');
+//					log(Fichier+' existe');
 					$('#trfscroller ul').append('<li><img src="file:///storage/emulated/0/UDC/'+trfModele.MODNR+'A.jpg" width="100%"></li>');
 				},
 				function() {
-					log(Fichier+' existe pas');
+//					log(Fichier+' existe pas');
 				}
 			);
         } else {

@@ -1365,7 +1365,7 @@ window.dbcommande = {
 		// LA COMMANDE
 		madb.transaction(
 			function(tx) {
-				log('insert cde '+oCde.Ref);
+//				log('insert cde '+oCde.Ref);
 				(function inscde(oCde) {
 					var o = oCde;
 					var sql = "INSERT INTO Commande (Ref,DateC,Etat,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
@@ -1377,17 +1377,17 @@ window.dbcommande = {
 					tx.executeSql(sql, params, 
 						function(tx, results) {
 							// LES MODELES
-							log('insert detail');
+//							log('insert detail');
 							var l=oCde.DetailCommande.length;
 							for (var i = 0; i < l; i++) {
 								var od = oCde.DetailCommande[i];
 								(function insertcdemod(value,refcde,od) {
 									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai,Remarque) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 									var paramsd = [refcde.toString(),od.MODNR,od.MODUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai,od.Remarque];
-									log('insert '+od.MODNR);
+//									log('insert '+od.MODNR);
 									tx.executeSql(sqld, paramsd,
 										function(tx,results) {
-											log('mod inserted '+od.MODNR+' id:'+results.insertId);
+//											log('mod inserted '+od.MODNR+' id:'+results.insertId);
 											var NumDetCde=results.insertId;
 											// LES ELEMENTS
 											var nbel=od.Elements.length;
@@ -1397,10 +1397,10 @@ window.dbcommande = {
 													if (odm.Qte!=undefined) {
 														var sqldm = "INSERT INTO ElDetCde (NumDetCde,ELCODE,ELFR,Qte,Prix) VALUES (?, ?, ?, ?, ?)";
 														var paramsdm = [NumDetCde,odm.ELCODE,odm.ELFR,odm.Qte,odm.Prix];
-														log('insert det mod '+odm.ELFR);
+//														log('insert det mod '+odm.ELFR);
 														tx.executeSql(sqldm, paramsdm,
 															function(tx,results) {
-																log('det mod inserted '+odm.ELFR+' id:'+results.insertId);
+//																log('det mod inserted '+odm.ELFR+' id:'+results.insertId);
 															},
 															function(tx,err) {
 																log('err ins det mod '+err.code+' '+err.message);
@@ -1409,21 +1409,21 @@ window.dbcommande = {
 													}
 												})(cptel,NumDetCde,odm);
 											}
-											log('fini detail mod '+od.MODNR);
+//											log('fini detail mod '+od.MODNR);
 										},
 										function(tx,err) {
-											log('err ins mod '+err.code+' '+err.message);
+//											log('err ins mod '+err.code+' '+err.message);
 										}
 									);
 								})(i,oCde.Ref,od);
 							}
-							log('fini detail');
+//							log('fini detail');
 						},function(tx,err) {
 							log("Error processing SQL insertcde : "+err.code+' '+err.message);
 						}
 					);
 				})(oCde);
-				log('fin insert cde');
+				log('Commande ajoutée');
 			},
 			self.txErrorHandler,
 			function(tx,results) {

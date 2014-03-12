@@ -441,7 +441,7 @@ function RecapCde() {
 	$('#RecapCde').html(r);
 }
 function ConfirmCde() {
-	dump(cde,'log');
+	//dump(cde,'log');
 	$('.loader').toggle();
 	$('#btnconfirmcde').prop('disabled',true);
 	dbcommande.insertCde(cde,function() {
@@ -456,7 +456,7 @@ function ConfirmCde() {
 				madb.transaction(
 					function(tx) {
 						var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
-						tx.executeSql(sql,[],function(tx,results){log('update sync ok');},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+						tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
 					},
 					self.txErrorHandler,
 					function(tx) {
