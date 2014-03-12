@@ -127,7 +127,7 @@ function ParamsParDef() {
 	var magasin=getPref('Magasin','');
 	if (magasin=='') {
 		bTest=false;
-		showAlert('Magasin : ','Vous êtes',['Gosselies','Bouge','Waterloo'],function(results) {
+		showAlert('Magasin : ','Vous êtes dans quel',['Gosselies','Bouge','Waterloo'],function(results) {
 			if (results.buttonIndex==1) {
 				setPref('Magasin','Gosselies');
 			}
@@ -139,6 +139,13 @@ function ParamsParDef() {
 			}
 			ParamsParDef();
 		});
+	}
+}
+function DefinirMagasin(id) {
+	switch(id) {
+		case 1:setPref('Magasin','Gosselies');break;
+		case 2:setPref('Magasin','Bouge');break;
+		case 3:setPref('Magasin','Waterloo');break;
 	}
 }
 function Go(Ou) {
