@@ -127,11 +127,10 @@ function DefinirAdresseServeur(idAdrsServ) {
 function ParamsParDef() {
 	var bTest=true;
 	// Magasin 
-				setPref('Magasin','');
 	Magasin=getPref('Magasin','');
 	if (Magasin=='') {
 		bTest=false;
-		showConfirm('Magasin : ','Vous êtes dans quel',['Gosselies','Bouge','Waterloo'],function(results) {
+		showConfirm('Magasin : ','Vous êtes dans quel',['Waterloo','Bouge','Gosselies'],function(results) {
 			if (results.buttonIndex==1) {
 				setPref('Magasin','Gosselies');
 				$('#mag1').prop('selected',true);
