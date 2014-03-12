@@ -149,11 +149,11 @@ function ParamsParDef() {
 	} else {
 		log('1');
 		switch(Magasin) {
-			case 'Gosselies':document.getElementById('#mag1').checked=true;break;
-			case 'Bouge':log('2');document.getElementById('#mag2').checked=true;break;
-			case 'Waterloo':document.getElementById('#mag3').checked=true;break;
+			case 'Gosselies':$('#mag1').prop('checked',true);break;
+			case 'Bouge':log('2');$('#mag2').prop('checked',true);break;
+			case 'Waterloo':$('#mag3').prop('checked',true);break;
 		}
-		alert(Magasin+' '+document.getElementById('#mag2').selected);
+		alert(Magasin+' '+$('#mag2').prop('checked'));
 	}
 	BonDuNum=getPref('BonDuNum',1);
 	BonAuNum=getPref('BonAuNum',1000);
