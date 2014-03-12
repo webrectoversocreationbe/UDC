@@ -60,14 +60,15 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
-	TesteLaConnectivite();
-	// initialisation du filesystem
-	InitFS(function() {
-		// initialisation du filetransfer
-		InitFT(function() {
-			// initialisation de la DB
-			InitDB(function() {
-				log('Base de données initialisée');
+	TesteLaConnectivite(function(){
+		// initialisation du filesystem
+		InitFS(function() {
+			// initialisation du filetransfer
+			InitFT(function() {
+				// initialisation de la DB
+				InitDB(function() {
+					log('Base de données initialisée');
+				});
 			});
 		});
 	});
@@ -75,7 +76,7 @@ function InitAll() {
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
 }
-function TesteLaConnectivite() {
+function TesteLaConnectivite(callback) {
 	// Connectivité obligatoire à l'init
 	if (bConnected==false) {
 		alert('Vous devez activer le WiFi pour continuer');
@@ -98,13 +99,14 @@ function TesteLaConnectivite() {
 					$('#AdmAdresseServeur').val(adresseServeur);
 					log('Serveur : '+$('#AdresseServeur').val());
 					log('Connexion au serveur réussie');
+					callback();
 				},
 				error: function(xhr,err,errt) {
 					log('Erreur ajax '+errt);
 					adresseServeur='';
 					setPref('AdresseServeur','');
 					alert('Adresse incorrecte');
-					TesteLaConnectivite();
+					TesteLaConnectivite(callback);
 				}
 			});
 		});
