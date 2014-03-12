@@ -109,6 +109,7 @@ function TesteLaConnectivite(callback) {
 			success: function(data) {
 				log('Serveur : '+adresseServeur);
 				log('Connexion au serveur réussie');
+				syncURL="http://"+adresseServeur+"/UDC/ajaxSync.php";
 				callback();
 			},
 			error: function(xhr,err,errt) {

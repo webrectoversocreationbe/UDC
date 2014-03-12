@@ -354,7 +354,7 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
-	var PT=$('#cdePV').val();
+	var PT=cde.AfficherPrix==1?$('#cdePV').val():$('#cdePT').val();
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();
@@ -437,7 +437,7 @@ function ConfirmCde() {
 	dump(cde,'log');
 	dbcommande.insertCde(cde,function() {
         $.ajax({
-            url: "http://192.168.0.248/UDC/ajaxAddCde.php",
+            url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
 	        crossDomain: true,
 			async: false,
 			dataType: 'json',
