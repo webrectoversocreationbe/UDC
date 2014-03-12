@@ -81,34 +81,38 @@ function TesteLaConnectivite(callback) {
 	if (bConnected==false) {
 		alert('Vous devez activer le WiFi pour continuer');
 	}
+	var bTest=true;
 	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
 	if (adresseServeur=='') {
+		bTest=false;
 		showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 			if (results.buttonIndex==1) {
 				adresseServeur=results.input1
 				setPref('AdresseServeur',adresseServeur);
+				TesteLaConnectivite(callback);
 			}
-			// Accès au serveur ?
-			$.ajax({
-				url: "http://"+$('#AdresseServeur').val()+"/UDC/ajaxTestConnexion.php",
-				crossDomain: true,
-				async: false,
-				success: function(data) {
-					$('#AdresseServeur').val(adresseServeur);
-					$('#AdmAdresseServeur').val(adresseServeur);
-					log('Serveur : '+$('#AdresseServeur').val());
-					log('Connexion au serveur réussie');
-					callback();
-				},
-				error: function(xhr,err,errt) {
-					log('Erreur ajax '+errt);
-					adresseServeur='';
-					setPref('AdresseServeur','');
-					alert('Adresse incorrecte');
-					TesteLaConnectivite(callback);
-				}
-			});
+		});
+	}
+	if (bTest==true) {
+		// Accès au serveur ?
+		$.ajax({
+			url: "http://"+adresseServeur+"/UDC/ajaxTestConnexion.php",
+			crossDomain: true,
+			async: false,
+			success: function(data) {
+				$('#AdresseServeur').val(adresseServeur);
+				$('#AdmAdresseServeur').val(adresseServeur);
+				log('Serveur : '+adresseServeur);
+				log('Connexion au serveur réussie');
+				callback();
+			},
+			error: function(xhr,err,errt) {
+				log('Erreur ajax '+errt);
+				adresseServeur='';
+				setPref('AdresseServeur','');
+				alert('Adresse incorrecte');
+			}
 		});
 	}
 }
