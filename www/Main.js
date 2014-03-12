@@ -60,7 +60,7 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
-	TesteLaConnectivite(function(){
+//	TesteLaConnectivite(function(){
 		// initialisation du filesystem
 		InitFS(function() {
 			// initialisation du filetransfer
@@ -71,7 +71,7 @@ function InitAll() {
 				});
 			});
 		});
-	});
+//	});
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
