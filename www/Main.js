@@ -129,7 +129,7 @@ function ParamsParDef() {
 	Magasin=getPref('Magasin','');
 	if (Magasin=='') {
 		bTest=false;
-		showAlert('Magasin : ','Vous êtes dans quel','Gosselies,Bouge,Waterloo',function(results) {
+		showAlert('Magasin : ','Vous êtes dans quel',[['Gosselies'],['Bouge'],['Waterloo']],function(results) {
 			if (results.buttonIndex==1) {
 				setPref('Magasin','Gosselies');
 				$('#mag1').prop('selected',true);
