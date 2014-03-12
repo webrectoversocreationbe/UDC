@@ -60,7 +60,7 @@ function onDeviceReady() {
 	InitAll();
 }
 function InitAll() {
-//	TesteLaConnectivite(function(){
+	TesteLaConnectivite(function(){
 		// initialisation du filesystem
 		InitFS(function() {
 			// initialisation du filetransfer
@@ -71,7 +71,7 @@ function InitAll() {
 				});
 			});
 		});
-//	});
+	});
 }
 function CloseApp() {
 	if(navigator.app) {navigator.app.exitApp();} else if (navigator.device) {navigator.device.exitApp();}
@@ -81,28 +81,32 @@ function TesteLaConnectivite(callback) {
 	if (bConnected==false) {
 		alert('Vous devez activer le WiFi pour continuer');
 	}
+	log('1');
 	var bTest=true;
 	// Adresse du serveur
 	var adresseServeur=getPref('AdresseServeur','');
 	if (adresseServeur=='') {
+		log('2');
 		bTest=false;
 		showPrompt('Adresse IP du serveur : ','Connectivité','192.168.0.248',function(results) {
 			if (results.buttonIndex==1) {
 				adresseServeur=results.input1
 				setPref('AdresseServeur',adresseServeur);
+				log('3');
 				TesteLaConnectivite(callback);
 			}
 		});
 	}
+	$('#AdresseServeur').val(adresseServeur);
+	$('#AdmAdresseServeur').val(adresseServeur);
 	if (bTest==true) {
+	log('4');
 		// Accès au serveur ?
 		$.ajax({
 			url: "http://"+adresseServeur+"/UDC/ajaxTestConnexion.php",
 			crossDomain: true,
 			async: false,
 			success: function(data) {
-				$('#AdresseServeur').val(adresseServeur);
-				$('#AdmAdresseServeur').val(adresseServeur);
 				log('Serveur : '+adresseServeur);
 				log('Connexion au serveur réussie');
 				callback();
@@ -112,6 +116,7 @@ function TesteLaConnectivite(callback) {
 				adresseServeur='';
 				setPref('AdresseServeur','');
 				alert('Adresse incorrecte');
+				TesteLaConnectivite(callback);
 			}
 		});
 	}
