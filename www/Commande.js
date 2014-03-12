@@ -165,11 +165,8 @@ function chkEcran() {
 			$('#cdePV').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
-			log(1);
 			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
-			log(2);
 			if (cde.AfficherPrix==0) {
-			log(3);
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
 			}
 		// ECRAN SUIV
@@ -423,7 +420,11 @@ function RecapCde() {
 		}
 	}
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : '+Nombre(cde.PrixVente)+' €</p>';
+	if (cde.AfficherPrix==0) {
+		r=r+'<p>Prix de vente : '+Nombre(cde.PrixTarif)+' €</p>';
+	} else {
+		r=r+'<p>Prix de vente : '+Nombre(cde.PrixVente)+' €</p>';
+	}
 	if(cde.Remise>0) {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
 	if(cde.Reprise>0) {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
 	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}

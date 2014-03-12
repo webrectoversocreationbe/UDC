@@ -1479,7 +1479,7 @@ window.dbdetcde = {
 				"OPFR VARCHAR(50)," +
 				"CROQUIS VARCHAR(500)," +
 				"Delai INTEGER," +
-				"GenreDelai VARCHAR(10)" +
+				"GenreDelai VARCHAR(10)," +
 				"Remarque TEXT" +
 				")";
                 tx.executeSql(sql);
