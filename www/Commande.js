@@ -492,9 +492,8 @@ function ViderCommandes() {
 }
 function HistoCmd() {
 	InitRech('LesBonsDeCommande');
-	alert('ici');
 }
-function DetailBon() {
-	
+function DetailBon(refcde) {
+	alert(refcde);
 	RecapCde();
 }

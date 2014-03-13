@@ -1,7 +1,7 @@
 /* 
 	FENETRES DE RECHERCHE
 */
-function InitRech(Quoi) {
+function InitRech(Quoi,callback) {
 	$('#ChampRech').val('');
 	$('#DescRech').val('');
 	$('#QuelleRech').val(Quoi);
@@ -197,6 +197,7 @@ function InitRech(Quoi) {
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
 			// DETAIL CDE
+			DetailBon($('#ValRech').val());
 		});
 	}
 }
