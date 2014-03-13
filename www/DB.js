@@ -1444,7 +1444,7 @@ window.dbcommande = {
 							log('q');
 							cde.Existe=true;
 							log('u');
-							cde.Vendeur=results.item(0).Vendeur;
+							cde.Vendeur=results.rows.item(0).Vendeur;
 							log('e');
 							cde.Actif=1;
 							log('m');
