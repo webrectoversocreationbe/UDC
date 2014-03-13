@@ -1433,49 +1433,51 @@ window.dbcommande = {
 	},
 	DetailBon: function(Ref,callback) {
         var self = this;
+		log ('av transact');
         madb.transaction(
             function(tx) {
                 tx.executeSql("SELECT * FROM Commande WHERE Ref='"+Ref+"'", this.txErrorHandler,
                     function(tx, results) {
+						log('res reçus');
                         if (results.rows.length == 1) {
-	cde.Existe=true;
-	cde.Vendeur=results.rows.results.item(0).Vendeur;
-	cde.Actif=1;
-	log('m');
-	cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.item(0).rows.Etat;
-	log('e');
-	cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.RemarqueVendeur=results.rows.item(0).RemVen;
-	log('r');
-	cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
-	log('d');
-	cde.Civil2=results.rows.item(0).Civil2;cde.Prenom2=results.rows.item(0).Prenom2;cde.Nom2=results.rows.item(0).Nom2;
-	log('e');
-	cde.Adresse='';cde.CP='';cde.Ville='';cde.Tel1='';cde.Tel2='';cde.Gsm1='';cde.Gsm2='';cde.Email='';cde.Remarque='';
-	cde.Fractionner=0;cde.NbFraction=0;
-	cde.FactEnsSiege=0;
-	cde.TotalTarif=0;
-	cde.PrixVente=0;
-	cde.Remise=0;
-	cde.Reprise=0;
-	cde.Frais=0;
-	cde.GenreFrais='';
-	cde.TotalNet=0;
-	cde.Financement=0;
-	cde.MontantFinancement=0;
-	cde.Exoneration=0;
-	cde.TotalTVAC=0;
-	cde.Acompte=0;
-	cde.AcompteCarte=0;
-	cde.AcompteEspece=0;
-	cde.AcompteCheque=0;
-	cde.AcompteAutre=0;
-	cde.SoldeAcompte=0;
-	cde.DateA='';
-	cde.Signature1='';
-	cde.Signature2='';
-	cde.AfficherPrix=1;
-	callback();
-	log(33);
+							cde.Existe=true;
+							cde.Vendeur=results.rows.results.item(0).Vendeur;
+							cde.Actif=1;
+							log('m');
+							cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.item(0).rows.Etat;
+							log('e');
+							cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.RemarqueVendeur=results.rows.item(0).RemVen;
+							log('r');
+							cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
+							log('d');
+							cde.Civil2=results.rows.item(0).Civil2;cde.Prenom2=results.rows.item(0).Prenom2;cde.Nom2=results.rows.item(0).Nom2;
+							log('e');
+							cde.Adresse='';cde.CP='';cde.Ville='';cde.Tel1='';cde.Tel2='';cde.Gsm1='';cde.Gsm2='';cde.Email='';cde.Remarque='';
+							cde.Fractionner=0;cde.NbFraction=0;
+							cde.FactEnsSiege=0;
+							cde.TotalTarif=0;
+							cde.PrixVente=0;
+							cde.Remise=0;
+							cde.Reprise=0;
+							cde.Frais=0;
+							cde.GenreFrais='';
+							cde.TotalNet=0;
+							cde.Financement=0;
+							cde.MontantFinancement=0;
+							cde.Exoneration=0;
+							cde.TotalTVAC=0;
+							cde.Acompte=0;
+							cde.AcompteCarte=0;
+							cde.AcompteEspece=0;
+							cde.AcompteCheque=0;
+							cde.AcompteAutre=0;
+							cde.SoldeAcompte=0;
+							cde.DateA='';
+							cde.Signature1='';
+							cde.Signature2='';
+							cde.AfficherPrix=1;
+							callback();
+							log(33);
                         }
                     });
             }

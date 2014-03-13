@@ -199,6 +199,7 @@ function InitRech(Quoi,callback) {
 			// DETAIL CDE
 			var ref=$('#ValRech').val();
 			DetailBon(ref);
+			log('fin fen rech');
 		});
 	}
 }

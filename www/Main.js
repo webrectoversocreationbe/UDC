@@ -1,7 +1,7 @@
 var debug=false;
 var bConnected=false;   // SI INTERNET (Wifi, 3G, Etc)
-var bAdmin=true;       // SI l'utilisateur est administrateur
-var User='chris';            // Utilisateur loggué
+var bAdmin=false;       // SI l'utilisateur est administrateur
+var User='';            // Utilisateur loggué
 var UserVersion=2;      // Version du pgm en fonction de l'utilisateur
 var adresseServeur='';  // 192.168.0.248
 var Magasin='';         // Gosselies Bouge Waterloo
