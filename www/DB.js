@@ -1487,6 +1487,7 @@ window.dbcommande = {
 										})(cpt)
 									}
 									log('callback');
+									dump(cde,'log');
 									callback();
 								}
 							);
