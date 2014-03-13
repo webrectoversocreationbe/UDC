@@ -1473,7 +1473,18 @@ window.dbcommande = {
 							cde.Signature1=results.rows.item(0).Signature1;
 							cde.Signature2=results.rows.item(0).Signature2;
 							cde.AfficherPrix=1;
-							callback();
+							ssql="SELECT * FROM DetCde WHERE Ref='"+Ref+"'";
+							tx.executeSql(ssql, this.txErrorHandler,
+								function(tx, results) {
+									for(cpt=0;cpt<results.rows.length;cpt++) {
+										cdeModele=new Modele();
+										cdeModele.init(results.rows.item(0).MODNR,function() {
+											cde.DetailCommande.push(cdeModele);
+										});
+									}
+									callback();
+								}
+							);
                         }
                     });
             }
