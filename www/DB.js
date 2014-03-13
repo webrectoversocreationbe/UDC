@@ -1436,9 +1436,10 @@ window.dbcommande = {
 		log ('av transact');
         madb.transaction(
             function(tx) {
-                tx.executeSql("SELECT * FROM Commande WHERE Ref='"+Ref+"'", this.txErrorHandler,
+				var ssql="SELECT * FROM Commande WHERE Ref='"+Ref+"'";
+                tx.executeSql(ssql, this.txErrorHandler,
                     function(tx, results) {
-						log('res reçus');
+						log('res reçus '+ssql+' : '+results.rows.length);
                         if (results.rows.length == 1) {
 							cde.Existe=true;
 							cde.Vendeur=results.rows.results.item(0).Vendeur;
