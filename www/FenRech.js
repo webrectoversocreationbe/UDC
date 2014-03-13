@@ -198,7 +198,9 @@ function InitRech(Quoi,callback) {
 			$('.PanneauRech').hide();
 			// DETAIL CDE
 			log(0);
-			DetailBon($('#ValRech').val());
+			var ref=$('#ValRech').val();
+			log(ref);
+			DetailBon(ref);
 			log(44);
 		});
 	}

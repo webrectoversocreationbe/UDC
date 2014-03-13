@@ -1433,6 +1433,7 @@ window.dbcommande = {
 	},
 	DetailBon: function(Ref,callback) {
         var self = this;
+		log('ici');
         madb.transaction(
             function(tx) {
 				log(1);
