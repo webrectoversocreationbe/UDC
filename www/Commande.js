@@ -439,7 +439,7 @@ function RecapCde() {
 	if(cde.DateA!='') {r=r+'<p>A payer pour le : '+cde.DateA+'</p>';}
 	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
 	
-	$('#RecapCde').html(r);
+	$('.RecapCde').html(r);
 }
 function ConfirmCde() {
 	//dump(cde,'log');
@@ -492,4 +492,9 @@ function ViderCommandes() {
 }
 function HistoCmd() {
 	InitRech('LesBonsDeCommande');
+	alert('ici');
+}
+function DetailBon() {
+	
+	RecapCde();
 }

@@ -196,6 +196,10 @@ function Go(Ou) {
 		$('.Panneau').removeClass('current');
 		$('#Commande').addClass('current');
 		break;
+	case 'BonCommande':
+		$('.Panneau').removeClass('current');
+		$('#BonCommande').addClass('current');
+		break;
 	}
 }
 function log(msg) {$('#log').prepend('<p>'+msg+'</p>');}
