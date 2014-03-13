@@ -494,6 +494,8 @@ function HistoCmd() {
 	InitRech('LesBonsDeCommande');
 }
 function DetailBon(refcde) {
-	alert(refcde);
-	RecapCde();
+	cde=new Commande();
+	cde.DetailBon(refcde,function() {
+		RecapCde();
+	});
 }
