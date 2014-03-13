@@ -29,7 +29,7 @@ function FormatDateI(uneDate) {
 	var t=uneDate.split('-');
 	var aaaa=t[0], mm=t[1], dd=t[2];
 	if (mm.length==1) {mm='0'+mm;}
-	if (dd.length==1) {dd='0'+dd;}
+	if (dd.length==1) {dd='0'+dd;}	if (dd.length==3) {dd=dd[1]+dd[2];}
 	var ret=dd+'/'+mm+'/'+aaaa;
 	return ret;
 }

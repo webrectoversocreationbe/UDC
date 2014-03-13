@@ -14,6 +14,7 @@ function InitCommande() {
 	cde.DateC=d.getDate()+" "+NomMois((d.getMonth()+1))+" "+d.getFullYear();
 	var mm=d.getMonth()+1;
 	var dd=d.getDate();
+	if (dd.length==3) {dd=dd[1]+dd[2];}
 	cde.DateCYYYYMMDD=d.getFullYear()+'-'+(mm[1]?mm:'0'+mm)+'-'+(dd[1]?dd:'0'+dd);
 	dbcommande.newNum(function(Ref) {
 		cde.Ref=Ref;
