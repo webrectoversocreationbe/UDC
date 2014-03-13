@@ -494,14 +494,9 @@ function HistoCmd() {
 	InitRech('LesBonsDeCommande');
 }
 function DetailBon(refcde) {
-	log('nouv cde');
 	cde=new Commande();
-	log('db detbon');
 	dbcommande.DetailBon(refcde,function() {
-		
-		log('callback db det bon');
 		RecapCde();
-		log(3);
 		Go('BonCommande');
 	});
 }

@@ -1433,55 +1433,47 @@ window.dbcommande = {
 	},
 	DetailBon: function(Ref,callback) {
         var self = this;
-		log ('av transact');
         madb.transaction(
             function(tx) {
 				var ssql="SELECT * FROM Commande WHERE Ref='"+Ref+"'";
                 tx.executeSql(ssql, this.txErrorHandler,
                     function(tx, results) {
-						log('res reçus '+ssql+' : '+results.rows.length);
                         if (results.rows.length == 1) {
-							log('q');
 							cde.Existe=true;
-							log('u');
 							cde.Vendeur=results.rows.item(0).Vendeur;
-							log('e');
 							cde.Actif=1;
-							log('m');
 							cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.rows.item(0).Etat;
-							log('e');
 							cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.RemarqueVendeur=results.rows.item(0).RemVen;
-							log('r');
-							cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
-							log('d');
+							cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;
+							cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
 							cde.Civil2=results.rows.item(0).Civil2;cde.Prenom2=results.rows.item(0).Prenom2;cde.Nom2=results.rows.item(0).Nom2;
-							log('e');
-							cde.Adresse='';cde.CP='';cde.Ville='';cde.Tel1='';cde.Tel2='';cde.Gsm1='';cde.Gsm2='';cde.Email='';cde.Remarque='';
-							cde.Fractionner=0;cde.NbFraction=0;
-							cde.FactEnsSiege=0;
-							cde.TotalTarif=0;
-							cde.PrixVente=0;
-							cde.Remise=0;
-							cde.Reprise=0;
-							cde.Frais=0;
-							cde.GenreFrais='';
-							cde.TotalNet=0;
-							cde.Financement=0;
-							cde.MontantFinancement=0;
-							cde.Exoneration=0;
-							cde.TotalTVAC=0;
-							cde.Acompte=0;
-							cde.AcompteCarte=0;
-							cde.AcompteEspece=0;
-							cde.AcompteCheque=0;
-							cde.AcompteAutre=0;
-							cde.SoldeAcompte=0;
-							cde.DateA='';
-							cde.Signature1='';
-							cde.Signature2='';
+							cde.Adresse=results.rows.item(0).Adresse;cde.CP=results.rows.item(0).CP;cde.Ville=results.rows.item(0).Ville;
+							cde.Tel1=results.rows.item(0).Tel1;cde.Tel2=results.rows.item(0).Tel2;cde.Gsm1=results.rows.item(0).Gsm1;cde.Gsm2=results.rows.item(0).Gsm2;
+							cde.Email=results.rows.item(0).Email;cde.Remarque=results.rows.item(0).Remarque;
+							cde.Fractionner=results.rows.item(0).Fractionner;cde.NbFraction=results.rows.item(0).NbFraction;
+							cde.FactEnsSiege=results.rows.item(0).FactEnsSiege;
+							cde.TotalTarif=results.rows.item(0).TotalTarif;
+							cde.PrixVente=results.rows.item(0).PrixVente;
+							cde.Remise=results.rows.item(0).Remise;
+							cde.Reprise=results.rows.item(0).Reprise;
+							cde.Frais=results.rows.item(0).Frais;
+							cde.GenreFrais=results.rows.item(0).GenreFrais;
+							cde.TotalNet=results.rows.item(0).TotalNet;
+							cde.Financement=results.rows.item(0).Financement;
+							cde.MontantFinancement=results.rows.item(0).MontantFin;
+							cde.Exoneration=results.rows.item(0).Exoneration;
+							cde.TotalTVAC=results.rows.item(0).TotalTVAC;
+							cde.Acompte=results.rows.item(0).Acompte;
+							cde.AcompteCarte=results.rows.item(0).AcompteCarte;
+							cde.AcompteEspece=results.rows.item(0).AcompteEspece;
+							cde.AcompteCheque=results.rows.item(0).AcompteCheque;
+							cde.AcompteAutre=results.rows.item(0).AcompteAutre;
+							cde.SoldeAcompte=results.rows.item(0).SoldeAcompte;
+							cde.DateA=results.rows.item(0).DateA;
+							cde.Signature1=results.rows.item(0).Signature1;
+							cde.Signature2=results.rows.item(0).Signature2;
 							cde.AfficherPrix=1;
 							callback();
-							log(33);
                         }
                     });
             }
