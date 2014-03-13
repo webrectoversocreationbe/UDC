@@ -495,12 +495,10 @@ function HistoCmd() {
 }
 function DetailBon(refcde) {
 	cde=new Commande();
-	log(55);
 	dbcommande.DetailBon(refcde,function() {
 		log(56);
 		RecapCde();
 		log(3);
 		Go('BonCommande');
 	});
-	log(57);
 }

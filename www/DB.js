@@ -1433,19 +1433,16 @@ window.dbcommande = {
 	},
 	DetailBon: function(Ref,callback) {
         var self = this;
-		log('ici');
         madb.transaction(
             function(tx) {
-				log(1);
                 tx.executeSql("SELECT * FROM Commande WHERE Ref='"+Ref+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
-							log(2);
 	cde.Existe=true;
 	cde.Vendeur=results.rows.results.item(0).Vendeur;
 	cde.Actif=1;
 	cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.item(0).DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.item(0).rows.Etat;
-	cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.results.rows.item(0).RemVen='';
+	cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.RemarqueVendeur=results.rows.item(0).RemVen;
 	cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
 	cde.Civil2=results.rows.item(0).Civil2;cde.Prenom2=results.rows.item(0).Prenom2;cde.Nom2=results.rows.item(0).Nom2;
 	cde.Adresse='';cde.CP='';cde.Ville='';cde.Tel1='';cde.Tel2='';cde.Gsm1='';cde.Gsm2='';cde.Email='';cde.Remarque='';
