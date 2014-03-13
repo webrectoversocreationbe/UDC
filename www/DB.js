@@ -1441,8 +1441,11 @@ window.dbcommande = {
                     function(tx, results) {
 						log('res reçus '+ssql+' : '+results.rows.length);
                         if (results.rows.length == 1) {
+							log('q');
 							cde.Existe=true;
+							log('u');
 							cde.Vendeur=results.rows.results.item(0).Vendeur;
+							log('e');
 							cde.Actif=1;
 							log('m');
 							cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.item(0).rows.Etat;
