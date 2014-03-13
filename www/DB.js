@@ -48,8 +48,8 @@ function InitDB(callback) {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
-//						$('#Main').addClass('current');
+//						$('#Connexion').addClass('current');
+						$('#Main').addClass('current');
 					}
 					$('.loader').toggle();
 					callback();
@@ -1435,9 +1435,11 @@ window.dbcommande = {
         var self = this;
         madb.transaction(
             function(tx) {
+				log(1);
                 tx.executeSql("SELECT * FROM Commande WHERE Ref='"+Ref+"'", this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
+							log(2);
 	cde.Existe=true;
 	cde.Vendeur=results.rows.results.item(0).Vendeur;
 	cde.Actif=1;

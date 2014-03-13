@@ -497,6 +497,7 @@ function DetailBon(refcde) {
 	cde=new Commande();
 	cde.DetailBon(refcde,function() {
 		RecapCde();
+		log(3);
 		Go('BonCommande');
 	});
 }
