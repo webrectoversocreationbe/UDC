@@ -25,6 +25,14 @@ function NomMois(mois) {
 	t=['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 	return t[mois];
 }
+function FormatDateI(uneDate) {
+	var t=uneDate.split('-');
+	var aaaa=t[0], mm=t[1], dd=t[2];
+	if (mm.length==1) {mm='0'+mm;}
+	if (dd.length==1) {dd='0'+dd;}
+	var ret=dd+'/'+mm+'/'+aaaa;
+	return ret;
+}
 function repeatString(str, num) {out = ''; for (var i = 0; i < num; i++) {out += str;} return out;}
 function dump(v, howDisplay, recursionLevel) {
     howDisplay = (typeof howDisplay === 'undefined') ? "alert" : howDisplay;

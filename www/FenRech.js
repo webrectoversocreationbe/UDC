@@ -445,7 +445,7 @@ function PopulateRech(Quoi,Rech,callback) {
 								var ref=results.rows.item(cpt).Ref;
 								var datec=results.rows.item(cpt).DateC;
 								var totaltvac=results.rows.item(cpt).TotalTVAC;
-							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+datec+' : '+totaltvac+'</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+FormatDateI(datec)+' : '+totaltvac+'</a></li>');
 							}
 						}
 					},
