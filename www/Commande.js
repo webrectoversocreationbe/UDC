@@ -496,7 +496,7 @@ function HistoCmd() {
 function DetailBon(refcde) {
 	cde=new Commande();
 	log(55);
-	cde.DetailBon(refcde,function() {
+	dbcommande.DetailBon(refcde,function() {
 		log(56);
 		RecapCde();
 		log(3);
