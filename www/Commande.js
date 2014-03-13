@@ -496,8 +496,8 @@ function HistoCmd() {
 function DetailBon(refcde) {
 	cde=new Commande();
 	log(55);
-		Go('BonCommande');
 	cde.DetailBon(refcde,function() {
+		log(56);
 		RecapCde();
 		log(3);
 		Go('BonCommande');
