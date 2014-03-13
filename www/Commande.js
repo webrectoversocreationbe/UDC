@@ -502,4 +502,5 @@ function DetailBon(refcde) {
 		log(3);
 		Go('BonCommande');
 	});
+	log(57);
 }

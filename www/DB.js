@@ -1473,6 +1473,7 @@ window.dbcommande = {
 	cde.Signature2='';
 	cde.AfficherPrix=1;
 	callback();
+	log(33);
                         }
                     });
             }
