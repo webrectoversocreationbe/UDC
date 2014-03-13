@@ -186,6 +186,18 @@ function InitRech(Quoi) {
 				});
 			}
 		}
+	} else if (Quoi=='LesBonsDeCommande') {
+		PopulateRech('LesBonsDeCommande','',function() {
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			// DETAIL CDE
+		});
 	}
 }
 function Choix(obj) {
@@ -419,6 +431,32 @@ function PopulateRech(Quoi,Rech,callback) {
 			$('#lesli').append('<li><a class="leschoix" id="VR'+elcode+'|" onclick="Choix($(this))">'+elem+'</a></li>');
 		}
 		callback();
+		break;
+	case 'LesBonsDeCommande':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher un bon de commande');
+		madb.transaction(
+			function(tx) {
+				var sql = "select * from Commande";
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var ref=results.rows.item(cpt).Ref;
+								var datec=results.rows.item(cpt).DateC;
+								var totaltvac=results.rows.item(cpt).TotalTVAC;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+datec+' : '+totaltvac+'</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
 		break;
 	}
 }

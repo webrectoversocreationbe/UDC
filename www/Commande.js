@@ -489,3 +489,6 @@ function ViderCommandes() {
 		});
 	});
 }
+function HistoCmd() {
+	InitRech('LesBonsDeCommande');
+}

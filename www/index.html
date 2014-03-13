@@ -58,7 +58,7 @@
     <img src="images/logo.png" class="Logo"><br/><br/><br/>
     <h2>Sélectionnez votre choix</h2><br/>
     <p><a onClick="Go('Commande')">Nouvelle vente</a></p><br/>
-    <p class="lienconsulthist"><a onClick="">Consulter l'historique</a></p><br class="lienconsulthist"/>
+    <p class="lienconsulthist"><a onClick="HistoCmd();">Consulter l'historique</a></p><br class="lienconsulthist"/>
     <p><a onClick="Go('Tarif')">Tarif</a></p><br/>
     <p><a onClick="">Photos</a></p><br/>
     <p><a onClick="">Fiches techniques</a></p><br/>
@@ -343,7 +343,7 @@
     <a onClick="Go('Main')" class="bRetour"><img src="images/close.png" width="50" height="50"/></a>
     <div class="ML10 MT10">
     <h1 class="ML10">Administration</h1><br/>
-    <p class="ML10">Adresse du serveur : <input type="text" id="AdmAdresseServeur" size="10" value="">&nbsp;<button id="btnAdrServ" onClick="DefinirAdresseServeur('AdmAdresseServeur')">Définir</button></p><br/><br/>
+    <p class="ML10">Adresse du serveur : <input type="text" id="AdmAdresseServeur" size="12" value="">&nbsp;<button id="btnAdrServ" onClick="DefinirAdresseServeur('AdmAdresseServeur')">Définir</button></p><br/><br/>
     <p class="ML10">
     <input type="radio" name="Maga" id="mag1" onclick="DefinirMagasin(1)"><label for="mag1">Gosselies</label>&nbsp;&nbsp;
     <input type="radio" name="Maga" id="mag2" onclick="DefinirMagasin(2)"><label for="mag2">Bouge</label>&nbsp;&nbsp;
