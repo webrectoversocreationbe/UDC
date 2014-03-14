@@ -1322,7 +1322,8 @@ window.dbcommande = {
 				"SoldeAcompte REAL," +
 				"DateA VARCHAR(10)," +
 				"Signature1 TEXT," +
-				"Signature2 TEXT" +
+				"Signature2 TEXT," +
+				"Recap TEXT" +
 				")";
                 tx.executeSql(sql);
             },
@@ -1370,10 +1371,10 @@ window.dbcommande = {
 					var o = oCde;
 					var sql = "INSERT INTO Commande (Ref,DateC,Etat,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
 						"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
-						"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2) VALUES (?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2,Recap) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					var params = [o.Ref.toString(),o.DateCYYYYMMDD,'',o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,
 						o.Tel1,o.Tel2,o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
-						o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'',''];
+						o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'','',o.Recap];
 					tx.executeSql(sql, params, 
 						function(tx, results) {
 							// LES MODELES
@@ -1435,11 +1436,13 @@ window.dbcommande = {
         var self = this;
         madb.transaction(
             function(tx) {
-				var ssql="SELECT * FROM Commande WHERE Ref='"+Ref+"'";
+				var ssql="SELECT Recap FROM Commande WHERE Ref='"+Ref+"'";
                 tx.executeSql(ssql, this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
-							cde.Existe=true;
+							r=results.rows.item(0).Recap;
+							callback();
+/*							cde.Existe=true;
 							cde.Vendeur=results.rows.item(0).Vendeur;
 							cde.Actif=1;
 							cde.Ref=Ref;cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.rows.item(0).Etat;
@@ -1490,7 +1493,7 @@ window.dbcommande = {
 									dump(cde,'log');
 									callback();
 								}
-							);
+							);*/
                         }
                     });
             }

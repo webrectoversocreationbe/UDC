@@ -231,6 +231,7 @@ var Commande = function() {
 	this.Signature1='';
 	this.Signature2='';
 	this.AfficherPrix=1;
+	this.Recap='';
 	this.DetailCommande=[];
 };
 Commande.prototype = {
