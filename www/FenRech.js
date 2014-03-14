@@ -440,6 +440,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		madb.transaction(
 			function(tx) {
 				var sql = "select * from Commande";
+				if (Rech!='') {sql=sql+" where (Ref like '%"+Rech+"%' or Prenom1 like '%"+Rech+"%' or Nom1 like '%"+Rech+"%' or Ville like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {

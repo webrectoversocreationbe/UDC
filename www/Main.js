@@ -51,9 +51,11 @@ $(document).ready(function() {
 	$('#sigPadCroquis').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
 	$(function(){$( ".DatePicker" ).datepicker({showOtherMonths: true,selectOtherMonths: true,dateFormat:'dd/mm/yy',monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa']});});
 	$('.btnannulevente').click(function() {
-		if (confirm('Voulez vous annuler ce bon de commande et revenir au menu principal ?')) {
-			Go('Main');
-		}
+		showConfirm('Voulez vous annuler ce bon de commande et revenir au menu principal ?','Annulation',['Quitter','Rester'],function(results) {
+			if (results==1) {
+				Go('Main');
+			}
+		})
 	});
 });
 
@@ -152,12 +154,12 @@ function ParamsParDef() {
 			case 'Bouge':$('#mag2').prop('checked',true);break;
 			case 'Waterloo':$('#mag3').prop('checked',true);break;
 		}
+		BonDuNum=getPref('BonDuNum',1);
+		BonAuNum=getPref('BonAuNum',1000);
+		log('Magasin : '+Magasin+' du bon '+BonDuNum+' au bon '+BonAuNum);
+		$('#dunum').val(BonDuNum);
+		$('#aunum').val(BonAuNum);
 	}
-	BonDuNum=getPref('BonDuNum',1);
-	BonAuNum=getPref('BonAuNum',1000);
-	log('Magasin : '+Magasin+' du bon '+BonDuNum+' au bon '+BonAuNum);
-	$('#dunum').val(BonDuNum);
-	$('#aunum').val(BonAuNum);
 }
 function DefinirMagasin(id) {
 	switch(id) {

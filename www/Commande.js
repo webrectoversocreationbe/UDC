@@ -94,22 +94,22 @@ function chkEcran() {
 	case 1: // Infos clients
 		// CHECK
 			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
-			alert('Vous devez entrer le nombre de fractionnement'); return false;
+			showAlert('Vous devez entrer le nombre de fractionnement','Attention','OK'); return false;
 		}
 		if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
-			alert('Le nom de la société est obligatoire'); return false;
+			showAlert('Le nom de la société est obligatoire','Attention','OK'); return false;
 		}
 		if ($('#Nom1').val()=='' || $('#Prenom1').val()=='') {
-			alert('Le prénom et le nom est obligatoire'); return false;
+			showAlert('Le prénom et le nom est obligatoire','Attention','OK'); return false;
 		}
 		if ($('#CP').val()=='') {
-			alert('Le code postal est obligatoire'); return false;
+			showAlert('Le code postal est obligatoire','Attention','OK'); return false;
 		}
 		if ($('#Ville').val()=='') {
-			alert('L\'adresse est obligatoire'); return false;
+			showAlert('L\'adresse est obligatoire','Attention','OK'); return false;
 		}
 		if ($('#Tel1').val()=='') {
-			alert('Le téléphone est obligatoire'); return false;
+			showAlert('Le téléphone est obligatoire'); return false;
 		}
 		// OBJ CDE
 		cde.Societe=$('#Societe').val();cde.NumTva=$('#NumTva').val();cde.RemarqueVendeur=$('#RemarqueVendeur').val();

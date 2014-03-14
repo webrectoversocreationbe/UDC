@@ -48,7 +48,7 @@ function InitDB(callback) {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-						$('#Connexion').addClass('current');
+						$('#Connexion').addClass('current'); $('#User').focus();
 //						$('#Main').addClass('current');
 					}
 					$('.loader').toggle();
