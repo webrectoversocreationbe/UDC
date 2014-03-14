@@ -1441,7 +1441,7 @@ window.dbcommande = {
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							r=results.rows.item(0).Recap;
-							callback();
+							callback(r);
 /*							cde.Existe=true;
 							cde.Vendeur=results.rows.item(0).Vendeur;
 							cde.Actif=1;
