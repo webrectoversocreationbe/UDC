@@ -48,8 +48,8 @@ function InitDB(callback) {
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
 						$('#Init').removeClass('current');
-//						$('#Connexion').addClass('current');
-						$('#Main').addClass('current');
+						$('#Connexion').addClass('current');
+//						$('#Main').addClass('current');
 					}
 					$('.loader').toggle();
 					callback();

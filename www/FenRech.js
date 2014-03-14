@@ -447,10 +447,12 @@ function PopulateRech(Quoi,Rech,callback) {
 								var ref=results.rows.item(cpt).Ref;
 								var datec=results.rows.item(cpt).DateC;
 								var totaltvac=results.rows.item(cpt).TotalTVAC;
+								var cp=results.rows.item(cpt).CP;
+								var ville=results.rows.item(cpt).Ville;
 								var nomcli='';
 								if (results.rows.item(cpt).Prenom1!='') {nomcli=results.rows.item(cpt).Civil1+' '+results.rows.item(cpt).Prenom1+' '+results.rows.item(cpt).Nom1;}
 								if (results.rows.item(cpt).Societe!='') {nomcli=results.rows.item(cpt).Societe+' '+results.rows.item(cpt).Civil0+' '+results.rows.item(cpt).Responsable;}
-							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+FormatDate(datec)+' - '+nomcli+' : '+totaltvac+' €</a></li>');
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+FormatDate(datec)+' - '+nomcli+' ('+cp+' '+ville+') : '+Nombre(totaltvac)+' €</a></li>');
 							}
 						}
 					},

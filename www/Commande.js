@@ -93,7 +93,7 @@ function chkEcran() {
 	switch (EcranActif) {
 	case 1: // Infos clients
 		// CHECK
-/*			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
+			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
 			alert('Vous devez entrer le nombre de fractionnement'); return false;
 		}
 		if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
@@ -110,7 +110,7 @@ function chkEcran() {
 		}
 		if ($('#Tel1').val()=='') {
 			alert('Le téléphone est obligatoire'); return false;
-		}*/
+		}
 		// OBJ CDE
 		cde.Societe=$('#Societe').val();cde.NumTva=$('#NumTva').val();cde.RemarqueVendeur=$('#RemarqueVendeur').val();
 		cde.Civil0=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';cde.Responsable=$('#Responsable').val();
@@ -128,7 +128,7 @@ function chkEcran() {
 		break;
 	case 2: // Ecran modèle > commande
 		// CHECK
-/*		if ($('#cdemoduc').html()=='') {
+		if ($('#cdemoduc').html()=='') {
 			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
 		}
 		if ($('#cdecuiruc').html()=='') {
@@ -139,7 +139,7 @@ function chkEcran() {
 		}
 		if ($('#cdetLesElems tr').length==0) {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
-		}*/
+		}
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
@@ -179,7 +179,7 @@ function chkEcran() {
 	case 3: // Ecran ajouter un modèle ?
 		break;
 	case 4: // Prix de vente + Remise + Rachat
-/*		if ($('#cdePV').val()=='') {
+		if ($('#cdePV').val()=='') {
 			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
 		}
 		if ($('#cdePT').val()=='') {
@@ -190,7 +190,7 @@ function chkEcran() {
 		}
 		if ($('#chkfinoui').is(':checked')==true && $('#MontantFin').val()=='') {
 			showAlert('Il faut préciser le montant du financement','Attention','OK'); return false;
-		}*/
+		}
 		cde.Financement=$('#chkfinoui').is(':checked')==true?1:0;
 		cde.MontantFinancement=parseFloat($('#MontantFin').val().replace(',','.')) || 0;
 		cde.Remise=parseFloat($('#cdeRem').val().replace(',','.')) || 0;
@@ -204,12 +204,12 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 5: // Prix TVAC + Acompte
-/*		if ($('#cdePVTOTTVAC').val()=='') {
+		if ($('#cdePVTOTTVAC').val()=='') {
 			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
 		}
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
-		}*/
+		}
 		// PREPARE RECAP
 		var acompte=0;
 		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val().replace(',','.')) || 0;}
