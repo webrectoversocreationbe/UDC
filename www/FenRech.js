@@ -52,6 +52,9 @@ function InitRech(Quoi,callback) {
 				}
 				trfModele.COLORNR='';
 				trfModele.COLOUC='';
+				$('#RechCouleur').attr('disabled',false);
+				$('#RechOptions').attr('disabled',false);
+				$('#ajelem').attr('disabled',false);
 				$('#infocouleur').html('');
 			});
 		});

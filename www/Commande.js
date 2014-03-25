@@ -283,9 +283,14 @@ function cdeInfoModele() {
 function DefMod(Quoi) {
 	switch(Quoi) {
 		case 'cdeModeles':
-		case 'cdeTypeCuir':
 		case 'cdeCouleur':
 		case 'cdeOption':
+			InitRech(Quoi);
+			break;
+		case 'cdeTypeCuir':
+			$('#RechCouleur').attr('disabled',true);
+			$('#RechOptions').attr('disabled',true);
+			$('#ajelem').attr('disabled',true);
 			InitRech(Quoi);
 			break;
 	}

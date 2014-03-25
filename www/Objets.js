@@ -245,16 +245,14 @@ Commande.prototype = {
 			var coef2=this.DetailCommande[cptm].MOCOEF2;
 			var nbelem=this.DetailCommande[cptm].Elements.length;
 			for(cpte=0;cpte<nbelem;cpte++) {
-				log(4);
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
 				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
-				log(5);
 				if (UserVersion==1) {
 					Px=Px*coef;
 				} else {
 					Px=Px*coef2;
 				}
-				log(Qte+' * '+Px+' car '+UserVersion);
+				this.DetailCommande[cptm].Elements[cpte].Prix=Px;
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
 				}
