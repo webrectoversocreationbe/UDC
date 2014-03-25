@@ -1694,9 +1694,11 @@ window.dbcp = {
 			$('#InitResult').append('Table de codes postaux créée<br/>');
 			if (bConnected==false) {
 				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			} else {
+				self.bDoSynchro=true;
 			}
 		}
-		callback();
+		if (self.bDoSynchro==true) {self.synchro(callback);}
 	},
 	synchro: function(callback) {
         var self = this;
