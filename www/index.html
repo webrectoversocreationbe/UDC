@@ -46,7 +46,7 @@
     <table id="tcon">
     <tr><td align="right">Nom : </td><td><input type="text" name="User" id="User" size="20" required/></td></tr>
     <tr><td align="right">Mot de passe : </td><td><input type="password" name="Psw" id="Psw" size="20" required/></td></tr>
-    <tr><td></td><td align="left"><input type="button" id="btnlog" value="OK" onClick="dbu.login()"/></td></tr>
+    <tr><td></td><td align="left"><input type="submit" id="btnlog" value="OK" onClick="dbu.login()"/></td></tr>
     </table>
     </form>
     <p id="rechmod"></p>
@@ -147,7 +147,7 @@
             </p>
             <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic" id="lPartic">Particulier</label>&nbsp;&nbsp;
             <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label>&nbsp;&nbsp;
-            <input type="text" name="remvend" id="RemarqueVendeur" placeholder="Remarque conseillé">
+            <input type="text" name="remvend" id="RemarqueVendeur" placeholder="Remarque pour le bureau">
             </p>
             <div id="rubrsoc">
             <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
@@ -181,7 +181,7 @@
             <p><input type="email" name="email" id="Email" placeholder="Email" /></p>
             <p><input type="tel" name="tel1" id="Tel1" placeholder="Téléphone" /><input type="tel" name="tel2" id="Tel2" placeholder="Téléphone" class="ML15" /></p>
             <p><input type="tel" name="gsm1" id="Gsm1" placeholder="Gsm" /><input type="tel" name="gsm2" id="Gsm2" placeholder="Gsm" class="ML15" /></p>
-            <p><textarea id="Remarque1" placeholder="Remarque"></textarea></p>
+            <p><textarea id="Remarque1" placeholder="Remarque pour la livraison"></textarea></p>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
             <div class="floatleft ML20">
@@ -218,7 +218,7 @@
             </div><br/>
             <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
             <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
-            <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Respecter</label>
+            <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Normal</label>
             </p>
             <div id="cdeElems" class="floatleft">
                 <div><table><thead class="cdefixedHeader"><tr><th align="left">Eléments</th><th align="right">Quantité&nbsp;&nbsp;&nbsp;&nbsp;</th></tr></thead></table></div>
@@ -263,7 +263,7 @@
                 <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="0" size="15" onChange="NePasAfficherPrix();ActualisePrix();"/> €</td></tr>
                 <tr><td align="left">Remises et promotions :</td><td align="right"><input type="text" id="cdeRem" value="0" size="15" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Rachat salon :</td><td align="right"><input type="text" id="cdeRachat" size="15" value="0" onChange="ActualisePrix()"/> €</td></tr>
-                <tr><td align="left">Frais complémentaires : <br/><input type="text" id="cdeFCLIB" value="0" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
+                <tr><td align="left">Frais complémentaires fabrication et livraison : <br/><input type="text" id="cdeFCLIB" value="0" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Prix de vente total : </td><td align="right"><input type="text" id="cdePVTOT" value="0" size="15"/> €</td></tr>
                 </table>
                 <div style="width:600px; text-align:right; margin:10px auto 0 20px; padding-right:40px;">
@@ -365,7 +365,7 @@
     <input type="radio" name="Maga" id="mag2" onclick="DefinirMagasin(2)"><label for="mag2">Bouge</label>&nbsp;&nbsp;
     <input type="radio" name="Maga" id="mag3" onclick="DefinirMagasin(3)"><label for="mag3">Waterloo</label>
     </p><br/>
-    <p class="ML10"><br/>Bon de commande du N° <input type="text" size="5" id="dunum"> au N° <input type="text" size="5" id="aunum">&nbsp;<button id="btnduaunum" onClick="DefinirNumBon()">Définir</button></p><br/>
+    <p class="ML10"><br/>Bon de commande du N° <input type="text" size="5" id="dunum" onChange="$('#btnduaunum').show()"> au N° <input type="text" size="5" id="aunum" onChange="$('#btnduaunum').show()">&nbsp;<button id="btnduaunum" class="hide" onClick="DefinirNumBon();$('#btnduaunum').hide();">Confirmer ici</button></p><br/>
     <br/>
     <p class="ML10"><a onClick="SynchroAll()">Synchronisation Données</a></p><br/><img id="admloaderdb" src="images/loader.gif" class="loader"><br/>
     <p class="ML10"><a onClick="SynchroImg()">Synchronisation Images</a>&nbsp;<span id="nbimg"></span></p><br/><img id="admloaderimg" src="images/loader.gif" class="loader"><br/>
