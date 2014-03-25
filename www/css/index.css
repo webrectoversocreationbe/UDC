@@ -386,7 +386,7 @@ p {
 #Tel2,#Gsm2 {width:360px; margin-bottom:8px;}
 #Remarque1 {width:734px; height:215px; margin-bottom:8px; margin-top:3px;}
 /* ecran 2 */
-#Delai {width:40px; text-align:right;}
+#Delai,#DelaiMax {width:40px; text-align:right;}
 #cdeChoix {margin-top:10px;}
 #cx1 {width:33%}
 #cx2,#cx3,#cx4 {width:19%;}

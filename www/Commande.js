@@ -271,6 +271,7 @@ function cdeInfoModele() {
 	$('#cdeopfr').html('');
 	$('#cdetLesElems').empty();
     cdeModele.init($('#ValRech').val(), function() {
+		dump(cdeModele,'log');
         if (cdeModele.Existe==true) {
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MODUC);
 			$('#Delai').val(cdeModele.MODELAI);
