@@ -60,7 +60,6 @@
     <p><a onClick="Go('Commande')">Nouvelle vente</a></p><br/>
     <p class="lienconsulthist"><a onClick="HistoCmd();">Consulter l'historique</a></p><br class="lienconsulthist"/>
     <p><a onClick="Go('Tarif')">Tarif</a></p><br/>
-    <p><a onClick="">Photos</a></p><br/>
     <p><a onClick="">Fiches techniques</a></p><br/>
     <p><a onClick="dbu.logout()">Se déconnecter</a></p><br/><br/>
     <p><a onClick="Go('Administration')">Administration</a></p><br/><br/>
@@ -216,7 +215,7 @@
                 </div>
                 <div class="clear"></div>
             </div><br/>
-            <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;&nbsp;&nbsp;
+            <p>Délai de livraison : <input type="tel" id="Delai"/> semaines&nbsp;à<input type="tel" id="DelaiMax"/> semaines&nbsp;&nbsp;
             <input type="radio" name="GenreDelai" id="GenreASAP" checked><label for="GenreASAP">ASAP</label>
             <input type="radio" name="GenreDelai" id="GenreResp"><label for="GenreResp">Normal</label>
             </p>

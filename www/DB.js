@@ -1383,8 +1383,8 @@ window.dbcommande = {
 							for (var i = 0; i < l; i++) {
 								var od = oCde.DetailCommande[i];
 								(function insertcdemod(value,refcde,od) {
-									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,GenreDelai,Remarque) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-									var paramsd = [refcde.toString(),od.MODNR,od.MODUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.GenreDelai,od.Remarque];
+									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,DelaiMax,GenreDelai,Remarque) VALUES (?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+									var paramsd = [refcde.toString(),od.MODNR,od.MODUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.DelaiMax,od.GenreDelai,od.Remarque];
 //									log('insert '+od.MODNR);
 									tx.executeSql(sqld, paramsd,
 										function(tx,results) {

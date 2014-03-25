@@ -274,9 +274,11 @@ function cdeInfoModele() {
         if (cdeModele.Existe==true) {
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MODUC);
 			$('#Delai').val(cdeModele.MODELAI);
+			$('#DelaiMax').val(cdeModele.MODELAI+2);
         } else {
             $('#cdemoduc').html('<p>Modèle innexistant</p>');
 			$('#Delai').val('');
+			$('#DelaiMax').val('');
         }
     });
 }
@@ -416,7 +418,7 @@ function RecapCde() {
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
 		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
-		if (cde.DetailCommande[cptm].Delai!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].Delai+' - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
+		if (cde.DetailCommande[cptm].Delai!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].Delai+' à '+cde.DetailCommande[cptm].DelaiMax+' semaines - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
 		var nbelem=cde.DetailCommande[cptm].Elements.length;
 		for(cpte=0;cpte<nbelem;cpte++) {
 			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;

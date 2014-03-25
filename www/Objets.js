@@ -9,6 +9,7 @@ var Modele = function() {
 	this.MOCOEF=0;
 	this.MOCOEF2=0;
 	this.MODELAI=0;
+	this.DelaiMax=0;
 	this.FOUR='';
 	this.CUIRNR='';
 	this.CUIRUC='';
@@ -37,6 +38,7 @@ Modele.prototype = {
 							self.MODUC=results.rows.item(0).MODUC;
 							self.MOCOEF=results.rows.item(0).MOCOEF;
 							self.MODELAI=results.rows.item(0).MODELAI;
+							self.DelaiMax=results.rows.item(0).MODELAI+2;
 							self.FOUR=results.rows.item(0).FOUR;
 							self.Existe=true;
 						}
