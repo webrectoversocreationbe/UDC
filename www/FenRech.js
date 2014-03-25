@@ -244,6 +244,7 @@ function Choix(obj) {
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
+	$('#btnOKPanRech').attr('disabled',false);
 //	$('#btnOKPanRech').propr("disabled",false);
 	switch (Quoi) {
 	case 'trfModeles':
