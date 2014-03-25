@@ -244,7 +244,6 @@ function Choix(obj) {
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
-	$('#btnOKPanRech').attr('disabled',false);
 //	$('#btnOKPanRech').propr("disabled",false);
 	switch (Quoi) {
 	case 'trfModeles':
@@ -259,6 +258,7 @@ function PopulateRech(Quoi,Rech,callback) {
 					function(tx, results) {
 						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
+							$('#btnOKPanRech').attr('disabled',false);
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var modnr=results.rows.item(cpt).MODNR;
 								var mouc=results.rows.item(cpt).MODUC;
@@ -317,6 +317,7 @@ function PopulateRech(Quoi,Rech,callback) {
 					function(tx, results) {
 						if (results.rows.length > 0) {
 							$('#NbRech').val(results.rows.length);
+							$('#btnOKPanRech').attr('disabled',false);
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var cuirnr=results.rows.item(cpt).CUIRNR;
 								var cuiruc=results.rows.item(cpt).CUIRUC;
@@ -377,6 +378,7 @@ function PopulateRech(Quoi,Rech,callback) {
 					function(tx, results) {
 						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
+							$('#btnOKPanRech').attr('disabled',false);
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var colornr=results.rows.item(cpt).COLORNR;
 								var colouc=results.rows.item(cpt).COLOUC;
@@ -437,6 +439,7 @@ function PopulateRech(Quoi,Rech,callback) {
 					function(tx, results) {
 						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
+							$('#btnOKPanRech').attr('disabled',false);
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var opcode=results.rows.item(cpt).OPCODE;
 								var opfr=results.rows.item(cpt).OPFR;

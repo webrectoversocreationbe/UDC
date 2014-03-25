@@ -15,6 +15,7 @@ var tablePrixOk=false;
 var tableCommandeOk=false;
 var tableDetCdeOk=false;
 var tableElDetCdeOk=false;
+var tableCPOk=false;
 var bDoLogin=false;
 /* 
 	INIT GENERAL
@@ -43,7 +44,8 @@ function InitDB(callback) {
 			   dbcommande.initialize(function(){
 			    dbdetcde.initialize(function(){
 			     dbeldetcde.initialize(function(){
-					if (tablePrefOk==true && tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true 
+				  dbcp.initialize(function(){
+					if (tablePrefOk==true && tableUserOk==true && tableSynchroOk==true && tableModeleOk==true && tableCoefOk==true && tableCuirModOk==true && tableLiasCuirOk==true && tableCPOk==true 
 						 && tableLiasColoOk==true && tableOptiOk==true && tableEleModOk==true && tableElementOk==true && tablePrixOk==true && tableCommandeOk==true && tableDetCdeOk==true
 						) {bDoLogin=true;}
 					if (bDoLogin==true) {
@@ -53,7 +55,7 @@ function InitDB(callback) {
 					}
 					$('.loader').toggle();
 					callback();
-				});	});	});	});	});	});	});	});	}); });	}); }); });	});
+				});	});	});	});	});	});	});	});	}); });	}); }); }); });	});
 	});
 }
 function SynchroAll() {
@@ -1547,6 +1549,7 @@ window.dbdetcde = {
 				"OPFR VARCHAR(50)," +
 				"CROQUIS VARCHAR(500)," +
 				"Delai INTEGER," +
+				"DelaiMax INTEGER," +
 				"GenreDelai VARCHAR(10)," +
 				"Remarque TEXT" +
 				")";
@@ -1633,6 +1636,113 @@ window.dbeldetcde = {
 			}
 		}
 		callback();
+	},
+    txErrorHandler: function(tx) {
+        alert(tx.message);
+		log('Erreur SQL Sync '+tx.message);
+    }
+};
+/*
+	TABLE CODES POSTAUX
+*/
+window.dbcp = {
+	Etat: false,
+	bDoSynchro: false,
+	syncOK: false,
+    initialize: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+                tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='CP'", this.txErrorHandler,
+                    function(tx, results) {
+                        if (results.rows.length == 1) {
+							self.Etat=true;
+                            log('La table codes postaux existe');
+							tableCPOk=true;
+			                callback();
+                        } else {
+                            log('La table codes postaux n\'existe pas');
+                            self.createTable(callback);
+                        }
+                    });
+            }
+        )
+    },
+    createTable: function(callback) {
+        var self = this;
+        madb.transaction(
+            function(tx) {
+				var sql = 
+				"CREATE TABLE IF NOT EXISTS CP (" +
+				"Num INTEGER PRIMARY KEY, " +
+				"CP INTEGER, " +
+				"Ville VARCHAR(200)," +
+				"Province VARCHAR(50))";
+                tx.executeSql(sql);
+            },
+            this.txErrorHandler,
+            function() {
+                log('La table Codes postaux à été créée');
+				tableCPOk=true;
+				self.initOk(callback);
+            }
+        );
+    },
+	initOk: function(callback) {
+        var self = this;
+		if (self.Etat==false) {
+			$('#InitResult').append('Table de codes postaux créée<br/>');
+			if (bConnected==false) {
+				$('#InitResult').append('Il faut synchroniser avec le serveur<br/>Vous n\'êtes pas connecté<br/><a onclick="Init()" class="rouge">Réessayer</a>');
+			}
+		}
+		callback();
+	},
+	synchro: function(callback) {
+        var self = this;
+        $.ajax({
+            url: syncURL,
+	        crossDomain: true,
+			async: false,
+			type: "POST",
+            data: {Genre: 'CP'},
+            success:function (data) {
+				madb.transaction(
+					function(tx) {
+						var sql = "delete from CP";
+						tx.executeSql(sql);
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				madb.transaction(
+					function(tx) {
+						var l = data.length;
+						var sql = "INSERT INTO CP (Num, CP, Ville, Province) VALUES (?, ?, ?, ?)";
+						var e;
+						for (var i = 0; i < l; i++) {
+							e = data[i];
+							var params = [e.Num, e.CP, e.Ville, e.Province];
+							tx.executeSql(sql, params);
+						}
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				log('La table codes postaux à été synchronisée');
+				self.Etat=true;
+				self.syncOK=true;
+				tableUserOk=true;
+            },
+            error: function(request, model, response) {
+				log(request.responseText + " " +model + " " + response);
+                alert('Erreur durant la synchronisation');
+            }
+        }).done(function(){
+			callback();
+		});
 	},
     txErrorHandler: function(tx) {
         alert(tx.message);

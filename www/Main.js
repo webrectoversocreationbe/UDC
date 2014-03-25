@@ -57,7 +57,7 @@ $(document).ready(function() {
 	document.addEventListener("deviceready", onDeviceReady, false);
 	$('#sigPadSign1').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvassign1'});
 	$('#sigPadCroquis').signaturePad({drawOnly:true,bgColour:'#fff',lineColour:'#fff',penColor:'#e2001a',penWidth:3,canvas:'#canvascroquis'});
-	$(function(){$( ".DatePicker" ).datepicker({showOtherMonths: true,selectOtherMonths: true,dateFormat:'dd/mm/yy',monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa']});});
+	$(function(){$( ".DatePicker" ).datepicker({mindate:0,showOtherMonths: true,selectOtherMonths: true,dateFormat:'dd/mm/yy',monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa']});});
 	$('.btnannulevente').click(function() {
 		showConfirm('Voulez vous annuler ce bon de commande et revenir au menu principal ?','Annulation',['Quitter','Rester'],function(results) {
 			if (results==1) {
