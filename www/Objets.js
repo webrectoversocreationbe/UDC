@@ -241,10 +241,12 @@ Commande.prototype = {
 		var Prix=0;
 		var nbmod=this.DetailCommande.length;
 		for(cptm=0;cptm<nbmod;cptm++) {
+			var coef=this.DetailCommande[cptm].MOCOEF;
+			var coef2=this.DetailCommande[cptm].MOCOEF2;
 			var nbelem=this.DetailCommande[cptm].Elements.length;
 			for(cpte=0;cpte<nbelem;cpte++) {
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
-				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
+				var Px=this.DetailCommande[cptm].Elements[cpte].Prix*UserVersion==1?coef:coef2;
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
 				}

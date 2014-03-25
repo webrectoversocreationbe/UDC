@@ -326,7 +326,7 @@
             <div id="blocSign">
                 <div id="sigPadSign1" class="sigPad2" style="position:relative;">
                   <div class="sigWrapper2" style="">
-                    <canvas id="canvassign1" class="pad" width="1228" height="555" style=""></canvas>
+                    <canvas id="canvassign1" class="pad" width="1028" height="505" style=""></canvas>
                   </div>
                 </div>
             </div>
@@ -365,7 +365,7 @@
     <input type="radio" name="Maga" id="mag2" onclick="DefinirMagasin(2)"><label for="mag2">Bouge</label>&nbsp;&nbsp;
     <input type="radio" name="Maga" id="mag3" onclick="DefinirMagasin(3)"><label for="mag3">Waterloo</label>
     </p><br/>
-    <p class="ML10"><br/>Bon de commande du N° <input type="text" size="5" id="dunum" onChange="$('#btnduaunum').show()"> au N° <input type="text" size="5" id="aunum" onChange="$('#btnduaunum').show()">&nbsp;<button id="btnduaunum" class="hide" onClick="DefinirNumBon();$('#btnduaunum').hide();">Confirmer ici</button></p><br/>
+    <p class="ML10"><br/>Bon de commande du N° <input type="text" size="5" id="dunum" onkeypress="$('#btnduaunum').show()"> au N° <input type="text" size="5" id="aunum" onkeypress="$('#btnduaunum').show()">&nbsp;<button id="btnduaunum" class="hide" onClick="DefinirNumBon();$('#btnduaunum').hide();">Confirmer ici</button></p><br/>
     <br/>
     <p class="ML10"><a onClick="SynchroAll()">Synchronisation Données</a></p><br/><img id="admloaderdb" src="images/loader.gif" class="loader"><br/>
     <p class="ML10"><a onClick="SynchroImg()">Synchronisation Images</a>&nbsp;<span id="nbimg"></span></p><br/><img id="admloaderimg" src="images/loader.gif" class="loader"><br/>

@@ -86,6 +86,7 @@ table {
 .droite {text-align:right;}
 .gauche {text-align:left;}
 .invis {visibility:hidden}
+.hide {display:none;}
 .floatleft {float:left;}
 .floatright {float:right;}
 .relative {position:relative;}
@@ -301,7 +302,7 @@ p {
 .ContentPanRech li:hover { background:#e2001a; color:#fff;}
 .ContentPanRech li a {width:100%; display:block;}
 .FooterPanRech {height:40px; border-top:3px solid #e2001a; position:absolute; bottom:0px; left:0; right:0; display:block;vertical-align:middle; padding-left:15px; }
-.FooterPanRech button {margin-top:4px; font-size:17px}
+.FooterPanRech button {margin-top:4px; font-size:17px; padding-left:20px; padding-right:20px;}
 /* INIT
 -------------------------------*/
 #Init {text-align:center;}
@@ -387,12 +388,13 @@ p {
 /* ecran 2 */
 #Delai {width:40px; text-align:right;}
 #cdeChoix {margin-top:10px;}
-#cx1,#cx2,#cx3,#cx4 {width:20%;}
+#cx1 {width:40%}
+#cx2,#cx3,#cx4 {width:19%;}
 #cdeElems {position:relative; top:15px; left:15px; height:60%; width:830px; border:1px solid #e2001a; margin-bottom:25px;}
 #cdeLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .cdefixedHeader tr th {width:680px;}.cdefixedHeader tr th+th {width:150px;}
 .cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}
-#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:12px;}
+#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:14px;font-weight:bold; color:#a2001e;}
 #cdeRemMod {font-size:14px; width:280px; padding-top:15px;}
 /* ecran 3 */
 /* ecran 4 */

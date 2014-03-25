@@ -381,7 +381,8 @@ function NePasAfficherPrix() {
 function RecapCde() {
 	r='<p>Date : '+cde.DateC+'</p>'
 	+'<p>Commande : '+cde.Ref+'</p>'
-	+'<p>Vendeur : '+cde.Vendeur+'</p>';
+	+'<p>Vendeur : '+cde.Vendeur+'</p>'
+	+'<hr/>';
 	if (cde.Societe!='') {
 		r=r+'<p>Société : '+cde.Societe+'</p>'
 		+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>'
@@ -404,6 +405,7 @@ function RecapCde() {
 	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
+		r=r+'<hr/>';
 		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MODUC+'</p>';
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
@@ -421,6 +423,7 @@ function RecapCde() {
 			}
 		}
 	}
+	r=r+'<hr/>';
 	r=r+'<br/><p><u>Total</u> : </p>';
 	if (cde.AfficherPrix==0) {
 		r=r+'<p>Prix de vente : '+Nombre(cde.PrixTarif)+' €</p>';

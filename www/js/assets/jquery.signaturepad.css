@@ -7,19 +7,19 @@
 }
 .sigWrapper {
   clear: both;
-  height: 627px;
+  height: 597px;
 
   border: 1px solid #ccc;
 }
 .sigPad2 {
   margin: 0;
   padding: 0;
-  width: 100%;
-  max-width:1230px;
+  width: 90%;
+  max-width:1030px;
 }
 .sigWrapper2 {
   clear: both;
-  height: 557px;
+  height: 507px;
 
   border: 1px solid #ccc;
 }
