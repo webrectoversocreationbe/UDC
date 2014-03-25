@@ -388,13 +388,13 @@ p {
 /* ecran 2 */
 #Delai {width:40px; text-align:right;}
 #cdeChoix {margin-top:10px;}
-#cx1 {width:40%}
+#cx1 {width:36%}
 #cx2,#cx3,#cx4 {width:19%;}
 #cdeElems {position:relative; top:15px; left:15px; height:60%; width:830px; border:1px solid #e2001a; margin-bottom:25px;}
 #cdeLesElems {position:absolute; top:34px;bottom:0px; left:0px; right:0px;  overflow:auto; overflow-x:hidden;}
 .cdefixedHeader tr th {width:680px;}.cdefixedHeader tr th+th {width:150px;}
 .cdescrollContent tr td {width:680px;}.cdescrollContent tr td+td {width:130px;}
-#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:14px;font-weight:bold; color:#a2001e;}
+#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:14px;font-weight:bold; color:#e2001a;}
 #cdeRemMod {font-size:14px; width:280px; padding-top:15px;}
 /* ecran 3 */
 /* ecran 4 */
