@@ -61,18 +61,18 @@ function InitRech(Quoi,callback) {
 		});
 		$('#btnAnnulerPanRech').click(function() {
 			$('.PanneauRech').hide();
-			$('#cdeRechCouleur').removeAttr('disabled');
-			$('#cdeRechOptions').removeAttr('disabled');
-			$('#ajelem').removeAttr('disabled');
-			$('#supprelem').removeAttr('disabled');
+			$('#cdeRechCouleur').attr('disabled',false);
+			$('#cdeRechOptions').attr('disabled',false);
+			$('#ajelem').attr('disabled',false);
+			$('#supprelem').attr('disabled',false);
 		});
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
-			$('#cdeRechCouleur').removeAttr('disabled');
-			$('#cdeRechOptions').removeAttr('disabled');
-			$('#ajelem').removeAttr('disabled');
-			$('#supprelem').removeAttr('disabled');
+			$('#cdeRechCouleur').attr('disabled',false);
+			$('#cdeRechOptions').attr('disabled',false);
+			$('#ajelem').attr('disabled',false);
+			$('#supprelem').attr('disabled',false);
 			cdeModele.setcuir($('#ValRech').val(),function(){
 				cdeModele.CUIRUC=$('#DescRech').val();
 				$('#cdecuiruc').html(cdeModele.CUIRNR+' - '+cdeModele.CUIRUC);
