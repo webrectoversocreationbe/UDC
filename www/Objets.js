@@ -109,6 +109,7 @@ Modele.prototype = {
 												tx.executeSql(sql,[], 
 													function(tx, results) {
 														if (results.rows.length > 0) {
+															self.bOptions=1;
 															for (cpt=0;cpt<results.rows.length;cpt++) {
 																self.Opti[cpt]=results.rows.item(cpt);
 															}

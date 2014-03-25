@@ -143,6 +143,9 @@ function chkEcran() {
 		if (cdeModele.bCouleur==1 && $('#cdecolouc').html()=='') {
 			showAlert('Il faut choisir une couleur','Attention','OK'); return false;
 		}
+		if (cdeModele.bOptions==1 && $('#cdeopfr').html()=='') {
+			showAlert('Il faut choisir une option','Attention','OK'); return false;
+		}
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
