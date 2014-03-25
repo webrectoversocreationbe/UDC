@@ -36,16 +36,10 @@ function InitRech(Quoi,callback) {
 		});
 		$('#btnAnnulerPanRech').click(function() {
 			$('.PanneauRech').hide();
-			$('#cdeRechCouleur').attr('disabled',false);
-			$('#cdeRechOptions').attr('disabled',false);
-			$('#ajelem').attr('disabled',false);
 		});
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
-			$('#cdeRechCouleur').attr('disabled',false);
-			$('#cdeRechOptions').attr('disabled',false);
-			$('#ajelem').attr('disabled',false);
 			trfModele.setcuir($('#ValRech').val(),function(){
 				trfModele.CUIRUC=$('#DescRech').val();
 				$('#infotypcuir').html('Revêtement : '+trfModele.CUIRNR+' - '+trfModele.CUIRUC);
@@ -67,10 +61,18 @@ function InitRech(Quoi,callback) {
 		});
 		$('#btnAnnulerPanRech').click(function() {
 			$('.PanneauRech').hide();
+			$('#cdeRechCouleur').removeAttr('disabled');
+			$('#cdeRechOptions').removeAttr('disabled');
+			$('#ajelem').removeAttr('disabled');
+			$('#supprelem').removeAttr('disabled');
 		});
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
+			$('#cdeRechCouleur').removeAttr('disabled');
+			$('#cdeRechOptions').removeAttr('disabled');
+			$('#ajelem').removeAttr('disabled');
+			$('#supprelem').removeAttr('disabled');
 			cdeModele.setcuir($('#ValRech').val(),function(){
 				cdeModele.CUIRUC=$('#DescRech').val();
 				$('#cdecuiruc').html(cdeModele.CUIRNR+' - '+cdeModele.CUIRUC);

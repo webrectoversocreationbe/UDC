@@ -291,6 +291,7 @@ function DefMod(Quoi) {
 			$('#cdeRechCouleur').attr('disabled',true);
 			$('#cdeRechOptions').attr('disabled',true);
 			$('#ajelem').attr('disabled',true);
+			$('#supprelem').attr('disabled',true);
 			InitRech(Quoi);
 			break;
 	}
