@@ -93,7 +93,7 @@ function chkEcran() {
 	switch (EcranActif) {
 	case 1: // Infos clients
 		// CHECK
-			if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
+/*		if ($('#fracoui').is(':checked')==true && $('#NbFrac').val()=='') {
 			showAlert('Vous devez entrer le nombre de fractionnement','Attention','OK'); return false;
 		}
 		if ($('#Societ').is(':checked')==true && $('#Societe').val()=='') {
@@ -110,7 +110,7 @@ function chkEcran() {
 		}
 		if ($('#Tel1').val()=='') {
 			showAlert('Le téléphone est obligatoire'); return false;
-		}
+		}*/
 		// OBJ CDE
 		cde.Societe=$('#Societe').val();cde.NumTva=$('#NumTva').val();cde.RemarqueVendeur=$('#RemarqueVendeur').val();
 		cde.Civil0=$('#Civil0Mr').is(':checked')==true?'Mr':'Mme';cde.Responsable=$('#Responsable').val();
