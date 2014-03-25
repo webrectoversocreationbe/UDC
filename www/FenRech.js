@@ -20,6 +20,11 @@ function InitRech(Quoi,callback) {
 		});
 	} else if (Quoi=='cdeModeles') {
 		PopulateRech('cdeModeles','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
 			$('.PanneauRech').show();
 		});
 		$('#btnAnnulerPanRech').click(function() {
@@ -32,6 +37,11 @@ function InitRech(Quoi,callback) {
 		});
 	} else if (Quoi=='trfTypeCuir') {
 		PopulateRech('trfTypeCuir','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
 			$('.PanneauRech').show();
 		});
 		$('#btnAnnulerPanRech').click(function() {
@@ -57,6 +67,11 @@ function InitRech(Quoi,callback) {
 		});
 	} else if (Quoi=='cdeTypeCuir') {
 		PopulateRech('cdeTypeCuir','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
 			$('.PanneauRech').show();
 		});
 		$('#btnAnnulerPanRech').click(function() {
@@ -104,6 +119,11 @@ function InitRech(Quoi,callback) {
 		});
 	} else if (Quoi=='cdeCouleur') {
 		PopulateRech('cdeCouleur','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
 			$('.PanneauRech').show();
 		});
 		$('#btnAnnulerPanRech').click(function() {
@@ -132,6 +152,11 @@ function InitRech(Quoi,callback) {
 		});
 	} else if (Quoi=='cdeOption') {
 		PopulateRech('cdeOption','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
 			$('.PanneauRech').show();
 		});
 		$('#btnAnnulerPanRech').click(function() {
@@ -231,6 +256,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" where MODUC like '%"+Rech+"%' or MODNR like '%"+Rech+"%'";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var modnr=results.rows.item(cpt).MODNR;
@@ -259,6 +285,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" and (cuirmod.CUIRNR like '%"+Rech+"%' or liascuir.CUIRUC like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var cuirnr=results.rows.item(cpt).CUIRNR;
@@ -288,6 +315,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						if (results.rows.length > 0) {
+							$('#NbRech').val(results.rows.length);
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var cuirnr=results.rows.item(cpt).CUIRNR;
 								var cuiruc=results.rows.item(cpt).CUIRUC;
@@ -316,6 +344,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var colornr=results.rows.item(cpt).COLORNR;
@@ -345,6 +374,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" and (COLORNR like '%"+Rech+"%' or COLOUC like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var colornr=results.rows.item(cpt).COLORNR;
@@ -374,6 +404,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" and (OPCODE like '%"+Rech+"%' or OPFR like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var opcode=results.rows.item(cpt).OPCODE;
@@ -403,6 +434,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" and (OPCODE like '%"+Rech+"%' or OPFR like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var opcode=results.rows.item(cpt).OPCODE;
@@ -423,6 +455,7 @@ function PopulateRech(Quoi,Rech,callback) {
 	case 'cdeAjElem':
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un élément');
+		$('#NbRech').val(cdeModele.Elements.length);
 		for (var cpt=0;cpt<cdeModele.Elements.length;cpt++) {
 			var elcode=cdeModele.Elements[cpt].ELCODE;
 			var elfr=cdeModele.Elements[cpt].ELFR;
@@ -434,6 +467,7 @@ function PopulateRech(Quoi,Rech,callback) {
 		$('#lesli').empty();
 		$('#txtrech').html('Rechercher un élément');
 		var nbelem=$('#cdetLesElems tr').length;
+		$('#NbRech').val(nbelem);
 		for (var cpt=0;cpt<nbelem;cpt++) {
 			var elcode=$('#cdetLesElems tr:eq('+cpt+')').attr('id').substr(7);
 			var elem=$('#cdetLesElems tr:eq('+cpt+') td').html();
@@ -451,6 +485,7 @@ function PopulateRech(Quoi,Rech,callback) {
 				if (Rech!='') {sql=sql+" where (Ref like '%"+Rech+"%' or Prenom1 like '%"+Rech+"%' or Nom1 like '%"+Rech+"%' or Ville like '%"+Rech+"%')";}
 				tx.executeSql(sql,[], 
 					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
 						if (results.rows.length > 0) {
 							for (cpt=0;cpt<results.rows.length;cpt++) {
 								var ref=results.rows.item(cpt).Ref;
