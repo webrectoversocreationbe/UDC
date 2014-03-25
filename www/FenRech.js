@@ -36,10 +36,16 @@ function InitRech(Quoi,callback) {
 		});
 		$('#btnAnnulerPanRech').click(function() {
 			$('.PanneauRech').hide();
+			$('#cdeRechCouleur').attr('disabled',false);
+			$('#cdeRechOptions').attr('disabled',false);
+			$('#ajelem').attr('disabled',false);
 		});
 		$( "#btnOKPanRech").unbind( "click" );
 		$('#btnOKPanRech').click(function() {
 			$('.PanneauRech').hide();
+			$('#cdeRechCouleur').attr('disabled',false);
+			$('#cdeRechOptions').attr('disabled',false);
+			$('#ajelem').attr('disabled',false);
 			trfModele.setcuir($('#ValRech').val(),function(){
 				trfModele.CUIRUC=$('#DescRech').val();
 				$('#infotypcuir').html('Revêtement : '+trfModele.CUIRNR+' - '+trfModele.CUIRUC);
@@ -52,9 +58,6 @@ function InitRech(Quoi,callback) {
 				}
 				trfModele.COLORNR='';
 				trfModele.COLOUC='';
-				$('#RechCouleur').attr('disabled',false);
-				$('#RechOptions').attr('disabled',false);
-				$('#ajelem').attr('disabled',false);
 				$('#infocouleur').html('');
 			});
 		});

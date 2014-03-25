@@ -288,8 +288,8 @@ function DefMod(Quoi) {
 			InitRech(Quoi);
 			break;
 		case 'cdeTypeCuir':
-			$('#RechCouleur').attr('disabled',true);
-			$('#RechOptions').attr('disabled',true);
+			$('#cdeRechCouleur').attr('disabled',true);
+			$('#cdeRechOptions').attr('disabled',true);
 			$('#ajelem').attr('disabled',true);
 			InitRech(Quoi);
 			break;
