@@ -22,7 +22,9 @@ var Modele = function() {
 	this.Elements=[];
 	this.CatCuir=[];
 	this.Couleurs=[];
+	this.bCouleur=0;
 	this.Opti=[];
+	this.bOptions=0;
 };
 Modele.prototype = {
 	init: function(Id,callback) {
@@ -155,6 +157,7 @@ Modele.prototype = {
 						tx.executeSql(sql,[], 
 							function(tx, results) {
 								if (results.rows.length > 0) {
+									self.bCouleur=1;
 									for (var cpt=0;cpt<results.rows.length;cpt++) {
 										self.Couleurs[cpt]=results.rows.item(cpt);
 									}

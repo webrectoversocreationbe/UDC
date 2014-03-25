@@ -140,6 +140,9 @@ function chkEcran() {
 		if ($('#cdetLesElems tr').length==0) {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
 		}
+		if (cdeModele.bCouleur==1 && $('#cdecolouc').html()=='') {
+			showAlert('Il faut choisir une couleur','Attention','OK'); return false;
+		}
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
@@ -271,7 +274,6 @@ function cdeInfoModele() {
 	$('#cdeopfr').html('');
 	$('#cdetLesElems').empty();
     cdeModele.init($('#ValRech').val(), function() {
-		dump(cdeModele,'log');
         if (cdeModele.Existe==true) {
             $('#cdemoduc').html(cdeModele.MODNR+' - '+cdeModele.MODUC);
 			$('#Delai').val(cdeModele.MODELAI);
