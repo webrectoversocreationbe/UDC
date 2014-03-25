@@ -16,6 +16,7 @@ var app = {
         document.addEventListener('offline', this.onOffline, false);
         document.addEventListener('online', this.onOnline, false);
 		document.addEventListener("menubutton", this.onMenuKeyDown, false);
+		document.addEventListener("backbutton", this.onBackButton, false);
 	},
     onOffline: function() {
         app.receivedEvent('offline');
@@ -26,6 +27,13 @@ var app = {
 	onMenuKeyDown: function() {
 		Sonne(1);
 		showAlert('Touche Menu appuyée','Menu contextuel','OK');
+	},
+	onBackButton: function() {
+		showConfirm('Voulez vous sortir de l\'application ?','Quitter',['Quitter','Rester'],function(results) {
+			if (results==1) {
+				navigator.app.exitApp();
+			}
+		})
 	},
     receivedEvent: function(id) {
 		switch(id) {

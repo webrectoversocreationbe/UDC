@@ -238,20 +238,23 @@ Commande.prototype = {
 	init: function(Id,callback) {
 	},
 	CalculPrix: function() {
-		log(1);
 		var Prix=0;
 		var nbmod=this.DetailCommande.length;
 		for(cptm=0;cptm<nbmod;cptm++) {
-			log(2);
 			var coef=this.DetailCommande[cptm].MOCOEF;
 			var coef2=this.DetailCommande[cptm].MOCOEF2;
 			var nbelem=this.DetailCommande[cptm].Elements.length;
-			log(3);
 			for(cpte=0;cpte<nbelem;cpte++) {
 				log(4);
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
-				var Px=this.DetailCommande[cptm].Elements[cpte].Prix*(UserVersion==1?coef:coef2);
-				log(Qte+' * '+px+' car '+UserVersion);
+				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
+				log(5);
+				if (UserVersion==1) {
+					Px=Px*coef;
+				} else {
+					Px=Px*coef2;
+				}
+				log(Qte+' * '+Px+' car '+UserVersion);
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
 				}
