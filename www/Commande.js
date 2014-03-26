@@ -137,6 +137,9 @@ function chkEcran() {
 		if ($('#Delai').val()=='') {
 			showAlert('Il faut préciser le délai','Attention','OK'); return false;
 		}
+		if ($('#DelaiMax').val()=='') {
+			showAlert('Il faut préciser le délai 2','Attention','OK'); return false;
+		}
 		if ($('#cdetLesElems tr').length==0) {
 			showAlert('Il faut définir les élements','Attention','OK'); return false;
 		}
@@ -156,7 +159,8 @@ function chkEcran() {
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
-			cde.DetailCommande[cptmod].Delai=$('#Delai').val();
+			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
+			cde.DetailCommande[cptmod].DelaiMax=$('#DelaiMax').val();
 			if ($('#GenreASAP').is(':checked')==true) {cde.DetailCommande[cptmod].GenreDelai='ASAP';} else {cde.DetailCommande[cptmod].GenreDelai='Respecter';}
 			$('#cdetLesElems tr').each(function(index) {
 				var elcode=$(this).children().eq(0).html().split(' -',1)[0];
@@ -215,6 +219,14 @@ function chkEcran() {
 		}
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
+		}
+		// si cde pas fractionnée et tvac>3000 => acompte max 10%
+		var pvtvac=$('#cdePVTOTTVAC').val();
+		if (cde.Fractionner==0 && pvtvac>3000) {
+			if ($('#cdeacompteespece').val()>(pvtvac/10)) {
+				var maxespece=FormatNombre(Math.floor(pvtvac/10));
+				showAlert('L\'acompte en espèce ne peut dépasser '+maxespece+' €','Attention','OK'); return false;
+			}
 		}
 		// PREPARE RECAP
 		var acompte=0;
@@ -385,8 +397,8 @@ function ActualisePrix() {
 	if (Rem!='') {pvtot=pvtot-Rem;}
 	if (Rachat!='') {pvtot=pvtot-Rachat;}
 	if (FC!='') {pvtot=pvtot+parseFloat(FC);}
-	var pvtvac=0;
-	if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
+	//if (cde.Exoneration==0) {pvtvac=pvtot*1.21;} else {pvtvac=pvtot;}
+	var pvtvac=pvtot;
 	var ac20=pvtvac*0.20;
 	$('#cdePVTOT').val(Nombre(pvtot))
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
@@ -427,7 +439,7 @@ function RecapCde() {
 		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
 		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
 		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
-		if (cde.DetailCommande[cptm].Delai!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].Delai+' à '+cde.DetailCommande[cptm].DelaiMax+' semaines - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
+		if (cde.DetailCommande[cptm].MODELAI!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].MODELAI+' à '+cde.DetailCommande[cptm].DelaiMax+' semaines - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
 		var nbelem=cde.DetailCommande[cptm].Elements.length;
 		for(cpte=0;cpte<nbelem;cpte++) {
 			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;
