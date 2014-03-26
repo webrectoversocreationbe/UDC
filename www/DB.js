@@ -543,6 +543,7 @@ window.dbmodcoef = {
 				var sql = 
 				"CREATE TABLE IF NOT EXISTS ModCoef (" +
 				"MODNR VARCHAR(6) PRIMARY KEY, " +
+				"MOCOEF REAL," +
 				"MOCOEF2 REAL)";
                 tx.executeSql(sql);
             },
@@ -587,11 +588,11 @@ window.dbmodcoef = {
 				madb.transaction(
 					function(tx) {
 						var l = data.length;
-						var sql = "INSERT INTO ModCoef (MODNR,MOCOEF2) VALUES (?, ?)";
+						var sql = "INSERT INTO ModCoef (MODNR,MOCOEF,MOCOEF2) VALUES (?, ?, ?)";
 						var e;
 						for (var i = 0; i < l; i++) {
 							e = data[i];
-							var params = [e.MODNR, e.MOCOEF2];
+							var params = [e.MODNR, e.MOCOEF, e.MOCOEF2];
 							tx.executeSql(sql, params);
 						}
 					},

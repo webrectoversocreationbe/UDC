@@ -57,6 +57,7 @@ Modele.prototype = {
 						tx.executeSql(sql,[], 
 							function(tx, results) {
 								if (results.rows.length == 1) {
+									self.MOCOEF=results.rows.item(0).MOCOEF;
 									self.MOCOEF2=results.rows.item(0).MOCOEF2;
 								}
 							},
