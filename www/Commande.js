@@ -222,9 +222,13 @@ function chkEcran() {
 		}
 		// si cde pas fractionnée et tvac>3000 => acompte max 10%
 		var pvtvac=$('#cdePVTOTTVAC').val();
+		log('tvac '+pvtvac);
 		if (cde.Fractionner==0 && pvtvac>3000) {
-			if ($('#cdeacompteespece').val()>(pvtvac/10)) {
-				var maxespece=FormatNombre(Math.floor(pvtvac/10));
+			var acesp=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
+			log('acesp '+acesp);
+			if (acesp>(pvtvac/10)) {
+				var maxespece=Nombre(Math.floor(pvtvac/10));
+				log('maxesp '+maxespece);
 				showAlert('L\'acompte en espèce ne peut dépasser '+maxespece+' €','Attention','OK'); return false;
 			}
 		}
