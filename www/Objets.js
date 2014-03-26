@@ -259,6 +259,7 @@ Commande.prototype = {
 				} else {
 					Px=Px*coef2;
 				}
+				Px=Math.ceil(Px/10)*10;
 				this.DetailCommande[cptm].Elements[cpte].Prix=Px;
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
