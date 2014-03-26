@@ -221,8 +221,8 @@ function chkEcran() {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}
 		// si cde pas fractionnée et tvac>3000 => acompte max 10%
-		var pvtvac=$('#cdePVTOTTVAC').val();
-		log('tvac '+pvtvac);
+		var pvtvac=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
+		log('tvac '+pvtvac+ 'frac '+cde.Fractionner);
 		if (cde.Fractionner==0 && pvtvac>3000) {
 			var acesp=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
 			log('acesp '+acesp);
