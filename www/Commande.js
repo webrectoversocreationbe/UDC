@@ -212,6 +212,7 @@ function chkEcran() {
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}
+		log(1);
 		// si cde pas fractionnée et tvac>3000 => acompte max 10%
 		var pvtvac=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
 		if (cde.Fractionner==0 && pvtvac>3000) {
@@ -221,12 +222,14 @@ function chkEcran() {
 				showAlert('L\'acompte en espèce ne peut dépasser '+maxespece+' €','Attention','OK'); return false;
 			}
 		}
+		log(2);
 		// PREPARE RECAP
 		var acompte=0;
 		if ($('#cdeacomptecarte').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecarte').val().replace(',','.')) || 0;}
 		if ($('#cdeacompteespece').val()!='') {acompte=acompte+parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;}
 		if ($('#cdeacomptecheque').val()!='') {acompte=acompte+parseFloat($('#cdeacomptecheque').val().replace(',','.')) || 0;}
 		if ($('#cdeacompteautre').val()!='') {acompte=acompte+parseFloat($('#cdeacompteautre').val().replace(',','.')) || 0;}
+		log(3);
 		cde.Acompte=parseFloat(acompte) || 0;
 		cde.AcompteCarte=parseFloat($('#cdeacomptecarte').val().replace(',','.')) || 0;
 		cde.AcompteEspece=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
@@ -235,6 +238,7 @@ function chkEcran() {
 		cde.SoldeAcompte=parseFloat($('#cdesoldeacompte').val().replace(',','.')) || 0;
 		cde.DateA=$('#cdeacomptedate').val();
 		cde.TotalNet=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
+		log(4);
 		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
 		
 		$('#Ecran'+EcranActif).removeClass('current2');
