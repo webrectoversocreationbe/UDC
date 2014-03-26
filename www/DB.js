@@ -1365,6 +1365,7 @@ window.dbcommande = {
         );
 	},
 	insertCde: function(oCde,callback) {
+		dump(oCde,'log');
         var self = this;
 		// LA COMMANDE
 		madb.transaction(
@@ -1388,10 +1389,10 @@ window.dbcommande = {
 								(function insertcdemod(value,refcde,od) {
 									var sqld = "INSERT INTO DetCde (Ref,MODNR,MODUC,CUIRNR,CUIRUC,COLORNR,COLOUC,OPCODE,OPFR,CROQUIS,Delai,DelaiMax,GenreDelai,Remarque) VALUES (?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 									var paramsd = [refcde.toString(),od.MODNR,od.MODUC,od.CUIRNR,od.CUIRUC,od.COLORNR,od.COLOUC,od.OPCODE,od.OPFR,'',od.Delai,od.DelaiMax,od.GenreDelai,od.Remarque];
-//									log('insert '+od.MODNR);
+									log('insert '+od.MODNR);
 									tx.executeSql(sqld, paramsd,
 										function(tx,results) {
-//											log('mod inserted '+od.MODNR+' id:'+results.insertId);
+											log('mod inserted '+od.MODNR+' id:'+results.insertId);
 											var NumDetCde=results.insertId;
 											// LES ELEMENTS
 											var nbel=od.Elements.length;
