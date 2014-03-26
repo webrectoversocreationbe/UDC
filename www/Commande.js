@@ -304,6 +304,9 @@ function DefMod(Quoi) {
 			break;
 	}
 }
+function RechCP() {
+	InitRech('CP');
+}
 function EffacerSign() {
 	var api = $('#sigPadSign1').signaturePad();
 	api.clearCanvas();

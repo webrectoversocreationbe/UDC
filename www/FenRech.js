@@ -233,6 +233,27 @@ function InitRech(Quoi,callback) {
 			var ref=$('#ValRech').val();
 			DetailBon(ref);
 		});
+	} else if (Quoi=='CP') {
+		PopulateRech('CP','',function() {
+			if ($('#NbRech').val()==0) {
+				$('#btnOKPanRech').attr('disabled',true);
+			} else {
+				$('#btnOKPanRech').attr('disabled',false);
+			}
+			$('.PanneauRech').show();
+		});
+		$('#btnAnnulerPanRech').click(function() {
+			$('.PanneauRech').hide();
+		});
+		$( "#btnOKPanRech").unbind( "click" );
+		$('#btnOKPanRech').click(function() {
+			$('.PanneauRech').hide();
+			var tmp=$('#ValRech').val().split('!');
+			var cp=tmp[0];
+			var ville=tmp[1];
+			$('#CP').val(cp);
+			$('#Ville').val(ville);
+		});
 	}
 }
 function Choix(obj) {
@@ -501,6 +522,34 @@ function PopulateRech(Quoi,Rech,callback) {
 								if (results.rows.item(cpt).Prenom1!='') {nomcli=results.rows.item(cpt).Civil1+' '+results.rows.item(cpt).Prenom1+' '+results.rows.item(cpt).Nom1;}
 								if (results.rows.item(cpt).Societe!='') {nomcli=results.rows.item(cpt).Societe+' '+results.rows.item(cpt).Civil0+' '+results.rows.item(cpt).Responsable;}
 							    $('#lesli').append('<li><a class="leschoix" id="VR'+ref+'|'+datec+'" onclick="Choix($(this))">'+ref+' - '+FormatDate(datec)+' - '+nomcli+' ('+cp+' '+ville+') : '+Nombre(totaltvac)+' €</a></li>');
+							}
+						}
+					},
+					function(tx) {log('Erreur recherche '+this.message);}
+				);
+			}, function(err) {
+				log('Erreur '+err.code+' '+err.message);
+			}, function() {
+				callback();
+			}
+		);
+		break;
+	case 'CP':
+		$('#lesli').empty();
+		$('#txtrech').html('Rechercher une localité');
+		madb.transaction(
+			function(tx) {
+				var sql = "select * from CP";
+				if (Rech!='') {sql=sql+" where (CP like '%"+Rech+"%' or Ville like '%"+Rech+"%')";}
+				tx.executeSql(sql,[], 
+					function(tx, results) {
+						$('#NbRech').val(results.rows.length);
+						if (results.rows.length > 0) {
+							for (cpt=0;cpt<results.rows.length;cpt++) {
+								var cp=results.rows.item(cpt).CP;
+								var ville=results.rows.item(cpt).Ville;
+								var province=results.rows.item(cpt).Province;
+							    $('#lesli').append('<li><a class="leschoix" id="VR'+cp+'!'+ville+'|'+ville+'" onclick="Choix($(this))">'+cp+' - '+ville+' ('+province+')</a></li>');
 							}
 						}
 					},
