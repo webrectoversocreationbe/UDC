@@ -26,7 +26,8 @@ var app = {
     },
 	onMenuKeyDown: function() {
 		Sonne(1);
-		showAlert('Touche Menu appuyée','Menu contextuel','OK');
+		Vibre(500);
+//		showAlert('Touche Menu appuyée','Menu contextuel','OK');
 	},
 	onBackButton: function() {
 		showConfirm('Voulez vous sortir de l\'application ?','Quitter',['Quitter','Rester'],function(results) {

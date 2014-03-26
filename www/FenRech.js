@@ -541,6 +541,7 @@ function PopulateRech(Quoi,Rech,callback) {
 			function(tx) {
 				var sql = "select * from CP";
 				if (Rech!='') {sql=sql+" where (CP like '%"+Rech+"%' or Ville like '%"+Rech+"%')";}
+				sql=sql+" order by CP"
 				tx.executeSql(sql,[], 
 					function(tx, results) {
 						$('#NbRech').val(results.rows.length);

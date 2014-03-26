@@ -557,7 +557,8 @@ function ConfirmCde() {
         }).done(function(){
 			$('.loader').toggle();
 			$('#btnconfirmcde').prop('disabled',false);
-			Go('Main');
+			dbu.logout();
+			Go('Connexion');
 		});
 	});
 }
