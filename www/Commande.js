@@ -46,7 +46,6 @@ function VideZones() {
 	
 	VideEcranCdeMod();
 	
-	$('#cdePV').val('');
 	$('#cdePT').val('');
 	$('#cdeRem').val('');
 	$('#cdeRachat').val('');
@@ -174,13 +173,12 @@ function chkEcran() {
 			});
 			// calculer le prix
 			cde.CalculPrix();
-			$('#cdePV').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
-			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
-			if (cde.AfficherPrix==0) {
+//			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
+//			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-			}
+//			}
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -189,9 +187,6 @@ function chkEcran() {
 	case 3: // Ecran ajouter un modèle ?
 		break;
 	case 4: // Prix de vente + Remise + Rachat
-		if ($('#cdePV').val()=='') {
-			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
-		}
 		if ($('#cdePT').val()=='') {
 			showAlert('Il faut préciser le prix total au tarif','Attention','OK'); return false;
 		}
@@ -222,13 +217,10 @@ function chkEcran() {
 		}
 		// si cde pas fractionnée et tvac>3000 => acompte max 10%
 		var pvtvac=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
-		log('tvac '+pvtvac+ 'frac '+cde.Fractionner);
 		if (cde.Fractionner==0 && pvtvac>3000) {
 			var acesp=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
-			log('acesp '+acesp);
 			if (acesp>(pvtvac/10)) {
 				var maxespece=Nombre(Math.floor(pvtvac/10));
-				log('maxesp '+maxespece);
 				showAlert('L\'acompte en espèce ne peut dépasser '+maxespece+' €','Attention','OK'); return false;
 			}
 		}
@@ -247,6 +239,26 @@ function chkEcran() {
 		cde.DateA=$('#cdeacomptedate').val();
 		cde.TotalNet=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
 		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
+		
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+		break;
+	case 6: // frais complémentaires sous traitant
+		if ($('#fspecial1').val()!='' && $('#tfspecial1').val()=='') {
+			showAlert('Il faut préciser le type de frais','Attention','OK'); return false;
+		}
+		if ($('#fspecial2').val()!='' && $('#tfspecial2').val()=='') {
+			showAlert('Il faut préciser le type de frais','Attention','OK'); return false;
+		}
+		cde.FCRepr=$('#chkRepr').is(':checked')==true?75:0;
+		cde.FCEtage1=$('#chkEtage1').is(':checked')==true?90:0;
+		cde.FCEtage3=$('#chkEtage3').is(':checked')==true?120:0;
+		cde.FCEtage8=$('#chkEtage8').is(':checked')==true?200:0;
+		cde.FCSpecial1=parseFloat($('#fspecial1').val().replace(',','.')) || 0;
+		cde.FCSpecial2=parseFloat($('#fspecial2').val().replace(',','.')) || 0;
+		cde.FCTSpecial1=$('#tfspecial1').val();
+		cde.FCTSpecial2=$('#tfspecial2').val();
 		r='';
 		RecapCde();
 		var prenomnom='';
@@ -256,12 +268,11 @@ function chkEcran() {
 			prenomnom=cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1;
 		}
 		$('#nomsign').html(prenomnom);
-		
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
-		break;
-	case 6: // RECAP
+		break
+	case 7: // RECAP
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -279,7 +290,7 @@ function chkEcran() {
 			$('#nomsign').html(resp);
 		}
 		break;
-	case 7: // SIGNATURES
+	case 8: // SIGNATURES
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
@@ -322,6 +333,17 @@ function DefMod(Quoi) {
 }
 function RechCP() {
 	InitRech('CP');
+}
+function ActuFraisCompl() {
+	var tot=0;
+	var chkRepr=$('#chkRepr').is(':checked')==true?75:0;
+	var chkEtage1=$('#chkEtage1').is(':checked')==true?90:0;
+	var chkEtage3=$('#chkEtage3').is(':checked')==true?90:0;
+	var chkEtage8=$('#chkEtage8').is(':checked')==true?90:0;
+	var fspecial1=parseFloat($('#fspecial1').val().replace(',','.')) || 0;
+	var fspecial2=parseFloat($('#fspecial2').val().replace(',','.')) || 0;
+	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
+	$('#fctotal').html(Nombre(tot)+' €');
 }
 function EffacerSign() {
 	var api = $('#sigPadSign1').signaturePad();
@@ -393,7 +415,8 @@ function cdeEcranPrix() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function ActualisePrix() {
-	var PT=cde.AfficherPrix==1?$('#cdePV').val():$('#cdePT').val();
+//	var PT=cde.AfficherPrix==1?$('#cdePV').val():$('#cdePT').val();
+	var PT=$('#cdePT').val();
 	var Rem=$('#cdeRem').val();
 	var Rachat=$('#cdeRachat').val();
 	var FC=$('#cdeFC').val();

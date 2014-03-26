@@ -259,12 +259,11 @@
         <div class="cdeContent">
         	<div style="width:800px; margin:0 auto;">
                 <table width="80%" style="width:600px;"  id="tableauprix">
-                <tr><td align="left">Prix de vente :</td><td align="right"><input type="text" id="cdePV" value="0" size="15" onChange="ActualiserPrix()"/> €</td></tr>
                 <tr><td align="left">Prix total au tarif :</td><td align="right"><input type="text" id="cdePT" value="0" size="15" onChange="NePasAfficherPrix();ActualisePrix();"/> €</td></tr>
                 <tr><td align="left">Remises et promotions :</td><td align="right"><input type="text" id="cdeRem" value="0" size="15" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Rachat salon :</td><td align="right"><input type="text" id="cdeRachat" size="15" value="0" onChange="ActualisePrix()"/> €</td></tr>
                 <tr><td align="left">Frais complémentaires fabrication et livraison : <br/><input type="text" id="cdeFCLIB" value="0" size="25"/></td><td align="right"><br/><input type="text" id="cdeFC" value="" size="15" onChange="ActualisePrix()"/> €</td></tr>
-                <tr><td align="left">Prix de vente total : </td><td align="right"><input type="text" id="cdePVTOT" value="0" size="15"/> €</td></tr>
+                <tr><td align="left">Prix de vente total TVAC : </td><td align="right"><input type="text" id="cdePVTOT" value="0" size="15"/> €</td></tr>
                 </table>
                 <div style="width:600px; text-align:right; margin:10px auto 0 20px; padding-right:40px;">
                     <p>Financement d'une partie de l'achat&nbsp;&nbsp;<input type="radio" name="finpartachat" id="chkfinoui" value="oui">&nbsp;<label for="chkfinoui">Oui</label>&nbsp;&nbsp;<input type="radio" id="chkfinnon" name="finpartachat" value="non" checked="checked">&nbsp;<label for="chkfinnon">Non</label></p><br/>
@@ -306,6 +305,31 @@
         <table width="100%"><tr><td width="33%" class="DateC"></td><td align="center" class="NumCde">Commande : <strong>16541</strong></td><td width="33%" align="right" class="User"></td></tr></table>
         </div>
         <div class="cdeContent">
+        	<div style="width:600px; margin:0 auto;position:relative">
+            	<p><u>Frais complémentaires sous-traitant</u></p>
+                <br/>
+                <p><input type="checkbox" id="chkRepr" onclick="ActuFraisCompl()">&nbsp;<label for="chkRepr">Reprendre ancien salon</label><span class="fcpx">75,00 €</span></p>
+                <p>Livraison par lift :</p>
+                <p><input type="checkbox" id="chkEtage1">&nbsp;<label for="chkEtage1">1er et 2em étage</label><span class="fcpx">90,00 €</span></p>
+                <p><input type="checkbox" id="chkEtage3">&nbsp;<label for="chkEtage3">3em au 7em étage</label><span class="fcpx">120,00 €</span></p>
+                <p><input type="checkbox" id="chkEtage8">&nbsp;<label for="chkEtage8">8em et plus</label><span class="fcpx">200,00 €</span></p>
+                <br/>
+                <p><input type="text" id="tfspecial1" placeholder="Frais spécial 1"><span class="fcpx"><input type="text" id="fspecial1"></span></p>
+                <p><input type="text" id="tfspecial2" placeholder="Frais spécial 2"><span class="fcpx"><input type="text" id="fspecial2"></span></p>
+                <br/>
+                <p>Total à payer à la livraison :<span class="fcpx" id="fctotal"></span></p>
+            </div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+        <div class="cdeFooter">
+        <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde btnannulevente ML15">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
+        </div>
+    </div>
+	<div id="Ecran7" class="EcranCde">
+        <div class="cdeEntete">
+        <table width="100%"><tr><td width="33%" class="DateC"></td><td align="center" class="NumCde">Commande : <strong>16541</strong></td><td width="33%" align="right" class="User"></td></tr></table>
+        </div>
+        <div class="cdeContent">
         	<div style="width:600px; margin:0 auto;">
             <h1>Récapitulatif</h1>
             <div id="RecapCde"></div>
@@ -316,7 +340,7 @@
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde btnannulevente ML15">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
         </div>
     </div>
-	<div id="Ecran7" class="EcranCde">
+	<div id="Ecran8" class="EcranCde">
         <div class="cdeEntete">
         <table width="100%"><tr><td width="33%" class="DateC"></td><td align="center" class="NumCde">Commande : <strong>16541</strong></td><td width="33%" align="right" class="User"></td></tr></table>
         </div>
@@ -336,7 +360,7 @@
         <button class="btncde ML15" onClick="prevEcran()">Ecran précédent</button><button class="btncde btnannulevente ML15">Annulation vente</button><button class="btncde ML15" onClick="chkEcran()">Ecran suivant</button>
         </div>
     </div>
-	<div id="Ecran8" class="EcranCde">
+	<div id="Ecran9" class="EcranCde">
         <div class="cdeEntete">
         <table width="100%"><tr><td width="33%" class="DateC"></td><td align="center" class="NumCde">Commande : <strong>16541</strong></td><td width="33%" align="right" class="User"></td></tr></table>
         </div>

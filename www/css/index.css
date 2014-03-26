@@ -402,7 +402,7 @@ p {
 #tableauprix tr td {width:70%;}
 #tableauprix tr td+td {width:30%;}
 #cdePV {width:120px; text-align:right;}
-#cdePT {width:120px; text-align:right; background:#999;}
+#cdePT {width:120px; text-align:right;}
 #cdeRem {width:120px; text-align:right;}
 #cdeRachat {width:120px; text-align:right;}
 #cdeFC {width:120px; text-align:right;}
@@ -420,4 +420,8 @@ p {
 #cdesoldeacompte {width:120px; text-align:right;}
 #cdeacomptedate {width:120px; text-align:right;}
 /* ecran 6 */
+.fcpx {position:absolute; right:0px;}
+#tfspecial1,#tfspecial2 {width:400px;}
+#fspecial1,#fspecial2 {text-align:right; width:100px;}
+/* ecran 8 */
 #btnconfirmcde {padding:10px; padding-left:15px; padding-right:15px; font-size:20px;}
