@@ -214,7 +214,7 @@ function chkEcran() {
 		}
 		log(1);
 		// si cde pas fractionnée et tvac>3000 => acompte max 10%
-		var pvtvac=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
+		var pvtvac=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
 		if (cde.Fractionner==0 && pvtvac>3000) {
 			var acesp=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
 			if (acesp>(pvtvac/10)) {
@@ -239,7 +239,7 @@ function chkEcran() {
 		cde.DateA=$('#cdeacomptedate').val();
 		cde.TotalNet=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
 		log(4);
-		cde.TotalTVAC=parseFloat($('#cdePVTOTTVAC').val().replace(',','.')) || 0;
+		cde.TotalTVAC=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
 		
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
