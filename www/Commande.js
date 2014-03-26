@@ -78,7 +78,7 @@ function VideEcranCdeMod() {
 	$('#Delai').val('');
 	$('#DelaiMax').val('');
 	$('#cdetLesElems').empty();
-	$('#cdeRemMod').html('');
+	$('#cdeRemMod').html('<span id="cdeRemModCtn"></span>');
 	cdeCroquisEfface();
 }
 function chkFrac() {
@@ -516,12 +516,12 @@ function RecapCde() {
 	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
 	if (tot>0) {
 		r=r+'<hr/><br/><p><u>Frais complémentaires sous-traitant</u></p>';
-		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : '+cde.FCRepr+' €</p>';}
-		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : '+cde.FCEtage1+' €</p>';}
-		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : '+cde.FCEtage3+' €</p>';}
-		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : '+cde.FCEtage8+' €</p>';}
-		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : '+cde.FCSpecial1+' €</p>';}
-		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : '+cde.FCSpecial2+' €</p>';}
+		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : '+Nombre(cde.FCRepr)+' €</p>';}
+		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : '+Nombre(cde.FCEtage1)+' €</p>';}
+		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : '+Nombre(cde.FCEtage3)+' €</p>';}
+		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : '+Nombre(cde.FCEtage8)+' €</p>';}
+		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : '+Nombre(cde.FCSpecial1)+' €</p>';}
+		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : '+Nombre(cde.FCSpecial2)+' €</p>';}
 		r=r+'<br/><p>Total à payer à la livraison : '+Nombre(tot)+' €</p>';
 	}
 	cde.Recap=r;
