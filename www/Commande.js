@@ -515,7 +515,7 @@ function RecapCde() {
 	var fspecial2=parseFloat($('#fspecial2').val().replace(',','.')) || 0;
 	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
 	if (tot>0) {
-		r=r+'<hr/><p><u>Frais complémentaires sous-traitant</u></p>';
+		r=r+'<hr/><br/><p><u>Frais complémentaires sous-traitant</u></p>';
 		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : '+cde.FCRepr+' €</p>';}
 		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : '+cde.FCEtage1+' €</p>';}
 		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : '+cde.FCEtage3+' €</p>';}

@@ -1417,7 +1417,7 @@ window.dbcommande = {
 //											log('fini detail mod '+od.MODNR);
 										},
 										function(tx,err) {
-//											log('err ins mod '+err.code+' '+err.message);
+											log('err ins mod '+err.code+' '+err.message);
 										}
 									);
 								})(i,oCde.Ref,od);
