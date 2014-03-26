@@ -209,9 +209,6 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	case 5: // Prix TVAC + Acompte
-		if ($('#cdePVTOTTVAC').val()=='') {
-			showAlert('Il faut préciser le prix de vente','Attention','OK'); return false;
-		}
 		if ($('#cdesoldeacompte').val()!='' && $('#cdeacomptedate').val()=='') {
 			showAlert('Il faut préciser la date du solde de l\'acompte','Attention','OK'); return false;
 		}
@@ -429,6 +426,7 @@ function ActualisePrix() {
 	var ac20=pvtvac*0.20;
 	$('#cdePVTOT').val(Nombre(pvtot))
 	$('#cdePVTOTTVAC').val(Nombre(pvtvac));
+	$('#labcdePVTOTTVAC').html(Nombre(pvtvac)+' €');
 	$('#acompte20').html(Nombre(ac20)+' €');
 }
 function NePasAfficherPrix() {
@@ -498,6 +496,24 @@ function RecapCde() {
 	if(cde.SoldeAcompte>0) {r=r+'<p>Solde acompte : '+Nombre(cde.SoldeAcompte)+' €</p>';}
 	if(cde.DateA!='') {r=r+'<p>A payer pour le : '+cde.DateA+'</p>';}
 	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
+	var tot=0;
+	var chkRepr=$('#chkRepr').is(':checked')==true?75:0;
+	var chkEtage1=$('#chkEtage1').is(':checked')==true?90:0;
+	var chkEtage3=$('#chkEtage3').is(':checked')==true?120:0;
+	var chkEtage8=$('#chkEtage8').is(':checked')==true?200:0;
+	var fspecial1=parseFloat($('#fspecial1').val().replace(',','.')) || 0;
+	var fspecial2=parseFloat($('#fspecial2').val().replace(',','.')) || 0;
+	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
+	if (tot>0) {
+		r=r+'<hr/><p><u>Frais complémentaires sous-traitant</u></p>';
+		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : '+cde.FCRepr+' €</p>';}
+		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : '+cde.FCEtage1+' €</p>';}
+		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : '+cde.FCEtage3+' €</p>';}
+		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : '+cde.FCEtage8+' €</p>';}
+		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : '+cde.FCSpecial1+' €</p>';}
+		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : '+cde.FCSpecial2+' €</p>';}
+		r=r+'<br/><p>Total à payer à la livraison : '+Nombre(tot)+' €</p>';
+	}
 	cde.Recap=r;
 	$('#RecapCde').html(r);
 }
