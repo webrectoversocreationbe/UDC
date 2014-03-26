@@ -366,7 +366,7 @@ p {
 .cdeFooter button, .btncde {margin:7px 10px 5px 10px; padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px;}
 .gbtncde {margin:7px 10px 5px 10px; padding-top:15px; padding-bottom:15px; padding-left:30px; padding-right:30px; font-size:24px;}
 .cdeContent select {padding:4px; text-align:right;}
-.cdeContent label{border-radius:4px; font-size:16px; line-height:26px; margin-top:-2px;}
+.cdeContent label{border-radius:4px; font-size:20px; line-height:32px; margin-top:-2px;}
 .cdeContent input[type=radio] {display:none;}
 .cdeContent input[type=radio] + label {display:inline-block;padding: 2px 12px;background-color: #e7e7e7;color:#505058; border:1px solid #9e9e9e;}
 .cdeContent input[type=radio]:checked + label {background-color:#e2001a;color:#fff;}
@@ -423,5 +423,6 @@ p {
 .fcpx {position:absolute; right:0px;}
 #tfspecial1,#tfspecial2 {width:400px;}
 #fspecial1,#fspecial2 {text-align:right; width:100px;}
+#fctotal {font-weight:bold;}
 /* ecran 8 */
 #btnconfirmcde {padding:10px; padding-left:15px; padding-right:15px; font-size:20px;}

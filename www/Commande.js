@@ -338,8 +338,8 @@ function ActuFraisCompl() {
 	var tot=0;
 	var chkRepr=$('#chkRepr').is(':checked')==true?75:0;
 	var chkEtage1=$('#chkEtage1').is(':checked')==true?90:0;
-	var chkEtage3=$('#chkEtage3').is(':checked')==true?90:0;
-	var chkEtage8=$('#chkEtage8').is(':checked')==true?90:0;
+	var chkEtage3=$('#chkEtage3').is(':checked')==true?120:0;
+	var chkEtage8=$('#chkEtage8').is(':checked')==true?200:0;
 	var fspecial1=parseFloat($('#fspecial1').val().replace(',','.')) || 0;
 	var fspecial2=parseFloat($('#fspecial2').val().replace(',','.')) || 0;
 	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
