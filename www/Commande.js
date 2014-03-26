@@ -443,69 +443,65 @@ function NePasAfficherPrix() {
 	cde.AfficherPrix=0;
 }
 function RecapCde() {
-	r='<p>Date : '+cde.DateC+'</p>'
-	+'<p>Commande : '+cde.Ref+'</p>'
-	+'<p>Vendeur : '+cde.Vendeur+'</p>'
+	r='<p>Date : <span class="mev">'+cde.DateC+'</span></p>'
+	+'<p>Commande : <span class="mev">'+cde.Ref+'</span></p>'
+	+'<p>Vendeur : <span class="mev">'+cde.Vendeur+'</span></p>'
 	+'<hr/>';
 	if (cde.Societe!='') {
-		r=r+'<p>Société : '+cde.Societe+'</p>'
-		+'<p>Responsable : '+cde.Civil0+' '+cde.Responsable+'</p>'
+		r=r+'<p>Société : <span class="mev">'+cde.Societe+'</span></p>'
+		+'<p>Responsable : <span class="mev">'+cde.Civil0+' '+cde.Responsable+'</span></p>'
 	} else {
-		r=r+'<p>';
+		r=r+'<p><span class="mev">';
 		r=r+'Client : <br/>';
 		r=r+cde.Civil1+' '+cde.Prenom1+' '+cde.Nom1
 		if(cde.Prenom2!='') {
 			r=r+'<br/>'+cde.Civil2+' '+cde.Prenom2+' '+cde.Nom2;
 		}
-		r=r+'</p>';
+		r=r+'</span></p>';
 	}
-	if(cde.Adresse!='') {r=r+'<p>Adresse : <br/>'+cde.Adresse+'</p>';}
-	if(cde.CP!='') {r=r+'<p>'+cde.CP+' '+cde.Ville+'</p>';}
-	if(cde.Tel1!='') {r=r+'<p>Téléphone : '+cde.Tel1+'</p>';}
-	if(cde.Tel2!='') {r=r+'<p>Téléphone : '+cde.Tel2+'</p>';}
-	if(cde.Gsm1!='') {r=r+'<p>Gsm : '+cde.Gsm1+'</p>';}
-	if(cde.Gsm2!='') {r=r+'<p>Gsm : '+cde.Gsm2+'</p>';}
-	if(cde.Email!='') {r=r+'<p>Email : '+cde.Email+'</p>';}
-	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/>'+cde.Remarque+'</p>';}
+	if(cde.Adresse!='') {r=r+'<p>Adresse : <br/><span class="mev">'+cde.Adresse+'</span></p>';}
+	if(cde.CP!='') {r=r+'<p><span class="mev">'+cde.CP+' '+cde.Ville+'</span></p>';}
+	if(cde.Tel1!='') {r=r+'<p>Téléphone : <span class="mev">'+cde.Tel1+'</span></p>';}
+	if(cde.Tel2!='') {r=r+'<p>Téléphone : <span class="mev">'+cde.Tel2+'</span></p>';}
+	if(cde.Gsm1!='') {r=r+'<p>Gsm : <span class="mev">'+cde.Gsm1+'</span></p>';}
+	if(cde.Gsm2!='') {r=r+'<p>Gsm : <span class="mev">'+cde.Gsm2+'</span></p>';}
+	if(cde.Email!='') {r=r+'<p>Email : <span class="mev">'+cde.Email+'</span></p>';}
+	if(cde.Remarque!='') {r=r+'<p>Remarque : <br/><span class="mev">'+cde.Remarque+'</span></p>';}
 	var nbmod=cde.DetailCommande.length;
 	for(cptm=0;cptm<nbmod;cptm++) {
 		r=r+'<hr/>';
-		r=r+'<br/><p><u>Modèle</u> : <br/>'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MODUC+'</p>';
-		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : '+cde.DetailCommande[cptm].CUIRUC+'</p>';}
-		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : '+cde.DetailCommande[cptm].COLOUC+'</p>';}
-		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : '+cde.DetailCommande[cptm].OPFR+'</p>';}
-		if (cde.DetailCommande[cptm].MODELAI!='') {r=r+'<p>Délai : '+cde.DetailCommande[cptm].MODELAI+' à '+cde.DetailCommande[cptm].DelaiMax+' semaines - '+cde.DetailCommande[cptm].GenreDelai+'</p>';}
+		r=r+'<br/><p><u>Modèle</u> : <br/><span class="mev">'+cde.DetailCommande[cptm].MODNR+' - '+cde.DetailCommande[cptm].MODUC+'</span></p>';
+		if (cde.DetailCommande[cptm].CUIRUC!='') {r=r+'<p>Revêtement : <span class="mev">'+cde.DetailCommande[cptm].CUIRUC+'</span></p>';}
+		if (cde.DetailCommande[cptm].COLOUC!='') {r=r+'<p>Couleur : <span class="mev">'+cde.DetailCommande[cptm].COLOUC+'</span></p>';}
+		if (cde.DetailCommande[cptm].OPFR!='') {r=r+'<p>Option : <span class="mev">'+cde.DetailCommande[cptm].OPFR+'</span></p>';}
+		if (cde.DetailCommande[cptm].MODELAI!='') {r=r+'<p>Délai : <span class="mev">'+cde.DetailCommande[cptm].MODELAI+' à '+cde.DetailCommande[cptm].DelaiMax+' semaines - '+cde.DetailCommande[cptm].GenreDelai+'</span></p>';}
 		var nbelem=cde.DetailCommande[cptm].Elements.length;
 		for(cpte=0;cpte<nbelem;cpte++) {
 			var descelem=cde.DetailCommande[cptm].Elements[cpte].ELFR;
 			var Qte=cde.DetailCommande[cptm].Elements[cpte].Qte;
 			var Px=cde.DetailCommande[cptm].Elements[cpte].Prix;
 			if (Qte>0) {
-				r=r+'<p class="ML15">- '+descelem+' : '+Qte;
+				r=r+'<p class="ML15">- <span class="mev">'+descelem+' : '+Qte;
 				if (cde.AfficherPrix==1) {r=r+' = '+Nombre(Qte*Px)+' €';}
-				r=r+'</p>';
+				r=r+'</span></p>';
 			}
 		}
 	}
 	r=r+'<hr/>';
 	r=r+'<br/><p><u>Total</u> : </p>';
-	if (cde.AfficherPrix==0) {
-		r=r+'<p>Prix de vente : '+Nombre(cde.PrixTarif)+' €</p>';
-	} else {
-		r=r+'<p>Prix de vente : '+Nombre(cde.PrixVente)+' €</p>';
-	}
-	if(cde.Remise>0) {r=r+'<p>Remise : '+Nombre(cde.Remise)+' €</p>';}
-	if(cde.Reprise>0) {r=r+'<p>Rachat : '+Nombre(cde.Reprise)+' €</p>';}
-	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : '+Nombre(cde.Frais)+' €</p>';}
-	r=r+'<p>Prix TVAC : '+Nombre(cde.TotalTVAC)+' €</p>';
-	r=r+'<br/><p><u>Acompte payé ce jour</u> : '+Nombre(cde.Acompte)+' €</p>';
-	if(cde.AcompteCarte>0) {r=r+'<p>Carte : '+Nombre(cde.AcompteCarte)+' €</p>';}
-	if(cde.AcompteEspece>0) {r=r+'<p>Espèce : '+Nombre(cde.AcompteEspece)+' €</p>';}
-	if(cde.AcompteCheque>0) {r=r+'<p>Chèque : '+Nombre(cde.AcompteCheque)+' €</p>';}
-	if(cde.AcompteAutre>0) {r=r+'<p>Autre : '+Nombre(cde.AcompteAutre)+' €</p>';}
-	if(cde.SoldeAcompte>0) {r=r+'<p>Solde acompte : '+Nombre(cde.SoldeAcompte)+' €</p>';}
-	if(cde.DateA!='') {r=r+'<p>A payer pour le : '+cde.DateA+'</p>';}
-	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : '+cde.MontantFinancement+' €</p>';}
+	r=r+'<p>Prix de vente : <span class="mev">'+Nombre(cde.PrixVente)+' €</span></p>';
+	if(cde.Remise>0) {r=r+'<p>Remise : <span class="mev">'+Nombre(cde.Remise)+' €</span></p>';}
+	if(cde.Reprise>0) {r=r+'<p>Rachat : <span class="mev">'+Nombre(cde.Reprise)+' €</span></p>';}
+	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : <span class="mev">'+Nombre(cde.Frais)+' €</span></p>';}
+	r=r+'<p>Prix TVAC : <span class="mev">'+Nombre(cde.TotalTVAC)+' €</span></p>';
+	r=r+'<br/><p><u>Acompte payé ce jour</u> : <span class="mev">'+Nombre(cde.Acompte)+' €</span></p>';
+	if(cde.AcompteCarte>0) {r=r+'<p>Carte : <span class="mev">'+Nombre(cde.AcompteCarte)+' €</span></p>';}
+	if(cde.AcompteEspece>0) {r=r+'<p>Espèce : <span class="mev">'+Nombre(cde.AcompteEspece)+' €</span></p>';}
+	if(cde.AcompteCheque>0) {r=r+'<p>Chèque : <span class="mev">'+Nombre(cde.AcompteCheque)+' €</span></p>';}
+	if(cde.AcompteAutre>0) {r=r+'<p>Autre : <span class="mev">'+Nombre(cde.AcompteAutre)+' €</span></p>';}
+	if(cde.SoldeAcompte>0) {r=r+'<p>Solde acompte : <span class="mev">'+Nombre(cde.SoldeAcompte)+' €</span></p>';}
+	if(cde.DateA!='') {r=r+'<p>A payer pour le : <span class="mev">'+cde.DateA+'</span></p>';}
+	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : <span class="mev">'+cde.MontantFinancement+' €</span></p>';}
 	var tot=0;
 	var chkRepr=$('#chkRepr').is(':checked')==true?75:0;
 	var chkEtage1=$('#chkEtage1').is(':checked')==true?90:0;
@@ -516,13 +512,13 @@ function RecapCde() {
 	tot=(chkRepr+chkEtage1+chkEtage3+chkEtage8+fspecial1+fspecial2);
 	if (tot>0) {
 		r=r+'<hr/><br/><p><u>Frais complémentaires sous-traitant</u></p>';
-		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : '+Nombre(cde.FCRepr)+' €</p>';}
-		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : '+Nombre(cde.FCEtage1)+' €</p>';}
-		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : '+Nombre(cde.FCEtage3)+' €</p>';}
-		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : '+Nombre(cde.FCEtage8)+' €</p>';}
-		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : '+Nombre(cde.FCSpecial1)+' €</p>';}
-		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : '+Nombre(cde.FCSpecial2)+' €</p>';}
-		r=r+'<br/><p>Total à payer à la livraison : '+Nombre(tot)+' €</p>';
+		if(cde.FCRepr>0) {r=r+'<p>Reprise ancien salon : <span class="mev">'+Nombre(cde.FCRepr)+' €</span></p>';}
+		if(cde.FCEtage1>0) {r=r+'<p>Livraison par lift étage 1 ou 2 : <span class="mev">'+Nombre(cde.FCEtage1)+' €</span></p>';}
+		if(cde.FCEtage3>0) {r=r+'<p>Livraison par lift étage 3 à 8 : <span class="mev">'+Nombre(cde.FCEtage3)+' €</span></p>';}
+		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : <span class="mev">'+Nombre(cde.FCEtage8)+' €</span></p>';}
+		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : <span class="mev">'+Nombre(cde.FCSpecial1)+' €</span></p>';}
+		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : <span class="mev">'+Nombre(cde.FCSpecial2)+' €</span></p>';}
+		r=r+'<br/><p><u>Total à payer à la livraison</u> : <span class="mev">'+Nombre(tot)+' €</span></p>';
 	}
 	cde.Recap=r;
 	$('#RecapCde').html(r);
