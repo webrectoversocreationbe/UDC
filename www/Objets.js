@@ -254,6 +254,7 @@ Commande.prototype = {
 	init: function(Id,callback) {
 	},
 	CalculPrix: function() {
+		dump(this,'log');
 		var Prix=0;
 		var nbmod=this.DetailCommande.length;
 		for(cptm=0;cptm<nbmod;cptm++) {
