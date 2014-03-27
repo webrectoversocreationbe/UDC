@@ -390,7 +390,7 @@ function InputModPerso() {
 																					cdeModele.MODUC=MODUC;
 																					cdeModele.CUIRNR=CUIRNR;
 																					cdeModele.CUIRUC=CUIRUC;
-																					cdeModele.COULNR=COULNR;
+																					cdeModele.COLORNR=COULNR;
 																					cdeModele.COLOUC=COLOUC;
 																					cdeModele.OPCODE=OPCODE;
 																					cdeModele.OPFR=OPFR;
@@ -455,7 +455,7 @@ function AjouteElemPerso() {
 							showPrompt('Prix de l\'élément',titre,'',function(results) {
 								if (results.buttonIndex==1) {
 									Prix=results.input1!=''?results.input1:0;
-									var el=[];
+									var el={};
 									el.ELCODE=ELCODE;el.ELFR=ELFR;el.Qte=Qte;el.Prix=Prix;
 									cdeModele.Elements.push(el);
 									var ret='<tr id="cdeelem'+ELCODE+'"><td>'+ELCODE+' - '+ELFR+'</td><td align="right">'+Qte+'</td></tr>';
