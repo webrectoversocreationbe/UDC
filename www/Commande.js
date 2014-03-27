@@ -342,16 +342,19 @@ function DefMod(Quoi) {
 	}
 }
 function InputModPerso() {
-	showPrompt('Modèle personnalisé','Code du modèle','888888',function(results) {
+	var MODNR='',MODUC='',CUIRNR='',CUIRUC='',COLORNR='',COLOUC='',OPCODE='',OPFR='';
+	var titre='Modèle personnalisé';
+	showPrompt('Code du modèle',titre,'888888',function(results) {
 		if (results.buttonIndex==1) {
-			var MODNR=results.input1
-		} else {
-			return false;
-		}
-	});
-	showPrompt('Modèle personnalisé','Nom du modèle','',function(results) {
-		if (results.buttonIndex==1) {
-			var MODUC=results.input1
+			MODNR=results.input1
+			showPrompt('Nom du modèle',titre,'',function(results) {
+				if (results.buttonIndex==1) {
+					MODUC=results.input1
+					$('#cdemoduc').html('<p>'+MODNR+' - '+MODUC+'</p>');
+				} else {
+					return false;
+				}
+			});
 		} else {
 			return false;
 		}
