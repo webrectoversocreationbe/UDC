@@ -349,39 +349,54 @@ function VideModPerso() {
 }
 function InputModPerso() {
 	var MODNR='',MODUC='',CUIRNR='',CUIRUC='',COLORNR='',COLOUC='',OPCODE='',OPFR='',MODELAI=0,DelaiMax=0;
-	var titre='Modèle personnalisé';
-	showPrompt('Code du modèle',titre,'888888',function(results) {
+	var titre='Modèle personnalisé',pardef='';
+	pardef=cdeModele.MODNR!=''?cdeModele.MODNR:'888888';
+	// MODELE
+	showPrompt('Code du modèle',titre,pardef,function(results) {
 		if (results.buttonIndex==1) {
-			MODNR=results.input1
-			showPrompt('Nom du modèle',titre,'',function(results) {
+			MODNR=results.input1;
+			pardef=cdeModele.MODUC!=''?cdeModele.MODUC:'';
+			showPrompt('Nom du modèle',titre,pardef,function(results) {
 				if (results.buttonIndex==1) {
 					MODUC=results.input1!=''?results.input1:'Sans nom';
 					$('#cdemoduc').html(MODNR+' - '+MODUC);
-					showPrompt('Code du revêtement',titre,'888888',function(results) {
+					// REVET
+					pardef=cdeModele.CUIRNR!=''?cdeModele.CUIRNR:'8888';
+					showPrompt('Code du revêtement',titre,pardef,function(results) {
 						if (results.buttonIndex==1) {
-							CUIRNR=results.input1
-							showPrompt('Nom du revêtement',titre,'',function(results) {
+							CUIRNR=results.input1;
+							pardef=cdeModele.CUIRUC!=''?cdeModele.CUIRUC:'';
+							showPrompt('Nom du revêtement',titre,pardef,function(results) {
 								if (results.buttonIndex==1) {
 									CUIRUC=results.input1!=''?results.input1:'Sans nom';
 									$('#cdecuiruc').html(CUIRNR+' - '+CUIRUC);
-									showPrompt('Code de la couleur',titre,'888888',function(results) {
+									// COULEUR
+									pardef=cdeModele.COLORNR!=''?cdeModele.COLORNR:'8888';
+									showPrompt('Code de la couleur',titre,pardef,function(results) {
 										if (results.buttonIndex==1) {
-											COLORNR=results.input1
-											showPrompt('Nom de la couleur',titre,'',function(results) {
+											COLORNR=results.input1;
+											pardef=cdeModele.COLOUC!=''?cdeModele.COLOUC:'';
+											showPrompt('Nom de la couleur',titre,pardef,function(results) {
 												if (results.buttonIndex==1) {
 													COLOUC=results.input1!=''?results.input1:'Sans nom';
 													$('#cdecolouc').html(COLORNR+' - '+COLOUC);
-													showPrompt('Code de l\'option',titre,'888888',function(results) {
+													// OPTION
+													pardef=cdeModele.OPCODE!=''?cdeModele.OPCODE:'888';
+													showPrompt('Code de l\'option',titre,pardef,function(results) {
 														if (results.buttonIndex==1) {
 															OPCODE=results.input1
-															showPrompt('Nom de l\'option',titre,'',function(results) {
+															pardef=cdeModele.OPFR!=''?cdeModele.OPFR:'';
+															showPrompt('Nom de l\'option',titre,pardef,function(results) {
 																if (results.buttonIndex==1) {
 																	OPFR=results.input1!=''?results.input1:'Sans nom';
 																	$('#cdeopfr').html(OPCODE+' - '+OPFR);
-																	showPrompt('Délai minimum',titre,'',function(results) {
+																	// DELAI
+																	pardef=cdeModele.MODELAI!=''?cdeModele.MODELAI:'';
+																	showPrompt('Délai minimum',titre,pardef,function(results) {
 																		if (results.buttonIndex==1) {
 																			MODELAI=results.input1!=''?results.input1:10;
 																			$('#Delai').val(MODELAI);
+																			pardef=cdeModele.DelaiMax!=''?cdeModele.DelaiMax:'';
 																			showPrompt('Délai maximum',titre,'',function(results) {
 																				if (results.buttonIndex==1) {
 																					DelaiMax=results.input1!=''?results.input1:12;
@@ -458,8 +473,9 @@ function InputModPerso() {
 }
 function AjouteElemPerso() {
 	var ELCODE='',ELFR='',Qte=0,Prix=0;
-	var titre='Elément personnalisé';
-	showPrompt('Code de l\'élément',titre,'8888888',function(results) {
+	var titre='Elément personnalisé',pardef='';
+	pardef=(8888888+cdeModele.Elements.length);
+	showPrompt('Code de l\'élément',titre,pardef,function(results) {
 		if (results.buttonIndex==1) {
 			ELCODE=results.input1
 			showPrompt('Nom de l\'élément',titre,'',function(results) {
