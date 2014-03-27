@@ -336,7 +336,19 @@ function DefMod(Quoi) {
 			$('#supprelem').attr('disabled',true);
 			InitRech(Quoi);
 			break;
+		case 'ModelePerso':
+			InputModPerso();
+			break;
 	}
+}
+function InputModPerso() {
+	showPrompt('Modèle personnalisé','Code du modèle','888888',function(results) {
+		if (results.buttonIndex==1) {
+			var MODNR=results.input1
+		} else {
+			return false;
+		}
+	});
 }
 function RechCP() {
 	InitRech('CP');
