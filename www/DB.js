@@ -1283,6 +1283,8 @@ window.dbcommande = {
 				"DateC VARCHAR(10)," +
 				"Etat VARCHAR(50)," +
 				"Vendeur VARCHAR(50)," +
+				"bAnnule INTEGER," +
+				"RaisonAnnulation TEXT," +
 				"Societe VARCHAR(50)," +
 				"NumTva VARCHAR(20)," +
 				"RemVen VARCHAR(150)," +
@@ -1324,6 +1326,14 @@ window.dbcommande = {
 				"AcompteAutre REAL," +
 				"SoldeAcompte REAL," +
 				"DateA VARCHAR(10)," +
+				"FCRepr REAL," +
+				"FCEtage1 REAL," +
+				"FCEtage3 REAL," +
+				"FCEtage8 REAL," +
+				"FCSpecial1 REAL," +
+				"FCSpecial2 REAL," +
+				"FCTSpecial1 VARCHAR(100)," +
+				"FCTSpecial2 VARCHAR(100)," +
 				"Signature1 TEXT," +
 				"Signature2 TEXT," +
 				"Recap TEXT" +
@@ -1373,12 +1383,14 @@ window.dbcommande = {
 //				log('insert cde '+oCde.Ref);
 				(function inscde(oCde) {
 					var o = oCde;
-					var sql = "INSERT INTO Commande (Ref,DateC,Etat,Vendeur,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
+					var sql = "INSERT INTO Commande (Ref,DateC,Etat,Vendeur,bAnnule,Societe,NumTva,RemVen,Civil0,Responsable,Civil1,Prenom1,Nom1,Civil2,Prenom2,Nom2,Adresse,CP,Ville,Tel1,Tel2,Gsm1,Gsm2,Email,Remarque,Fractionner," +
 						"NbFraction,FactEnsSiege,TotalTarif,PrixVente,Remise,Reprise,Frais,GenreFrais,TotalNet,Financement,MontantFin,Exoneration,TotalTVAC,Acompte,AcompteCarte,AcompteEspece,AcompteCheque," +
-						"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2,Recap) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-					var params = [o.Ref.toString(),o.DateCYYYYMMDD,'',o.Vendeur,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,
+						"AcompteAutre,SoldeAcompte,DateA,Signature1,Signature2,Recap,FCRepr,FCEtage1,FCEtage3,FCEtage8,FCSpecial1,FCSpecial2,FCTSpecial1,FCTSpecial2) VALUES " +
+						"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					var params = [o.Ref.toString(),o.DateCYYYYMMDD,'',o.Vendeur,0,o.Societe,o.NumTva,o.RemarqueVendeur,o.Civil0,o.Responsable,o.Civil1,o.Prenom1,o.Nom1,o.Civil2,o.Prenom2,o.Nom2,o.Adresse,o.CP,o.Ville,
 						o.Tel1,o.Tel2,o.Gsm1,o.Gsm2,o.Email,o.Remarque,o.Fractionner,o.NbFraction,o.FactEnsSiege,o.TotalTarif,o.PrixVente,o.Remise,o.Reprise,o.Frais,o.GenreFrais,o.TotalNet,o.Financement,o.MontantFinancement,
-						o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'','',o.Recap];
+						o.Exoneration,o.TotalTVAC,o.Acompte,o.AcompteCarte,o.AcompteEspece,o.AcompteCheque,o.AcompteAutre,o.SoldeAcompte,o.DateA,'','',o.Recap,
+						o.FCRepr,o.FCEtage1,o.FCEtage3,o.FCEtage8,o.FCSpecial1,o.FCSpecial2,o.FCTSpecial1,o.FCTSpecial2];
 					tx.executeSql(sql, params, 
 						function(tx, results) {
 							// LES MODELES

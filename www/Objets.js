@@ -210,6 +210,8 @@ Modele.prototype = {
 */
 var Commande = function() {
 	this.Existe=false;
+	this.bAnnule=0;
+	this.RaisonAnnulation='';
 	this.Vendeur='';
 	this.Actif=0;
 	this.Ref='';this.DateC='';this.DateCYYYYMMDD='';this.Etat='';
