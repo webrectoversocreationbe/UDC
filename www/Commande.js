@@ -337,12 +337,18 @@ function DefMod(Quoi) {
 			InitRech(Quoi);
 			break;
 		case 'ModelePerso':
-			InputModPerso();
+			if (InputModPerso()==true) {
+				cdeModele.Existe=false;
+				cdeModele.Perso=true;
+			} else {
+				$('#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr').html('');
+				$('#Delai,#DelaiMax').val('');
+			}
 			break;
 	}
 }
 function InputModPerso() {
-	var MODNR='',MODUC='',CUIRNR='',CUIRUC='',COLORNR='',COLOUC='',OPCODE='',OPFR='';
+	var MODNR='',MODUC='',CUIRNR='',CUIRUC='',COLORNR='',COLOUC='',OPCODE='',OPFR='',MODELAI=0,DelaiMax=0;
 	var titre='Modèle personnalisé';
 	showPrompt('Code du modèle',titre,'888888',function(results) {
 		if (results.buttonIndex==1) {
@@ -350,7 +356,69 @@ function InputModPerso() {
 			showPrompt('Nom du modèle',titre,'',function(results) {
 				if (results.buttonIndex==1) {
 					MODUC=results.input1
-					$('#cdemoduc').html('<p>'+MODNR+' - '+MODUC+'</p>');
+					$('#cdemoduc').html(MODNR+' - '+MODUC);
+					showPrompt('Code du revêtement',titre,'888888',function(results) {
+						if (results.buttonIndex==1) {
+							CUIRNR=results.input1
+							showPrompt('Nom du revêtement',titre,'',function(results) {
+								if (results.buttonIndex==1) {
+									CUIRUC=results.input1
+									$('#cdecuiruc').html(CUIRNR+' - '+CUIRUC);
+									showPrompt('Code de la couleur',titre,'888888',function(results) {
+										if (results.buttonIndex==1) {
+											COLORNR=results.input1
+											showPrompt('Nom de la couleur',titre,'',function(results) {
+												if (results.buttonIndex==1) {
+													COLOUC=results.input1
+													$('#cdecolouc').html(COLORNR+' - '+COLOUC);
+													showPrompt('Code de l\'option',titre,'888888',function(results) {
+														if (results.buttonIndex==1) {
+															OPCODE=results.input1
+															showPrompt('Nom de l\'option',titre,'',function(results) {
+																if (results.buttonIndex==1) {
+																	OPFR=results.input1
+																	$('#cdeopfr').html(OPCODE+' - '+OPFR);
+																	showPrompt('Délai minimum',titre,'',function(results) {
+																		if (results.buttonIndex==1) {
+																			MODELAI=results.input1
+																			$('#Delai').val(MODELAI);
+																			showPrompt('Délai maximum',titre,'',function(results) {
+																				if (results.buttonIndex==1) {
+																					DelaiMax=results.input1
+																					$('#DelaiMax').val(DelaiMax);
+																					return true;
+																				} else {
+																					return false;
+																				}
+																			});
+																		} else {
+																			return false;
+																		}
+																	});
+																} else {
+																	return false;
+																}
+															});
+														} else {
+															return false;
+														}
+													});
+												} else {
+													return false;
+												}
+											});
+										} else {
+											return false;
+										}
+									});
+								} else {
+									return false;
+								}
+							});
+						} else {
+							return false;
+						}
+					});
 				} else {
 					return false;
 				}
