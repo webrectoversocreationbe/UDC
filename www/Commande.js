@@ -753,6 +753,11 @@ function HistoCmd() {
 function DetailBon(refcde) {
 	dbcommande.DetailBon(refcde,function(r) {
 		$('#historecap').html(r);
+		$('#HistoNumBon').val(refcde);
 		Go('BonCommande');
 	});
+}
+function AnnulerBon() {
+	var refcde=$('#HistoNumBon').val();
+	alert('annuler '+refcde);
 }

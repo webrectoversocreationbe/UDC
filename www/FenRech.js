@@ -220,7 +220,7 @@ function InitRech(Quoi,callback) {
 					$('#cdeelem'+elcode).remove();
 					if (cdeModele.Perso==true) {
 						for (var cpt=0;cpt<cdeModele.Elements.length;cpt++) {
-							if (cdeModele.Elements[cpt].ELFR==elfr) {
+							if (cdeModele.Elements[cpt].ELCODE==elcode) {
 								cdeModele.Elements.splice(cpt,1);
 								return true;
 							}
