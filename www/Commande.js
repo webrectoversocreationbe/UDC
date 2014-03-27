@@ -392,10 +392,14 @@ function InputModPerso() {
 																					cdeModele.MODUC=MODUC;
 																					cdeModele.CUIRNR=CUIRNR;
 																					cdeModele.CUIRUC=CUIRUC;
+																					if (COLOUC!='Sans nom') {
 																					cdeModele.COLORNR=COLORNR;
 																					cdeModele.COLOUC=COLOUC;
+																					}
+																					if (OPFR!='Sans nom') {
 																					cdeModele.OPCODE=OPCODE;
 																					cdeModele.OPFR=OPFR;
+																					}
 																					cdeModele.MODELAI=MODELAI;
 																					cdeModele.DelaiMax=DelaiMax;
 																					cdeModele.MOCOEF=1;
@@ -469,9 +473,11 @@ function AjouteElemPerso() {
 									Prix=results.input1!=''?results.input1:0;
 									var el={};
 									el.ELCODE=ELCODE;el.ELFR=ELFR;el.Qte=Qte;el.Prix=Prix;
-									cdeModele.Elements.push(el);
-									var ret='<tr id="cdeelem'+ELCODE+'"><td>'+ELCODE+' - '+ELFR+'</td><td align="right">'+Qte+'</td></tr>';
-									$('#cdetLesElems').append(ret);
+									if (ELFR!='Sans nom') {
+										cdeModele.Elements.push(el);
+										var ret='<tr id="cdeelem'+ELCODE+'"><td>'+ELCODE+' - '+ELFR+'</td><td align="right">'+Qte+'</td></tr>';
+										$('#cdetLesElems').append(ret);
+									}
 									return true;
 								} else {
 									return false;
