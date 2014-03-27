@@ -455,6 +455,11 @@ function AjouteElemPerso() {
 							showPrompt('Prix de l\'élément',titre,'',function(results) {
 								if (results.buttonIndex==1) {
 									Prix=results.input1!=''?results.input1:0;
+									var el=[];
+									el.ELCODE=ELCODE;el.ELFR=ELFR;el.Qte=Qte;el.Prix=Prix;
+									cdeModele.Elements.push(el);
+									var ret='<tr id="cdeelem'+ELCODE+'"><td>'+ELCODE+' - '+ELFR+'</td><td align="right">'+Qte+'</td></tr>';
+									$('#cdetLesElems').append(ret);
 									return true;
 								} else {
 									return false;
