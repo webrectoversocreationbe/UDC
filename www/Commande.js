@@ -349,6 +349,13 @@ function InputModPerso() {
 			return false;
 		}
 	});
+	showPrompt('Modèle personnalisé','Nom du modèle','',function(results) {
+		if (results.buttonIndex==1) {
+			var MODUC=results.input1
+		} else {
+			return false;
+		}
+	});
 }
 function RechCP() {
 	InitRech('CP');
