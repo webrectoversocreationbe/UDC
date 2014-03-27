@@ -170,7 +170,7 @@ function chkEcran() {
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
 			cde.DetailCommande[cptmod].DelaiMax=$('#DelaiMax').val();
-			if ($('#GenreASAP').is(':checked')==true) {cde.DetailCommande[cptmod].GenreDelai='ASAP';} else {cde.DetailCommande[cptmod].GenreDelai='Respecter';}
+			if ($('#GenreASAP').is(':checked')==true) {cde.DetailCommande[cptmod].GenreDelai='ASAP';} else {cde.DetailCommande[cptmod].GenreDelai='Normal';}
 			$('#cdetLesElems tr').each(function(index) {
 				var elcode=$(this).children().eq(0).html().split(' -',1)[0];
 				var qte=$(this).children().eq(1).html();
@@ -355,37 +355,49 @@ function InputModPerso() {
 			MODNR=results.input1
 			showPrompt('Nom du modèle',titre,'',function(results) {
 				if (results.buttonIndex==1) {
-					MODUC=results.input1
+					MODUC=results.input1!=''?results.input1:'Sans nom';
 					$('#cdemoduc').html(MODNR+' - '+MODUC);
 					showPrompt('Code du revêtement',titre,'888888',function(results) {
 						if (results.buttonIndex==1) {
 							CUIRNR=results.input1
 							showPrompt('Nom du revêtement',titre,'',function(results) {
 								if (results.buttonIndex==1) {
-									CUIRUC=results.input1
+									CUIRUC=results.input1!=''?results.input1:'Sans nom';
 									$('#cdecuiruc').html(CUIRNR+' - '+CUIRUC);
 									showPrompt('Code de la couleur',titre,'888888',function(results) {
 										if (results.buttonIndex==1) {
 											COLORNR=results.input1
 											showPrompt('Nom de la couleur',titre,'',function(results) {
 												if (results.buttonIndex==1) {
-													COLOUC=results.input1
+													COLOUC=results.input1!=''?results.input1:'Sans nom';
 													$('#cdecolouc').html(COLORNR+' - '+COLOUC);
 													showPrompt('Code de l\'option',titre,'888888',function(results) {
 														if (results.buttonIndex==1) {
 															OPCODE=results.input1
 															showPrompt('Nom de l\'option',titre,'',function(results) {
 																if (results.buttonIndex==1) {
-																	OPFR=results.input1
+																	OPFR=results.input1!=''?results.input1:'Sans nom';
 																	$('#cdeopfr').html(OPCODE+' - '+OPFR);
 																	showPrompt('Délai minimum',titre,'',function(results) {
 																		if (results.buttonIndex==1) {
-																			MODELAI=results.input1
+																			MODELAI=results.input1!=''?results.input1:10;
 																			$('#Delai').val(MODELAI);
 																			showPrompt('Délai maximum',titre,'',function(results) {
 																				if (results.buttonIndex==1) {
-																					DelaiMax=results.input1
+																					DelaiMax=results.input1!=''?results.input1:12;
 																					$('#DelaiMax').val(DelaiMax);
+																					cdeModele.MODNR=MODNR;
+																					cdeModele.MODUC=MODUC;
+																					cdeModele.CUIRNR=CUIRNR;
+																					cdeModele.CUIRUC=CUIRUC;
+																					cdeModele.COULNR=COULNR;
+																					cdeModele.COLOUC=COLOUC;
+																					cdeModele.OPCODE=OPCODE;
+																					cdeModele.OPFR=OPFR;
+																					cdeModele.MODELAI=MODELAI;
+																					cdeModele.DelaiMax=DelaiMax;
+																					cdeModele.MOCOEF=1;
+																					cdeModele.MOCOEF2=1;
 																					return true;
 																				} else {
 																					return false;
@@ -411,6 +423,39 @@ function InputModPerso() {
 											return false;
 										}
 									});
+								} else {
+									return false;
+								}
+							});
+						} else {
+							return false;
+						}
+					});
+				} else {
+					return false;
+				}
+			});
+		} else {
+			return false;
+		}
+	});
+}
+function AjouteElemPerso() {
+	var ELCODE='',ELFR='',Qte=0,Prix=0;
+	var titre='Elément personnalisé';
+	showPrompt('Code de l\'élément',titre,'8888888',function(results) {
+		if (results.buttonIndex==1) {
+			ELCODE=results.input1
+			showPrompt('Nom de l\'élément',titre,'',function(results) {
+				if (results.buttonIndex==1) {
+					ELFR=results.input1!=''?results.input1:'Sans nom';
+					showPrompt('Quantité d\'éléments',titre,'',function(results) {
+						if (results.buttonIndex==1) {
+							Qte=results.input1!=''?results.input1:1;
+							showPrompt('Prix de l\'élément',titre,'',function(results) {
+								if (results.buttonIndex==1) {
+									Prix=results.input1!=''?results.input1:0;
+									return true;
 								} else {
 									return false;
 								}

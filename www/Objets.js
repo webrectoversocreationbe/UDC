@@ -43,6 +43,7 @@ Modele.prototype = {
 							self.DelaiMax=results.rows.item(0).MODELAI+2;
 							self.FOUR=results.rows.item(0).FOUR;
 							self.Existe=true;
+							self.Perso=false;
 						}
 					},
 					function(tx) {log('Erreur '+tx.message);}

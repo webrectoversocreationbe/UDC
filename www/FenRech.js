@@ -170,9 +170,11 @@ function InitRech(Quoi,callback) {
 			$('#cdeopfr').html(cdeModele.OPCODE+' - '+cdeModele.OPFR);
 		});
 	} else if (Quoi=='cdeAjElem') {
-		if (cdeModele.MODNR=='') {
+		if (cdeModele.MODNR=='' && cdeModele.Perso==false) {
 			Vibre(1000);
 			showAlert('Choisissez un modèle','Impossible',['Ok']);
+		} else if(cdeModele.Perso==true) {
+			AjouteElemPerso();
 		} else {
 			PopulateRech('cdeAjElem','',function() {
 				$('.PanneauRech').show();
