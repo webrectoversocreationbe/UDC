@@ -164,6 +164,7 @@ function chkEcran() {
 			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
+			dump(cdeModele,'log');
 			cde.DetailCommande.push(cdeModele);
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
@@ -188,6 +189,7 @@ function chkEcran() {
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 //			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
+			dump(cde,'log');
 //			}
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -337,14 +339,13 @@ function DefMod(Quoi) {
 			InitRech(Quoi);
 			break;
 		case 'ModelePerso':
-			if (InputModPerso()==true) {
-				dump(cdeModele,'log');
-			} else {
-				$('#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr').html('');
-				$('#Delai,#DelaiMax').val('');
-			}
+			InputModPerso();
 			break;
 	}
+}
+function VideModPerso() {
+	$('#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr').html('');
+	$('#Delai,#DelaiMax').val('');
 }
 function InputModPerso() {
 	var MODNR='',MODUC='',CUIRNR='',CUIRUC='',COLORNR='',COLOUC='',OPCODE='',OPFR='',MODELAI=0,DelaiMax=0;
@@ -401,42 +402,52 @@ function InputModPerso() {
 																					cdeModele.MOCOEF2=1;
 																					return true;
 																				} else {
+																					VideModPerso();
 																					return false;
 																				}
 																			});
 																		} else {
+																			VideModPerso();
 																			return false;
 																		}
 																	});
 																} else {
+																	VideModPerso();
 																	return false;
 																}
 															});
 														} else {
+															VideModPerso();
 															return false;
 														}
 													});
 												} else {
+													VideModPerso();
 													return false;
 												}
 											});
 										} else {
+											VideModPerso();
 											return false;
 										}
 									});
 								} else {
+									VideModPerso();
 									return false;
 								}
 							});
 						} else {
+							VideModPerso();
 							return false;
 						}
 					});
 				} else {
+					VideModPerso();
 					return false;
 				}
 			});
 		} else {
+			VideModPerso();
 			return false;
 		}
 	});
