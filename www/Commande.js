@@ -338,6 +338,7 @@ function DefMod(Quoi) {
 			break;
 		case 'ModelePerso':
 			if (InputModPerso()==true) {
+				dump(cdeModele,'log');
 			} else {
 				$('#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr').html('');
 				$('#Delai,#DelaiMax').val('');
@@ -390,7 +391,7 @@ function InputModPerso() {
 																					cdeModele.MODUC=MODUC;
 																					cdeModele.CUIRNR=CUIRNR;
 																					cdeModele.CUIRUC=CUIRUC;
-																					cdeModele.COLORNR=COULNR;
+																					cdeModele.COLORNR=COLORNR;
 																					cdeModele.COLOUC=COLOUC;
 																					cdeModele.OPCODE=OPCODE;
 																					cdeModele.OPFR=OPFR;
