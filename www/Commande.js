@@ -338,8 +338,6 @@ function DefMod(Quoi) {
 			break;
 		case 'ModelePerso':
 			if (InputModPerso()==true) {
-				cdeModele.Existe=false;
-				cdeModele.Perso=true;
 			} else {
 				$('#cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr').html('');
 				$('#Delai,#DelaiMax').val('');
@@ -386,6 +384,8 @@ function InputModPerso() {
 																				if (results.buttonIndex==1) {
 																					DelaiMax=results.input1!=''?results.input1:12;
 																					$('#DelaiMax').val(DelaiMax);
+																					cdeModele.Existe=false;
+																					cdeModele.Perso=true;
 																					cdeModele.MODNR=MODNR;
 																					cdeModele.MODUC=MODUC;
 																					cdeModele.CUIRNR=CUIRNR;
