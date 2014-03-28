@@ -759,5 +759,15 @@ function DetailBon(refcde) {
 }
 function AnnulerBon() {
 	var refcde=$('#HistoNumBon').val();
-	alert('annuler '+refcde);
+	showPrompt('Entrez la raison :','Annulation bon de commande','',function(results) {
+		var raison='';
+		if (results.buttonIndex==1) {
+			var raison=results.input1
+		}
+		if (raison=='') {
+			showAlert('Vous devez expliquer la raison','Annulation bon de commande','Ok');
+			AnnulerBon();
+		}
+		alert('ici');
+	});
 }
