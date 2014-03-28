@@ -751,10 +751,10 @@ function HistoCmd() {
 	InitRech('LesBonsDeCommande');
 }
 function DetailBon(refcde,bAnnule) {
-	dbcommande.DetailBon(refcde,function(r) {
+	dbcommande.DetailBon(refcde,function(r,bAnnule) {
 		$('#historecap').html(r);
 		$('#HistoNumBon').val(refcde);
-		$('#btnAnnBon').css('display',bAnnule==1?'none':'block');
+		$('#btnAnnBon').css('display',bAnnule==1?'none':'inline');
 		Go('BonCommande');
 	});
 }
@@ -786,9 +786,8 @@ function AnnulerBon() {
 							url: "http://"+adresseServeur+"/UDC/ajaxAnnuleCde.php",
 							crossDomain: true,
 							async: false,
-							dataType: 'json',
 							type: "POST",
-							data: {RefCde: JSON.stringify(refcde),Raison: JSON.stringify(raison)},
+							data: {RefCde:refcde,Raison:raison},
 							success:function (data) {
 								log('La commande à été annulée');
 								alert(data);
