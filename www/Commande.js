@@ -790,7 +790,6 @@ function AnnulerBon() {
 							data: {RefCde:refcde,Raison:raison},
 							success:function (data) {
 								log('La commande à été annulée');
-								alert(data);
 							},
 							error: function(request, model, response) {
 								log(request.responseText + " " +model + " " + response);
