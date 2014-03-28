@@ -750,10 +750,11 @@ function ViderCommandes() {
 function HistoCmd() {
 	InitRech('LesBonsDeCommande');
 }
-function DetailBon(refcde) {
+function DetailBon(refcde,bAnnule) {
 	dbcommande.DetailBon(refcde,function(r) {
 		$('#historecap').html(r);
 		$('#HistoNumBon').val(refcde);
+		$('#btnAnnBon').css('display',bAnnule==1?'none':'block');
 		Go('BonCommande');
 	});
 }
@@ -767,6 +768,8 @@ function AnnulerBon() {
 		var raison='';
 		if (results.buttonIndex==1) {
 			var raison=results.input1
+		} else if (results.buttonIndex==2) { // btn annuler
+			return true;
 		}
 		if (raison=='') {
 			navigator.notification.alert('Vous devez expliquer la raison', function(results) {
@@ -777,8 +780,25 @@ function AnnulerBon() {
 			recap='<h2>Bon de commande annulé</h2><p>'+raison+'</p><hr/>'+recap;
 			madb.transaction(
 				function(tx) {
-					var sql = "update Commande set Recap=? where Ref=?";
+					var sql = "update Commande set Recap=?,bAnnule=1 where Ref=?";
 					tx.executeSql(sql,[recap,refcde],function(tx,results){
+						$.ajax({
+							url: "http://"+adresseServeur+"/UDC/ajaxAnnuleCde.php",
+							crossDomain: true,
+							async: false,
+							dataType: 'json',
+							type: "POST",
+							data: {RefCde: JSON.stringify(refcde),Raison: JSON.stringify(raison)},
+							success:function (data) {
+								log('La commande à été annulée');
+								alert(data);
+							},
+							error: function(request, model, response) {
+								log(request.responseText + " " +model + " " + response);
+							}
+						}).done(function(){
+							Go('Main');
+						});
 					},function(tx,err){log('err ann bon '+err.code+' '+err.message);});
 				},
 				self.txErrorHandler,

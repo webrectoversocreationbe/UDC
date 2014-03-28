@@ -1452,12 +1452,13 @@ window.dbcommande = {
         var self = this;
         madb.transaction(
             function(tx) {
-				var ssql="SELECT Recap FROM Commande WHERE Ref='"+Ref+"'";
+				var ssql="SELECT Recap,bAnnule FROM Commande WHERE Ref='"+Ref+"'";
                 tx.executeSql(ssql, this.txErrorHandler,
                     function(tx, results) {
                         if (results.rows.length == 1) {
 							r=results.rows.item(0).Recap;
-							callback(r);
+							bann=results.rows.item(0).bAnnule;
+							callback(r,bann);
 /*							cde.Existe=true;
 							cde.Vendeur=results.rows.item(0).Vendeur;
 							cde.Actif=1;
