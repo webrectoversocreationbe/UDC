@@ -767,7 +767,8 @@ function AnnulerBon() {
 		if (raison=='') {
 			showAlert('Vous devez expliquer la raison','Annulation bon de commande','Ok');
 			AnnulerBon();
+		} else {
+			alert('ici');
 		}
-		alert('ici');
 	});
 }
