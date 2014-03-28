@@ -758,6 +758,10 @@ function DetailBon(refcde) {
 	});
 }
 function AnnulerBon() {
+	if (bConnected==false) {
+		showAlert('Vous devez être connecté pour effectuer cette action','Attention','Ok');
+		return false;
+	}
 	var refcde=$('#HistoNumBon').val();
 	showPrompt('Entrez la raison :','Annulation bon de commande','',function(results) {
 		var raison='';
@@ -769,16 +773,18 @@ function AnnulerBon() {
 				AnnulerBon();
 			},'Annulation bon de commande','Ok');
 		} else {
-/*			cde.Recap='<h2>Bon de commande annulé</h2><p>'+raison+'</p><hr/>'+cde.Recap;
+			var recap=$('#historecap').html();
+			recap='<h2>Bon de commande annulé</h2><p>'+raison+'</p><hr/>'+recap;
 			madb.transaction(
 				function(tx) {
 					var sql = "update Commande set Recap=? where Ref=?";
-					tx.executeSql(sql,[cde.Recap,refcde],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+					tx.executeSql(sql,[recap,refcde],function(tx,results){
+					},function(tx,err){log('err ann bon '+err.code+' '+err.message);});
 				},
 				self.txErrorHandler,
 				function(tx) {
 				}
-			);*/
+			);
 		}
 	});
 }
