@@ -765,10 +765,20 @@ function AnnulerBon() {
 			var raison=results.input1
 		}
 		if (raison=='') {
-			showAlert('Vous devez expliquer la raison','Annulation bon de commande','Ok');
-			AnnulerBon();
+			navigator.notification.alert('Vous devez expliquer la raison', function(results) {
+				AnnulerBon();
+			},'Annulation bon de commande','Ok');
 		} else {
-			alert('ici');
+/*			cde.Recap='<h2>Bon de commande annulé</h2><p>'+raison+'</p><hr/>'+cde.Recap;
+			madb.transaction(
+				function(tx) {
+					var sql = "update Commande set Recap=? where Ref=?";
+					tx.executeSql(sql,[cde.Recap,refcde],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+				},
+				self.txErrorHandler,
+				function(tx) {
+				}
+			);*/
 		}
 	});
 }
