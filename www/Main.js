@@ -30,7 +30,7 @@ var app = {
 //		showAlert('Touche Menu appuyée','Menu contextuel','OK');
 	},
 	onBackButton: function() {
-		showConfirm('Voulez vous sortir de l\'application ?','Quitter',['Quitter','Rester'],function(results) {
+		showConfirm('Voulez vous quitter l\'application ?','Quitter',['Quitter','Rester'],function(results) {
 			if (results==1) {
 				navigator.app.exitApp();
 			}
