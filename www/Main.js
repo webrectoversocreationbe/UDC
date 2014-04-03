@@ -66,6 +66,9 @@ $(document).ready(function() {
 			}
 		})
 	});
+	$('input,textarea').on('focus',function() {
+		$(this).select();
+	});
 });
 
 function onDeviceReady() {

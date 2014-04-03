@@ -59,8 +59,10 @@ function VideZones() {
 	$('#cdeacompteautre').val('');
 	$('#cdesoldeacompte').val('');
 	$('#cdeacomptedate').val('');
+	$('#chkfinnon').attr('checked',true);
 	$('#MontantFin').val('');
-	
+	$('#chkexon').attr('checked',false);
+		
 	$('#tfspecial1').val('');
 	$('#tfspecial2').val('');
 	$('#fspecial1').val('');
@@ -97,6 +99,17 @@ function prevEcran() {
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif-=1;
 	$('#Ecran'+EcranActif).addClass('current2');
+}
+function checkmontesp() {
+	// si cde pas fractionnée et tvac>3000 => acompte max 10%
+	var pvtvac=parseFloat($('#cdePVTOT').val().replace(',','.')) || 0;
+	if (cde.Fractionner==0 && pvtvac>3000) {
+		var acesp=parseFloat($('#cdeacompteespece').val().replace(',','.')) || 0;
+		if (acesp>(pvtvac/10)) {
+			var maxespece=Nombre(Math.floor(pvtvac/10));
+			showAlert('L\'acompte en espèce ne peut dépasser '+maxespece+' €','Attention','OK'); return false;
+		}
+	}
 }
 function chkEcran() {
 	switch (EcranActif) {
@@ -481,7 +494,7 @@ function AjouteElemPerso() {
 			showPrompt('Nom de l\'élément',titre,'',function(results) {
 				if (results.buttonIndex==1) {
 					ELFR=results.input1!=''?results.input1:'Sans nom';
-					showPrompt('Quantité d\'éléments',titre,'',function(results) {
+					showPrompt('Quantité d\'éléments',titre,'1',function(results) {
 						if (results.buttonIndex==1) {
 							Qte=results.input1!=''?results.input1:1;
 							showPrompt('Prix de l\'élément',titre,'',function(results) {
@@ -655,15 +668,15 @@ function RecapCde() {
 			var Qte=cde.DetailCommande[cptm].Elements[cpte].Qte;
 			var Px=cde.DetailCommande[cptm].Elements[cpte].Prix;
 			if (Qte>0) {
-				r=r+'<p class="ML15">- <span class="mev">'+descelem+' : '+Qte;
-				if (cde.AfficherPrix==1) {r=r+' = '+Nombre(Qte*Px)+' €';}
+				r=r+'<p class="ML15">- '+Qte+' x <span class="mev">'+descelem;
+				//if (cde.AfficherPrix==1) {r=r+' = '+Nombre(Qte*Px)+' €';}
 				r=r+'</span></p>';
 			}
 		}
 	}
 	r=r+'<hr/>';
 	r=r+'<br/><p><u>Total</u> : </p>';
-	r=r+'<p>Prix de vente : <span class="mev">'+Nombre(cde.PrixVente)+' €</span></p>';
+//	r=r+'<p>Prix de vente : <span class="mev">'+Nombre(cde.PrixVente)+' €</span></p>';
 	if(cde.Remise>0) {r=r+'<p>Remise : <span class="mev">'+Nombre(cde.Remise)+' €</span></p>';}
 	if(cde.Reprise>0) {r=r+'<p>Rachat : <span class="mev">'+Nombre(cde.Reprise)+' €</span></p>';}
 	if(cde.Frais>0) {r=r+'<p>Frais complémentaires : <span class="mev">'+Nombre(cde.Frais)+' €</span></p>';}
@@ -673,8 +686,8 @@ function RecapCde() {
 	if(cde.AcompteEspece>0) {r=r+'<p>Espèce : <span class="mev">'+Nombre(cde.AcompteEspece)+' €</span></p>';}
 	if(cde.AcompteCheque>0) {r=r+'<p>Chèque : <span class="mev">'+Nombre(cde.AcompteCheque)+' €</span></p>';}
 	if(cde.AcompteAutre>0) {r=r+'<p>Autre : <span class="mev">'+Nombre(cde.AcompteAutre)+' €</span></p>';}
+	if(cde.DateA!='') {r=r+'<br/><p><u>Acompte à payer pour le</u> : <span class="mev">'+cde.DateA+'</span></p>';}
 	if(cde.SoldeAcompte>0) {r=r+'<p>Solde acompte : <span class="mev">'+Nombre(cde.SoldeAcompte)+' €</span></p>';}
-	if(cde.DateA!='') {r=r+'<p>A payer pour le : <span class="mev">'+cde.DateA+'</span></p>';}
 	if(cde.MontantFinancement>0) {r=r+'<br/><p>Financement : <span class="mev">'+cde.MontantFinancement+' €</span></p>';}
 	var tot=0;
 	var chkRepr=$('#chkRepr').is(':checked')==true?75:0;
@@ -692,7 +705,7 @@ function RecapCde() {
 		if(cde.FCEtage8>0) {r=r+'<p>Livraison par lift étage 8 ou plus : <span class="mev">'+Nombre(cde.FCEtage8)+' €</span></p>';}
 		if(cde.FCSpecial1>0) {r=r+'<p>'+cde.FCTSpecial1+' : <span class="mev">'+Nombre(cde.FCSpecial1)+' €</span></p>';}
 		if(cde.FCSpecial2>0) {r=r+'<p>'+cde.FCTSpecial2+' : <span class="mev">'+Nombre(cde.FCSpecial2)+' €</span></p>';}
-		r=r+'<br/><p><u>Total à payer à la livraison</u> : <span class="mev">'+Nombre(tot)+' €</span></p>';
+		r=r+'<br/><p><u>Total frais complémentaires à payer à la livraison</u> : <span class="mev">'+Nombre(tot)+' €</span></p>';
 	}
 	cde.Recap=r;
 	$('#RecapCde').html(r);

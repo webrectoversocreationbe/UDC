@@ -147,11 +147,11 @@
             </p>
             <p><input type="radio" name="genre" id="Partic" value="1" checked="checked" onChange="chkPartSoc()"><label for="Partic" id="lPartic">Particulier</label>&nbsp;&nbsp;
             <input type="radio" name="genre" id="Societ" value="2" onChange="chkPartSoc()"><label for="Societ">Société</label>&nbsp;&nbsp;
-            <input type="text" name="remvend" id="RemarqueVendeur" placeholder="Remarque pour le bureau">
+            <input type="text" name="remvend" id="RemarqueVendeur" placeholder="Remarque pour le bureau" onFocus="this.select()">
             </p>
             <div id="rubrsoc">
-            <p class="floatleft"><input type="text" id="Societe" placeholder="Société"></p>
-            <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA"-></p><div class="clear"></div>
+            <p class="floatleft"><input type="text" id="Societe" placeholder="Société" onFocus="this.select()"></p>
+            <p class="floatleft ML20"><input type="text" id="NumTva" placeholder="N° de TVA" onFocus="this.select()"></p><div class="clear"></div>
             <p>
             <input type="radio" name="civil0" id="Civil0Mr" checked="checked" /><label for="Civil0Mr">Mr</label>
             <input type="radio" name="civil0" id="Civil0Mme" class="ML15" /><label for="Civil0Mme">Mme</label>
@@ -285,13 +285,13 @@
         </div>
         <div class="cdeContent">
         	<div style="width:600px; margin:0 auto;">
-            	<p>Prix de vente total TVA comprise : <span class="floatright" id="labcdePVTOTTVAC"><input type="hidden" id="cdePVTOTTVAC" size="15">0.00 €</span></p>
+            	<p>Prix de vente total TVA comprise : <span class="floatright" id="labcdePVTOTTVAC"><input type="hidden" id="cdePVTOTTVAC" size="15" onFocus="this.select()">0.00 €</span></p>
                 <p><u>Acompte payé ce jour</u> : (20%=<span id="acompte20"></span>)</p>
                 <table style="width:100%;" id="tableauacompte">
-                <tr><td align="left">Carte :</td><td align="right"><input type="text" id="cdeacomptecarte" value="" size="15"/> €</td></tr>
-                <tr><td align="left">Espèce :</td><td align="right"><input type="text" id="cdeacompteespece" value="" size="15"/> €</td></tr>
-                <tr><td align="left">Chèque :</td><td align="right"><input type="text" id="cdeacomptecheque" value="" size="15"/> €</td></tr>
-                <tr><td align="left">Autre :</td><td align="right"><input type="text" id="cdeacompteautre" value="" size="15"/> €</td></tr>
+                <tr><td align="left">Carte :</td><td align="right"><input type="text" id="cdeacomptecarte" value="" size="15" onFocus="this.select()"/> €</td></tr>
+                <tr><td align="left">Espèce :</td><td align="right"><input type="text" id="cdeacompteespece" value="" size="15" onChange="checkmontesp()" onFocus="this.select()"/> €</td></tr>
+                <tr><td align="left">Chèque :</td><td align="right"><input type="text" id="cdeacomptecheque" value="" size="15" onFocus="this.select()"/> €</td></tr>
+                <tr><td align="left">Autre :</td><td align="right"><input type="text" id="cdeacompteautre" value="" size="15" onFocus="this.select()"/> €</td></tr>
                 </table>
                 <p>&nbsp;</p>
             	<p>Solde d'acompte à payer pour le : <input type="text" id="cdeacomptedate" class="DatePicker" size="15" readonly="true"><span class="floatright"><input type="text" id="cdesoldeacompte" size="15"> €</span></p>
