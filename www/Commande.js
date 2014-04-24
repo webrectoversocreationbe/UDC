@@ -2,7 +2,7 @@ var cde={};
 var cdeModele={};
 var r=''; // contient le récap
 var EcranActif;
-var NumModModif=0;
+var NumModModif=-1;
 function InitCommande() {
     cdeModele=new Modele();
 	cde=new Commande();
@@ -179,18 +179,21 @@ function chkEcran() {
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
 //			dump(cdeModele,'log');
+log(1);
 			var cptmod=0;
-			if (NumModModif==0) {
+			if (NumModModif==-1) {
 				cde.DetailCommande.push(cdeModele);
 				cptmod=cde.DetailCommande.length-1;
 			} else {
 				cptmod=NumModModif;
 			}
+log(2);
 			$('#modifmod').html('<p>Modifier le modèle</p>');
 			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
 				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
 				$('#modifmod p').append(btnmodif);
 			}
+log(3);
 			// quantité des élements
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
@@ -206,8 +209,10 @@ function chkEcran() {
 					}
 				}
 			});
+log(4);
 			// calculer le prix
 			cde.CalculPrix();
+log(5);
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
@@ -215,6 +220,7 @@ function chkEcran() {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
 //			dump(cde,'log');
 //			}
+		NumModModif=-1;
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
@@ -344,7 +350,7 @@ function ModifMod(num) {
 	} else {
 		$('#GenreASAP').prop('checked',false);
 	}
-	$('#cdeRemModCtn').html(cde.DetailCommande[num].Remarque);
+	$('#cdeRemModCtn').html('<p><u>Remarque</u> :<br/>'+cde.DetailCommande[num].Remarque+'</p>');
 	$('#cdetLesElems').empty();
 	var nbelem=cde.DetailCommande[num].Elements.length;
 	for(cpt=0;cpt<nbelem;cpt++) {
