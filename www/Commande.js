@@ -179,13 +179,10 @@ function chkEcran() {
 			// ajout du modèle au détail de commande
 			dump(cdeModele,'log');
 			cde.DetailCommande.push(cdeModele);
-			if ($('#modifmod').html()=='') {
-				$('#modifmod').append('<p>Modifier :</p>');
-			}
-			var btnmodif='<p><button onclick="ModifMod(\''+cdeModele.MODNR+'\')">'+cdeModele.MODNR+'</button></p>';
+			var cptmod=cde.DetailCommande.length-1;
+			var btnmodif='<p>Modifier le modèle <button class="btnmodifmod" onclick="ModifMod('+cptmod+')">'+cdeModele.MODNR+'</button></p>';
 			$('#modifmod').append(btnmodif);
 			// quantité des élements
-			var cptmod=cde.DetailCommande.length-1;
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
 			cde.DetailCommande[cptmod].DelaiMax=$('#DelaiMax').val();
@@ -323,6 +320,8 @@ function chkEcran() {
 		$('#Ecran'+EcranActif).addClass('current2');
 		break;
 	}
+}
+function ModifMod(num) {
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
