@@ -331,23 +331,34 @@ function chkEcran() {
 	}
 }
 function ModifMod(num) {
+	log(1);
 	$('#cdemoduc').html(cde.DetailCommande[num].MODNR+' - '+cde.DetailCommande[num].MODUC);
+	log(2);
 	$('#cdecuiruc').html(cde.DetailCommande[num].CUIRNR+' - '+cde.DetailCommande[num].CUIRUC);
+	log(3);
 	$('#cdecolouc').html(cde.DetailCommande[num].COLORNR+' - '+cde.DetailCommande[num].COLOUC);
+	log(4);
 	$('#cdeopfr').html(cde.DetailCommande[num].OPCODE+' - '+cde.DetailCommande[num].OPFR);
+	log(5);
 	$('#Delai').val(cde.DetailCommande[num].MODELAI);
+	log(6);
 	$('#DelaiMax').val(cde.DetailCommande[num].DelaiMax);
-	if (cde.DetailCommande[cptmod].GenreDelai=='ASAP') {
+	log(7);
+	if (cde.DetailCommande[num].GenreDelai=='ASAP') {
 		$('#GenreASAP').prop('checked',true);
 	} else {
 		$('#GenreASAP').prop('checked',false);
 	}
+	log(8);
 	$('#cdeRemModCtn').html(cde.DetailCommande[num].Remarque);
+	log(9);
 	$('#cdetLesElems').empty();
+	log(10);
 	var nbelem=cde.DetailCommande[num].Elements.length;
+	log(11);
 	for(cpt=0;cpt<nbelem;cpt++) {
 		var el=cde.DetailCommande[num].Elements[cpt];
-		if (cde.DetailCommande[cptmod].Elements[cpt].Qte>0) {
+		if (cde.DetailCommande[num].Elements[cpt].Qte>0) {
 			var ret='<tr id="cdeelem'+cde.DetailCommande[num].Elements[cpt].ELCODE+'"><td>'+cde.DetailCommande[num].Elements[cpt].ELCODE+' - '+cde.DetailCommande[num].Elements[cpt].ELFR+'</td><td align="right">'+cde.DetailCommande[num].Elements[cpt].Qte+'</td></tr>';
 			$('#cdetLesElems').append(ret);
 		}
