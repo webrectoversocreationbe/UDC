@@ -178,7 +178,7 @@ function chkEcran() {
 			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
-			dump(cdeModele,'log');
+//			dump(cdeModele,'log');
 			var cptmod=0;
 			if (NumModModif==0) {
 				cde.DetailCommande.push(cdeModele);
@@ -213,7 +213,7 @@ function chkEcran() {
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 //			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-			dump(cde,'log');
+//			dump(cde,'log');
 //			}
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -331,6 +331,10 @@ function chkEcran() {
 	}
 }
 function ModifMod(num) {
+	$('#cdemoduc').html(cde.DetailCommande[num].MODNR+' - '+cde.DetailCommande[num].MODUC);
+	$('#cdecuiruc').html(cde.DetailCommande[num].CUIRNR+' - '+cde.DetailCommande[num].CUIRUC);
+	$('#cdecolouc').html(cde.DetailCommande[num].COLORNR+' - '+cde.DetailCommande[num].COLOUC);
+	$('#cdeopfr').html(cde.DetailCommande[num].OPCODE+' - '+cde.DetailCommande[num].OPFR);
 	$('#Delai').val(cde.DetailCommande[num].MODELAI);
 	$('#DelaiMax').val(cde.DetailCommande[num].DelaiMax);
 	if (cde.DetailCommande[cptmod].GenreDelai=='ASAP') {
@@ -338,6 +342,7 @@ function ModifMod(num) {
 	} else {
 		$('#GenreASAP').prop('checked',false);
 	}
+	$('#cdeRemModCtn').html(cde.DetailCommande[num].Remarque);
 	$('#cdetLesElems').empty();
 	var nbelem=cde.DetailCommande[num].Elements.length;
 	for(cpt=0;cpt<nbelem;cpt++) {
@@ -347,6 +352,10 @@ function ModifMod(num) {
 			$('#cdetLesElems').append(ret);
 		}
 	}
+	
+	$('#Ecran'+EcranActif).removeClass('current2');
+	EcranActif-=1;
+	$('#Ecran'+EcranActif).addClass('current2');
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
