@@ -213,7 +213,7 @@ function chkEcran() {
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 //			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-//			dump(cde,'log');
+			dump(cde,'log');
 //			}
 		NumModModif=-1;
 		// ECRAN SUIV
@@ -357,7 +357,9 @@ function ModifMod(num) {
 			$('#cdetLesElems').append(ret);
 		}
 	}
-	var api = $('#sigPadCroquis').signaturePad().regenerate(cde.DetailCommande[num].CROQUIS);
+	cdeCroquisEfface();
+	var api = $('#sigPadCroquis').signaturePad();
+	api.regenerate(cde.DetailCommande[num].CROQUIS);
 	
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif-=1;
