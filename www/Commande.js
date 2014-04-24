@@ -153,7 +153,7 @@ function chkEcran() {
 		if ($('#cdemoduc').html()=='') {
 			showAlert('Il faut choisir un modèle','Attention','OK'); return false;
 		}
-		if ($('#cdecuiruc').html()=='') {
+/*		if ($('#cdecuiruc').html()=='') {
 			showAlert('Il faut choisir un revêtement','Attention','OK'); return false;
 		}
 		if ($('#Delai').val()=='') {
@@ -170,7 +170,7 @@ function chkEcran() {
 		}
 		if (cdeModele.bOptions==1 && $('#cdeopfr').html()=='') {
 			showAlert('Il faut choisir une option','Attention','OK'); return false;
-		}
+		}*/
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
@@ -179,6 +179,11 @@ function chkEcran() {
 			// ajout du modèle au détail de commande
 			dump(cdeModele,'log');
 			cde.DetailCommande.push(cdeModele);
+			if ($('#modifmod').html()=='') {
+				$('#modifmod').append('<p>Modifier :</p>');
+			}
+			var btnmodif='<p><button onclick="ModifMod(\''+cdeModele.MODNR+'\')">'+cdeModele.MODNR+'</button></p>';
+			$('#modifmod').append(btnmodif);
 			// quantité des élements
 			var cptmod=cde.DetailCommande.length-1;
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
