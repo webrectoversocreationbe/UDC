@@ -185,11 +185,7 @@ function chkEcran() {
 			} else {
 				cptmod=NumModModif;
 			}
-			$('#modifmod').html('<p>Modifier le modèle</p>');
-			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
-				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
-				$('#modifmod p').append(btnmodif);
-			}
+			AffBtnModifMod();
 			cde.DetailCommande[cptmod].CROQUIS=api.getSignatureString();
 			cde.DetailCommande[cptmod].Remarque=$('#cdeRemModCtn').html();
 			// quantité des élements
@@ -332,6 +328,13 @@ function chkEcran() {
 		break;
 	}
 }
+function AffBtnModifMod() {
+	$('#modifmod').html('<p>Modifier le modèle</p>');
+	for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
+		var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
+		$('#modifmod p').append(btnmodif);
+	}
+}
 function ModifMod(num) {
 	VideEcranCdeMod();
 	$('#btnsupprmod').html('<button class="btncde btnsupprmod ML15" onClick="SupprModCde('+num+')">Supprimer ce modèle</button>');
@@ -370,13 +373,17 @@ function ModifMod(num) {
 }
 function SupprModCde(num) {
 	cde.DetailCommande.splice(num,1);
+	NumModModif=-1;
+	AffBtnModifMod();
 	if (cde.DetailCommande.length>0) {
 		$('#Ecran'+EcranActif).removeClass('current2');
 		EcranActif+=1;
 		$('#Ecran'+EcranActif).addClass('current2');
 	} else {
 		VideEcranCdeMod();
+		cdeModele={};
 	}
+	dump(cde,'log');
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
