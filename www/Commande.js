@@ -180,8 +180,11 @@ function chkEcran() {
 			dump(cdeModele,'log');
 			cde.DetailCommande.push(cdeModele);
 			var cptmod=cde.DetailCommande.length-1;
-			var btnmodif='<p>Modifier le modèle <button class="btnmodifmod" onclick="ModifMod('+cptmod+')">'+cdeModele.MODNR+'</button></p>';
-			$('#modifmod').append(btnmodif);
+			if (cptmod==1) {
+				$('#modifmod').append('<p>Modifier le modèle</p>');
+			}
+			var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cptmod+')">'+cdeModele.MODNR+'</button>';
+			$('#modifmod p').append(btnmodif);
 			// quantité des élements
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
