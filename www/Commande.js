@@ -370,9 +370,13 @@ function ModifMod(num) {
 }
 function SupprModCde(num) {
 	cde.DetailCommande.splice(num,1);
-	$('#Ecran'+EcranActif).removeClass('current2');
-	EcranActif+=1;
-	$('#Ecran'+EcranActif).addClass('current2');
+	if (cde.DetailCommande.length>0) {
+		$('#Ecran'+EcranActif).removeClass('current2');
+		EcranActif+=1;
+		$('#Ecran'+EcranActif).addClass('current2');
+	} else {
+		VideEcranCdeMod();
+	}
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
