@@ -334,6 +334,7 @@ function chkEcran() {
 function ModifMod(num) {
 	VideEcranCdeMod();
 	NumModModif=num;
+	cdeModele=cde.DetailCommande[num];
 	$('#cdemoduc').html(cde.DetailCommande[num].MODNR+' - '+cde.DetailCommande[num].MODUC);
 	$('#cdecuiruc').html(cde.DetailCommande[num].CUIRNR+' - '+cde.DetailCommande[num].CUIRUC);
 	if (cde.DetailCommande[num].COLORNR!='') {$('#cdecolouc').html(cde.DetailCommande[num].COLORNR+' - '+cde.DetailCommande[num].COLOUC);}
