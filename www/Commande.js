@@ -184,7 +184,7 @@ function chkEcran() {
 				cde.DetailCommande.push(cdeModele);
 				cptmod=cde.DetailCommande.length-1;
 			} else {
-				cptmod=NumModModif();
+				cptmod=NumModModif;
 			}
 			$('#modifmod').html('<p>Modifier le modèle</p>');
 			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
@@ -331,31 +331,22 @@ function chkEcran() {
 	}
 }
 function ModifMod(num) {
-	log(1);
+	VideEcranCdeMod();
+	NumModModif=num;
 	$('#cdemoduc').html(cde.DetailCommande[num].MODNR+' - '+cde.DetailCommande[num].MODUC);
-	log(2);
 	$('#cdecuiruc').html(cde.DetailCommande[num].CUIRNR+' - '+cde.DetailCommande[num].CUIRUC);
-	log(3);
-	$('#cdecolouc').html(cde.DetailCommande[num].COLORNR+' - '+cde.DetailCommande[num].COLOUC);
-	log(4);
-	$('#cdeopfr').html(cde.DetailCommande[num].OPCODE+' - '+cde.DetailCommande[num].OPFR);
-	log(5);
+	if (cde.DetailCommande[num].COLORNR!='') {$('#cdecolouc').html(cde.DetailCommande[num].COLORNR+' - '+cde.DetailCommande[num].COLOUC);}
+	if (cde.DetailCommande[num].OPCODE!='') {$('#cdeopfr').html(cde.DetailCommande[num].OPCODE+' - '+cde.DetailCommande[num].OPFR);}
 	$('#Delai').val(cde.DetailCommande[num].MODELAI);
-	log(6);
 	$('#DelaiMax').val(cde.DetailCommande[num].DelaiMax);
-	log(7);
 	if (cde.DetailCommande[num].GenreDelai=='ASAP') {
 		$('#GenreASAP').prop('checked',true);
 	} else {
 		$('#GenreASAP').prop('checked',false);
 	}
-	log(8);
 	$('#cdeRemModCtn').html(cde.DetailCommande[num].Remarque);
-	log(9);
 	$('#cdetLesElems').empty();
-	log(10);
 	var nbelem=cde.DetailCommande[num].Elements.length;
-	log(11);
 	for(cpt=0;cpt<nbelem;cpt++) {
 		var el=cde.DetailCommande[num].Elements[cpt];
 		if (cde.DetailCommande[num].Elements[cpt].Qte>0) {
