@@ -2,7 +2,7 @@
 	FENETRES DE RECHERCHE
 */
 function InitRech(Quoi,callback) {
-	$('#btnOKPanRech').propr("disabled",false);
+	$('#btnOKPanRech').prop("disabled",false);
 	$('#ChampRech').val('');
 	$('#DescRech').val('');
 	$('#QuelleRech').val(Quoi);
