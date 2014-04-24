@@ -179,7 +179,6 @@ function chkEcran() {
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
 //			dump(cdeModele,'log');
-log(1);
 			var cptmod=0;
 			if (NumModModif==-1) {
 				cde.DetailCommande.push(cdeModele);
@@ -187,13 +186,11 @@ log(1);
 			} else {
 				cptmod=NumModModif;
 			}
-log(2);
 			$('#modifmod').html('<p>Modifier le modèle</p>');
 			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
 				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
 				$('#modifmod p').append(btnmodif);
 			}
-log(3);
 			// quantité des élements
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
@@ -209,10 +206,8 @@ log(3);
 					}
 				}
 			});
-log(4);
 			// calculer le prix
 			cde.CalculPrix();
-log(5);
 			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
 			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
@@ -347,10 +342,12 @@ function ModifMod(num) {
 	$('#DelaiMax').val(cde.DetailCommande[num].DelaiMax);
 	if (cde.DetailCommande[num].GenreDelai=='ASAP') {
 		$('#GenreASAP').prop('checked',true);
+		$('#GenreResp').prop('checked',false);
 	} else {
+		$('#GenreResp').prop('checked',true);
 		$('#GenreASAP').prop('checked',false);
 	}
-	$('#cdeRemModCtn').html('<p><u>Remarque</u> :<br/>'+cde.DetailCommande[num].Remarque+'</p>');
+	$('#cdeRemModCtn').html('<p class="ML15"><u>Remarque</u> :<br/><span id="cdeRemModCtn">'+cde.DetailCommande[num].Remarque+'</span></p>');
 	$('#cdetLesElems').empty();
 	var nbelem=cde.DetailCommande[num].Elements.length;
 	for(cpt=0;cpt<nbelem;cpt++) {
@@ -360,6 +357,7 @@ function ModifMod(num) {
 			$('#cdetLesElems').append(ret);
 		}
 	}
+	var api = $('#sigPadCroquis').signaturePad().regenerate(cde.DetailCommande[num].CROQUIS);
 	
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif-=1;
