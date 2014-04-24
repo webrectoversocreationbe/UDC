@@ -175,8 +175,6 @@ function chkEcran() {
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
-			cdeModele.CROQUIS=api.getSignatureString();
-			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			// ajout du modèle au détail de commande
 //			dump(cdeModele,'log');
 			var cptmod=0;
@@ -191,6 +189,8 @@ function chkEcran() {
 				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
 				$('#modifmod p').append(btnmodif);
 			}
+			cde.DetailCommande[cptmod].CROQUIS=api.getSignatureString();
+			cde.DetailCommande[cptmod].Remarque=$('#cdeRemModCtn').html();
 			// quantité des élements
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();

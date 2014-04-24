@@ -2,6 +2,7 @@
 	FENETRES DE RECHERCHE
 */
 function InitRech(Quoi,callback) {
+	$('#btnOKPanRech').propr("disabled",false);
 	$('#ChampRech').val('');
 	$('#DescRech').val('');
 	$('#QuelleRech').val(Quoi);
@@ -275,7 +276,6 @@ function Choix(obj) {
 function PopulateRech(Quoi,Rech,callback) {
 	if (Quoi=='') {Quoi=$('#QuelleRech').val();}
 	$('#ValRech').val('');
-//	$('#btnOKPanRech').propr("disabled",false);
 	switch (Quoi) {
 	case 'trfModeles':
 	case 'cdeModeles':
