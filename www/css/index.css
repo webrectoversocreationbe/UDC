@@ -399,7 +399,7 @@ p {
 #cdemoduc,#cdecuiruc,#cdecolouc,#cdeopfr {font-size:16px;font-weight:bold; color:#e2001a;}
 #cdeRemMod {font-size:14px; width:280px; padding-top:15px;}
 /* ecran 3 */
-.btnmodifmod {padding:10px; float:left; margin-left:10px;}
+.btnmodifmod {padding:10px; margin-left:10px; display:inline;}
 /* ecran 4 */
 #tableauprix tr td {width:70%;}
 #tableauprix tr td+td {width:30%;}

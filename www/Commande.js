@@ -2,6 +2,7 @@ var cde={};
 var cdeModele={};
 var r=''; // contient le récap
 var EcranActif;
+var NumModModif=0;
 function InitCommande() {
     cdeModele=new Modele();
 	cde=new Commande();
@@ -178,13 +179,18 @@ function chkEcran() {
 			cdeModele.CROQUIS=api.getSignatureString();
 			// ajout du modèle au détail de commande
 			dump(cdeModele,'log');
-			cde.DetailCommande.push(cdeModele);
-			var cptmod=cde.DetailCommande.length-1;
-			if (cptmod==1) {
-				$('#modifmod').append('<p>Modifier le modèle</p>');
+			var cptmod=0;
+			if (NumModModif==0) {
+				cde.DetailCommande.push(cdeModele);
+				cptmod=cde.DetailCommande.length-1;
+			} else {
+				cptmod=NumModModif();
 			}
-			var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cptmod+')">'+cdeModele.MODNR+'</button>';
-			$('#modifmod p').append(btnmodif);
+			$('#modifmod').html('<p>Modifier le modèle</p>');
+			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
+				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cptmod].MODNR+'</button>';
+				$('#modifmod p').append(btnmodif);
+			}
 			// quantité des élements
 			var nbelem=cde.DetailCommande[cptmod].Elements.length;
 			cde.DetailCommande[cptmod].MODELAI=$('#Delai').val();
