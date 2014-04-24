@@ -175,8 +175,8 @@ function chkEcran() {
 		// OBJ CDE
 			// CROQUIS
 			var api = $('#sigPadCroquis').signaturePad();
-			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			cdeModele.CROQUIS=api.getSignatureString();
+			cdeModele.Remarque=$('#cdeRemModCtn').html();
 			// ajout du modèle au détail de commande
 //			dump(cdeModele,'log');
 			var cptmod=0;
@@ -213,7 +213,7 @@ function chkEcran() {
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 //			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-			dump(cde,'log');
+//			dump(cde,'log');
 //			}
 		NumModModif=-1;
 		// ECRAN SUIV
@@ -347,7 +347,7 @@ function ModifMod(num) {
 		$('#GenreResp').prop('checked',true);
 		$('#GenreASAP').prop('checked',false);
 	}
-	$('#cdeRemModCtn').html('<p class="ML15"><u>Remarque</u> :<br/><span id="cdeRemModCtn">'+cde.DetailCommande[num].Remarque+'</span></p>');
+	if (cde.DetailCommande[num].Remarque!='') {$('#cdeRemMod').html('<p class="ML15"><u>Remarque</u> :<br/><span id="cdeRemModCtn">'+cde.DetailCommande[num].Remarque+'</span></p>');}
 	$('#cdetLesElems').empty();
 	var nbelem=cde.DetailCommande[num].Elements.length;
 	for(cpt=0;cpt<nbelem;cpt++) {
@@ -357,6 +357,7 @@ function ModifMod(num) {
 			$('#cdetLesElems').append(ret);
 		}
 	}
+	dump(cde.DetailCommande[num].CROQUIS,'log');
 	cdeCroquisEfface();
 	var api = $('#sigPadCroquis').signaturePad();
 	api.regenerate(cde.DetailCommande[num].CROQUIS);
