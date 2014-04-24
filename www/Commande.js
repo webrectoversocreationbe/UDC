@@ -188,7 +188,7 @@ function chkEcran() {
 			}
 			$('#modifmod').html('<p>Modifier le modèle</p>');
 			for(cpt=0;cpt<cde.DetailCommande.length;cpt++) {
-				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cptmod].MODNR+'</button>';
+				var btnmodif='<button class="btnmodifmod" onclick="ModifMod('+cpt+')">'+cde.DetailCommande[cpt].MODNR+'</button>';
 				$('#modifmod p').append(btnmodif);
 			}
 			// quantité des élements
@@ -331,6 +331,22 @@ function chkEcran() {
 	}
 }
 function ModifMod(num) {
+	$('#Delai').val(cde.DetailCommande[num].MODELAI);
+	$('#DelaiMax').val(cde.DetailCommande[num].DelaiMax);
+	if (cde.DetailCommande[cptmod].GenreDelai=='ASAP') {
+		$('#GenreASAP').prop('checked',true);
+	} else {
+		$('#GenreASAP').prop('checked',false);
+	}
+	$('#cdetLesElems').empty();
+	var nbelem=cde.DetailCommande[num].Elements.length;
+	for(cpt=0;cpt<nbelem;cpt++) {
+		var el=cde.DetailCommande[num].Elements[cpt];
+		if (cde.DetailCommande[cptmod].Elements[cpt].Qte>0) {
+			var ret='<tr id="cdeelem'+cde.DetailCommande[num].Elements[cpt].ELCODE+'"><td>'+cde.DetailCommande[num].Elements[cpt].ELCODE+' - '+cde.DetailCommande[num].Elements[cpt].ELFR+'</td><td align="right">'+cde.DetailCommande[num].Elements[cpt].Qte+'</td></tr>';
+			$('#cdetLesElems').append(ret);
+		}
+	}
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
