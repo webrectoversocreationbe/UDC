@@ -74,6 +74,7 @@ function VideZones() {
 	$('#chkEtage8').attr('checked',false);
 }
 function VideEcranCdeMod() {
+	$('#btnsupprmod').html('');
 	$('#cdemoduc').html('');
 	$('#cdecuiruc').html('');
 	$('#cdecolouc').html('');
@@ -333,6 +334,7 @@ function chkEcran() {
 }
 function ModifMod(num) {
 	VideEcranCdeMod();
+	$('#btnsupprmod').html('<button class="btncde btnsupprmod ML15" onClick="SupprModCde('+num+')">Supprimer ce modèle</button>');
 	NumModModif=num;
 	cdeModele=cde.DetailCommande[num];
 	$('#cdemoduc').html(cde.DetailCommande[num].MODNR+' - '+cde.DetailCommande[num].MODUC);
@@ -358,13 +360,18 @@ function ModifMod(num) {
 			$('#cdetLesElems').append(ret);
 		}
 	}
-	dump(cde.DetailCommande[num].CROQUIS,'log');
 	cdeCroquisEfface();
 	var api = $('#sigPadCroquis').signaturePad();
 	api.regenerate(cde.DetailCommande[num].CROQUIS);
 	
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif-=1;
+	$('#Ecran'+EcranActif).addClass('current2');
+}
+function SupprModCde(num) {
+	cde.DetailCommande.splice(num,1);
+	$('#Ecran'+EcranActif).removeClass('current2');
+	EcranActif+=1;
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function cdeInfoModele() {
