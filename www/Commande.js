@@ -372,17 +372,21 @@ function ModifMod(num) {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function SupprModCde(num) {
-	cde.DetailCommande.splice(num,1);
-	NumModModif=-1;
-	AffBtnModifMod();
-	if (cde.DetailCommande.length>0) {
-		$('#Ecran'+EcranActif).removeClass('current2');
-		EcranActif+=1;
-		$('#Ecran'+EcranActif).addClass('current2');
-	} else {
-		VideEcranCdeMod();
-	    cdeModele=new Modele();
-	}
+	showConfirm('Voulez vous supprimer le modèle '+cde.DetailCommande[num].MODNR+' ?','Quitter',['Supprimer','Annuler'],function(results) {
+		if (results==1) {
+			cde.DetailCommande.splice(num,1);
+			NumModModif=-1;
+			AffBtnModifMod();
+			if (cde.DetailCommande.length>0) {
+				$('#Ecran'+EcranActif).removeClass('current2');
+				EcranActif+=1;
+				$('#Ecran'+EcranActif).addClass('current2');
+			} else {
+				VideEcranCdeMod();
+				cdeModele=new Modele();
+			}
+		}
+	})
 }
 function cdeInfoModele() {
 	$('#cdemoduc').html('&nbsp;');
