@@ -79,7 +79,6 @@ function onDeviceReady() {
 }
 function InitAll() {
 	TesteLaConnectivite(function(){
-		SynchroCde();
 		// initialisation du filesystem
 		InitFS(function() {
 			// initialisation du filetransfer
@@ -88,6 +87,7 @@ function InitAll() {
 				InitDB(function() {
 					log('Base de données initialisée');
 					ParamsParDef();
+					SynchroCde();
 				});
 			});
 		});
