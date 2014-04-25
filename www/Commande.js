@@ -909,7 +909,6 @@ function SynchroCde() {
 	)
 }
 function resync() {
-	log(1);
 	madb.transaction(
 		function(tx) {
 			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'synchro'", this.txErrorHandler,
@@ -958,8 +957,7 @@ function resync() {
 							cde.Signature1=results.rows.item(0).Signature1;
 							cde.Signature2=results.rows.item(0).Signature2;
 							cde.AfficherPrix=1;
-	log(2);
-							ssql="SELECT * FROM DetCde WHERE Ref='"+Ref+"'";
+							ssql="SELECT * FROM DetCde WHERE Ref='"+cde.Ref+"'";
 							tx.executeSql(ssql, this.txErrorHandler,
 								function(tx, results) {
 									for(cpt=0;cpt<results.rows.length;cpt++) {
