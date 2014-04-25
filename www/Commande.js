@@ -916,6 +916,7 @@ function resync() {
 					if (results.rows.length > 0) {
 						log('nb : '+results.rows.length);
 						for(cpt=0;cpt<results.rows.length;cpt++) {
+							(function addcde(cpt) {
 							cde=new Commande();
 							cde.Vendeur=results.rows.item(0).Vendeur;
 							cde.Actif=1;
@@ -1001,6 +1002,7 @@ function resync() {
 									);
 								}
 							);
+						})(cpt)
 						}
 					}
 /*					$.ajax({
