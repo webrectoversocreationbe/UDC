@@ -970,8 +970,9 @@ function resync() {
 												cde.DetailCommande.push(cdeModele);
 												log('modele '+results.rows.item(cpt2).MODNR);
 												var numdetcde=results.rows.item(cpt2).Num;
-												ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;log(ssql);
-												tx.executeSql(ssql, this.txErrorHandler,
+												ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;
+												log(ssql);
+												tx.executeSql(ssql, function() {alert('err');/*this.txErrorHandler*/},
 													function(tx, results) {
 														log('ici');
 														for(cpt3=0;cpt3<results.rows.length;cpt3++) {
