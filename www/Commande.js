@@ -902,7 +902,7 @@ function SynchroCde() {
 			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'synchro'", this.txErrorHandler,
 				function(tx, results) {
 					if (results.rows.length > 0) {
-						$('#attentioncdenotsync').html('Il existe des commandes non synchronisées<br/><a onclick="resync()">Envoyer à nouveau</a>');
+						$('#attentioncdenotsync').html('Il existe des commandes non synchronisées<br/><a href="#" style="color:#f00" onclick="resync()">Envoyer à nouveau</a>');
 					}
 				});
 		}
@@ -973,35 +973,35 @@ function resync() {
 							);
 						}
 					}
+					$.ajax({
+						url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
+						crossDomain: true,
+						async: false,
+						dataType: 'json',
+						type: "POST",
+						data: {Cde: JSON.stringify(cde)},
+						success:function (data) {
+							madb.transaction(
+								function(tx) {
+									var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
+//									tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+								},
+								self.txErrorHandler,
+								function(tx) {
+								}
+							);
+							log('La commande à été synchronisée');
+						},
+						error: function(request, model, response) {
+							log(request.responseText + " " +model + " " + response);
+						}
+					}).done(function(){
+						$('.loader').toggle();
+						$('#btnconfirmcde').prop('disabled',false);
+						dbu.logout();
+						Go('Connexion');
+					});
 				});
 		}
-	)
-        $.ajax({
-            url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
-	        crossDomain: true,
-			async: false,
-			dataType: 'json',
-			type: "POST",
-            data: {Cde: JSON.stringify(cde)},
-            success:function (data) {
-				madb.transaction(
-					function(tx) {
-						var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
-						tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
-					},
-					self.txErrorHandler,
-					function(tx) {
-					}
-				);
-				log('La commande à été synchronisée');
-            },
-            error: function(request, model, response) {
-				log(request.responseText + " " +model + " " + response);
-            }
-        }).done(function(){
-			$('.loader').toggle();
-			$('#btnconfirmcde').prop('disabled',false);
-			dbu.logout();
-			Go('Connexion');
-		});
+	);
 }
