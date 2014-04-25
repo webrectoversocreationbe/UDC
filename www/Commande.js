@@ -965,10 +965,23 @@ function resync() {
 											cdeModele=new Modele();
 											cdeModele.init(results.rows.item(cpt).MODNR,function() {
 												cde.DetailCommande.push(cdeModele);
+												log(results.rows.item(cpt).MODNR);
+												var numdetcde=results.rows.item(cpt).NumDetCde;
+												ssql="SELECT * FROM ElDetCde WHERE NumDetCde='"+numdetcde+"'";
+												tx.executeSql(ssql, this.txErrorHandler,
+													function(tx, results) {
+														for(cpt=0;cpt<results.rows.length;cpt++) {
+															(function addmod(cpt) {
+																log(results.rows.item(cpt).ELCODE+' : '+results.rows.item(cpt).Qte);
+															})(cpt)
+														}
+//														dump(cde,'log');
+													}
+												);
 											});
 										})(cpt)
 									}
-									dump(cde,'log');
+//									dump(cde,'log');
 								}
 							);
 						}
@@ -996,10 +1009,6 @@ function resync() {
 							log(request.responseText + " " +model + " " + response);
 						}
 					}).done(function(){
-						$('.loader').toggle();
-						$('#btnconfirmcde').prop('disabled',false);
-						dbu.logout();
-						Go('Connexion');
 					});
 				});
 		}
