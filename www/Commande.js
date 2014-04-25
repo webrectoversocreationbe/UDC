@@ -999,8 +999,8 @@ function resync() {
 										}
 									);
 								},function() {
-									log('ok fait');
 								},function() {
+									log('ok fait');
 								}
 							);
 						}
