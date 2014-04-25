@@ -79,6 +79,7 @@ function onDeviceReady() {
 }
 function InitAll() {
 	TesteLaConnectivite(function(){
+		SynchroCde();
 		// initialisation du filesystem
 		InitFS(function() {
 			// initialisation du filetransfer

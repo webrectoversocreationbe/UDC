@@ -888,3 +888,112 @@ function AnnulerBon() {
 		}
 	});
 }
+function SynchroCde() {
+	madb.transaction(
+		function(tx) {
+			tx.executeSql("SELECT * FROM Commandes WHERE Etat<>'synchro'", this.txErrorHandler,
+				function(tx, results) {
+					if (results.rows.length > 0) {
+						$('#attentioncdenotsync').html('Il existe des commandes non synchronisées<br/><a onclick="resync()">Envoyer à nouveau</a>');
+					}
+				});
+		}
+	)
+}
+function resync() {
+	madb.transaction(
+		function(tx) {
+			tx.executeSql("SELECT * FROM Commandes WHERE Etat<>'synchro'", this.txErrorHandler,
+				function(tx, results) {
+					if (results.rows.length > 0) {
+						for(cpt=0;cpt<results.rows.length;cpt++) {
+							cde.Vendeur=results.rows.item(0).Vendeur;
+							cde.Actif=1;
+							cde.Ref=results.rows.item(0).Ref;
+							cde.DateC=results.rows.item(0).DateC;cde.DateCYYYYMMDD=results.rows.item(0).DateCYYYYMMDD;cde.Etat=results.rows.item(0).Etat;
+							cde.Societe=results.rows.item(0).Societe;cde.NumTva=results.rows.item(0).NumTva;cde.RemarqueVendeur=results.rows.item(0).RemVen;
+							cde.Civil0=results.rows.item(0).Civil0;cde.Responsable=results.rows.item(0).Responsable;
+							cde.Civil1=results.rows.item(0).Civil1;cde.Prenom1=results.rows.item(0).Prenom1;cde.Nom1=results.rows.item(0).Nom1;
+							cde.Civil2=results.rows.item(0).Civil2;cde.Prenom2=results.rows.item(0).Prenom2;cde.Nom2=results.rows.item(0).Nom2;
+							cde.Adresse=results.rows.item(0).Adresse;cde.CP=results.rows.item(0).CP;cde.Ville=results.rows.item(0).Ville;
+							cde.Tel1=results.rows.item(0).Tel1;cde.Tel2=results.rows.item(0).Tel2;cde.Gsm1=results.rows.item(0).Gsm1;cde.Gsm2=results.rows.item(0).Gsm2;
+							cde.Email=results.rows.item(0).Email;cde.Remarque=results.rows.item(0).Remarque;
+							cde.Fractionner=results.rows.item(0).Fractionner;cde.NbFraction=results.rows.item(0).NbFraction;
+							cde.FactEnsSiege=results.rows.item(0).FactEnsSiege;
+							cde.TotalTarif=results.rows.item(0).TotalTarif;
+							cde.PrixVente=results.rows.item(0).PrixVente;
+							cde.Remise=results.rows.item(0).Remise;
+							cde.Reprise=results.rows.item(0).Reprise;
+							cde.Frais=results.rows.item(0).Frais;
+							cde.GenreFrais=results.rows.item(0).GenreFrais;
+							cde.TotalNet=results.rows.item(0).TotalNet;
+							cde.Financement=results.rows.item(0).Financement;
+							cde.MontantFinancement=results.rows.item(0).MontantFin;
+							cde.Exoneration=results.rows.item(0).Exoneration;
+							cde.TotalTVAC=results.rows.item(0).TotalTVAC;
+							cde.Acompte=results.rows.item(0).Acompte;
+							cde.AcompteCarte=results.rows.item(0).AcompteCarte;
+							cde.AcompteEspece=results.rows.item(0).AcompteEspece;
+							cde.AcompteCheque=results.rows.item(0).AcompteCheque;
+							cde.AcompteAutre=results.rows.item(0).AcompteAutre;
+							cde.SoldeAcompte=results.rows.item(0).SoldeAcompte;
+							cde.DateA=results.rows.item(0).DateA;
+							cde.FCRepr=results.rows.item(0).FCRepr;
+							cde.FCEtage1=results.rows.item(0).FCEtage1;
+							cde.FCEtage3=results.rows.item(0).FCEtage3;
+							cde.FCEtage8=results.rows.item(0).FCEtage8;
+							cde.FCSpecial1=results.rows.item(0).FCSpecial1;
+							cde.FCSpecial2=results.rows.item(0).FCSpecial2;
+							cde.FCTSpecial1=results.rows.item(0).FCTSpecial1;
+							cde.FCTSpecial2=results.rows.item(0).FCTSpecial2;
+							cde.Signature1=results.rows.item(0).Signature1;
+							cde.Signature2=results.rows.item(0).Signature2;
+							cde.AfficherPrix=1;
+							ssql="SELECT * FROM DetCde WHERE Ref='"+Ref+"'";
+							tx.executeSql(ssql, this.txErrorHandler,
+								function(tx, results) {
+									for(cpt=0;cpt<results.rows.length;cpt++) {
+										(function addmod(cpt) {
+											cdeModele=new Modele();
+											cdeModele.init(results.rows.item(cpt).MODNR,function() {
+												cde.DetailCommande.push(cdeModele);
+											});
+										})(cpt)
+									}
+									dump(cde,'log');
+								}
+							);
+						}
+					}
+				});
+		}
+	)
+        $.ajax({
+            url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
+	        crossDomain: true,
+			async: false,
+			dataType: 'json',
+			type: "POST",
+            data: {Cde: JSON.stringify(cde)},
+            success:function (data) {
+				madb.transaction(
+					function(tx) {
+						var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
+						tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+					},
+					self.txErrorHandler,
+					function(tx) {
+					}
+				);
+				log('La commande à été synchronisée');
+            },
+            error: function(request, model, response) {
+				log(request.responseText + " " +model + " " + response);
+            }
+        }).done(function(){
+			$('.loader').toggle();
+			$('#btnconfirmcde').prop('disabled',false);
+			dbu.logout();
+			Go('Connexion');
+		});
+}
