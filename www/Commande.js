@@ -990,7 +990,7 @@ function resync() {
 							);
 						}
 					}
-					$.ajax({
+/*					$.ajax({
 						url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
 						crossDomain: true,
 						async: false,
@@ -1013,7 +1013,8 @@ function resync() {
 							log(request.responseText + " " +model + " " + response);
 						}
 					}).done(function(){
-					});
+					});*/
+					alert('ok');
 				});
 		}
 	);
