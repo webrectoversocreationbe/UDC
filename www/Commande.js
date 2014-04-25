@@ -780,7 +780,7 @@ function RecapCde() {
 	$('#RecapCde').html(r);
 }
 function ConfirmCde() {
-	//dump(cde,'log');
+	dump(cde,'log');
 	$('.loader').toggle();
 	$('#btnconfirmcde').prop('disabled',true);
 	dbcommande.insertCde(cde,function() {
