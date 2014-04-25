@@ -966,7 +966,6 @@ function resync() {
 										function(tx, results) {
 											log('cde '+cde.Ref);
 											for(cpt2=0;cpt2<results.rows.length;cpt2++) {
-												(function addmod(cpt2) {
 													cdeModele=new Modele();
 													cdeModele.init(results.rows.item(cpt2).MODNR,function() {
 														cde.DetailCommande.push(cdeModele);
@@ -979,7 +978,6 @@ function resync() {
 																tx.executeSql(ssql, function() {this.txErrorHandler},
 																	function(tx, results) {
 																		for(cpt3=0;cpt3<results.rows.length;cpt3++) {
-																			(function addel(cpt3) {
 																				log(results.rows.item(cpt3).ELCODE+' : '+results.rows.item(cpt3).Qte);
 																				for(cpt4=0;cpt4<cde.DetailCommande.lenght;cpt4++){
 																					if (cde.DetailCommande[cpt4].ELCODE==results.rows.item(cpt3).ELCODE) {
@@ -987,20 +985,15 @@ function resync() {
 																						cde.DetailCommande[cpt4].Prix=results.rows.item(cpt3).Prix;
 																					}
 																				}
-																			})(cpt3)
 																		}
 																	}
 																);
 															}
 														);
 													});
-												})(cpt2)
 											}
 										}
 									);
-								},function() {
-								},function() {
-									log('ok fait');
 								}
 							);
 						}
@@ -1030,6 +1023,9 @@ function resync() {
 					}).done(function(){
 					});*/
 				});
-		}
+		},function() {
+								},function() {
+									log('ok fait');
+								}
 	);
 }
