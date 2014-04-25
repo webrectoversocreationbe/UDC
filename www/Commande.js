@@ -911,7 +911,7 @@ function SynchroCde() {
 function resync() {
 	madb.transaction(
 		function(tx) {
-			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'synchro'", this.txErrorHandler,
+			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'Synchro'", this.txErrorHandler,
 				function(tx, results) {
 					if (results.rows.length > 0) {
 						log('nb : '+results.rows.length);
@@ -964,28 +964,28 @@ function resync() {
 							tx.executeSql(ssql, this.txErrorHandler,
 								function(tx, results) {
 									log('cde '+cde.Ref);
-									for(cpt=0;cpt<results.rows.length;cpt++) {
-										(function addmod(cpt) {
+									for(cpt2=0;cpt2<results.rows.length;cpt2++) {
+										(function addmod(cpt2) {
 											log(3);
 											cdeModele=new Modele();
-											cdeModele.init(results.rows.item(cpt).MODNR,function() {
+											cdeModele.init(results.rows.item(cpt2).MODNR,function() {
 												log(4);
 												cde.DetailCommande.push(cdeModele);
-												log(results.rows.item(cpt).MODNR);
-												var numdetcde=results.rows.item(cpt).NumDetCde;
+												log(results.rows.item(cpt2).MODNR);
+												var numdetcde=results.rows.item(cpt2).NumDetCde;
 												ssql="SELECT * FROM ElDetCde WHERE NumDetCde='"+numdetcde+"'";
 												tx.executeSql(ssql, this.txErrorHandler,
 													function(tx, results) {
-														for(cpt=0;cpt<results.rows.length;cpt++) {
-															(function addmod(cpt) {
-																log(results.rows.item(cpt).ELCODE+' : '+results.rows.item(cpt).Qte);
-															})(cpt)
+														for(cpt3=0;cpt3<results.rows.length;cpt3++) {
+															(function addel(cpt3) {
+																log(results.rows.item(cpt3).ELCODE+' : '+results.rows.item(cpt3).Qte);
+															})(cpt3)
 														}
 //														dump(cde,'log');
 													}
 												);
 											});
-										})(cpt)
+										})(cpt2)
 									}
 //									dump(cde,'log');
 								}
