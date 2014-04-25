@@ -970,9 +970,10 @@ function resync() {
 												cde.DetailCommande.push(cdeModele);
 												log('modele '+results.rows.item(cpt2).MODNR);
 												var numdetcde=results.rows.item(cpt2).Num;
-												ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;
+												ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;log(ssql);
 												tx.executeSql(ssql, this.txErrorHandler,
 													function(tx, results) {
+														log('ici');
 														for(cpt3=0;cpt3<results.rows.length;cpt3++) {
 															(function addel(cpt3) {
 																log(results.rows.item(cpt3).ELCODE+' : '+results.rows.item(cpt3).Qte);
