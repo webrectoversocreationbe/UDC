@@ -780,7 +780,6 @@ function RecapCde() {
 	$('#RecapCde').html(r);
 }
 function ConfirmCde() {
-	dump(cde,'log');
 	$('.loader').toggle();
 	$('#btnconfirmcde').prop('disabled',true);
 	dbcommande.insertCde(cde,function() {
@@ -993,11 +992,11 @@ function resync() {
 												);
 											});
 										})(cpt2)
-					dump(cde,'log');
 									}
 								}
 							);
 						}
+						log('ok fait');
 					}
 /*					$.ajax({
 						url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
