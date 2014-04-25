@@ -915,6 +915,7 @@ function resync() {
 				function(tx, results) {
 					if (results.rows.length > 0) {
 						for(cpt=0;cpt<results.rows.length;cpt++) {
+							cde=new Commande();
 							cde.Vendeur=results.rows.item(0).Vendeur;
 							cde.Actif=1;
 							cde.Ref=results.rows.item(0).Ref;
