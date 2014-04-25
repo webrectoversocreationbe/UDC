@@ -785,6 +785,7 @@ function ConfirmCde() {
 	dbcommande.insertCde(cde,function() {
 		if (bConnected==false) {
 			ShowAlert('Vous n\'êtes pas connecté, il faudra synchroniser ultérieurement','Attention',[Ok]);
+			Fin();
 		} else {
 			$.ajax({
 				url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
@@ -959,44 +960,50 @@ function resync() {
 							cde.Signature2=results.rows.item(0).Signature2;
 							cde.AfficherPrix=1;
 							ssql="SELECT * FROM DetCde WHERE Ref='"+cde.Ref+"'";
-							tx.executeSql(ssql, this.txErrorHandler,
-								function(tx, results) {
-									log('cde '+cde.Ref);
-									for(cpt2=0;cpt2<results.rows.length;cpt2++) {
-										(function addmod(cpt2) {
-											cdeModele=new Modele();
-											cdeModele.init(results.rows.item(cpt2).MODNR,function() {
-												cde.DetailCommande.push(cdeModele);
-												var numdet=cde.DetailCommande.length-1;
-												log('modele '+results.rows.item(cpt2).MODNR);
-												var numdetcde=results.rows.item(cpt2).Num;
-												ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;
-												madb.transaction(
-													function(tx) {
-														tx.executeSql(ssql, function() {this.txErrorHandler},
-															function(tx, results) {
-																for(cpt3=0;cpt3<results.rows.length;cpt3++) {
-																	(function addel(cpt3) {
-																		log(results.rows.item(cpt3).ELCODE+' : '+results.rows.item(cpt3).Qte);
-																		for(cpt4=0;cpt4<cde.DetailCommande.lenght;cpt4++){
-																			if (cde.DetailCommande[cpt4].ELCODE==results.rows.item(cpt3).ELCODE) {
-																				cde.DetailCommande[cpt4].Qte=results.rows.item(cpt3).Qte;
-																				cde.DetailCommande[cpt4].Prix=results.rows.item(cpt3).Prix;
-																			}
+							madb.transaction(
+								function(tx) {
+									tx.executeSql(ssql, this.txErrorHandler,
+										function(tx, results) {
+											log('cde '+cde.Ref);
+											for(cpt2=0;cpt2<results.rows.length;cpt2++) {
+												(function addmod(cpt2) {
+													cdeModele=new Modele();
+													cdeModele.init(results.rows.item(cpt2).MODNR,function() {
+														cde.DetailCommande.push(cdeModele);
+														var numdet=cde.DetailCommande.length-1;
+														log('modele '+results.rows.item(cpt2).MODNR);
+														var numdetcde=results.rows.item(cpt2).Num;
+														ssql="SELECT * FROM ElDetCde WHERE NumDetCde="+numdetcde;
+														madb.transaction(
+															function(tx) {
+																tx.executeSql(ssql, function() {this.txErrorHandler},
+																	function(tx, results) {
+																		for(cpt3=0;cpt3<results.rows.length;cpt3++) {
+																			(function addel(cpt3) {
+																				log(results.rows.item(cpt3).ELCODE+' : '+results.rows.item(cpt3).Qte);
+																				for(cpt4=0;cpt4<cde.DetailCommande.lenght;cpt4++){
+																					if (cde.DetailCommande[cpt4].ELCODE==results.rows.item(cpt3).ELCODE) {
+																						cde.DetailCommande[cpt4].Qte=results.rows.item(cpt3).Qte;
+																						cde.DetailCommande[cpt4].Prix=results.rows.item(cpt3).Prix;
+																					}
+																				}
+																			})(cpt3)
 																		}
-																	})(cpt3)
-																}
+																	}
+																);
 															}
 														);
-													}
-												);
-											});
-										})(cpt2)
-									}
+													});
+												})(cpt2)
+											}
+										}
+									);
+								},function() {
+									log('ok fait');
+								},function() {
 								}
 							);
 						}
-						log('ok fait');
 					}
 /*					$.ajax({
 						url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
