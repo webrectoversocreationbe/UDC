@@ -914,6 +914,7 @@ function resync() {
 			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'synchro'", this.txErrorHandler,
 				function(tx, results) {
 					if (results.rows.length > 0) {
+						log('nb : '+results.rows.length);
 						for(cpt=0;cpt<results.rows.length;cpt++) {
 							cde=new Commande();
 							cde.Vendeur=results.rows.item(0).Vendeur;
@@ -962,7 +963,7 @@ function resync() {
 							ssql="SELECT * FROM DetCde WHERE Ref='"+cde.Ref+"'";
 							tx.executeSql(ssql, this.txErrorHandler,
 								function(tx, results) {
-									log(2);
+									log('cde '+cde.Ref);
 									for(cpt=0;cpt<results.rows.length;cpt++) {
 										(function addmod(cpt) {
 											log(3);
