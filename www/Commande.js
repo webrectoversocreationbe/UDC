@@ -784,35 +784,43 @@ function ConfirmCde() {
 	$('.loader').toggle();
 	$('#btnconfirmcde').prop('disabled',true);
 	dbcommande.insertCde(cde,function() {
-        $.ajax({
-            url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
-	        crossDomain: true,
-			async: false,
-			dataType: 'json',
-			type: "POST",
-            data: {Cde: JSON.stringify(cde)},
-            success:function (data) {
-				madb.transaction(
-					function(tx) {
-						var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
-						tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
-					},
-					self.txErrorHandler,
-					function(tx) {
-					}
-				);
-				log('La commande à été synchronisée');
-            },
-            error: function(request, model, response) {
-				log(request.responseText + " " +model + " " + response);
-            }
-        }).done(function(){
-			$('.loader').toggle();
-			$('#btnconfirmcde').prop('disabled',false);
-			dbu.logout();
-			Go('Connexion');
-		});
+		if (bConnected==false) {
+			ShowAlert('Vous n\'êtes pas connecté, il faudra synchroniser ultérieurement','Attention',[Ok]);
+		} else {
+			$.ajax({
+				url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
+				crossDomain: true,
+				async: false,
+				dataType: 'json',
+				type: "POST",
+				data: {Cde: JSON.stringify(cde)},
+				success:function (data) {
+					madb.transaction(
+						function(tx) {
+							var sql = "update Commande set Etat='Synchro' where Ref='"+cde.Ref+"'";
+							tx.executeSql(sql,[],function(tx,results){},function(tx,err){log('err ins mod '+err.code+' '+err.message);});
+						},
+						self.txErrorHandler,
+						function(tx) {
+						}
+					);
+					log('La commande à été synchronisée');
+				},
+				error: function(request, model, response) {
+					log(request.responseText + " " +model + " " + response);
+					Fin();
+				}
+			}).done(function(){
+				Fin();
+			});
+		}
 	});
+}
+function Fin() {
+	$('.loader').toggle();
+	$('#btnconfirmcde').prop('disabled',false);
+	dbu.logout();
+	Go('Connexion');
 }
 function ViderCommandes() {
 	var sql="delete from Commande";
