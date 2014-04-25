@@ -993,12 +993,12 @@ function resync() {
 												);
 											});
 										})(cpt2)
+					dump(cde,'log');
 									}
 								}
 							);
 						}
 					}
-					dump(cde,'log');
 /*					$.ajax({
 						url: "http://"+adresseServeur+"/UDC/ajaxAddCde.php",
 						crossDomain: true,
