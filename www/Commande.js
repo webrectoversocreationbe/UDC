@@ -957,13 +957,17 @@ function resync() {
 							cde.Signature1=results.rows.item(0).Signature1;
 							cde.Signature2=results.rows.item(0).Signature2;
 							cde.AfficherPrix=1;
+							log(1);
 							ssql="SELECT * FROM DetCde WHERE Ref='"+cde.Ref+"'";
 							tx.executeSql(ssql, this.txErrorHandler,
 								function(tx, results) {
+									log(2);
 									for(cpt=0;cpt<results.rows.length;cpt++) {
 										(function addmod(cpt) {
+											log(3);
 											cdeModele=new Modele();
 											cdeModele.init(results.rows.item(cpt).MODNR,function() {
+												log(4);
 												cde.DetailCommande.push(cdeModele);
 												log(results.rows.item(cpt).MODNR);
 												var numdetcde=results.rows.item(cpt).NumDetCde;
