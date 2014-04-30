@@ -7,7 +7,7 @@
 }
 .sigWrapper {
   clear: both;
-  height: 597px;
+  max-height: 597px;
 
   border: 1px solid #ccc;
 }
