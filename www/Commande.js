@@ -203,15 +203,6 @@ function chkEcran() {
 					}
 				}
 			});
-			// calculer le prix
-			cde.CalculPrix();
-			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
-			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
-//			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
-//			if (cde.AfficherPrix==0) {
-				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-//	dump(cde,'log');
-//			}
 		NumModModif=-1;
 		// ECRAN SUIV
 		$('#Ecran'+EcranActif).removeClass('current2');
@@ -673,6 +664,11 @@ function btnNouvMod() {
 	$('#Ecran'+EcranActif).addClass('current2');
 }
 function cdeEcranPrix() {
+			// calculer le prix
+			cde.CalculPrix();
+			$('#cdePT').val(FormatNombre(cde.TotalTarif,2,''));
+			$('#cdePVTOT').val(FormatNombre(cde.TotalTarif,2,''));
+			cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
 	$('#Ecran'+EcranActif).removeClass('current2');
 	EcranActif=4;
 	$('#Ecran'+EcranActif).addClass('current2');
