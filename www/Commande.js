@@ -210,7 +210,7 @@ function chkEcran() {
 //			cde.PrixVente=parseFloat($('#cdePV').val().replace(',','.')) || 0;
 //			if (cde.AfficherPrix==0) {
 				cde.PrixVente=parseFloat($('#cdePT').val().replace(',','.')) || 0;
-//			dump(cde,'log');
+	dump(cde,'log');
 //			}
 		NumModModif=-1;
 		// ECRAN SUIV
