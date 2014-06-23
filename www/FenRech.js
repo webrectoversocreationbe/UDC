@@ -226,6 +226,13 @@ function InitRech(Quoi,callback) {
 								return true;
 							}
 						}
+					} else {
+						for (var cpt=0;cpt<cdeModele.Elements.length;cpt++) {
+							if (cdeModele.Elements[cpt].ELCODE==elcode) {
+								cdeModele.Elements[cpt].Qte=0;
+								return true;
+							}
+						}
 					}
 				});
 			}
