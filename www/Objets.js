@@ -182,7 +182,7 @@ Modele.prototype = {
 										tx.executeSql(sql,[], 
 											function(tx, results) {
 												if (results.rows.length > 0) {
-													self.Elements[value].Prix=results.rows.item(0).PRIX;
+													self.Elements[value].PX=results.rows.item(0).PRIX;
 												}
 											},
 											function(tx) {log('Erreur rech prix '+this.message);}
@@ -265,17 +265,11 @@ Commande.prototype = {
 			var nbelem=this.DetailCommande[cptm].Elements.length;
 			for(cpte=0;cpte<nbelem;cpte++) {
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
-				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
-//				log('qte,px '+Qte+' '+Px);
-				if (UserVersion==1) {
-					Px=Px*coef;
-				} else {
-					Px=Px*coef2;
-				}
-//				log('px x coef='+Px);
-				Px=Math.ceil(Px/10)*10;
-				//this.DetailCommande[cptm].Elements[cpte].Prix=Px;
 				if (Qte>0) {
+					var Px=this.DetailCommande[cptm].Elements[cpte].PX;
+					if (UserVersion==1) {Px=Px*coef;} else {Px=Px*coef2;}
+					Px=Math.ceil(Px/10)*10;
+					this.DetailCommande[cptm].Elements[cpte].Prix=Px;
 					Prix=Prix+(Qte*Px);
 				}
 			}
