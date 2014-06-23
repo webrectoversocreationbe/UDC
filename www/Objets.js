@@ -256,7 +256,7 @@ Commande.prototype = {
 	init: function(Id,callback) {
 	},
 	CalculPrix: function() {
-		log('calcul prix');
+//		log('calcul prix');
 		var Prix=0;
 		var nbmod=this.DetailCommande.length;
 		for(cptm=0;cptm<nbmod;cptm++) {
@@ -266,15 +266,15 @@ Commande.prototype = {
 			for(cpte=0;cpte<nbelem;cpte++) {
 				var Qte=this.DetailCommande[cptm].Elements[cpte].Qte;
 				var Px=this.DetailCommande[cptm].Elements[cpte].Prix;
-				log('qte,px '+Qte+' '+Px);
+//				log('qte,px '+Qte+' '+Px);
 				if (UserVersion==1) {
 					Px=Px*coef;
 				} else {
 					Px=Px*coef2;
 				}
-				log('px x coef='+Px);
+//				log('px x coef='+Px);
 				Px=Math.ceil(Px/10)*10;
-				this.DetailCommande[cptm].Elements[cpte].Prix=Px;
+				//this.DetailCommande[cptm].Elements[cpte].Prix=Px;
 				if (Qte>0) {
 					Prix=Prix+(Qte*Px);
 				}
