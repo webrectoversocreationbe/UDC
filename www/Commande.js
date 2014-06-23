@@ -895,7 +895,7 @@ function AnnulerBon() {
 function SynchroCde() {
 	madb.transaction(
 		function(tx) {
-			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'synchro'", this.txErrorHandler,
+			tx.executeSql("SELECT * FROM Commande WHERE Etat<>'Synchro'", this.txErrorHandler,
 				function(tx, results) {
 					if (results.rows.length > 0) {
 						$('#attentioncdenotsync').html('Il existe des commandes non synchronisées<br/><a href="#" style="color:#f00" onclick="resync()">Envoyer à nouveau</a>');
